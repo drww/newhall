@@ -1,0 +1,66 @@
+
+
+
+
+							      December 18, 1991
+					MEMO
+
+     TO:  Users of "Variable Storage" Newhall Model
+
+     FROM: A. Van Wambeke
+     Department of SCAS
+     Bradfield Hall 1014
+     Cornell University
+     Ithaca, NY, 14853
+     tel. 1 (607) 255 1738
+     fax  1 (607) 255 2644
+
+     The software included on this diskette does not differ from the software
+     provided with the earlier NSM versions, except for the possibility for the
+     user to modify the water holding capacity of the soil profile. The
+     "default" value of the original Newhall model is 200 mm. With this
+     "Flexnsm" program you may now change this value to any other value.
+
+
+
+     Certain points are worth mentioning:
+
+       1.  There is no special manual going with the flexnsm software; the old
+	   manual is valid. If you do not have the old manual, please let us
+	   know.
+
+       2.  The figures in the part "explanation of the model" use the default
+	   value of 200 mm, even if you selected another value. Therefore the
+	   25 mm value for each layer still appears on the screen during the
+	   "explanation".
+
+       3.  The software is written in basic; either gwbasic or basica should
+	   work. The basica or the gwbasic files are not included in the
+	   diskettes however. You should use your own basic softwares to run
+	   flexnsm. The command to initiate the program would be "GWBASIC
+	   STORVAR" or "BASICA STORVAR".
+
+       4.  The diskette includes an input file "INSTIT.DAT" that can be used to
+	   test the program from option 2 of the main menu.
+
+     The flexnsm program is experimental; we would appreciate receiving
+     comments on your experience with it. We may, if time permits, introduce
+     other variables that would allow users to modify the water intake ratio
+     during the rainstorms ( for example as a function of slope), or change the
+     15 days time step to other values.
+
+     We are also interested in receiving suggestions for modifying the
+     definitions of the moisture and temperature regimes; if a consensus were
+     reached we could insert it in Flexnsm.
+     Thank you for your interest.
+
+
+
+
+
+
+
+
+
+
+

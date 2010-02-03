@@ -1,0 +1,484 @@
+BASIC Conventions:
+  Arrays begin index at 1, not 0.
+  Arrays are initialized to zero at each cell.
+  Boolean functions return 0 for true, -1 for false (pontentially other non-zeros).
+
+Newhall Datum Files (DRITER):
+  Station Name, Country, Degrees Latitude, Minutes Latitude, N/S Hemisphere, Degress Longitude, Minutes Longitude, E/W Hemisphere, Elevation (Default: -100)
+  Pre0, Pre1, Pre2, Pre3, Pre4, Pre5, Pre6, Pre7, Pre8, Pre9, Pre10, Pre1, Tmp0, Tmp1, Tmp2, Tmp3, Tmp4, Tmp5, Tmp6, Tmp7, Tmp8, Tmp9, Tmp10, Tmp11, Starting Year, Ending Year, Unit System
+  Unicode U+001A
+
+Potential Evapotranspiration Computation (STORVAR4):
+  Soil Temperature Regimes (PREG) = {"pregelic", "cryic", "frigid", "mesic", "thermic", "hyperth.", "Isofrigid", "Isomesic", "Isothermic", "Isohyperthermic"};
+  MP[] = Monthly Precipitation from file, 12 months.
+  T[] = Monthly Temp from file, 12 months.
+    If English units (inches and degrees F) are detected from the file, convert both arrays to metric units (mm and degrees C).
+  RLA1 and RLA2 represent degrees and minutes latitude.
+  RLO1 and RLO2 represent degrees and minutes longitude.
+  H holds N/S hemisphere.  EW holds E/W hemisphere.
+  YE is a two element array, with the starting and end year.
+  EM is a character that represents the measurement system.
+  GOSUB 205 (Calculating PET) [Line 48, Logical Line 135]:
+    GOSUB 745 -> GOSUB 835 -> Return -> Return
+      Sets up bar graph to display precip and PET for each month, as millimeters vs. month.
+    ZPE[] = {135, 139.5, 143.7, 147.8, 151.7, 155.4, 158.9, 162.1, 165.2, 168, 170.7, 173.1, 175.3, 177.2, 179, 180.5, 181.8, 182.9, 183.7, 184.3, 184.7, 184.9, 185, 185};
+    ZT[] = {26.5, 27, 27.5, 28, 28.5, 29, 29.5, 30, 30.5, 31, 31.5, 32, 32.5, 33, 33.5, 34, 34.5, 35, 35.5, 36, 36.5, 37, 37.5, 38};
+    INZ[31, 12] = (Gigantic 2D array.)
+    RN[31] = (Sizable 1D array.)
+    FS[12, 13] = (Gigantic 2D array.)
+    RS[] = {5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 42.0, 44.0, 46.0, 48.0, 50.0};
+    FC = 2.5, FCD = 0.66, CV = 5/9
+    If the elevation is not -100, then elevation *= 0.305.
+    Zero out UPE[12], MPE[12], and MWI[12] arrays.
+    RLAG = RLA1 + (RLA2 / 60), proper floating point degree computation.
+    For each temperature at position i in T[]:
+      If the temperature is not less than or equal to 0C, set MWI[i] to (T[i] / 5)^1.514.
+    SWI = Sum of all the elements in MWI.
+    A = (SWI^3 * (6.75 * 10^-7)) - (SWI^2 * (7.71 * 10^-5)) - (SWI * 0.01792) + 0.49239
+    For i from 1 to 12:
+      If T[i] is greater than 0:
+        And is less than 26.5:
+          UPE[i] = 16 * ((10 * T[i] / SWI) ^ A)
+        And is greater than or equal to 38:
+          UPE[i] = 185
+        Otherwise:
+          For KI from 1 to 24:
+           KL = KI + 1
+           KK = KI
+           If (T[i] >= ZT(KI) && T[i] < ZT(KL):
+             UPE[i] = ZPE(KK)
+          UPE[i] = ZPE(KK)
+    Check N/S Hemisphere:
+      If North:
+        NROW = 0
+        For i from 1 to 31:
+          If RLA < RN[i]:
+            Break out of loop.
+          Else:
+            NROW = NROW + 1
+        For i from 1 to 12:
+          If UPE[i] > 0:
+            MPE[i] = UPE[i] * INZ[NROW, i]
+      Else if South:
+        NROW = 0
+        For i from 1 to 13:
+          If RLA < RS:
+            Break out of loop.
+          Else:
+            NROW = NROW + 1
+        If NROW != 0:
+          For i from 1 to 12:
+            If UPE[i] <= 0:
+              Do nothing.
+            Else If NROW >= 13 *OR* FS[NROW, i] = FS[NROW + 1, i]:
+              CS += FS[NROW, i]
+              MPE[i] = UPE[i] * CF
+            Else:
+              CF = ((FS[NROW + 1, i] - FS[NROW, i]) * (((RLA1 - RS[NROW]) * 60) + RLA2)) /
+                   ((RS[NROW + 1] - RS[NROW]) * 60)
+              CF += FS[NROW]
+              MPE[i] = UPE[i] * CF
+        Else:
+          NROW = 1
+          For i from 1 to 12:
+            If UPE[i] > 0:
+              CF = (FS[1,i] - INZ[1,i]) * (RLA1 * 60 + RLA2)/300
+              CF += INZ[1,i]
+    Return from GOSUB 205.
+  ARF = 0, AEV = 0
+  For i from 1 to 12:
+    ARF += MP[i]
+    AEV += MPE[i]
+  GOSUB 660 [Line 50, Logical Line 140]:
+    SUMT = 0
+    For i from 1 to 12:
+      SUMT += T[i]
+    TMA = SUMT/12 + FC
+    AT1 = (T[6] + T[7] + T[8])/3 + FC
+    AT2 = (T[1] + T[2] + T[12])/3 + FC
+    Check Hemisphere:
+      If North:
+        ST = AT1
+        WT = AT2
+      If South:
+        ST = AT2
+        WT = AT1
+    DIF = AbsValue(AT1 - AT2)
+    CS = DIF * (1 - FCD)/2
+    Fill CR[] with boolean results (true = 0, false = -1, values init'd to 0):
+      CR[1] = TMA < 0
+      CR[2] = O <= TMA
+      CR[3] = (ST - CS) < 15
+      CR[7] = (DIF * FCD) > 5
+      CR[8] = (TMA < 8) and (TMA < 15)
+      CR[9] = (TMA >= 15) and (TMA < 22)
+      CR[10] = TMA >= 22
+      CR[11] = TMA < 8
+    Fill REG[] with more boolean results based off of CR[]:
+      REG[1] = CR[1]
+      REG[2] = CR[2] and CR[3]
+      REG[3] = CR[11] and !CR[3] and CR[7]
+      REG[4] = CR[8] and CR[7]
+      REG[5] = CR[9] and CR[7]
+      REG[6] = CR[10] and CR[7]
+      REG[7] = CR[11] and !CR[7] and !CR[3]
+      REG[8] = CR[8] and !CR[7]
+      REG[9] = CR[9] and !CR[7]
+      REG[10] = CR[10] and !CR[7]
+    ST -= CS
+    WT += CS
+    DIF = ST - WT
+    Return from GOSUB 660.
+  For i from 1 to 10:
+    If REG[i] is true:
+      TRR = PREG[i]
+  GOSUB 775 [Line 56, Logical Line 150:
+    Renders line graph for MP[] and MPE[].
+    Prompts for printing, then to "continue on".  Stores answer in AS.
+    Return from GOSUB 775.
+  C = 0
+  Determine prefix on input data filename, use that name to write WHATEVER.INT (as var FD) to file.  Format is:
+    ST, CO, RLA1, RLA2, H, RLO1, RLO2, EW, ELEV, ARF, AEV, TRR, TMA, ST, WT, DIF, YE[1], YE[2],
+      MP[1], T[1], MPE[1], MP[2] ... T[12], MPE[12]
+  GOSUB 725 (Line 68, Logical Line 185):
+    If AS indicates a "No" response:
+      Return from GOSUB 725.
+    Else:
+      USED += 1
+      Close both the input and output file.
+      Jump execution to STORVAR5.
+  Returns to STORVAR.
+
+(STORVAR5):
+  Bind key F1 to GOSUB 4260.
+  Bind key F2 to GOSUB 4280.
+  Bind key F9 to GOSUB 9000.
+  Bind key F10 to GOSUB 15000.
+  Initialize NJ(12), SL(64), MP(12), MPE(12), T(12), IDAY(361), DP(64), DR(64), C(14), M(24),
+    KR(24), NTSU(13, NZD(13), NTD(361), MON(30), P(11), MT(11), SND = 100, SENABLE = 1.
+  REP = 'N'
+  SEG = 0
+  Sets the video mode into CGA.
+  If USED <= 1:
+    Ask for a file to be specified.  Assign it to FD.  Loop until non-null.
+    If FD = '?', GOSUB 8000, which is directory listing.
+  Open FD for input reading:
+    Load values for ST, CO, RLA1, RLA2, H, RLO1, RLO2, EW, EL, ARF, AEV, TRR, TMA, ST, WT, DIF, YE[1], YE[2],
+       MP[1], T[1], MPE[1], MP[2] ... T[12], MPE[12].
+    Close FD.
+  Input water holding capacity, store to WHC.
+  Input simulation speed delay as DLAY, either a 3 or a 0
+  Ask for explaination of model, either Y or N, store as REP.
+  For i from 1 to 64:
+    Read values into DP[].
+    int[] dp = {8,7,16,6,15,24,5,14,23,32,4,13,22,31,40,3
+                12,21,30,39,48,2,11,20,29,38,47,56,1,10,19,28
+                37,46,55,64,9,18,27,36,45,54,63,17,26,35,44,53
+                62,25,34,43,52,61,33,42,51,60,41,50,59,49,58,57};
+  For i from 1 to 64:
+    Read values into DR[].
+    float[] dr = {1.00,1.00,1.00,1.00,1.02,1.03,1.05,1.07,1.09,1.11,1.13,1.15,1.17,1.19,1.21,1.23
+                  1.26,1.28,1.31,1.34,1.37,1.40,1.43,1.46,1.49,1.53,1.57,1.61,1.65,1.69,1.74,1.78
+                  1.84,1.89,1.95,2.01,2.07,2.14,2.22,2.30,2.38,2.47,2.57,2.68,2.80,2.93,3.07,3.22
+                  3.39,3.58,3.80,4.03,4.31,4.62,4.98,5.00,5.00,5.00,5.00,5.00,5.00,5.00,5.00,5.00};
+  Check for model explaintion in REP:
+    If 'Y':
+      Do not prepare the screen for the simulation animation.
+    If 'N':
+      Setup screen to begin rendering.
+  FSL = WHC / 64
+  ANS = " "
+  For i from 1 to 64:
+    Zero out the values in SL[].
+  K = 1
+  SWST = 0
+  SWFI = 0
+  For i from 1 to 3:
+    Zero out NTWI[], NTSU[], NSD[], ND[], and CC[].
+  For i from 1 to 5:
+    Zero out CD[].
+  MSW = -1, ICON = 0, NCSM = 0, NCWM = 0, NCSP = 0, NCWP = 0
+  For i from 1 to 6:
+    Zero out NBD[], NED[], NBD8[], NED8[].
+  For i from 1 to 360:
+    Zero out IDAY[].
+  FC = 2.5, FCD = 0.77, SWP = -1, GOGR =0
+  For i from 1 to 12:
+    If MPE[i] <= MP[i] for all of i:
+      CD[5] = -1, SWT = -1  (Source says it's to indicate Perudic Regime.)
+  For N from 1 to 10:
+    For IM from 1 to 12:
+      GOSUB 2750 (Line 62, Logical Line 490):
+        ZSW = 0, LP = MP[IM]/2, NPE = (LP - MPE[IM])
+        If NPE <= 0:
+          NPE = 0 - NPE
+        Else:
+          ZSW = -1  (Something about "WH04B1"?)
+        For i from 1 to 64:
+          If ZSW != 0:
+            NR = DP[i]
+            If SL[NR] <= 0:
+              Do nothing, next i.
+            Else:
+              RPE = SL[NR] * DR[i]
+              If NPE <= RPE:
+                SL[NR] = SL[NR] - (NPE / DR[i])
+                NPE = 0
+                Break from loop!
+              Else:
+                SL[NR] = 0
+                NPE = NPE - RPE
+                Done, next i.
+          Else:
+            If SL[i] >= FSL:
+              Do nothing, next i.
+            Else:
+              ESL = FSL - SL[i]
+              If ESL >= NPE:
+                SL[i] += NPE
+                Break from loop!
+              Else:
+                SL[i] = FSL
+                NPE -= ESL
+                Done, next i.
+        Return from GOSUB 2750.
+      GOSUB 2070 (Line 62, Logical Line 490):
+        HP = (MP[IM]/2)
+        For i from 1 to 64:
+          If SL[i] >= FSL:
+            Do nothing, next i.
+          Else:
+            ESL = FSL - SL[i]
+            If ESL >= HP:
+              SL[i] += HP
+              If GOGR = 0:
+                GOSUB 3900  (Seems to graph "ADDITION" behavior.)
+                  Modifies ROW[], KOL[], KLR[], SND.
+                Break from loop!
+              Else:
+                Break from loop!
+            Else:
+              SL[i] = FSL
+              HP -= ESL
+              If GOGR = 0:
+                GOSUB 3900  (Seems to graph "ADDITION" behavior.)
+                  Modifies ROW[], KOL[], KLR[], SND.
+                Done, next i.
+              Else:
+                Done, next i.
+        Return from GOSUB 2070
+      GOSUB 2750 (Line 63, Logical Line 500):
+        See the other GOSUB 2750.
+    TMOI = 0
+    For i from 1 to 64:
+      TMOI += SL[i]
+    If absolute(TMOI - PRMO) <= (PRMO/100):
+      Break from N loop.
+    PRMO = TMOI
+  GOGR = -1
+  GOSUB 2880 (Line 69, Logical Line 550):
+    For i from 1 to 3:
+      Zero out CC[].
+    For i from 1 to 6:
+      Zero out PC[].    (Something about WHO4F3?)
+        Since this is used as a boolean array, it TRUEs it out.
+    PC[1] = SL[9] <= 0
+    PC[2] = SL[17] <= 0
+    PC[3] = SL[25] <= 0
+    CC[1] = PC[1] and PC[2] and PC[3]
+    CC[2] = !CC[1] and (PC[1] or PC[2] or PC[3])
+    PC[4] = SL[9] > 0
+    PC[5] = SL[17] > 0
+    PC[6] = SL[25] > 0
+    CC[3] = PC[4] and PC[5] and PC[6]
+    For i from 1 to 3:
+      If !CC[i] then:
+        Next i, continue on.
+      Else:
+        K = I
+        Break from loop!
+    Return from GOSUB 2880.
+  GOSUB 3760 (Line 69, Logical Line 550):
+    GOSUB 4330 (Line 399, Logical Line 3770):
+      Draw the calendar subroutine.
+    Render things to screen.  Make beeps.
+    Return from GOSUB 3760.
+  Check to make sure A is at the right point in the READ/DATA stream, should be at "AOXOLOTL".
+  For IM 1 to 12:
+    The animated portion of the simultion takes place, going over each month, in halves.
+    Prints "Press F1 to pause", the month name, "First Half".
+    GOSUB 1630 (Line 73, Logical Line 590):
+      For i from 1 to 3:
+        Zero out DMC[] and CC[].
+      ZSW = 0, DPMC = 0, PMC = K
+      LP = MP[IM] / 2
+      NPE = (LP - MPE[IM]) / 2
+      If NPE < 0:
+        NPE *= -1
+        CNPE = NPE
+      Else if NPE = 0:
+        DMC[K] = 15 - DPMC
+        IGMC = DMC[K]
+        DMC[K] = o
+        GOSUB 1960:
+          Modifies IE, II, MM, draws graphics.
+          GOSUB 4460:
+            Draws lots of lines.
+            Return from GOSUB 4460.
+          Modifies IB, ND[K].
+          Return from GOSUB 1960.
+        Break and Return from GOSUB 1630.
+      Else:
+        ZSW = -1
+        CNPE = NPE
+      For i from 1 to 64:
+        If ZSW[i] is non-zero:
+          If NPE <= 0:
+            DMC[K] = 15 - DPMC
+            IGMC = DMC[K]
+            DMC[K] = 0
+            GOSUB 1960:
+              See other GOSUB 1960 call.
+            Break and Return from GOSUB 1630.
+        If NPE <= 0:
+          DMC[K] = 15 - DPMC
+          IGMC = DMC[K]
+          DMC[zK] = 0
+          GOSUB 1960:
+              See other GOSUB 1960 call.
+          Break and Return from GOSUB 1630.
+        If SL[i] >= FSL:
+          Next i.
+        ESL = FSL - SL[i]
+        IF ESL >= NPE:
+          SL[i] += NPE
+          NPE = 0
+          GOSUB 2880 (Line 198, Logical Line 1750):
+            See other GOSUB 2280.
+            Return from GOSUB 2280.
+          If ZSW = 0:
+            GOSUB 3900 (Line 198):
+              Rendering stuff, see other GOSUB 3900.
+              Return from GOSUB 3900.
+          Else:
+            GOSUB 3990
+              Also rendering stuff, but doing depletion instead.
+              Return from GOSUB 3900.
+          KK = K
+          K = PMC
+          If KK = PMC:
+            Next i.
+          If NPE <= 0:
+            DMC[K] = 15 - DPMC
+            IGMC = DMC[K]
+            DMC[zK] = 0
+            GOSUB 1960:
+                See other GOSUB 1960 call.
+            Break and Return from GOSUB 1630.
+          RPE = CNPE - NPE
+          DMC[K] = INT(15 * RPE/CNPE) - DPMC  (Note, INT() lops off after decimal place if possitive.  Rounds down if negative.)
+          IGMC = DMC[K]
+          DPMC += DMC[K]
+          DMC[K] = 0
+          GOSUB 1960: (See other calls.)
+          PMC = KK
+          K = KK
+          Next i.
+        Else:
+          SL[i] = FSL
+          NPE -= ESL
+          Same as above from the GOSUB 2880 onward.
+      Return from GOSUB 1630.
+    Print "STORM" and GOSUB 2070 (Line 74, Logical Line 600):
+      See other GOSUB 2070 documentation.
+    Print "SECOND HALF" and GOSUB 2880.
+      See other GOSUB 2880 documentation.
+    GOSUB 1630:
+      See other GOSUB 1630 documentation.
+    Next IM.
+  For i from 1 to 12:  (Start examination of calendar.)
+    If T[i] < 5: (GOTO 670)
+      T13 = T[1]
+      For IT from 1 to 11:
+        If T[IT] = 5 and T(IT+1) = 5:
+          T[IT] = 5.01
+      If T[12] = 5 and T13 = 5:
+        T[12] = 5.01
+      CRR = 5
+      GOSUB 2410 (Line 86, Logical Line 720):  (Defines the beginning and end of a season.)
+        For i from 1 to 12:
+          Zero out NJ[].
+        ZWT = 0
+        KJ = 1
+        IA = 30
+        IZ = 30
+        If CRR != 8:
+          IA = 36, IZ = 25
+        For i from 1 to 12:
+          For j from 1 to 14:
+            Zero out C[], boolean array, defaults all to TRUE.
+          M0 = i - 1
+          M1 = i
+          M2 = i + 1
+          If M2 > 12:
+            M2 = M2 - 12
+          If M0 < 1:
+            M0 = M0 + 12
+          C[1] = T[M1] < CRR
+          C[2] = T[M2] > CRR
+          C[3] = T[M0] < CRR
+          C[4] = T[M1] = CRR
+          C[5] = T[M2] > CRR
+          C[6] = T[M2] < CRR
+          C[7] = T[M1] > CRR
+          C[8] = T[M0] > CRR
+          C[9] = C[1] and C[2]
+          C[10] = C[3] and C[4] and C[5]
+          C[11] = C[9] and C[10]
+          C[12] = C[6] and C[7]
+          C[13] = C[8] and C[6] and C[4]
+          C[14] = C[12] or C[13]
+          If C[11] is true: (GOTO 2590)
+            NJ[KJ] = M0 * 30 + IA + INT(30 * (CRR - T[M1])/(T[M2] - T[M1]))
+            If NJ[KJ] > 360:
+              NJ[KJ] -= 360
+            KJ += 1
+            ZWT = -1
+            Next i.
+          If C[14] is true: (GOTO 2620)
+            NJ[KJ] = MO * 30 + IZ + INT(30 * (T[M1] - CRR)/(T[M1] - T[M2]))
+            If NJ[KJ] > 360:
+              NJ[KJ] -= 360
+            KJ += 1
+            ZWT = 0
+            Next i.
+          Else: (GOTO 2650)
+            Next i.
+        Return from GOSUB 2410.
+      For i from 1 to 6:
+        Copy NBJ[] into NBD[], and NEJ[] into NED[].
+      NP = NPJ
+      TC = -1
+      If NP = 0:  (GOTO 840)  (When no temp is above 5 degrees C.)
+        
+      Else:
+        For i from 1 to NP:
+          IB = NBD[i]
+          If NBD[i] < NED[i]:
+            IR = NED[i] - NBD[i] + 1
+          Else:
+            IR = 361 - NBD[i] + NED[i]
+          JB = IB
+          JR = IR
+          GOSUB 2380 (Line 94, Logical Line 800):  (Calculate NSD.)
+            For IJ from 1 to 3:
+              Zero out NZD[].
+            JE = JB + JR - 1
+            For L from JB to JE:
+              J = L
+              If J > 360:
+                J -= 360
+              IK = IDAY[J]
+              NZD[IK] += 1
+            Return from GOSUB 2380.
+    Else: (GOTO 870)

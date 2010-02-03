@@ -1,0 +1,304 @@
+1 ON ERROR GOTO 1000
+2 KEY(10) ON:ON KEY(10) GOSUB 2000'     bail out
+3 KEY(9) ON:ON KEY (9) GOSUB 5000'      return to main menu
+10 DEF SEG:POKE 106,0
+15 DEF SEG=0:IF (PEEK(&H410) AND &H30)<>&H30 THEN DEF SEG:GOTO 55
+20 WIDTH 80:CLS:PRINT" THIS PROGRAM REQUIRES A COLOR\GRAPHICS ADAPTER":SYSTEM
+25 SCREEN 1:COLOR 9,2
+26 OUT &H3D8,&H22      '  turn off picture
+30 DEF SEG=&HB800
+//35 'BLOAD "TITLE.BAS",0  (quote by AVW 02/05/91)
+//40 'DEF SEG
+//42 'OUT &H3D8,&H2A        turn picture on again
+//45 'A$=INKEY$:IF A$="" THEN 45
+//50 'CLS:WIDTH 80
+55 PRINT:PRINT"This section of FLEXNSM computes and displays potential evapo-transpiration":PRINT:PRINT
+60 DEFINT I:COMMON USED,QQ$,FD$:PRINT:PRINT:PRINT
+      /* Make interger I.  Ensure USED, QQ$, and FD$ are passed when CHAIN is called. */
+65 BBL$ = "        ":BLAN$ = "    "
+70 PREG$(1) = "pergelic":PREG$(2) = "cryic":PREG$(3) = "frigid":PREG$(4) =         "mesic":PREG$(5) = "thermic":PREG$(6) = "hyperth."
+75 PREG$(7) = "Isofrigid":PREG$(8) = "Isomesic":PREG$(9) = "Isothermic":PREG$(10)   = "Isohyperthermic":HH$(1) = "N":HH$(2) ="S"
+      /* preg[] = {"pregelic", "cryic", "frigid", "mesic",
+        "thermic", "hyperth.", "Isofrigid", "Isomesic", "Isothermic", "Isohyperthermic"}; */
+      /* hh[] = {"N", "S"};
+80 DIM ZPE(24),ZT(24),RN!(31),FS(13,12),RS(13),INZ!(31,12),MWI(12),T(12),UPE(12),  MP(12),MPE(12),CR%(11),REG%(10),MTH$(12)
+      /* Many small 1D and 2D arrays being initalized. */
+85 FC = 2.5:FCD = .66:CV=5!/9!:PRINT:IF USED > 1 THEN QQ$=FD$:GOTO 95
+90 PRINT:INPUT "Input data file name ";QQ$:IF QQ$="" THEN GOTO 90
+91 IF QQ$="?" THEN GOSUB 4000
+95 OPEN "I",#1,QQ$
+      /* Open file, INPUT mode, the previous manipulation is in the case of a directory listing and return. */
+      /* File pointer is #1, while QQ$ is the specified filename in the current working directory. */
+100 INPUT #1,ST$,CO$,RLA1%,RLA2%,H$,RLO1%,RLO2%,EW$,ELEV
+      /* Reads and stores values from file to ST$ through ELEV. */
+101 IF H$="n" THEN H$="N"
+102 IF H$="s" THEN H$="S"
+105 USED =1
+      /* Correct capitalization, mark file as having been opened for rough statefulness. */
+110 FOR I=1 TO 12:INPUT #1,MP(I):NEXT I:FOR I=1 TO 12:INPUT #1,T(I):NEXT I
+      /* for(i = 1; i <= 12; i++) precipitation[i] = #1.readValue(); */
+      /* for(i = 1; I <= 12; i++) temperature[i] = #1.readValue(); */
+115 INPUT #1,YE(1),YE(2),EM$:CLOSE #1
+      /* Reads yearBegin and yearEnd, along with elevation.  All data from file read. */
+120 IF EM$="M" GOTO 130 ELSE FOR I=1 TO 12:T(I)=(T(I)-32)*CV
+125 MP(I)=MP(I)*25.4:NEXT I:PRINT"ENGLISH UNITS INPUT"
+      /* Converts imperial to metric units in both temperature and rainfall in distance. */
+130 IF H$<>HH$(1) AND H$<>HH$(2) GOTO 195
+      /* Determine if the hemisphere value is appropriate, or else just die. */
+135 GOSUB 205
+      /* Loads DATA into arrays.  Calculates some variables.  Prompts for AS$ as a "Y" or "N". */
+140 ARF = 0!:AEV = 0!:FOR I = 1 TO 12:ARF = ARF + MP(I):AEV = AEV + MPE(I):NEXT I   :GOSUB 660
+      /* ARF contains the sum of all the month's precip.  AEV is the sum of MPE elements. */
+      /* Compute CR and REG lists along with a handful of variables. */
+145 FOR I = 1 TO 10:IF REG%(I) THEN LET TRR$=PREG$(I)
+      /* Determine type of Temperature Regime. */
+      /* for(i = 1; i <= 10; i++) if REG$[i] != 0, then TRR$ = PREG$[i]; */
+150 NEXT I:GOSUB 775:
+      /* GOSUB 3000 technically. */
+155 C=0:FOR I =1 TO LEN(QQ$):IF MID$(QQ$,I,1)="." THEN C=LEN(QQ$)-I
+156 NEXT I    '    find . to locate suffix
+157 IF C=0 GOTO 159
+158 FD$=LEFT$(QQ$,LEN(QQ$)-C)+"INT":GOTO 164
+159 FD$=QQ$+".INT"
+      /* Finds the file suffix of the input data file, produces "TESTING.INT". */
+164 OPEN "O",#2,FD$:PRINT:PRINT"Writing ";FD$;" to disk now":PRINT
+165 WRITE #2,ST$,CO$,RLA1%,RLA2%,H$,RLO1%,RLO2%,EW$,ELEV,ARF,AEV,TRR$,TMA,ST,WT,      DIF,YE(1),YE(2)
+170 FOR I = 1 TO 12:WRITE #2, MP(I),T(I),MPE(I):NEXT I
+      /* Writes data from #1 file, in addition to PET data. */
+185 CLOSE #1:GOSUB 725
+      /* Writes all the data to the second file.  Calls graphing subroutines.
+         Prompts user if they want to print, and then if they want to continue.
+         "N" causes a return to here, and a failure.  Any other value causes it
+         to CHAIN STORVAR5. */
+190 PRINT:PRINT:PRINT:GOTO 200
+195 PRINT:PRINT "Wrong symbol for hemisphere; correct input file."
+196 INPUT "Hit ENTER ",A$:RUN"STORVAR
+200 ON ERROR GOTO 0:RUN"NSM
+      /* Simply fails. */
+205 GOSUB 745
+210 REM SUBROUTINE TO CALCULATE PET
+215 FOR I = 1 TO 24: READ ZPE(I):NEXT I
+220 DATA 135.,139.5,143.7,147.8,151.7,155.4,158.9,162.1,165.2,168.,170.7,173.1,     175.3,177.2,179.,180.5,181.8,182.9,183.7
+225 DATA 184.3,184.7,184.9,185.,185.
+230 FOR I = 1 TO 24: READ ZT(I):NEXT I
+235 DATA 26.5,27.,27.5,28.,28.5,29.,29.5,30.,30.5,31.,31.5,32.,32.5,33.,33.5,       34.,34.5,35.,35.5,36.,36.5,37.,37.5,38.
+240 FOR J = 1 TO 12:FOR I = 1 TO 31:READ INZ!(I,J):NEXT I:NEXT J
+245 DATA 1.04,1.02,1.0,.97,.95,.93,.92,.92,.91,.91,.9,.9,.89,.88,.88,.87,.87,       .86,.85,.85,.84,.83,.82,.81,.81,.8,.79,.77
+250 DATA .76,.75,.74,.94,.93,.91,.91,.9,.89,.88,.88,.88,.87,.87,.87,.86,.86,       .85,.85,.85,.84,.84,.84,.83,.83,.83
+255 DATA .82,.82,.81,.81,.8,.8,.79,.78,1.04,1.03,1.03,1.03,1.03,1.03,1.03,1.03,     1.03,1.03,1.03,1.03,1.03,1.03,1.03
+260 DATA 1.03,1.03,1.03,1.03,1.03,1.03,1.03,1.03,1.02,1.02,1.02,1.02,1.02,1.02,     1.02,1.02,1.01,1.02,1.03,1.04,1.05,1.06,1.06
+265 DATA 1.07,1.07,1.07,1.08,1.08,1.08,1.09,1.09,1.09,1.1,1.1,1.1,1.11,1.11,        1.11
+270 DATA 1.12,1.12,1.13,1.13,1.13,1.14,1.14,1.14,1.15,1.04,1.06,1.08,1.11,1.13,     1.15,1.15,1.16,1.16,1.17,1.18,1.18
+275 DATA 1.19,1.19,1.20,1.21,1.21,1.22,1.23,1.23,1.24,1.25,1.26,1.26,1.27,1.28,     1.29,1.30,1.31,1.32,1.33,1.01,1.03,1.06
+280 DATA 1.08,1.11,1.14,1.15,1.15,1.16,1.16,1.17,1.18,1.19,1.20,1.20,1.21,1.22,     1.23,1.24,1.24,1.25,1.26,1.27,1.28,1.29,1.29
+285 DATA 1.31,1.32,1.33,1.34,1.36,1.04,1.06,1.08,1.12,1.14,1.17,1.17,1.18,1.18,     1.19,1.2,1.2,1.21,1.22,1.22,1.23,1.24
+290 DATA 1.25,1.25,1.26,1.27,1.27,1.28,1.29,1.30,1.31,1.32,1.33,1.34,1.35,1.37,     1.04,1.05,1.07,1.08,1.11,1.12,1.12,1.13
+295 DATA 1.13,1.13,1.14,1.14,1.15,1.15,1.16,1.16,1.16,1.17,1.17,1.18,1.18,1.19,     1.19,1.20,1.20,1.21,1.22,1.22,1.23,1.24
+300 DATA 1.25,1.01,1.01,1.02,1.02,1.02,1.02,1.02,1.02,1.02,1.03,1.03,1.03,1.03,     1.03,1.03,1.03,1.03,1.03,1.04,1.04,1.04
+305 DATA 1.04,1.04,1.04,1.04,1.04,1.04,1.04,1.05,1.05,1.06,1.04,1.03,1.02,1.01,     1.0,.99,.99,.99,.98,.98,.98,.98,.98,.97,.97,.97
+310 DATA .97,.97,.96,.96,.96,.96,.95,.95,.95,.94,.94,.93,.93,.93,.92,1.01,.99,.     98,.95,.93,.91,.91,.90,.90,.90,.89
+315 DATA .89,.88,.88,.87,.86,.86,.85,.84,.84,.83,.82,.82,.81,.80,.79,.79,.78,.7     7,.76,.76,1.04,1.02,.99,.97,.94,.91,.91,.9,.9
+320 DATA .89,.88,.88,.87,.86,.86,.85,.84,.83,.83,.82,.81,.80,.79,.77,.76,.75,.7     4,.73,.72,.71,.7
+325 FOR I = 1 TO 31:READ RN!(I):NEXT I
+330 DATA 0.,5.,10.,15.,20.,25.,26.,27.,28.,29.,30.,31.,32.,33.,34.,35.,36.,37.,     38.,39.,40.,41.,42.,43.,44.,45.,46.,47.
+335 DATA 48.,49.,50.
+340 FOR J = 1 TO 12:FOR I = 1 TO 13:READ FS(I,J):NEXT I:NEXT J
+345 DATA 1.06,1.08,1.12,1.14,1.17,1.20,1.23,1.27,1.28,1.30,1.32,1.34,1.37,.95,      .97,.98,1.0,1.01,1.03,1.04,1.06,1.07,1.08
+350 DATA 1.1,1.11,1.12,1.04,1.05,1.05,1.05,1.05,1.06,1.06,1.07,1.07,1.07,1.07,      1.08,1.08,1.0,.99,.98,.97,.96,.95,.94,.93
+355 DATA .92,.92,.91,.9,.89,1.02,1.01,.98,.96,.94,.92,.89,.86,.85,.83,.82,.80,      .77,.99,.96,.94,.91,.88,.85,.82,.78,.76
+360 DATA .74,.72,.70,.67,1.02,1.0,.97,.95,.93,.9,.87,.84,.82,.81,.79,.76,.74,       1.03,1.01,1.,.99,.98,.96,.94,.92,.92,.91,.9
+365 DATA .89,.88,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,.99,.99,.99,.99,1.05,1.06,     1.07,1.08,1.1,1.12,1.13,1.15,1.16,1.17,1.17,1.18
+370 DATA 1.19,1.03,1.05,1.07,1.09,1.11,1.14,1.17,1.20,1.22,1.23,1.25,1.27,1.29,     1.06,1.1,1.12,1.15,1.18,1.21,1.25,1.29
+375 DATA 1.31,1.33,1.35,1.37,1.41
+380 FOR I = 1 TO 13:READ RS(I):NEXT I
+385 DATA 5.,10.,15.,20.,25.,30.,35.,40.,42.,44.,46.,48.,50.
+390 ' IF EL <> -100 THEN EL = EL * .305
+395 FOR I = 1 TO 12:UPE(I) = 0:MPE(I) = 0:MWI(I) = 0:NEXT I
+        /* Zero out UPE, MPE, and MWI. */
+400 RLAg! = RLA1% + RLA2% / 60!:A= 0:SWI = 0
+        /* Condense degrees and minutes into just degrees. */
+405 FOR I = 1 TO 12:IF T(I) <= 0! GOTO 415
+410 MWI(I) = (T(I) / 5!) ^ 1.514
+415 NEXT I
+        /* For temps above zero, divide by five, take to the power of 1.514. */
+420 FOR I = 1 TO 12:SWI=SWI+MWI(I):NEXT I
+        /* Increment SWI by each element in MWI. */
+425 A= (6.75E-07*SWI * SWI * SWI) - (.0000771 * SWI * SWI) + (.01792 * SWI) +      .49239
+        /* Set the value of A based on a SWI polynomial. */
+430 FOR I = 1 TO 12:IF T(I) <= 0! GOTO 490
+435 IF T(I) < 26.5 GOTO 485
+440 IF T(I) >= 38! GOTO 480
+445 FOR KI% = 1 TO 24
+        /* for(int KI% = 1; KI% <= 24; KI%++) */
+450 KL% = KI% + 1
+455 KK% = KI%:
+460 IF (T(I) >= ZT(KI%) AND T(I) < ZT(KL%)) GOTO 470
+465 NEXT KI%
+        /* End of for() loop. */
+470 UPE(I) = ZPE(KK%)
+475 GOTO 490
+480 UPE(I) = 185:GOTO 490
+485 UPE(I) = 16!*((10! * T(I) / SWI) ^ A)
+490 NEXT I
+        /* Iterate over monthly temps, skip computation if freezing or below. */
+495 IF H$ ="N"GOTO 505
+500 IF H$ ="S"GOTO 535
+        /* North Hemisphere */
+505 NROW% = 0:FOR I = 1 TO 31:IF RLA!< RN!(I) GOTO 515
+510 NROW% = NROW% + 1: NEXT I
+515 FOR I = 1 TO 12:IF UPE(I) <= 0 GOTO 525
+520 MPE(I) = UPE(I) * INZ!(NROW%,I)
+525 NEXT I
+530 GOTO 655
+        /* South Hemisphere */
+535 NROW% = 0
+540 FOR I = 1 TO 13
+545 IF RLA!< RS(I) GOTO 560
+550 NROW% = NROW% + 1
+555 NEXT I
+560 IF NROW% <> 0 GOTO 605
+565 NROW%=1
+570 FOR I=1 TO 12
+575 IF UPE(I) <= 0 GOTO 595
+580 CF=(FS(1,I)-INZ!(1,I))*(RLA1%*60!+RLA2%)/300!
+585 CF=INZ!(1,I)+CF
+590 MPE(I) = UPE(I) * CF
+595 NEXT I
+600 GOTO 655
+        /* NROW != 0 Condition on Southern Hemisphere */
+605 FOR I = 1 TO 12
+610 IF UPE(I) <= 0! GOTO 650
+615 IF NROW% >= 13 GOTO 640
+620 IF FS(NROW%,I) = FS(NROW% + 1,I) GOTO 640
+625 CF=((FS(NROW%+1,I)-FS(NROW%,I))*(((RLA1%-RS(NROW%))*60!)+RLA2%))/((RS           (NROW%+1)-RS(NROW%))*60!)
+630 CF=FS(NROW%,I)+CF
+635 GOTO 645
+640 CF=FS(NROW%,I)
+645 MPE(I)=UPE(I)*CF
+650 NEXT I
+        /* Return from GOSUB 205. */
+655 RETURN
+660 SUMT = 0!:FOR I = 1 TO 12:SUMT = SUMT + T(I):NEXT I
+665 TMA = SUMT / 12! + FC:AT1 = (T(6) + T(7) + T(8)) / 3! + FC:AT2 = (T(1) +        T(2) + T(12)) / 3! + FC
+670 IF H$ = "N" THEN ST = AT1:WT = AT2:ELSE IF H$ = "S" THEN ST = AT2:WT = AT1
+675 DIF =  ABS(AT1 - AT2):CS = DIF * (1! - FCD) / 2!
+680 CR%(1) = (TMA < 0!):CR%(2) = (0! <= TMA) AND (TMA < 8!)
+685 CR%(3) = (ST - CS) < 15!:CR%(7) = (DIF * FCD) > 5!:CR%(8) = (TMA >= 8!) AND     (TMA < 15!)
+690 CR%(9) = (TMA >= 15!) AND (TMA < 22!):CR%(10) = TMA >= 22!:CR%(11) =            TMA < 8!
+695 REG%(1) =  CR%(1):REG%(2) = CR%(2) AND CR%(3):REG%(3) = CR%(11) AND (NOT        CR%(3)) AND CR%(7)
+700 REG%(4) = CR%(8) AND CR%(7):REG%(5) = CR%(9) AND CR%(7):REG%(6) = CR%(10)       AND CR%(7)
+705 REG%(7) = CR%(11) AND (NOT CR%(7)) AND (NOT CR%(3)):REG%( 8) = CR%(8) AND (     NOT CR%(7))
+710 REG%(9) = CR%(9) AND (NOT CR%(7)):REG%(10) = CR%(10) AND (NOT CR%(7)):ST =      ST-CS
+715 WT = WT+CS:DIF = ST - WT
+720 RETURN
+725 IF LEFT$(AS$,1) = "N" OR LEFT$(AS$,1)="n" THEN GOTO 740
+726 ON ERROR GOTO 0
+730 USED = USED + 1:CLOSE #1,#2
+735 PRINT CHR$(12);CHR$(13):CHAIN "STORVAR5"
+740 RETURN
+745 CLS : KEY OFF :SCREEN 1 : COLOR 12,1 
+750 LINE (268,36)-(300,44),2,BF
+755 LINE (268,84)-(300,92),3,B
+760 VIEW (60,20)-(252,164),3,3
+765 WINDOW (0,0)-(1,600)
+770 GOSUB 835:RETURN
+775 DX=1/12:DDX=.3*DX:Y=0
+776 LINE(0,0)-(1,600),3,BF
+780 FOR I = 1 TO 12
+785   X=DX*(I-1)+DX*.2
+790   LINE (X,Y)-(X+DDX,MP(I)),2,BF
+795   LINE (X+DX*.3,Y)-(X+DX*.6,MPE(I)),0,BF
+800 NEXT I
+810 LOCATE 25:PRINT "Do you want to print this";:INPUT; RP$
+815 IF RP$="Y" OR RP$="y" THEN LOCATE 25,1:PRINT"                             ";    :LOCATE 25,1:PRINT"Working...";:GOSUB 3000   'PRINT ROUTINE
+820 LOCATE 25,1:PRINT"                               ";:LOCATE 25,1:PRINT"Do you want to continue on";:INPUT AS$
+830 RETURN
+835 LOCATE 1, (40-LEN(ST$))/2
+840 PRINT ST$:PAS%=128/48
+845 FOR I = 0 TO 6:GT%=600-I*100
+850   LOCATE 3+PAS%*I,3:PRINT GT%:NEXT I
+855 MOIS$="JFMAMJJASOND":FOR I=1 TO LEN(MOIS$)
+860 LOCATE 22,7+2*I
+865 PRINT MID$(MOIS$,I,1):NEXT I
+870 LOCATE 4,34:PRINT "RAIN":LOCATE 7,36:PRINT"MM"
+875 LOCATE 10,34:PRINT "P.E.T.":LOCATE 13,36:PRINT"MM"
+876 LOCATE 12,15:PRINT" <<Working>> "
+880 RETURN
+1000 '                   error checking
+1005 '
+1010 V=ERR
+1012 IF V=53 AND QQ$="" THEN OUT &H3D8,&H2A:GOSUB 1100:OUT &H3D8,&H22:SYSTEM
+1015 IF V=53 THEN PRINT"Can't find ";QQ$;:RESUME 90
+1016 GOTO 1111  '       get around subroutine 1105-10, called from 1012
+1100    'attempt to find TITLE.BAS
+1105 PRINT"The FLEXNSM disk must be in the default drive for this program to work"
+1110 INPUT"hit ENTER when ready",A$:RETURN
+1111 IF V<>25 AND V<>27 THEN GOTO 1152   '   printer off or out of paper
+1112 PRINT"Printer is not on or is out of paper.
+1115 PRINT"Correct the problem, then type C to continue or R to�restart this program"
+1120 INPUT M$:IF NOT ((M$<>"C") OR (M$<>"c") OR (M$<>"R") OR (M$<>"r")) THEN          PRINT"Type an R or a C�only":GOTO 1120
+1125 IF M$="R" OR M$="r" THEN V=0:RUN ELSE V=0:RESUME
+1152 IF V<>24 THEN GOTO 1160
+1153 PRINT" Printer problems.  Try turning printer OFF, then ON�to clear the problem.":INPUT "Press ENTER when ready. ",A$:RESUME
+1160 '       file format problems
+1161 IF V<>62 THEN GOTO 1190
+1162 CLOSE #1
+1165 PRINT FDF$;" is the wrong type of file or wrong format for this program.
+1166 IF RIGHT$(FDF$,3)<>"INT" THEN PRINT" Print files have asuffix of .INT":INPUT"Try typing the file name with a .INT suffixthis time ",FDF$ ELSE INPUT "New file name ";FDF$
+1180 RESUME 45
+1190 ON ERROR GOTO 0:END
+2000 '     bail out on f10
+2010 SYSTEM
+3000 '                  print routine
+3005 '
+3010 DIM SCN$(50,62)
+3011 FOR I= 1 TO 50:FOR J = 1 TO 62:SCN$(I,J)=" ":NEXT J,I
+3014 MAX=0
+3015 FOR I = 1 TO 12
+3020   IF MP(I)>MAX THEN MAX=MP(I)
+3025   IF MPE(I)>MAX THEN MAX= MPE(I)
+3030 NEXT I
+3035 UNIT= INT((MAX/50)+.5)
+3040 CL=0
+3045 FOR I = 1 TO 12
+3050   CL=CL+2
+3055   IF INT((MP(I)/UNIT)+.5)<1 THEN 3065
+3056   IF INT((MP(I)/UNIT)+.5)>50 THEN FOR J=50 TO 1 STEP -1:SCN$(J,CL)="P":           NEXT J:GOTO 3065
+3060   FOR J=INT((MP(I)/UNIT)+.5) TO 1 STEP -1:SCN$(J,CL)="P":NEXT J
+3065   CL=CL+1
+3070   IF INT((MPE(I)/UNIT)+.5)<1 THEN 3080
+3071   IF INT((MPE(I)/UNIT)+.5)>50 THEN FOR J=50 TO 1 STEP -1:SCN$(J,CL)="e":           NEXT J:GOTO 3080
+3075   FOR J=INT((MPE(I)/UNIT)+.5) TO 1 STEP -1:SCN$(J,CL)="e":NEXT J
+3080   CL=CL+2
+3090 NEXT I
+3100 '
+3104 SP$="         "
+3105 LPRINT SP$;"Station: ";ST$,"Country: ";CO$
+3110 LPRINT:LPRINT SP$;"P = precipitation       e = potential evapo-transpiration"
+3120 LPRINT SP$;:FOR I = 1 TO 63:LPRINT"_";:NEXT I:LPRINT
+3125 FOR I= 50 TO 1 STEP -1
+3126   IF I =25 THEN LPRINT "   ";INT((MAX/2)+.5);:LPRINT TAB(10);"|";:                FOR J= 1 TO 62:LPRINT SCN$(I,J);:NEXT J:LPRINT"|":GOTO 3135
+3127   IF I=24 THEN LPRINT "    mm";:LPRINT TAB(10);"|";:FOR J= 1 TO 62:               LPRINT SCN$(I,J);:NEXT J:LPRINT"|":GOTO 3135
+3128   IF I =50 THEN LPRINT "   ";INT(MAX+.5);:LPRINT TAB(10);"|";:                    FOR J= 1 TO 62:LPRINT SCN$(I,J);:NEXT J:LPRINT"|":GOTO 3135
+3130   LPRINT SP$;"|";:FOR J= 1 TO 62:LPRINT SCN$(I,J);:NEXT J:LPRINT"|"
+3135 NEXT I
+3140 LPRINT "    0";TAB(10);:FOR I = 1 TO 63:LPRINT"_";:NEXT I:LPRINT
+3150 LPRINT SP$;"  J    F    M    A    M    J    J    A    S    O    N    D"
+3155 LPRINT CHR$(27):LPRINT CHR$(12)
+3160 RETURN
+3988 '
+3999 '                   disk directory
+4000 CLS
+4010 INPUT"Which disk (Press ENTER for default) ";DISK$
+4020 IF DISK$="" THEN FILES:GOTO 4060
+4030 IF LEFT$(DISK$,1)="C" OR LEFT$(DISK$,1)="c" THEN DISK$=DISK$+"*.*":             CHDIR"c:\":GOTO 4050
+4040 DISK$=LEFT$(DISK$,1)+":*.*
+4050 FILES DISK$
+4060 PRINT "Press a character to continue
+4070 F$=INKEY$:IF F$="" THEN GOTO 4070
+4080 CLS
+4090 RETURN 90
+5000 '
+5010 '  return to main menu
+5020 CLOSE #1,#2:RUN"STORVAR
+

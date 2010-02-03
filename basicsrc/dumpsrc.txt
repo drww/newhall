@@ -1,0 +1,23 @@
+connect a printer to the parallel port of the computer and make it ready. 
+GWBasic being DOS based program, it can recognize only the parallel port and not the serial ports or USB ports.
+
+Open GWBasic
+Type out a program 
+Give the list command - this will print the lines on the screen
+Now give the LLIst command - the lines will be printed in the printer
+
+If your program output is to be sent to screen , you can use the print command in the GWBasic program.
+But if your program has to send the output to a printer, use lprint command with in the program.
+Only when you give the run command(or when the program is run), the lprint will go into action.
+
+Another way to print the code in printer is as follows:
+1. Save the code as a file , say file1.bas
+2.Type the system command and get out of GWBasic and come to DOS prompt.
+3. Now give the dos command - type file1.bas>prn
+prn in dos means the parallel port printer and the lines will be typed in printer.
+This method does not use GWBasic commands, but Dos commands for printing the code.This can be used for code printing and not for printing the output of the program.
+
+OR JUST USE:
+
+load"PROGRAM"
+list,"PROGRAM.TXT"
