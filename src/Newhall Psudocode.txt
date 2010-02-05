@@ -460,7 +460,27 @@ Potential Evapotranspiration Computation (STORVAR4):
       NP = NPJ
       TC = -1
       If NP = 0:  (GOTO 840)  (When no temp is above 5 degrees C.)
-        
+        If WT > 5:
+          TC = 0
+          For IC from 1 to 3:
+            NSD[IC] = ND[IC]
+          LT5C = 360, ID5C = 0
+        Else:
+          LT5C = 0, NBD[1] = -1, ID5C = 0
+          For IK from 1 to 3:
+            NSD[IK] = 0
+          TC = 0
+        For IC from 1 to 2:
+          NCPM[IC] = 0
+        For IC from 1 to 12:
+          If T[IC] < 8:  (GOTO 930)  (To determine season above 8 degrees C.)
+            T13 = T[1]
+            For IT from 1 to 11:  (Process seasons greater than 8 degrees C.)
+              If T[IT] = 8 and T[IT+1] = 8:
+                T[IT] = 8.01
+            CRR = 8
+            
+          Else:  (GOTO 1170)
       Else:
         For i from 1 to NP:
           IB = NBD[i]
