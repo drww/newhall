@@ -479,6 +479,26 @@ Potential Evapotranspiration Computation (STORVAR4):
               If T[IT] = 8 and T[IT+1] = 8:
                 T[IT] = 8.01
             CRR = 8
+            If T[12] = 8 and T13 = 8:
+              T[12] = 8.01
+            GOSUB 2410:  (Logical Line 980)
+              Already documented.
+              Return from GOSUB 2410.
+            For i from 1 to 6:
+              NBD8[i] = NBJ[i]
+              NED8[i] = NEJ[i]
+            NP8 = NPJ, TC = -1
+            If NP8 = 0: (GOTO 1150) (When no temp greater than 8 degrees C.)
+              If WT > 8: (GOTO 1170)
+                
+              Else:
+                LT8C = 0, NBD8[1] = -1, ID8C = 0
+                NCPM[2] = 0, MSW = 0
+                GOTO 1140
+            Else:
+              For i from 1 to NP8:
+                IB = NBD8[i]
+            
             
           Else:  (GOTO 1170)
       Else:
