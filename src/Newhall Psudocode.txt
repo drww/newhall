@@ -546,7 +546,36 @@ Potential Evapotranspiration Computation (STORVAR4):
                   IB = 181, IC = 1
                 Else if H = 'S':
                   IB = 1, IC = 181
-             !!!RESUME HERE, ON LOGICAL LINE 1260!!!
+                SIB = IB, SIR = 120, X = 1, SWM = MSW
+                GOSUB 2160: (For NCCD)
+                  See other documentations.
+                  Return from GOSUB 2160.
+                NCCD = MAX, SIB = IC, SIR = 120, X = 3, SWM = MSW
+                GOSUB 2160:
+                  See other documentations.
+                  Return from GOSUB 2160.
+                NCCM = MAX
+                If ND[3] = 360: (GOTO 1390)
+                  NCSM = 180, NCWM = 180, NCSP = 180, NCWP = 180, NTSU[3] = 180
+                  NTWI[3] = 180 (GOTO 1420)
+                Else If ND[1] = 360: (GOTO 1420)
+                Else If ND[1] = 0 (GOTO 1360)
+                  TU = -1, SIB = IB, X = 3, SWM = TU
+                  GOSUB 2160:
+                    See other documentation.
+                    Return from GOSUB 2160.
+                  NCSP = MAX (GOTO 1400)
+
+                Else:
+                  TU = 0, SIB = IB, SIR = 180, X = 1, SWM = TU
+                  GOSUB 2160:
+                    See other documentation.
+                    Return from GOSUB 2160.
+                  NCSM = MAX, SIB = IC
+                  GOSUB 2160:
+                    See other documentation.
+                    Return from GOSUB 2160.
+                  NCWM = MAX (GOTO 1400)
               Else:
                 LT8C = 0, NBD8[1] = -1, ID8C = 0
                 NCPM[2] = 0, MSW = 0
