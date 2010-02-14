@@ -559,13 +559,23 @@ Potential Evapotranspiration Computation (STORVAR4):
                   NCSM = 180, NCWM = 180, NCSP = 180, NCWP = 180, NTSU[3] = 180
                   NTWI[3] = 180 (GOTO 1420)
                 Else If ND[1] = 360: (GOTO 1420)
+                  Do nothing.
                 Else If ND[1] = 0 (GOTO 1360)
                   TU = -1, SIB = IB, X = 3, SWM = TU
                   GOSUB 2160:
                     See other documentation.
                     Return from GOSUB 2160.
-                  NCSP = MAX (GOTO 1400)
-
+                  NCSP = MAX, SIB = IC, SIR = 180, SWM = TU
+                  GOSUB 2160: (See above.)
+                  NCWP = MAX (GOTO 1400)
+                  JB = IB, JR = 180
+                  GOSUB 2380:
+                    See other documentation.
+                    Return from GOSUB 2380.
+                  For i from 1 to 3:
+                    NTSU[i] = NZD[1]
+                  For i from 1 to 3:
+                    NTWI[i] = ND[i] - NTSU[i]
                 Else:
                   TU = 0, SIB = IB, SIR = 180, X = 1, SWM = TU
                   GOSUB 2160:
@@ -576,6 +586,17 @@ Potential Evapotranspiration Computation (STORVAR4):
                     See other documentation.
                     Return from GOSUB 2160.
                   NCWM = MAX (GOTO 1400)
+                  JB = IB, JR = 180
+                  GOSUB 2380:
+                    See other documentation.
+                    Return from GOSUB 2380.
+                  For i from 1 to 3:
+                    NTSU[i] = NZD[1]
+                  For i from 1 to 3:
+                    NTWI[i] = ND[i] - NTSU[i]
+                If TC = 0 or TU = 0: (Line 1420, Gigantic IF block has ended.)
+                  GOSUB 2990: (Calculate Calendar)
+                    
               Else:
                 LT8C = 0, NBD8[1] = -1, ID8C = 0
                 NCPM[2] = 0, MSW = 0
