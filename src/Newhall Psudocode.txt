@@ -1,5 +1,5 @@
 BASIC Conventions:
-  Arrays begin index at 1, not 0.
+  Found to be false, arrays index from 0 to size oddly enough. [Arrays begin index at 1, not 0.]
   Arrays are initialized to zero at each cell.
   Boolean functions return 0 for true, -1 for false (pontentially other non-zeros).
 
@@ -596,7 +596,51 @@ Potential Evapotranspiration Computation (STORVAR4):
                     NTWI[i] = ND[i] - NTSU[i]
                 If TC = 0 or TU = 0: (Line 1420, Gigantic IF block has ended.)
                   GOSUB 2990: (Calculate Calendar)
-                    
+                    KL[0] = "$", KL[1] = " - ", KL[2] = "5", KL[3] = "8"
+                    For i from 1 to 24:
+                      Zero out KR[].
+                    If NBD[1] < 0 and NBD8[1] < 0:  (GOTO 3350)
+
+                    Else if NBD[1] = 0 and NBD8[1] < 0:  (GOTO 3370)
+                      
+                    Else:
+                      If NBD8[1] < 0:
+                        NBD8[1] = 0
+                      For i from 1 to 6:
+                        KR[i] = NBD[i]
+                        M[i] = 2
+                      For i from 7 to 12:
+                        KT = I - 6
+                        If NED[KT] = 0: (GOTO 3070)
+                          Do nothing, next i.
+                        Else:
+                          KR[i] = NED[KT] + 1
+                          If KR[i] > 360:
+                            KR[i] = 1
+                          M[i] = 1
+                      For i from 13 to 18:
+                        KT = i - 12
+                        KR[i] = NBD8[KT]
+                        M[i] = 3
+                      For I from 19 to 24:
+                        KT = I - 18
+                        If NED8[KT] = 0: (GOTO 3130)
+                          Nothing, next i.
+                        Else:
+                          KR[i] = NED8[KT] + 1
+                          If KR[i] > 360:
+                            KR[i] = 1
+                          M[i] = 2
+                      NT = 23
+                      For i from 1 to 23:
+                        STT = 0
+                        For j from 1 to NT:
+                          If KR[j] <= JK[j+1]:
+                            Do nothing, next i.
+                          Else:
+                            
+                          
+                      
               Else:
                 LT8C = 0, NBD8[1] = -1, ID8C = 0
                 NCPM[2] = 0, MSW = 0
