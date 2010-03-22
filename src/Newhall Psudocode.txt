@@ -638,9 +638,31 @@ Potential Evapotranspiration Computation (STORVAR4):
                           If KR[j] <= JK[j+1]:
                             Do nothing, next i.
                           Else:
-                            
-                          
-                      
+                            ITEMP = KR[j], ITM = M[j], KR[j] = KR[j+1]
+                            M[j] = M[j+1], KR[j+1] = ITEMP, M[j+1] = ITM, STT = -1
+                        If STT != 0: (GOTO 3210)
+                          Break from i loop.
+                        Else:
+                          NT -= 1
+                          Next i.
+                      IMA = M[24], NUL = 0
+                      For i from 1 to 24:
+                        If KR[i] = 0:
+                          NUL += 1
+                      For i from 1 to 24:
+                        KK = i, IPL = i + NUL
+                        If IPL > 24: (GOTO 3250)
+                          Break from i loop.
+                        Else:
+                          KR[i] = KR[IPL], M[i] = M[IPL]
+                      For i from KK to 24:
+                        KR[i] = 0
+                      If KR[1] != 1: (GOTO 3290 Otherwise)
+                        IE = KR[1] - 1
+                        For i from 1 to IE:
+                          NTD[i] = 
+
+
               Else:
                 LT8C = 0, NBD8[1] = -1, ID8C = 0
                 NCPM[2] = 0, MSW = 0
