@@ -674,6 +674,28 @@ Potential Evapotranspiration Computation (STORVAR4):
                         For j from IB to IE:
                           NTD[j] - KL[NS]
                       Return from GOSUB 2990.
+                  GOSUB 3390: (Logical line 1420.) [Appears to determine soil moisture regime.}
+                    DIV = " ", Q = " "
+                    If SWT = 0:
+                      ANS = "Perudic"
+                      NCSM = NCWM = NCSP = NCWP = NTSU[3] = NTWI[3] = 180
+                      Return from GOSUB 3390.
+                    If NSD[1] > (LT5C / 2) and NCPM[2] < 90:
+                      ANS = "Aridic"  (GOTO 3450)
+                      If ND[1] = 360:
+                        Q = "Extreme"  (GOTO 3560)
+                      DIV = ANS
+                      Return from GOSUB 3390.
+                    If TMA < 22 and DIF >= 5 and NCCD >= 45 and NCCM >= 45:
+                      ANS = "Xeric" (GOTO 3470)
+                      If NCCD > 90:
+                        Q = "Dry"
+                      Else:
+                        Q = "Typic"
+                      DIV = ANS
+                      Return from GOSUB 3390.
+                    
+                      
               Else:
                 LT8C = 0, NBD8[1] = -1, ID8C = 0
                 NCPM[2] = 0, MSW = 0
