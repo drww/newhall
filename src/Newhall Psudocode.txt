@@ -678,81 +678,81 @@ Potential Evapotranspiration Computation (STORVAR4):
                       For j from IB to IE:
                         NTD[j] - KL[NS]
                     Return from GOSUB 2990.
-                GOSUB 3390: (Logical line 1430.) [Appears to determine soil moisture regime.}
-                  DIV = " ", Q = " "
-                  If SWT = 0:
-                    ANS = "Perudic"
-                    NCSM = NCWM = NCSP = NCWP = NTSU[3] = NTWI[3] = 180
-                    Return from GOSUB 3390.
-                  If NSD[1] > (LT5C / 2) and NCPM[2] < 90:
-                    ANS = "Aridic"  (GOTO 3450)
-                    If ND[1] = 360:
-                      Q = "Extreme"  (GOTO 3560)
-                    DIV = ANS
-                    Return from GOSUB 3390.
-                  If TMA < 22 and DIF >= 5 and NCCD >= 45 and NCCM >= 45:
-                    ANS = "Xeric" (GOTO 3470)
-                    If NCCD > 90:
-                      Q = "Dry"
+              GOSUB 3390: (Logical line 1430.) [Appears to determine soil moisture regime.}
+                DIV = " ", Q = " "
+                If SWT = 0:
+                  ANS = "Perudic"
+                  NCSM = NCWM = NCSP = NCWP = NTSU[3] = NTWI[3] = 180
+                  Return from GOSUB 3390.
+                If NSD[1] > (LT5C / 2) and NCPM[2] < 90:
+                  ANS = "Aridic"  (GOTO 3450)
+                  If ND[1] = 360:
+                    Q = "Extreme"  (GOTO 3560)
+                  DIV = ANS
+                  Return from GOSUB 3390.
+                If TMA < 22 and DIF >= 5 and NCCD >= 45 and NCCM >= 45:
+                  ANS = "Xeric" (GOTO 3470)
+                  If NCCD > 90:
+                    Q = "Dry"
+                  Else:
+                    Q = "Typic"
+                  DIV = ANS
+                  Return from GOSUB 3390.
+                If (ND[1] + ND[2]) < 90:
+                  ANS = "Udic"
+                  If (ND[1] + ND[2]) < 30:
+                    Q = "Typic"
+                  DIV = ANS
+                  Return from GOSUB 3390.
+                If (TRR != "pergelic") and (TRR != "cryic"):
+                  ANS = "Ustic"
+                  If DIF >= 5:
+                    DIV = "Tempustic"
+                    If NCCM <= 45:
+                      Q = "Typic"
+                    Else if NCCD > 45:
+                      Q = "Xeric"
                     Else:
-                      Q = "Typic"
-                    DIV = ANS
+                      Q = "Wet"
                     Return from GOSUB 3390.
-                  If (ND[1] + ND[2]) < 90:
-                    ANS = "Udic"
-                    If (ND[1] + ND[2]) < 30:
+                  Else: (GOTO 3540)
+                    If NCPM[2] < 180:
+                      Q = "Ardic"
+                    Else if NCPM[2] < 270:
                       Q = "Typic"
-                    DIV = ANS
+                    Else:
+                      Q = "Udic"
+                    DIV = "Tropustic"
                     Return from GOSUB 3390.
-                  If (TRR != "pergelic") and (TRR != "cryic"):
-                    ANS = "Ustic"
-                    If DIF >= 5:
-                      DIV = "Tempustic"
-                      If NCCM <= 45:
-                        Q = "Typic"
-                      Else if NCCD > 45:
-                        Q = "Xeric"
-                      Else:
-                        Q = "Wet"
-                      Return from GOSUB 3390.
-                    Else: (GOTO 3540)
-                      If NCPM[2] < 180:
-                        Q = "Ardic"
-                      Else if NCPM[2] < 270:
-                        Q = "Typic"
-                      Else:
-                        Q = "Udic"
-                      DIV = "Tropustic"
-                      Return from GOSUB 3390.
-                CC = 3*CHR[7] + 2*CHR[0]
-                Close file pointer #1.  (Possibly useless code follows.)
-                Write FLX:
-                  >> ANS, ID5C, LT5C, ID8C, LT8C, NCCD, NCCM, NCSM, NCWM, DIV, Q
-                  >> NCSP, NCWP, TC, TU, SWT, SWP
+              CC = 3*CHR[7] + 2*CHR[0]
+              Close file pointer #1.  (Possibly useless code follows.)
+              Write FLX:
+                >> ANS, ID5C, LT5C, ID8C, LT8C, NCCD, NCCM, NCSM, NCWM, DIV, Q
+                >> NCSP, NCWP, TC, TU, SWT, SWP
+                For i from 1 to 360:
+                  >> IDAY[i] + ","
+                >> WHC
+                For i from 1 to 6:
+                  >> NBD[i], NED[i], NBD8[i], NED8[i]
+                For i from 1 to 3:
+                  >> ND[i], NZD[i], NSD[i], NTSU[i], NTWI[i]
+                >> NCPM[1], NCPM[2]
+                For i from 1 to 5:
+                  >> CD[i]
+                If TC = 0 and TU = 0:
                   For i from 1 to 360:
-                    >> IDAY[i] + ","
-                  >> WHC
-                  For i from 1 to 6:
-                    >> NBD[i], NED[i], NBD8[i], NED8[i]
-                  For i from 1 to 3:
-                    >> ND[i], NZD[i], NSD[i], NTSU[i], NTWI[i]
-                  >> NCPM[1], NCPM[2]
-                  For i from 1 to 5:
-                    >> CD[i]
-                  If TC = 0 and TU = 0:
-                    For i from 1 to 360:
-                      >> NTD[i] + ","
-                  Close FLX file pointer.
-                GOSUB 1600:
-                  
+                    >> NTD[i] + ","
+                Close FLX file pointer.
+              GOSUB 1600:
                 "Proceed to next step?" => CHAIN STORVAR6
-                Return from STORVAR5 chainload?
+                Return from GOSUB 1600 if "No".
+              Responding "No" causes Newhall to blow up.
             Else:
               For i from 1 to NP8:
                 IB = NBD8[i]
-            
-            
+              Backtrack to line 1150 inside IF block.
           Else:  (GOTO 1170)
+            Backtrack to line 1170 inside previous block.
       Else:
         For i from 1 to NP:
           IB = NBD[i]
