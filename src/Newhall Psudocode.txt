@@ -600,9 +600,13 @@ Potential Evapotranspiration Computation (STORVAR4):
                     For i from 1 to 24:
                       Zero out KR[].
                     If NBD[1] < 0 and NBD8[1] < 0:  (GOTO 3350)
-
+                      For i from 1 to 360:
+                        NTD[i] = KL[1]
+                      Return from GOSUB 2990.
                     Else if NBD[1] = 0 and NBD8[1] < 0:  (GOTO 3370)
-                      
+                      For i from 1 to 360:
+                        NTD[i] = KL[2]
+                      Return from GOSUB 2990.
                     Else:
                       If NBD8[1] < 0:
                         NBD8[1] = 0
@@ -660,9 +664,16 @@ Potential Evapotranspiration Computation (STORVAR4):
                       If KR[1] != 1: (GOTO 3290 Otherwise)
                         IE = KR[1] - 1
                         For i from 1 to IE:
-                          NTD[i] = 
-
-
+                          NTD[i] = KL[IMA]
+                      NN = 24 - NUL
+                      For i from 1 to NN:
+                        NS = M[i], IB = KR[i]
+                        IE = KR[i+1] - 1
+                        If KR[1+i] = 0:
+                          IE = 360
+                        For j from IB to IE:
+                          NTD[j] - KL[NS]
+                      Return from GOSUB 2990.
               Else:
                 LT8C = 0, NBD8[1] = -1, ID8C = 0
                 NCPM[2] = 0, MSW = 0
