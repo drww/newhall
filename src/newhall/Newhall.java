@@ -1,3 +1,5 @@
+package newhall;
+
 // Load source data file.
 // Clean if dirty.
 // Compute monthly PET values.

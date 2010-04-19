@@ -1,0 +1,301 @@
+1 CLEAR ,,1000
+3 ON ERROR GOTO 9000
+4 KEY OFF
+5 COMMON USED,FD$
+6 USED=0
+7 KEY (10) ON:ON KEY(10) GOSUB 8000:KEY(9) ON:ON KEY(9) GOSUB 9100
+8 DIM MN$(12)
+10 FO=0:DIM MT(12),MP(12)
+15 DEFINT R,C,I
+16 R=4:C=4
+102 GOSUB 6150
+105 GOSUB 5000       ' menu
+110 FOR I = 1 TO 4:PRINT:NEXT I
+135 IF FO=1 THEN CLOSE #1
+136 GOSUB 4000
+137 CLS
+138 PRINT:PRINT"                                  Station data
+139 PRINT"-------------------------------------------------------------------------------"
+140 INPUT"Enter the STATION NAME....................",SN$
+150 INPUT"Enter the COUNTRY.........................",CO$
+160 PRINT:INPUT"Enter DEGREES of latitude.................",LATD
+170 INPUT "Enter MINUTES of latitude.................",LATM
+180 INPUT"North (N) or South (S) hemisphere?........",LATH$
+181 IF ASC(LATH$)>90 THEN LATH$=CHR$(ASC(LATH$)-32) ' MAKE IT UPPER CASE
+190 PRINT:INPUT"Now enter DEGREES longitude...............",LOND
+200 INPUT"MINUTES longitude?........................",LONM
+210 INPUT"Which hemisphere, East (E) or West (W)?...",LONH$
+211 IF ASC(LONH$)>90 THEN LONH$=CHR$(ASC(LONH$)-32)     ' MAKE IT  UC
+220 PRINT:PRINT"Enter ELEVATION in meters or feet
+221 INPUT"(Press ENTER if unknown)..................",EL$
+230 IF EL$="" THEN EL=-100 ELSE EL=VAL (EL$)
+250 CLS:PRINT:PRINT"                            Monthly precipitation":             PRINT"--------------------------------------------------------------------------------":INPUT "Do you want to use inches(I) or mm(M)?...";UN$:PRINT
+255 IF UN$<>"I" AND UN$<>"M" AND UN$<>"i" AND UN$<>"m" THEN 250
+260 IF UN$="I" OR UN$="i" THEN UN$="E":UNIT$="inches" ELSE UN$="M":UNIT$="mm"
+270 FOR I = 1 TO 12
+280   PRINT"Precip (use ";UNIT$;") for ";MN$(I);" ";
+290   INPUT MP(I)
+300 NEXT I
+310 CLS:PRINT:PRINT"                             Monthly temperatures
+311 PRINT"--------------------------------------------------------------------------------"
+320 IF UNIT$="inches" THEN UNIT$="fahrenheit" ELSE UNIT$="celsius"
+340 FOR I = 1 TO 12
+350   PRINT"Temperature (in ";UNIT$;") for ";MN$(I);" ";
+360   INPUT MT(I)
+370 NEXT I
+375 CLS:PRINT:PRINT"                            Years of climate record
+376 PRINT"--------------------------------------------------------------------------------"
+380 PRINT:INPUT "Starting year of record (or enter length of record)?....";SY
+390 INPUT "Last year of record? (or enter length of record again)....",EY
+400 'INPUT"Did you use English (E) units or Metric (M) units in the above ";UN$
+401 IF ASC(UN$)>90 THEN UN$=CHR$(ASC(UN$)-32)
+410 CLS:PRINT"WRITING DATA TO ";NM$
+420 WRITE #1,SN$,CO$,LATD,LATM,LATH$,LOND,LONM,LONH$,EL
+430 FOR I = 1 TO 12
+440   PRINT #1, MP(I);",";
+450 NEXT I
+460 FOR I = 1 TO 12
+470   PRINT #1, MT(I);",";
+480 NEXT I
+490 WRITE #1,SY,EY,UN$
+500 GOTO 5000
+530 ON ERROR GOTO 0:END
+1000 REM
+2000 '
+2010 '             print page 1
+2020 '
+2025 CLS
+2030 PRINT"STATION","COUNTRY","LATITUDE","LONGITUDE","ELEVATION"
+2040 PRINT"-----------------------------------------------------------------"
+2050 PRINT:PRINT SN$,CO$,LATD;LATM;LATH$,LOND;LONM;LONH$,EL
+2060 PRINT:PRINT:PRINT"                   MONTHLY PRECIPITATION";:IF UN$="M"         THEN PRINT " (mm)" ELSE PRINT" (inches)"
+2065 PRINT"-----------------------------------------------------------------"
+2070 FOR I = 1 TO 5:PRINT MN$(I),:NEXT I
+2080 FOR I = 1 TO 5:PRINT MP(I),:NEXT I
+2090 PRINT:FOR I= 6 TO 10:PRINT MN$(I),:NEXT I
+2100 FOR I = 6 TO 10:PRINT MP(I),:NEXT I
+2110 PRINT:PRINT"November",:PRINT"December"
+2120 PRINT MP(11),:PRINT MP(12)
+2125 GOTO 6095
+3055 CLS:PRINT"                     MONTHLY TEMPERATURES";:IF UN$="M" THEN PRINT     " (C)" ELSE PRINT" (F)"
+3065 PRINT"-----------------------------------------------------------------"
+3070 FOR I = 1 TO 5:PRINT MN$(I),:NEXT I
+3080 FOR I = 1 TO 5:PRINT MT(I),:NEXT I
+3090 PRINT:FOR I= 6 TO 10:PRINT MN$(I),:NEXT I
+3100 FOR I = 6 TO 10:PRINT MT(I),:NEXT I
+3110 PRINT:PRINT MN$(11),:PRINT MN$(12)
+3120 PRINT MT(11),:PRINT MT(12)
+3130 PRINT:PRINT"Start of record (or length) = ";SY
+3140 PRINT"End of record (or length) = ";EY
+3150 IF UN$="M" THEN PRINT "Metric units used" ELSE PRINT"English units used"
+3155 GOTO 6095
+4000 '            open file
+4001 OF$="YES"
+4004 CLS
+4005 INPUT"Enter the name of the file you wish to create ",NM$
+4006 GOTO 4100         'check to see if there is a file with this name
+4010 OPEN NM$ FOR OUTPUT AS #1
+4015 FO=1          ' keeps track if a file is open
+4019 OF$="NO"
+4020 RETURN
+4100 '                   check for file with same name
+4115 NAME NM$ AS NM$
+4120 PRINT"There is already a file on the disk named ";NM$:INPUT"Do you want to erase it (Y/N)";YN$
+4125 IF YN$="y" OR YN$="Y" THEN GOTO 4010
+4130 IF YN$="N" OR YN$="n" THEN GOTO 4005
+4135 GOTO 4120
+4500 '            open file for input
+4505 CLS:INPUT"Enter the name of the file you wish to edit ",NM$
+4506 IF NM$="?" THEN GOTO 7400
+4507 IF NM$="" THEN RUN'        reply is a CR
+4510 OPEN NM$ FOR INPUT AS #1
+4515 FO=1          ' keeps track if a file is open
+4520 RETURN
+5000 '         menu
+5001 KEY OFF
+5002 KEY(1) OFF:KEY (2) OFF:KEY (3) OFF
+5003 KEY (10) ON
+5010 CLS:PRINT"NSM - Cornell University":PRINT"This section creates/edits data files":FOR I = 1 TO 4:PRINT:NEXT I
+5020 PRINT"TYPE THE NUMBER THAT CORRESPONDS TO YOUR CHOICE"
+5030 PRINT:PRINT"1-Create a new file"
+5040 PRINT"2-Edit a file
+5046 PRINT"3-See a directory of a disk
+5047 PRINT"4-Start processing file
+5048 ' PRINT"5-Return to MAIN MENU
+5049 PRINT
+5050 INPUT "YOUR CHOICE ==>",ANS
+5052 IF ANS<1 OR ANS>5 THEN GOTO 5050
+5060 ON ANS GOTO 135,6000,7400,5200'    ,5100
+5070 RETURN
+5100 '     return to MAIN MENU
+5101 '
+5102 CLOSE #1:CLS:RUN"Nsm
+5200 '       go to TRED4
+5201 '
+5205 ON ERROR GOTO 0       '  reset error checking
+5206 IF NM$="" GOTO 5230
+5210 FD$=NM$
+5215 CLOSE #1
+5220 PRINT:PRINT: PRINT" Run NSM with ";NM$;"? (Y/N)";:INPUT"", AN$
+5225 IF AN$="n" OR AN$="N" THEN RUN "TRED4" ELSE USED=2:CHAIN "TRED4"
+5230 RUN "TRED4
+6000 '      edit a file
+6005 '
+6009 CLS
+6010 IF FO=0 THEN GOTO 6025
+6015 PRINT"Do you want to edit ";NM$;" (Y/N)";:INPUT ANS$:IF ANS$="n" OR             ANS$="N" THEN CLOSE #1:FO=0:GOTO 6025 ELSE CLOSE #1:                            OPEN NM$ FOR INPUT AS #1
+6020 GOTO 6030
+6025 GOSUB 4500:GOSUB 6070
+6030 GOSUB 7100:GOTO 2000  '      turn on soft keys, then cursor movement
+6035 GOTO 5000
+6040 '  write edited data to disk
+6045 '
+6050 CLOSE #1:CLS
+6051 PRINT" Replace old ";NM$;" with this version? (Y/N)";:INPUT A$:                 IF A$="N" OR A$="n" THEN INPUT"Enter new filename ",NM$
+6055 GOSUB 4010      'open file for output
+6060 GOTO 410        'write data and go to menu
+6065 '   fill variables from disk file
+6070 INPUT #1,SN$,CO$,LATD,LATM,LATH$,LOND,LONM,LONH$,EL
+6075 FOR I = 1 TO 12:INPUT #1,MP(I):NEXT I
+6080 FOR I = 1 TO 12:INPUT #1,MT(I):NEXT I
+6085 INPUT #1,SY,EY,UN$:CLOSE #1
+6090 RETURN
+6095 '      screen editor
+6100 LOCATE R,C:STORE = SCREEN(R,C)
+6101 PRINT"_";:LOCATE R,C :FOR I = 1 TO 300:NEXT I:PRINT CHR$(STORE);:LOCATE R,C:FOR I = 1 TO 300:NEXT I
+6105 A$=INKEY$
+6110 IF A$="" THEN 6101
+6115 ' STORE=32
+6120 IF C=80 THEN STORE= SCREEN (R,C):GOTO 6130
+6130 IF C=81 AND R=25 THEN 6105
+6135 IF C=81 THEN C=1:R=R+1:LOCATE R,C
+6140 IF ASC (A$)=13 THEN GOSUB 6210
+6145 GOTO 6105
+6150 '   INITIALIZE
+6151 '
+6153 FOR I = 1 TO 12:READ A$:MN$(I)=A$:NEXT I
+6155 DATA January......, February....., March........, April........, May.........., June........., July........., August......., September...., October......, November....., December.....
+6167 ON KEY (11) GOSUB 6185       'UP
+6168 ON KEY (12) GOSUB 6465       'LEFT
+6169 ON KEY (13) GOSUB 6490       'RIGHT
+6170 ON KEY (14) GOSUB 6515       'DOWN
+6175 KEY (11) ON:KEY (12)ON:KEY (13) ON:KEY (14) ON
+6180 RETURN
+6185     'UP
+6190 LOCATE R,C:PRINT CHR$(STORE);:LOCATE R,C
+6195 R=R-1:IF R=0 THEN R=1
+6200 LOCATE R,C:STORE = SCREEN(R,C):PRINT "_";:LOCATE R,C
+6205 RETURN
+6210 '   CR
+6211 STORE =32
+6230 IF PAGE=2 THEN GOTO 6345
+6235 IF R<>4 THEN GOTO 6265
+6240 IF C<15 THEN CLS:INPUT"New station name ";SN$:RETURN 2025
+6245 IF C>=15 AND C<29 THEN CLS:INPUT"New COUNTRY name ";CO$:RETURN 2025
+6250 IF C<43 AND C>=29 THEN CLS:INPUT"Enter DEGREES LAT ",LATD:                       INPUT"Enter MINUTES LAT ",LATM:INPUT"Enter HEMISPHERE (N/S) ",LATH$:              RETURN 2025
+6255 IF C<57 AND C>=43 THEN CLS:INPUT"Enter DEGREES LONG ",LOND:                      INPUT"Enter MINUTES LONG ",LONM:INPUT"Enter HEMISPHERE (E/W) ",LONH$:             RETURN 2025
+6260 IF C>=57 THEN CLS: INPUT"New elevation ";EL:RETURN 2025
+6265 IF R<>10 THEN GOTO 6295
+6270 IF C<15 THEN CLS:INPUT"Precip.- January ";MP(1):RETURN 2025
+6275 IF C>=15 AND C<29 THEN CLS:INPUT"Precip.- February ";MP(2):RETURN 2025
+6280 IF C>=29 AND C<43 THEN CLS:INPUT"Precip.- March ";MP(3):RETURN 2025
+6285 IF C>=43 AND C<57 THEN CLS:INPUT"Precip.- April ";MP(4):RETURN 2025
+6290 IF C>=57 THEN CLS:INPUT"Precip.- May ";MP(5):RETURN 2025
+6295 IF R<>13 THEN GOTO 6325
+6300 IF C<15 THEN CLS:INPUT"Precip.- June ";MP(6):RETURN 2025
+6305 IF C>=15 AND C<29 THEN CLS:INPUT"Precip.- July ";MP(7):RETURN 2025
+6310 IF C>=29 AND C<43 THEN CLS:INPUT"Precip.- August ";MP(8):RETURN 2025
+6315 IF C>=43 AND C<57 THEN CLS:INPUT"Precip.- September ";MP(9):RETURN 2025
+6320 IF C>=57 THEN CLS:INPUT"Precip.- October ";MP(10):RETURN 2025
+6325 IF R<>16 THEN GOTO 6340
+6330 IF C<15 THEN CLS:INPUT"Precip.- November ";MP(11):RETURN 2025
+6335 IF C>=15 THEN CLS:INPUT"Precip.- December ";MP(12):RETURN 2025
+6340 RETURN     ' this takes care of any other cursor location
+6345 '                  if page=2
+6350 IF R<>4 THEN GOTO 6380
+6355 IF C<15 THEN CLS:INPUT"Temp.- January ";MT(1):RETURN 3055
+6360 IF C>=15 AND C<29 THEN CLS:INPUT"Temp.- February ";MT(2):RETURN 3055
+6365 IF C>=29 AND C<43 THEN CLS:INPUT"Temp.- March ";MT(3):RETURN 3055
+6370 IF C>=43 AND C<57 THEN CLS:INPUT"Temp.- April ";MT(4):RETURN 3055
+6375 IF C>=57 THEN CLS:INPUT"Temp.- May ";MT(5):RETURN 3055
+6380 IF R<>7 THEN GOTO 6410
+6385 IF C<15 THEN CLS:INPUT"Temp.- June ";MT(6):RETURN 3055
+6390 IF C>=15 AND C<29 THEN CLS:INPUT"Temp.- July ";MT(7):RETURN 3055
+6395 IF C>=29 AND C<43 THEN CLS:INPUT"Temp.- August ";MT(8):RETURN 3055
+6400 IF C>=43 AND C<57 THEN CLS:INPUT"Temp.- September ";MT(9):RETURN 3055
+6405 IF C>=57 THEN CLS:INPUT"Temp.- October ";MT(10):RETURN 3055
+6410 IF R<>10 THEN GOTO 6425
+6415 IF C<15 THEN CLS:INPUT"Temp.- November ";MT(11):RETURN 3055
+6420 IF C>=15 THEN CLS:INPUT"Temp.- December ";MT(12):RETURN 3055
+6425 IF R<>12 THEN GOTO 6435
+6430 CLS:INPUT"Enter new starting year (or length or record) ",SY
+6435 IF R<>13 THEN GOTO 6445
+6440 CLS:INPUT"Enter new last year (or length of record) ",EY
+6445 IF R<>14 THEN GOTO 6455
+6450 CLS:INPUT "Enter units- English (E) or Metric (M) ",UN$:IF ASC(UN$)>92 THEN      UN$=CHR$(ASC(UN$)-32)
+6455 RETURN 3055   '     takes care of any other cursor location
+6460 RETURN
+6465     'LEFT
+6470 LOCATE R,C:PRINT CHR$(STORE);:LOCATE R,C:IF C-1<=0 THEN 6475
+6471 IF SCREEN(R,C-1)=0 OR SCREEN(R,C-1)= 32 THEN 6475 ELSE IF C-1>0 THEN C=C-1:GOTO 6471
+6475 C=C-1:IF C=0 THEN C=1:GOTO 6480
+6476 IF SCREEN (R,C)=32 OR SCREEN (R,C)=0 THEN GOTO 6475
+6480 LOCATE R,C:STORE=SCREEN(R,C):PRINT"_";:LOCATE R,C
+6485 RETURN
+6490 '   RIGHT
+6495 LOCATE R,C:PRINT CHR$(STORE);:LOCATE R,C:IF C+1>+80 THEN 6500
+6496 IF SCREEN(R,C+1)=32 OR SCREEN(R,C+1)=0 THEN 6500 ELSE IF C+1<80 THEN C=C+1:      GOTO 6496
+6500 C=C+1:IF C=81 THEN C=80:GOTO 6505
+6501 IF SCREEN (R,C)=32 OR SCREEN (R,C)=0 THEN GOTO 6500
+6505 LOCATE R,C:STORE =SCREEN(R,C):PRINT"_";:LOCATE R,C
+6510 RETURN
+6515 '   DOWN
+6520 LOCATE R,C:PRINT CHR$(STORE);:LOCATE R,C
+6525 R=R+1:IF R>=23 THEN R=23
+6530 LOCATE R,C:STORE =SCREEN (R,C):PRINT"_";:LOCATE R,C
+6535 RETURN
+7000 '                error checking
+7005 V=ERR
+7010 IF V=53 THEN PRINT"Can't find ";NM$;:INPUT " Re-enter filename ",NM$
+7015 IF V=52 THEN NM$=LEFT$(NM$,8)+".DTA"   '   truncate file names>8 char.
+7016 IF V<> 53 AND V<>52 THEN ON ERROR GOTO 0:END
+7025 RESUME
+7100 KEY 1,"Page 1":KEY 2,"Page 2":KEY 3,"Cont"
+7105 ON KEY (1) GOSUB 7200
+7110 ON KEY (2) GOSUB 7300
+7115 ON KEY (3) GOSUB 6040
+7120 KEY (1) ON:KEY (2) ON: KEY(3) ON:KEY (10) ON:KEY (9) ON
+7122 KEY ON
+7123 FOR I = 4 TO 8:KEY (I) OFF:NEXT I
+7124 FOR I = 4 TO 8:KEY I,"":NEXT I
+7125 RETURN
+7200 R=3:C=1:PAGE=1:RETURN 2025
+7300 R=3:C=1:PAGE=2:RETURN 3055
+7400 '    Directory of disk
+7410 CLS
+7420 INPUT "Which disk? (Hit ENTER for default) ",DISK$
+7430 IF DISK$="" THEN FILES:GOTO 7480
+7435 IF LEFT$(DISK$,1)="c" OR LEFT$(DISK$,1)="C" THEN DISK$=DISK$+"*.*":             CHDIR"c:\":GOTO 7470
+7440 DISK$=LEFT$(DISK$,1)+":*.*":GOTO 7470
+7470 FILES DISK$
+7480 PRINT"Hit a key to continue"
+7485 F$=INKEY$:IF F$="" THEN 7485
+7490 GOTO 5010
+8000 'bail out of program
+8010 SYSTEM
+9000 '
+9010 '  error checking
+9020 '
+9030 V=ERR
+9032 IF V=64 THEN RUN'  reply to filename prompt is  a CR
+9035 IF V=53 AND OF$="YES" THEN CLOSE #1:RESUME 4010
+9040 IF V=53 THEN PRINT"Can't find ";NM$;:INPUT" Re-enter filename ",NM$:RESUME
+9045 IF V=58 THEN RESUME 4120   'file exists on disk in createfile check
+9050 IF V<>19 THEN ON ERROR GOTO 0
+9060 PRINT"There is already a file on the disk named ",NM$:INPUT"Do you want to erase it (Y/N)";YN$
+9070 IF YN$="y" OR YN$="Y" THEN RESUME 4010
+9080 RESUME 4005
+9100 '
+9110 '          return to main menu
+9120 CLOSE #1,#2:RUN"nsm
+

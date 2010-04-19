@@ -1,3 +1,5 @@
+package newhall.util;
+
 public class Cleaner {
 
     public static void main(String[] args) {
