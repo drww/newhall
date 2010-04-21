@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<model version="1.0.0">
+  <metadata>
+    <stninfo>
+      <stnname />
+      <stnid />
+      <stnelev />
+      <stateprov />
+      <country />
+    </stninfo>
+    <mlra>
+      <mlraname />
+      <mlraid />
+    </mlra>
+    <cntinfo>
+      <cntper>
+        <firstname />
+        <midname />
+        <lastname />
+        <title />
+      </cntper>
+      <cntorg />
+      <cntaddr>
+        <address />
+        <city />
+        <stateprov />
+        <postal />
+        <country />
+      </cntaddr>
+      <cntemail />
+      <cntphone />
+    </cntinfo>
+    <notes>
+      <note />
+    </notes>
+    <rundate />
+    <nsmver />
+    <unitsys />
+  </metadata>
+  <input>
+    <location>
+      <lat />
+      <lon />
+      <usercoordfmt />
+    </location>
+    <recordpd>
+      <pdtype />
+      <pdbegin />
+      <pdend />
+    </recordpd>
+    <precips>
+      <precip />
+    </precips>
+    <airtemps>
+      <airtemp />
+    </airtemps>
+    <smcsawc />
+    <soilairrel>
+      <lag />
+      <ampltd />
+      <maatmast />
+    </soilairrel>
+  </input>
+  <output>
+    <smrclass />
+    <strclass />
+    <awb />
+    <swb />
+    <smcsstate>
+      <cumdays>
+        <yrdry />
+        <yrmd />
+        <yrmst />
+        <bio5dry />
+        <bio5md />
+        <bio5mst />
+      </cumdays>
+      <consdays>
+        <yrmst />
+        <bio8mst />
+        <smrdry />
+        <wtrmst />
+      </consdays>
+    </smcsstate>
+    <pets>
+      <pet />
+    </pets>
+    <soiltemps>
+      <soiltemp />
+    </soiltemps>
+    <calendars>
+      <tempcal>
+        <stlt5>
+          <beginday />
+          <endday />
+        </stlt5>
+        <st5to8>
+          <beginday />
+          <endday />
+        </st5to8>
+        <stgt8>
+          <beginday />
+          <endday />
+        </stgt8>
+      </tempcal>
+      <moistcal>
+        <dry>
+          <beginday />
+          <endday />
+        </dry>
+        <moistdry>
+          <beginday />
+          <endday />
+        </moistdry>
+        <moist>
+          <beginday />
+          <endday />
+        </moist>
+      </moistcal>
+    </calendars>
+  </output>
+</model>
