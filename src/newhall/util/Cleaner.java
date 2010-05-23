@@ -2,7 +2,7 @@ package newhall.util;
 
 public class Cleaner {
 
-    public static void main(String[] args) {
+    public static void notMain(String[] args) {
 
    String input = "1.04,1.02,1.0,.97,.95,.93,.92,.92,.91,.91,.9,.9,.89," +
  ".88,.88,.87,.87,.86,.85,.85,.84,.83,.82,.81,.81,.8,.79,.77," +
