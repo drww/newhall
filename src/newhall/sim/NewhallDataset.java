@@ -40,8 +40,8 @@ public class NewhallDataset {
     this.precipitation = new ArrayList<Double>(12);
     this.temperature = new ArrayList<Double>(12);
     
-    this.name = firstRow.get(0);
-    this.country = firstRow.get(1);
+    this.name = firstRow.get(0).replace("\"", "");
+    this.country = firstRow.get(1).replace("\"", "");
     this.latitude = Double.parseDouble(firstRow.get(2));        // Degrees.
     this.latitude += Double.parseDouble(firstRow.get(3)) / 60;  // Minutes converted to degrees.
     this.nsHemisphere = firstRow.get(4).charAt(1);             // Offset from doublequote.
