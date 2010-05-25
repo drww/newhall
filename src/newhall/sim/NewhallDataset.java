@@ -122,10 +122,8 @@ public class NewhallDataset {
     String result = this.getClass().toString();
     result += "\n  Name: " + name;
     result += "\n  Country: " + country;
-    result += "\n  Latitude: " + latitude;
-    result += "\n  Longitude: " + longitude;
-    result += "\n  NS Hemisphere: " + nsHemisphere;
-    result += "\n  EW Hemisphere: " + ewHemisphere;
+    result += "\n  Latitude: " + latitude + " " + nsHemisphere;
+    result += "\n  Longitude: " + longitude + " " + ewHemisphere;
     result += "\n  Elevation: " + elevation;
 
     if (isMetric) {
