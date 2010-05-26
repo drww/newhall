@@ -47,6 +47,12 @@ public class BASICSimulationModelConstants {
 
   private final double[] rs = {5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 42.0, 44.0, 46.0, 48.0, 50.0};
 
+  private final double fc = 2.5;
+
+  private final double fcd = 0.66;
+
+  private final double cv = 5/9;
+
   private BASICSimulationModelConstants() {
     // Do not instantiate.
   }
@@ -78,5 +84,19 @@ public class BASICSimulationModelConstants {
   public double[] getZt() {
     return zt;
   }
+
+  public double getCv() {
+    return cv;
+  }
+
+  public double getFc() {
+    return fc;
+  }
+
+  public double getFcd() {
+    return fcd;
+  }
+
+  
   
 }

@@ -85,7 +85,7 @@ public class NewhallDataset {
     return ewHemisphere;
   }
 
-  public boolean isIsMetric() {
+  public boolean isMetric() {
     return isMetric;
   }
 
