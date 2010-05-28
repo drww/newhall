@@ -2,41 +2,44 @@ package newhall.sim;
 
 import java.util.ArrayList;
 
+/**
+ * This is the 1:1 translation of the original Newhall BASIC source code.  Variable names have
+ * been preserved (and unfortunately ambiguous as a result).  Array indexes do not start at zero,
+ * among other BASIC quirkiness.  This should be modernized in the future, but this version should
+ * remain to assure consistency with the original version.
+ */
+
 public class BASICSimulationModel {
 
-  
+  public static void runSimulation(NewhallDataset dataset) {
 
-  public void runSimulation(NewhallDataset dataset) {
+    System.out.println(dataset);
 
     // Convert elevation into meters.
     double elevation = dataset.getElevation();
     if(!dataset.isMetric()) {
-      elevation *= 0.3048;
+      elevation *= 0.305;  // 0.3048, technically.
     }
 
     // Convert temperatures into celsius.
-    ArrayList<Double> temperature = dataset.getTemperature();
+    double[] temperature = new double[13];
+    for(int i = 1; i <= 12; i++) {
+      temperature[i] = dataset.getTemperature().get(i-1);
+    }
     if(!dataset.isMetric()) {
-      for(Double temp : temperature) {
-        temp = (5/9) * (temp - 32);
+      for(int i = 1; i <= 12; i++) {
+        temperature[i] = (0.555 * (temperature[i] - 32));
       }
     }
 
-    ArrayList<Double> upe = new ArrayList<Double>(12);
-    ArrayList<Double> mpe = new ArrayList<Double>(12);
-    ArrayList<Double> mwi = new ArrayList<Double>(12);
+    double[] upe = new double[13];
+    double[] mpe = new double[13];
+    double[] mwi = new double[13];
 
-    // Zero lists.
-    for(int i = 0; i < 12; i++) {
-      upe.set(i, 0.0);
-      mpe.set(i, 0.0);
-      mwi.set(i, 0.0);
-    }
-
-    for(int i = 0; i < 12; i++) {
-      if(temperature.get(i) > 0) {
-        double mwiValue = Math.pow((temperature.get(i) / 5), 1.514);
-        mwi.set(i, mwiValue);
+    for(int i = 1; i <= 12; i++) {
+      if(temperature[i] > 0) {
+        double mwiValue = Math.pow((temperature[i] / 5), 1.514);
+        mwi[i] = mwiValue;
       }
     }
 
@@ -47,6 +50,52 @@ public class BASICSimulationModel {
 
     double a = (Math.pow(swi, 3) * (6.75 * 10E-7)) - (Math.pow(swi, 2) * (7.71 * 10E-5)) - (swi * 0.01792) + 0.49239;
 
+    for(int i = 1; i <= 12; i++) {
+      if(temperature[i] > 0) {
+        if(temperature[i] < 26.5) {
+          upe[i] = 16 * Math.pow(((10*temperature[i])/swi), a);
+        } else if (temperature[i] >= 38) {
+          upe[i] = 185.0;
+        } else {
+          double[] zt = BASICSimulationModelConstants.zt;
+          double[] zpe = BASICSimulationModelConstants.zpe;
+          int kl = 0;
+          int kk = 0;
+          for(int ki = 1; ki <= 24; ki++) {
+            kl = ki + 1;
+            kk = ki;
+            if(temperature[i] >= zt[ki] && temperature[i] < zt[kl]) {
+              upe[i] = zpe[kk];
+            }
+          }
+          
+        }
+      }
+    }
+
+    System.out.print("Temp: ");
+    for(Double d : temperature) {
+      System.out.print(d + " ");
+    }
+    System.out.println();
+
+    System.out.print("UPE: ");
+    for(Double d : upe) {
+      System.out.print(d + " ");
+    }
+    System.out.println();
+
+    System.out.print("MPE: ");
+    for(Double d : mpe) {
+      System.out.print(d + " ");
+    }
+    System.out.println();
+
+    System.out.print("MWI: ");
+    for(Double d : mwi) {
+      System.out.print(d + " ");
+    }
+    System.out.println();
 
   }
 

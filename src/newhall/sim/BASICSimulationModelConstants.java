@@ -2,19 +2,19 @@ package newhall.sim;
 
 public class BASICSimulationModelConstants {
 
-  private final String[] tempRegimes = {"pregelic", "cryic", "frigid", "mesic",
+  public static final String[] tempRegimes = {"pregelic", "cryic", "frigid", "mesic",
     "thermic", "hyperth.", "Isofrigid", "Isomesic", "Isothermic",
     "Isohyperthermic"};
 
-  private final double[] zpe = {135.0, 139.5, 143.7, 147.8, 151.7, 155.4, 158.9, 162.1,
+  public static final double[] zpe = {135.0, 139.5, 143.7, 147.8, 151.7, 155.4, 158.9, 162.1,
     165.2, 168.0, 170.7, 173.1, 175.3, 177.2, 179.0, 180.5, 181.8, 182.9,
     183.7, 184.3, 184.7, 184.9, 185.0, 185.0};
 
-  private final double[] zt = {26.5, 27.0, 27.5, 28.0, 28.5, 29.0, 29.5, 30.0, 30.5, 31.0,
+  public static final double[] zt = {26.5, 27.0, 27.5, 28.0, 28.5, 29.0, 29.5, 30.0, 30.5, 31.0,
     31.5, 32.0, 32.5, 33.0, 33.5, 34.0, 34.5, 35.0, 35.5, 36.0, 36.5,
     37.0, 37.5, 38.0};
 
-  private final double[][] inz = {
+  public static final double[][] inz = {
     {1.04, 1.02, 1.0, 0.97, 0.95, 0.93, 0.92, 0.92, 0.91, 0.91, 0.9, 0.9, 0.89, 0.88, 0.88, 0.87, 0.87, 0.86, 0.85, 0.85, 0.84, 0.83, 0.82, 0.81, 0.81, 0.8, 0.79, 0.77, 0.76, 0.75, 0.74},
     {0.94, 0.93, 0.91, 0.91, 0.9, 0.89, 0.88, 0.88, 0.88, 0.87, 0.87, 0.87, 0.86, 0.86, 0.85, 0.85, 0.85, 0.84, 0.84, 0.84, 0.83, 0.83, 0.83, 0.82, 0.82, 0.81, 0.81, 0.8, 0.8, 0.79, 0.78},
     {1.04, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.03, 1.02, 1.02, 1.02, 1.02, 1.02, 1.02, 1.02, 1.02},
@@ -28,11 +28,11 @@ public class BASICSimulationModelConstants {
     {1.01, 0.99, 0.98, 0.95, 0.93, 0.91, 0.91, 0.9, 0.9, 0.9, 0.89, 0.89, 0.88, 0.88, 0.87, 0.86, 0.86, 0.85, 0.84, 0.84, 0.83, 0.82, 0.82, 0.81, 0.8, 0.79, 0.79, 0.78, 0.77, 0.76, 0.76},
     {1.04, 1.02, 0.99, 0.97, 0.94, 0.91, 0.91, 0.9, 0.9, 0.89, 0.88, 0.88, 0.87, 0.86, 0.86, 0.85, 0.84, 0.83, 0.83, 0.82, 0.81, 0.8, 0.79, 0.77, 0.76, 0.75, 0.74, 0.73, 0.72, 0.71, 0.7}};
 
-  private final double[] rn = {0.0, 5.0, 10.0, 15.0, 20.0, 25.0, 26.0, 27.0, 28.0, 29.0,
+  public static final double[] rn = {0.0, 5.0, 10.0, 15.0, 20.0, 25.0, 26.0, 27.0, 28.0, 29.0,
     30.0, 31.0, 32.0, 33.0, 34.0, 35.0, 36.0, 37.0, 38.0, 39.0, 40.0, 41.0,
     42.0, 43.0, 44.0, 45.0, 46.0, 47.0, 48.0, 49.0, 50.0};
 
-  private final double[][] fs = {{1.06, 1.08, 1.12, 1.14, 1.17, 1.2, 1.23, 1.27, 1.28, 1.3, 1.32, 1.34, 1.37},
+  public static final double[][] fs = {{1.06, 1.08, 1.12, 1.14, 1.17, 1.2, 1.23, 1.27, 1.28, 1.3, 1.32, 1.34, 1.37},
     {0.95, 0.97, 0.98, 1.0, 1.01, 1.03, 1.04, 1.06, 1.07, 1.08, 1.1, 1.11, 1.12},
     {1.04, 1.05, 1.05, 1.05, 1.05, 1.06, 1.06, 1.07, 1.07, 1.07, 1.07, 1.08, 1.08},
     {1.0, 0.99, 0.98, 0.97, 0.96, 0.95, 0.94, 0.93, 0.92, 0.92, 0.91, 0.9, 0.89},
@@ -45,58 +45,16 @@ public class BASICSimulationModelConstants {
     {1.03, 1.05, 1.07, 1.09, 1.11, 1.14, 1.17, 1.2, 1.22, 1.23, 1.25, 1.27, 1.29},
     {1.06, 1.1, 1.12, 1.15, 1.18, 1.21, 1.25, 1.29, 1.31, 1.33, 1.35, 1.37, 1.41}};
 
-  private final double[] rs = {5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 42.0, 44.0, 46.0, 48.0, 50.0};
+  public static final double[] rs = {5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 42.0, 44.0, 46.0, 48.0, 50.0};
 
-  private final double fc = 2.5;
+  public static final double fc = 2.5;
 
-  private final double fcd = 0.66;
+  public static final double fcd = 0.66;
 
-  private final double cv = 5/9;
+  public static final double cv = 5/9;
 
   private BASICSimulationModelConstants() {
     // Do not instantiate.
   }
-
-  public double[][] getFs() {
-    return fs;
-  }
-
-  public double[][] getInz() {
-    return inz;
-  }
-
-  public double[] getRn() {
-    return rn;
-  }
-
-  public double[] getRs() {
-    return rs;
-  }
-
-  public String[] getTempRegimes() {
-    return tempRegimes;
-  }
-
-  public double[] getZpe() {
-    return zpe;
-  }
-
-  public double[] getZt() {
-    return zt;
-  }
-
-  public double getCv() {
-    return cv;
-  }
-
-  public double getFc() {
-    return fc;
-  }
-
-  public double getFcd() {
-    return fcd;
-  }
-
-  
   
 }
