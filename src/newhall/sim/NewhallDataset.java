@@ -42,12 +42,12 @@ public class NewhallDataset {
     
     this.name = firstRow.get(0).replace("\"", "");
     this.country = firstRow.get(1).replace("\"", "");
-    this.latitude = Double.parseDouble(firstRow.get(2));        // Degrees.
-    this.latitude += Double.parseDouble(firstRow.get(3)) / 60;  // Minutes converted to degrees.
-    this.nsHemisphere = firstRow.get(4).charAt(1);             // Offset from doublequote.
+    this.latitude = Double.parseDouble(firstRow.get(2));
+    this.latitude += Double.parseDouble(firstRow.get(3)) / 60;
+    this.nsHemisphere = firstRow.get(4).toUpperCase().charAt(1);
     this.longitude = Double.parseDouble(firstRow.get(5));
-    this.longitude += Double.parseDouble(firstRow.get(6)) / 60; // Same deal here.
-    this.ewHemisphere = firstRow.get(7).charAt(1);
+    this.longitude += Double.parseDouble(firstRow.get(6)) / 60;
+    this.ewHemisphere = firstRow.get(7).toUpperCase().charAt(1);
     this.elevation = Double.parseDouble(firstRow.get(8));
 
     for (int i = 0; i <= 11; i++) {

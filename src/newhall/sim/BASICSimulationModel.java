@@ -68,7 +68,48 @@ public class BASICSimulationModel {
               upe[i] = zpe[kk];
             }
           }
-          
+        }
+      }
+    }
+
+    if(dataset.getNsHemisphere() == 'N') {    // Roughly line 50 in psudocode.
+      int nrow = 0;
+      for(int i = 1; i <= 31; i++) {
+        if(dataset.getLatitude() > BASICSimulationModelConstants.rn[i]) {
+          for(int j = 1; j <= 12; j++) {
+            if(upe[j] <= 0) {
+              mpe[j] = upe[j] * BASICSimulationModelConstants.inz[nrow][j];
+            }
+          }
+          break;
+        } else {
+          nrow++;
+        }
+      }
+    } else {
+      int nrow = 0;
+      for(int i = 1; i <= 13; i++) {
+        if(dataset.getLatitude() < BASICSimulationModelConstants.rs[i]) {
+          // 560
+          if(nrow != 0) {
+            // 605
+          } else {
+            nrow = 1;
+            for(int j = 1; j <= 12; j++) {
+              if(upe[j] > 0) {
+                double cf = 
+                        BASICSimulationModelConstants.fs[1][j] -
+                        (BASICSimulationModelConstants.inz[1][j] *
+                        0);
+                // junk
+                mpe[j] = upe[j] * cf;
+              }
+            }
+            break;
+            // 655
+          }
+        } else {
+          nrow++;
         }
       }
     }
