@@ -93,8 +93,24 @@ public class NewhallDataset {
     return latitude;
   }
 
+  public int getLatitudeDegrees() {
+    return (int)latitude;
+  }
+
+  public double getLatitudeMinutes() {
+    return latitude%1 * 60;
+  }
+
   public double getLongitude() {
     return longitude;
+  }
+
+  public int getLongitudeDegrees() {
+    return (int)longitude;
+  }
+
+  public double getLongitudeMinutes() {
+    return longitude%1 * 60;
   }
 
   public String getName() {
@@ -123,7 +139,9 @@ public class NewhallDataset {
     result += "\n  Name: " + name;
     result += "\n  Country: " + country;
     result += "\n  Latitude: " + latitude + " " + nsHemisphere;
+    result += "\n    " + getLatitudeDegrees() + " degrees, " + getLatitudeMinutes() + " minutes";
     result += "\n  Longitude: " + longitude + " " + ewHemisphere;
+    result += "\n    " + getLongitudeDegrees() + " degrees, " + getLongitudeMinutes() + " minutes";
     result += "\n  Elevation: " + elevation;
 
     if (isMetric) {

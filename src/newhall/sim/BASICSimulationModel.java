@@ -97,11 +97,12 @@ public class BASICSimulationModel {
             nrow = 1;
             for(int j = 1; j <= 12; j++) {
               if(upe[j] > 0) {
-                double cf = 
-                        BASICSimulationModelConstants.fs[1][j] -
-                        (BASICSimulationModelConstants.inz[1][j] *
-                        0);
-                // junk
+                double cf = (BASICSimulationModelConstants.fs[1][j] -
+                  BASICSimulationModelConstants.inz[1][j]) *
+                  (dataset.getLatitudeDegrees()*60 + dataset.getLatitudeMinutes())
+                  / 300;
+                cf += BASICSimulationModelConstants.inz[1][j];
+                System.out.println("CF: " + cf);
                 mpe[j] = upe[j] * cf;
               }
             }
