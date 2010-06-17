@@ -1,7 +1,5 @@
 package newhall.sim;
 
-import java.util.ArrayList;
-
 /**
  * This is the 1:1 translation of the original Newhall BASIC source code.  Variable names have
  * been preserved (and unfortunately ambiguous as a result).  Array indexes do not start at zero,
@@ -90,29 +88,54 @@ public class BASICSimulationModel {
       int nrow = 0;
       for(int i = 1; i <= 13; i++) {
         if(dataset.getLatitude() < BASICSimulationModelConstants.rs[i]) {
-          // 560
-          if(nrow != 0) {
-            // 605
-          } else {
-            nrow = 1;
-            for(int j = 1; j <= 12; j++) {
-              if(upe[j] > 0) {
-                double cf = (BASICSimulationModelConstants.fs[1][j] -
-                  BASICSimulationModelConstants.inz[1][j]) *
-                  (dataset.getLatitudeDegrees()*60 + dataset.getLatitudeMinutes())
-                  / 300;
-                cf += BASICSimulationModelConstants.inz[1][j];
-                System.out.println("CF: " + cf);
-                mpe[j] = upe[j] * cf;
-              }
-            }
-            break;
-            // 655
-          }
+          break;  // And go to 560, also when for() block ends.
         } else {
           nrow++;
         }
       }
+
+      if(nrow != 0) {
+        // 605
+        for(int i = 1; i <= 12; i++) {
+          if(upe[i] <= 0) {
+            // 650
+            continue;
+          } else if (nrow >= 13 || BASICSimulationModelConstants.fs[nrow][i] ==
+                  BASICSimulationModelConstants.fs[nrow+1][i]) {
+            // 640
+            double cf = BASICSimulationModelConstants.fs[nrow][i];
+            mpe[i] = upe[i] * cf;
+          } else {
+            // 625
+            double cf = (BASICSimulationModelConstants.fs[nrow+1][i] - BASICSimulationModelConstants.fs[nrow][i])
+                    * ((dataset.getLatitudeMinutes() - BASICSimulationModelConstants.rs[nrow]) * 60) /
+                    ((BASICSimulationModelConstants.rs[nrow+1] - BASICSimulationModelConstants.rs[nrow]) * 60);
+            cf += BASICSimulationModelConstants.fs[nrow][i];
+            // 645
+            mpe[i] = upe[i] * cf;
+          }
+          // Return from GOSUB 205.
+        }
+      } else {
+        // 565
+        nrow = 1;
+        for(int i = 1; i <= 12; i++) {
+          if(upe[i] <= 0) {
+            continue;
+          } else {
+            double cf = (BASICSimulationModelConstants.fs[1][i]
+                    - BASICSimulationModelConstants.inz[1][i])
+                    * (dataset.getLatitudeDegrees() * 60 + dataset.getLatitudeMinutes())
+                    / 300;
+            cf += BASICSimulationModelConstants.inz[1][i];
+            mpe[i] = upe[i] * cf;
+          }
+        }
+        // Return from GOSUB 205.
+      }
+
+      // 140
+
     }
 
     System.out.print("Temp: ");
