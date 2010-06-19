@@ -20,19 +20,24 @@ public class BASICSimulationModel {
     }
 
     // Convert temperatures into celsius.
-    double[] temperature = new double[13];
+    double[] temperature = new double[13];  // T()
+    double[] precip = new double[13];       // MP()
     for(int i = 1; i <= 12; i++) {
       temperature[i] = dataset.getTemperature().get(i-1);
+      precip[i] = dataset.getPrecipitation().get(i-1);
     }
     if(!dataset.isMetric()) {
       for(int i = 1; i <= 12; i++) {
         temperature[i] = (0.555 * (temperature[i] - 32));
+        precip[i] = dataset.getPrecipitation().get(i-1) * 25.4;
       }
     }
 
     double[] upe = new double[13];
     double[] mpe = new double[13];
     double[] mwi = new double[13];
+
+    // 405
 
     for(int i = 1; i <= 12; i++) {
       if(temperature[i] > 0) {
@@ -46,7 +51,11 @@ public class BASICSimulationModel {
       swi += mwiElement;
     }
 
+    // 425
+
     double a = (Math.pow(swi, 3) * (6.75 * 10E-7)) - (Math.pow(swi, 2) * (7.71 * 10E-5)) - (swi * 0.01792) + 0.49239;
+
+    // 430
 
     for(int i = 1; i <= 12; i++) {
       if(temperature[i] > 0) {
@@ -70,7 +79,7 @@ public class BASICSimulationModel {
       }
     }
 
-    if(dataset.getNsHemisphere() == 'N') {    // Roughly line 50 in psudocode.
+    if(dataset.getNsHemisphere() == 'N') {    // GOTO 505
       int nrow = 0;
       for(int i = 1; i <= 31; i++) {
         if(dataset.getLatitude() > BASICSimulationModelConstants.rn[i]) {
@@ -84,7 +93,8 @@ public class BASICSimulationModel {
           nrow++;
         }
       }
-    } else {
+      // 655
+    } else {    // GOTO 535
       int nrow = 0;
       for(int i = 1; i <= 13; i++) {
         if(dataset.getLatitude() < BASICSimulationModelConstants.rs[i]) {
@@ -93,6 +103,8 @@ public class BASICSimulationModel {
           nrow++;
         }
       }
+
+      // 560
 
       if(nrow != 0) {
         // 605
@@ -135,6 +147,19 @@ public class BASICSimulationModel {
       }
 
       // 140
+
+      double arf = 0;
+      double aev = 0;
+      for(int i = 1; i <= 12; i++) {
+        arf += precip[i];
+        aev += mpe[i];
+      }
+
+      // GOSUB 660
+
+      
+
+      // 145
 
     }
 
