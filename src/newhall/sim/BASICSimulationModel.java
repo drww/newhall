@@ -157,8 +157,58 @@ public class BASICSimulationModel {
 
       // GOSUB 660
 
-      
+      double sumt = 0;
+      for(int i = 1; i <= 12; i++) {
+          sumt += temperature[i];
+      }
 
+      double tma = sumt / 12 + BASICSimulationModelConstants.fc;
+      double at1 = (temperature[6] + temperature[7] +
+              temperature[8])/3 + BASICSimulationModelConstants.fc;
+      double at2 = (temperature[1] + temperature[2] +
+              temperature[12])/3 + BASICSimulationModelConstants.fc;
+
+      double st = 0;
+      double wt = 0;
+      if(dataset.getNsHemisphere() == 'N') {
+        st = at1;
+        wt = at2;
+      } else {
+        st = at2;
+        wt = at1;
+      }
+
+      double dif = Math.abs(at1 - at2);
+      double cs = dif * (1 - BASICSimulationModelConstants.fcd)/2;
+
+      // 680
+
+      boolean[] cr = new boolean[13];
+      boolean[] reg = new boolean[13];
+      cr[1] = tma < 0;
+      cr[2] = 0 <= tma && tma < 8;
+      cr[3] = (st - cs) < 15;
+      cr[7] = (dif * BASICSimulationModelConstants.fcd) > 5;
+      cr[8] = (tma >= 8) && (tma < 15);
+      cr[9] = (tma >= 15) && (tma < 22);
+      cr[10] = tma >= 22;
+      cr[11] = tma < 8;
+      reg[1] = cr[1];
+      reg[2] = cr[2] && cr[3];
+      reg[3] = cr[11] && !cr[3] && cr[7];
+      reg[4] = cr[8] && cr[7];
+      reg[5] = cr[9] && cr[7];
+      reg[6] = cr[10] && cr[7];
+      reg[7] = cr[11] && !cr[7] && !cr[3];
+      reg[8] = cr[8] && !cr[7];
+      reg[9] = cr[9] && !cr[7];
+      reg[10] = cr[10] && !cr[7];
+
+      st -= cs;
+      wt += cs;
+      dif = st - wt;
+
+      // Return.
       // 145
 
     }
