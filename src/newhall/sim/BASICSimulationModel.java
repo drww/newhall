@@ -211,6 +211,132 @@ public class BASICSimulationModel {
       // Return.
       // 145
 
+      String trr = "";
+      for(int i = 1; i <= 10; i++) {
+        if(reg[i]) {
+          trr = BASICSimulationModelConstants.tempRegimes[i];
+        }
+      }
+
+      // GOSUB 775 => GOSUB 3000 for printing.
+      // Rendering, asking "Do you want to print this?"
+      // Asking "Do you want to continue on?" => A
+      // Return.
+
+      // 155
+      // Generate filename for input to STORVAR5, an
+      // *.INT file.  Format is as follows:
+      // ST, CO, RLA1, RLA2, H, RLO1, RLO2, EW, ELEV, ARF, AEV, TRR,
+      // TMA, ST, WT  followed by:
+      // for i = 1 to 12:  precip[i], temp[i], mpe[i]
+
+      // 185 => GOSUB 725
+      // Checks user response in A.  Returns if no, prints
+      // CHR(12) + CHR(13 then chainloads STORVAR5.
+
+      // 50 - STORVAR5
+
+      double whc = 200;  // Water holding capacity, switch to param.
+      double fsl = whc / 64;
+      double[] sl = new double[65];
+      for(int i = 0; i < sl.length; i++) {
+        sl[i] = 0;
+      }
+
+      int k = 1;
+      int swst = 0;
+      int swfi = 0;
+
+      double[] ntwi = new double[4];
+      double[] ntsu = new double[4];
+      double[] nsd = new double[4];
+      double[] nzd = new double[4];
+      double[] nd = new double[4];
+      double[] cc = new double[4];
+      for(int i = 1; i <= 3; i++) {
+        ntwi[i] = 0.0;
+        ntsu[i] = 0.0;
+        nsd[i] = 0.0;
+        nzd[i] = 0.0;
+        nd[i] = 0.0;
+        cc[i] = 0.0;
+      }
+
+      double[] cd = new double[6];
+      for(int i = 1; i <= 5; i++) {
+        cd[i] = 0.0;
+      }
+
+      // 300
+
+      int msw = -1;
+      int icon = 0;
+      int lt5c = 0;
+      int lt8c = 0;
+      int ie = 0;
+      int ib = 1;
+      double prmo = 0;
+      int nccd = 0;
+      int nccm = 0;
+      int id8c = 0;
+      int id5c = 0;
+      int swt = 0;
+      int tc = 0;
+      int np = 0;
+      int np8 = 0;
+      int ncsm = 0;
+      int ncwm = 0;
+      int ncsp = 0;
+      int ncwp = 0;
+
+      // 360
+
+      double[] nbd = new double[7];
+      double[] ned = new double[7];
+      double[] nbd8 = new double[7];
+      double[] ned8 = new double[7];
+      for(int i = 1; i <= 6; i++) {
+        nbd[i] = 0.0;
+        ned[i] = 0.0;
+        nbd8[i] = 0.0;
+        ned8[i] = 0.0;
+      }
+
+      // 400
+
+      int[] iday = new int[361];
+      for(int i = 1; i <= 360; i++) {
+        iday[i] = 0;
+      }
+
+      double fc = 2.5;
+      double fcd = 0.66;
+      int swp = -1;
+      int gogr = 0;
+
+      // 420
+
+      boolean noMpeGreaterThanPrecip = true;
+      for(int i = 1; i <= 12; i++) {
+        if(mpe[i] > precip[i]) {
+          noMpeGreaterThanPrecip = false;
+          break;
+        }
+      }
+      if(noMpeGreaterThanPrecip) {
+        cd[5] = -1;
+        swt = -1;
+      }
+
+      // 460 WTF, REP = "Want explaination?"
+
+      for(int n = 1; n <= 10; n++) {
+        for(int im = 1; im <= 12; im++) {
+          // GOSUB 2750, GOSUB 2070, GOSUB 2750.
+          
+        }
+      }
+
     }
 
     System.out.print("Temp: ");
