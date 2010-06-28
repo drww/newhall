@@ -332,7 +332,76 @@ public class BASICSimulationModel {
 
       for(int n = 1; n <= 10; n++) {
         for(int im = 1; im <= 12; im++) {
-          // GOSUB 2750, GOSUB 2070, GOSUB 2750.
+          // Print a period.
+          // GOSUB 2750
+
+          int zsw = 0;
+          double lp = precip[im]/2;
+          double npe = (lp - mpe[im])/2;
+          if(npe <= 0) {
+            // 2760
+            npe = 0 - npe;
+          } else {
+            zsw = -1;
+          }
+
+          // 2770
+
+          for(int i3 = 1; i3 <= 64; i3++) {
+            if(zsw == 0) {
+              // 2820
+              int nr = BASICSimulationModelConstants.dp[i3];
+              if(sl[nr] <= 0) {
+                // 2860
+                continue;
+              } else {
+                // 2830
+                double rpe = sl[nr] * BASICSimulationModelConstants.dr[i3];
+                if(npe <= rpe) {
+                  // 2850
+                  sl[nr] = sl[nr] - (npe / BASICSimulationModelConstants.dr[i3]);
+                  npe = 0;
+                  // Return from GOSUB 2750;
+                  break;
+                } else {
+                  // 2840
+                  sl[nr] = 0;
+                  npe = npe - rpe;
+                  // 2860
+                  continue;
+                }
+              }
+            } else {
+              // 2780
+              if(sl[i3] >= fsl) {
+                // 2860
+                continue;
+              } else {
+                // 2790
+                double esl = fsl - sl[i3];
+                if(esl >= npe) {
+                  // 2810
+                  sl[i3] = sl[i3] + npe;
+                  // Return from GOSUB 2750.
+                  break;
+                } else {
+                  // 2800
+                  sl[i3] = fsl;
+                  npe = npe - esl;
+                  // 2860
+                  continue;
+                }
+              }
+            }
+          }
+
+          // Return from GOSUB 2750.
+
+          // GOSUB 2070
+
+          
+
+          // GOSUB 2750
           
         }
       }
