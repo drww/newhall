@@ -399,9 +399,38 @@ public class BASICSimulationModel {
 
           // GOSUB 2070
 
-          
+          double hp = precip[im]/2;
+          for(int i3 = 1; i3 <= 64; i3++) {
+            if(sl[i3] >= fsl) {
+              // 2140
+              continue;
+            } else {
+              // 2090
+              double esl = fsl - sl[i3];
+              if(esl >= hp) {
+                // 2120
+                sl[i3] = fsl;
+                if(gogr != 0) {
+                  // GOSUB 3900
+                  // Print "ADDITION", draw, beep.
+                }
+                break;  // Return from GOSUB 2070.
+              } else {
+                // 2100
+                sl[i3] = fsl;
+                hp -= esl;
+                if(gogr != 0) {
+                  // GOSUB 3900
+                  // Print "ADDITION", draw, beep.
+                }
+                continue;
+              }
+            }
+          }
 
           // GOSUB 2750
+
+          
           
         }
       }
