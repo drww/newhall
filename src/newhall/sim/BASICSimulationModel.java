@@ -555,10 +555,51 @@ public class BASICSimulationModel {
     // Return from GOSUB 2880.
 
     // GOSUB 3760
+    //   GOSUB 4330
+    //     Draws Dry,M/D,Moist calendar.
+
+    // 570
+
+    for(int im = 1; im < 12; im++) {
+      
+      // 590 - GOSUB 1630
+
+      int[] dmc = new int[4];
+
+      for (int i = 1; i <= 3; i++) {
+        dmc[i] = 0;
+        cc[i] = false;
+      }
+
+      int zsw = 0;
+      int dpmc = 0;
+      int pmc = k;
+
+      double lp = precip[im] / 2;
+      double npe = (lp - mpe[im])/2;
+      double cnpe;
+
+      if(npe < 0) {
+        npe = -npe;
+        cnpe = npe;
+      } else if(npe == 0) {
+        // 1920
+      } else {
+        zsw = -1;
+        cnpe = npe;
+      }
+
+      // 1670
+
+      
+      
+      
+    }
+
+
+
 
     
-
-
 
     System.out.print("Temp: ");
     for (Double d : temperature) {
