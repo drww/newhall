@@ -254,14 +254,14 @@ public class BASICSimulationModel {
     double[] nsd = new double[4];
     double[] nzd = new double[4];
     double[] nd = new double[4];
-    double[] cc = new double[4];
+    boolean[] cc = new boolean[4];
     for (int i = 1; i <= 3; i++) {
       ntwi[i] = 0.0;
       ntsu[i] = 0.0;
       nsd[i] = 0.0;
       nzd[i] = 0.0;
       nd[i] = 0.0;
-      cc[i] = 0.0;
+      cc[i] = false;
     }
 
     double[] cd = new double[6];
@@ -524,9 +524,39 @@ public class BASICSimulationModel {
 
     // GOSUB 2880
 
+    for(int i = 1; i <= 3; i++) {
+      cc[i] = false;
+    }
 
+    boolean[] pc = new boolean[7];
+    for(int i = 1; i <= 6; i++) {
+      pc[i] = false;
+    }
+
+    pc[1] = sl[9] <= 0;
+    pc[2] = sl[17] <= 0;
+    pc[3] = sl[25] <= 0;
+    cc[1] = pc[1] && pc[2] && pc[3];
+    cc[2] = !cc[1] && (pc[1] || pc[2] || pc[3]);
+    pc[4] = sl[9] > 0;
+    pc[5] = sl[17] > 0;
+    pc[6] = sl[25] > 0;
+    cc[3] = pc[4] && pc[5] && pc[6];
+
+    for(int i = 1; i <= 3; i++) {
+      if(!cc[i]) {
+        continue;
+      } else {
+        k = i;
+        break;
+      }
+    }
+
+    // Return from GOSUB 2880.
 
     // GOSUB 3760
+
+    
 
 
 
