@@ -595,7 +595,21 @@ public class BASICSimulationModel {
       if (!skipi3Loop) {
         for (int i3 = 1; i3 <= 64; i3++) {
           if (zsw == 0) {
-            // 1840 !!!
+            // 1840
+            if(npe <= 0) {
+              // 1920
+              break;
+            } else {
+              // 1850
+              int nr = BASICSimulationModelConstants.dp[i3];
+              if(sl[nr] <= 0) {
+                // 1910
+                continue;
+              } else {
+                // 1870
+                
+              }
+            }
           } else {
             // 1680
             if (npe <= 0) {
@@ -715,8 +729,10 @@ public class BASICSimulationModel {
                 ib = ie + 1;
                 nd[k] += igmc;
 
-                // Return from GOSUB 1960
-
+                // Return from GOSUB 1960, 1820
+                pmc = kk;
+                k = kk;
+                continue;
               }
             }
           }
