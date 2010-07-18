@@ -584,7 +584,7 @@ public class BASICSimulationModel {
         npe = -npe;
         cnpe = npe;
       } else if(npe == 0) {
-        // 1920 !!!
+        // 1920 
         skipi3Loop = true;
       } else {
         zsw = -1;
@@ -592,99 +592,132 @@ public class BASICSimulationModel {
       }
 
       // 1670
-
-      for(int i3 = 1; i3 <= 64; i3++) {
-        if(zsw == 0) {
-          // 1840 !!!
-        } else {
-          // 1680
-          if(npe <= 0) {
-            // 1920 !!!
+      if (!skipi3Loop) {
+        for (int i3 = 1; i3 <= 64; i3++) {
+          if (zsw == 0) {
+            // 1840 !!!
           } else {
-            // 1690
-            if(sl[i3] >= fsl) {
-              // 1910
-              continue;
+            // 1680
+            if (npe <= 0) {
+              // 1920
+              break;
             } else {
-              // 1700
-              
-              double esl = fsl - sl[i3];
-              if(esl >= npe) {
-                // 1740
-                sl[i3] = sl[i3] + npe;
-                npe = 0;
-                // 1750
-              } else {
-                sl[i3] = fsl;
-                // 1720
-                npe = npe - esl;
-                // 1750
-              }
-
-              // 1750 - GOSUB 2880
-
-              for (int i = 1; i <= 3; i++) {
-                cc[i] = false;
-              }
-
-              for (int i = 1; i <= 6; i++) {
-                pc[i] = false;
-              }
-
-              pc[1] = sl[9] <= 0;
-              pc[2] = sl[17] <= 0;
-              pc[3] = sl[25] <= 0;
-              cc[1] = pc[1] && pc[2] && pc[3];
-              cc[2] = !cc[1] && (pc[1] || pc[2] || pc[3]);
-              pc[4] = sl[9] > 0;
-              pc[5] = sl[17] > 0;
-              pc[6] = sl[25] > 0;
-              cc[3] = pc[4] && pc[5] && pc[6];
-
-              for (int i = 1; i <= 3; i++) {
-                if (!cc[i]) {
-                  continue;
-                } else {
-                  k = i;
-                  break;
-                }
-              }
-
-              // 1750 - Return from GOSUB 2880.
-
-              if(zsw != 0) {
-                // GOSUB 3900
-                //   Print "ADDITION", render stuff, beep.
-              } else {
-                // GOSUB 3990
-                //   Print "DEPLETION", render stuff, beep.
-              }
-
-              // 1760
-
-              int kk = k;
-              k = pmc;
-              if(kk == pmc) {
+              // 1690
+              if (sl[i3] >= fsl) {
                 // 1910
                 continue;
+              } else {
+                // 1700
+
+                double esl = fsl - sl[i3];
+                if (esl >= npe) {
+                  // 1740
+                  sl[i3] = sl[i3] + npe;
+                  npe = 0;
+                  // 1750
+                } else {
+                  sl[i3] = fsl;
+                  // 1720
+                  npe = npe - esl;
+                  // 1750
+                }
+
+                // 1750 - GOSUB 2880
+
+                for (int i = 1; i <= 3; i++) {
+                  cc[i] = false;
+                }
+
+                for (int i = 1; i <= 6; i++) {
+                  pc[i] = false;
+                }
+
+                pc[1] = sl[9] <= 0;
+                pc[2] = sl[17] <= 0;
+                pc[3] = sl[25] <= 0;
+                cc[1] = pc[1] && pc[2] && pc[3];
+                cc[2] = !cc[1] && (pc[1] || pc[2] || pc[3]);
+                pc[4] = sl[9] > 0;
+                pc[5] = sl[17] > 0;
+                pc[6] = sl[25] > 0;
+                cc[3] = pc[4] && pc[5] && pc[6];
+
+                for (int i = 1; i <= 3; i++) {
+                  if (!cc[i]) {
+                    continue;
+                  } else {
+                    k = i;
+                    break;
+                  }
+                }
+
+                // 1750 - Return from GOSUB 2880.
+
+                if (zsw != 0) {
+                  // GOSUB 3900
+                  //   Print "ADDITION", render stuff, beep.
+                } else {
+                  // GOSUB 3990
+                  //   Print "DEPLETION", render stuff, beep.
+                }
+
+                // 1760
+
+                int kk = k;
+                k = pmc;
+                if (kk == pmc) {
+                  // 1910
+                  continue;
+                }
+
+                if (npe <= 0) {
+                  // 1920
+                  break;
+                }
+
+                // 1790
+
+                double rpe = cnpe - npe;
+                dmc[k] = (int) ((15 * rpe) / cnpe) - dpmc;
+                int igmc = dmc[k];
+                dpmc = dmc[k] + dpmc;
+                dmc[k] = 0;
+
+                // 1820 - GOSUB 1960
+
+                int ii = 0;
+                int mm = 0;
+                ie += igmc;
+                for(int i = ib; i <= ie; i++) {
+                  iday[i] = k;
+                  // Screen rendering.
+                  if(i > 30) {
+                    ii = (i % 30) - 1;
+                  } else {
+                    ii = i;
+                  }
+                  // 1990
+                  mm = i / 30;
+                  if(i % 30 == 0) {
+                    mm = mm - 1;
+                  }
+
+                  if(ii == -1) {
+                    ii = 29;
+                  }
+
+                  if (mm < 0) {
+                    mm = 0;
+                  }
+                  // More screen rendering with
+                  // a GOSUB 4460 call.   
+                }
+                ib = ie + 1;
+                nd[k] += igmc;
+
+                // Return from GOSUB 1960
+
               }
-
-              if(npe <= 0) {
-                // 1920 !!!
-              }
-
-              // 1790
-
-              double rpe = cnpe - npe;
-              dmc[k] = (int)((15*rpe)/cnpe) - dpmc;
-              int igmc = dmc[k];
-              dpmc = dmc[k] + dpmc;
-              dmc[k] = 0;
-
-              // 1820 - GOSUB 1960
-
-              
-
             }
           }
         }
