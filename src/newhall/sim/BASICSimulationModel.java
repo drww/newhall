@@ -1278,7 +1278,13 @@ public class BASICSimulationModel {
 
     // 620 - Just some DATA.
 
-    
+    int sn = 0;
+    for(int i = 1; i <= 12; i++) {
+      // Start examination of calendar.
+      if(temperature[i] < 5) {
+        // 670 - To determine season > 5C.
+      }
+    }
     
 
     System.out.print("Temp: ");
