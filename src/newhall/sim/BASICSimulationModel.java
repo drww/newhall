@@ -1279,11 +1279,64 @@ public class BASICSimulationModel {
     // 620 - Just some DATA.
 
     int sn = 0;
+    int zwt = 0;
+    int kj = 0;
+    int ia = 0;
+    int iz = 0;
+    int nj[] = new int[14];
+    int c[] = new int[15];
+    double crr = 0;
+    boolean tempUnderFive = false;
+
     for(int i = 1; i <= 12; i++) {
       // Start examination of calendar.
       if(temperature[i] < 5) {
         // 670 - To determine season > 5C.
+        tempUnderFive = true;
+        break;
       }
+      // 870 if finish without breaking.
+    }
+
+    if(tempUnderFive) {
+      // 670
+      double t13 = temperature[1];
+      for(int it = 1; it <= 11; it++) {
+        if(temperature[it] == 5 && temperature[it+1] == 5) {
+          temperature[it] = 5.01;
+        }
+      }
+      if(temperature[12] == 5 && t13 == 5) {
+        temperature[12] = 5.01;
+      }
+      crr = 5;
+      // 720 - GOSUB 2410
+      for(int i = 1; i <= 12; i++) {
+        nj[i] = 0;
+      }
+
+      zwt = 0;
+      kj = 1;
+      ia = 30;
+      iz = 30;
+
+      if(crr != 8) {
+        ia = 36;
+        iz = 25;
+      }
+
+      for(int i = 1; i <= 12; i++) {
+        for(int j = 1; j <= 14; j++) {
+          c[j] = 0;
+        }
+
+        // 2470 !!!
+        
+
+      }
+      // Return from GOSUB 2410.
+    } else {
+      // 870 !!!
     }
     
 
