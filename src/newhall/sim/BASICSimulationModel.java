@@ -1413,7 +1413,40 @@ public class BASICSimulationModel {
 
       // 720 - Return from GOSUB 2410.
 
-      
+      for(int i = 1; i <= 6; i++) {
+        nbd[i] = nbj[i];
+        ned[i] = nej[i];
+      }
+
+      np = npj;
+      tc = -1;
+      int jb = 0;
+      double ir = 0.0;
+      double jr = 0.0;
+
+      if(np == 0) {
+        // 840 - WHen no temp is above 5 degrees C.
+      } else {
+        // 760
+        for(int i = 1; i <= np; i++) {
+          ib = (int)nbd[i];  // Possible casting issue.
+          if(nbd[i] < ned[i]) {
+            // 790
+            ir = ned[i] - nbd[i] + 1;
+            jb = ib;
+            jr = ir;
+            // 800
+          } else {
+            // 770
+            ir = 361 - nbd[i] + ned[i];
+            jb = ib;
+            jr = ir;
+            // 800
+          }
+          // 800 - GOSUB 2380.
+          
+        }
+      }
 
     } else {
       // 870 !!!
