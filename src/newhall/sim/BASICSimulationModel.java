@@ -273,7 +273,7 @@ public class BASICSimulationModel {
 
     int msw = -1;
     int icon = 0;
-    int lt5c = 0;
+    double lt5c = 0;
     int lt8c = 0;
     int ie = 0;
     int ib = 1;
@@ -281,7 +281,7 @@ public class BASICSimulationModel {
     int nccd = 0;
     int nccm = 0;
     int id8c = 0;
-    int id5c = 0;
+    double id5c = 0;
     int swt = 0;
     int tc = 0;
     int np = 0;
@@ -1423,9 +1423,15 @@ public class BASICSimulationModel {
       int jb = 0;
       double ir = 0.0;
       double jr = 0.0;
+      double je = 0.0;
 
       if(np == 0) {
         // 840 - WHen no temp is above 5 degrees C.
+        if(wt > 5) {
+          // 870 !!!
+        } else {
+          // 850 !!!
+        }
       } else {
         // 760
         for(int i = 1; i <= np; i++) {
@@ -1443,9 +1449,39 @@ public class BASICSimulationModel {
             jr = ir;
             // 800
           }
-          // 800 - GOSUB 2380.
+          // 800 - GOSUB 2380 - To calculate NSD.
+
+          for(int ij = 1; ij <= 3; ij++) {
+            nzd[ij] = 0;
+          }
+
+          je = jb + jr - 1;
           
+          for(int l = jb; l <= je; l++) {
+            int j = l;
+            if(j > 360) {
+              j = j - 360;
+            }
+            int ik = iday[j];
+            nzd[ik] = nzd[ik] + 1;
+          }
+
+          // 810 - Return from GOSUB 2380.
+
+          for(int ic = 1; ic <- 3; ic++) {
+            nsd[ic] = nsd[ic] + nzd[ic];
+          }
+
+          lt5c = lt5c + ir;
+          // Next i, then 830.
         }
+
+        // 830
+
+        id5c = nbd[1];
+
+        // 890 !!!
+
       }
 
     } else {
