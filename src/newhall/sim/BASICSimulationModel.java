@@ -1299,10 +1299,11 @@ public class BASICSimulationModel {
     }
 
     boolean skipTo890 = false;
+    double t13 = 0;
 
     if(tempUnderFive) {
       // 670
-      double t13 = temperature[1];
+      t13 = temperature[1];
       for(int it = 1; it <= 11; it++) {
         if(temperature[it] == 5 && temperature[it+1] == 5) {
           temperature[it] = 5.01;
@@ -1512,6 +1513,149 @@ public class BASICSimulationModel {
     }
 
     // 890
+
+    int[] ncpm = new int[4];
+    for(int ic = 1; ic <= 2; ic++) {
+      ncpm[ic] = 0;
+    }
+
+    boolean tempUnder8C = false;
+    for(int ic = 1; ic <= 12; ic++) {
+      if(temperature[ic] < 8) {
+        // 930
+        tempUnder8C = true;
+        break;
+      }
+    }
+    
+    if(tempUnder8C) {
+      // 930
+      t13 = temperature[1];
+      for(int it = 1; it <= 11; it++) {
+        if(temperature[it] == 8 && temperature[it+1] == 8) {
+          temperature[it] = 8.01;
+        }
+      }
+
+      crr = 8;
+      if(temperature[12] == 8 && t13 == 8) {
+        temperature[12] = 8.01;
+      }
+
+      // 980 - GOSUB 2410
+
+      for (int i = 1; i <= 12; i++) {
+        nj[i] = 0;
+      }
+
+      zwt = false;
+      kj = 1;
+      ia = 30;
+      iz = 30;
+
+      if (crr != 8) {
+        ia = 36;
+        iz = 25;
+      }
+
+      for (int i = 1; i <= 12; i++) {
+        for (int j = 1; j <= 14; j++) {
+          c[j] = false;
+        }
+
+        // 2470
+
+        int m0 = i - 1;
+        int m1 = i;
+        int m2 = i + 1;
+        if (m2 > 12) {
+          m2 = m2 - 12;
+        }
+        if (m0 < 1) {
+          m0 = m0 + 12;
+        }
+
+        c[1] = temperature[m1] < crr;
+        c[2] = temperature[m2] > crr;
+        c[3] = temperature[m0] < crr;
+        c[4] = temperature[m1] == crr;
+        c[5] = temperature[m2] > crr;
+        c[6] = temperature[m2] < crr;
+        c[7] = temperature[m1] > crr;
+        c[8] = temperature[m0] > crr;
+        c[9] = c[1] && c[2];
+        c[10] = c[3] && c[4] && c[5];
+        c[11] = c[9] || c[10];
+        c[12] = c[6] && c[7];
+        c[13] = c[8] && c[6] && c[4];
+        c[14] = c[12] || c[13];
+
+        if (c[11]) {
+          // 2590
+          nj[kj] = (m0 * 30) + ia
+                  + (int) ((crr - temperature[m1]) / (temperature[m2] - temperature[m1]));
+          if (nj[kj] > 360) {
+            nj[kj] -= 360;
+          }
+          kj++;
+          zwt = true;
+          // 2650
+          continue;
+        } else if (c[14]) {
+          // 2620
+          nj[kj] = (m0 * 30) + iz
+                  + (int) ((30 * (temperature[m1] - crr)) / (temperature[m1] - temperature[m2]));
+          if (nj[kj] > 360) {
+            nj[kj] -= 360;
+          }
+          kj++;
+          zwt = false;
+          // 2650
+          continue;
+        } else {
+          // 2650
+          continue;
+        }
+      }
+
+      // 2660
+
+      if (zwt) {
+        // 2670
+        int le = kj - 2;
+        int npro = nj[1];
+        for (int i = 1; i <= le; i++) {
+          nj[i] = nj[i + 1];
+        }
+        nj[le + 1] = npro;
+      }
+
+      // 2700
+
+      int npj = (kj - 1) / 2;
+      int nbj[] = new int[npj + 2];
+      int nej[] = new int[npj + 2];
+      for (int i = 1; i <= npj; npj++) {
+        ib = 2 * i - 1;
+        ie = 2 * i;
+        nbj[i] = nj[ib];
+        nej[i] = nj[ie];
+      }
+
+      // 990 - Return from GOSUB 2410.
+
+      for(int i = 1; i <= 6; i++) {
+        nbd8[i] = nbj[i];
+        ned8[i] = nej[i];
+      }
+
+      np8 = npj;
+      tc = -1;
+      
+      
+    } else {
+      // 920 -> GOTO 1170
+    }
 
     
 
