@@ -1298,6 +1298,8 @@ public class BASICSimulationModel {
       // 870 if finish without breaking.
     }
 
+    boolean skipTo890 = false;
+
     if(tempUnderFive) {
       // 670
       double t13 = temperature[1];
@@ -1428,9 +1430,18 @@ public class BASICSimulationModel {
       if(np == 0) {
         // 840 - WHen no temp is above 5 degrees C.
         if(wt > 5) {
-          // 870 !!!
+          // 870 - Break outside of IF block.
         } else {
-          // 850 !!!
+          // 850
+          lt5c = 0;
+          nbd[1] = -1;
+          id5c = 0;
+          for(int ik = 1; ik <= 3; ik++) {
+            nsd[ik] = 0;
+          }
+          tc = 0;
+          skipTo890 = true;
+          // 890 - Jump over block after IF block.
         }
       } else {
         // 760
@@ -1479,14 +1490,29 @@ public class BASICSimulationModel {
         // 830
 
         id5c = nbd[1];
+        skipTo890 = true;
 
-        // 890 !!!
+        // 890, jump over region after IF block.
 
       }
 
     } else {
       // 870 !!!
     }
+
+    // 870
+
+    if(!skipTo890) {
+      tc = 0;
+      for(int ic = 1; ic <= 3; ic++) {
+        nsd[ic] = nd[ic];
+      }
+      lt5c = 360;
+      id5c = 0;
+    }
+
+    // 890
+
     
 
     System.out.print("Temp: ");
