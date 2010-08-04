@@ -1651,7 +1651,65 @@ public class BASICSimulationModel {
 
       np8 = npj;
       tc = -1;
-      
+
+      // 1020
+
+      if(np8 == 0) {
+        // 1150 - When no temp is above 8 degrees C.
+      } else {
+        // 1030
+        for(int i = 1; i <= np8; i++) {
+          ib = (int) nbd8[i];
+          double ir = 0.0;
+          if(nbd8[i] < ned8[i]) {
+            // 1070
+            ir = ned8[i] - nbd8[i] + 1;
+            // 1080
+          } else {
+            // 1060
+            ir = 361 - nbd8[i] + ned8[i];
+            // 1080
+          }
+          // 1080
+
+          msw = 0;
+          int sib = ib;
+          double sir = ir;
+          int x = 1;
+          boolean swm = (msw != 0);
+
+          // 1090 - GOSUB 2160
+
+          int ns[] = new int[5];
+          ns[x] = 0;
+          int ifin = 0;
+          int sw = 0;
+          int si = 0;
+          double siz = sib + sir - 1;
+          for(int n = sib; n <= siz; n++) {
+            int n1 = n+1;
+            if(n1 > 360) {
+              n1 = n1 - 360;
+            }
+
+            if(n > 360) {
+              si = n - 360;
+            } else {
+              si = n;
+            }
+
+            if(swm) {
+              // 2250
+            } else {
+              // 2210
+            }
+            
+          }
+
+          // Return from GOSUB 2160.
+
+        }
+      }
       
     } else {
       // 920 -> GOTO 1170
