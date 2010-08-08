@@ -1498,7 +1498,7 @@ public class BASICSimulationModel {
       }
 
     } else {
-      // 870 !!!
+      // 870 continues below.
     }
 
     // 870
@@ -1780,14 +1780,43 @@ public class BASICSimulationModel {
             
           }
 
-          // Return from GOSUB 2160.
+          if(sw != 0) {
+            ifin = ns[x];
+          }
 
+          if(ifin > max) {
+            max = ifin;
+          }
+
+          // Return from GOSUB 2160. -> 1100
+
+          icon = max;
+          if(ncpm[2] > icon) {
+            // 1130
+            continue;
+          } else {
+            // 1110
+            ncpm[2] = icon;
+            lt8c = (int)ir;
+            id8c = (int)nbd8[i];
+            continue;
+          }
         }
+
+        // 'I' loop done, 1140.
+        sn = -1;
+        // 1180
       }
-      
     } else {
       // 920 -> GOTO 1170
+      msw = 0;
+      tc = 0;
+      lt8c = 360;
+      id8c = 0;
+      // 1180
     }
+
+    // 1180
 
     
 
