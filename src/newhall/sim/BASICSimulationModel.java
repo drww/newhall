@@ -1685,7 +1685,9 @@ public class BASICSimulationModel {
           int ifin = 0;
           int sw = 0;
           int si = 0;
+          int max = 0;
           double siz = sib + sir - 1;
+          
           for(int n = sib; n <= siz; n++) {
             int n1 = n+1;
             if(n1 > 360) {
@@ -1700,8 +1702,80 @@ public class BASICSimulationModel {
 
             if(swm) {
               // 2250
+              if(iday[si] == x) {
+                // 2270
+                if(iday[si] != iday[n1]) {
+                  // 2300
+                  if(sw != 0) {
+                    // 2320
+                    ns[x] = ns[x] + 1;
+                    if(ns[x] > max) {
+                      // 2340
+                      max = ns[x];
+                      // 2330
+                      ns[x] = 0;
+                      sw = 0;
+                      // 2350
+                      continue;
+                    } else {
+                      // 2330
+                      ns[x] = 0;
+                      sw = 0;
+                      // 2350
+                      continue;
+                    }
+                  } else {
+                    // 2310 -> 2350
+                    continue;
+                  }
+                } else {
+                  // 2280
+                  ns[x] = ns[x] + 1;
+                  sw = -1;
+                  continue;
+                }
+              } else {
+                // 2350
+                continue;
+              }
             } else {
               // 2210
+              if(iday[si] != x) {
+                // 2230
+                if(iday[n1] == x) {
+                  // 2300
+                  if(sw != 0) {
+                    // 2320
+                    ns[x] = ns[x] + 1;
+                    if(ns[x] > max) {
+                      // 2340
+                      max = ns[x];
+                      // 2330
+                      ns[x] = 0;
+                      sw = 0;
+                      // 2350
+                      continue;
+                    } else {
+                      // 2330
+                      ns[x] = 0;
+                      sw = 0;
+                      // 2350
+                      continue;
+                    }
+                  } else {
+                    // 2310 -> 2350
+                    continue;
+                  }
+                } else {
+                  // 2280
+                  ns[x] = ns[x] + 1;
+                  sw = -1;
+                  continue;
+                }
+              } else {
+                // 2350
+                continue;
+              }
             }
             
           }
