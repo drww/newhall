@@ -2200,30 +2200,41 @@ public class BASICSimulationModel {
     // Return from GOSUB 2160 -> 1290
 
     nccm = max;
+    int tu = 0;
 
-    System.out.print("Temp: ");
-    for (Double d : temperature) {
-      System.out.print(d + " ");
-    }
-    System.out.println();
+    if(nd[3] == 360) {
+      // 1390
+    } else if(nd[1] == 360) {
+      // 1420
+    } else if(nd[1] == 0) {
+      // 1360
+      tu = -1;
+      sib = ib;
+      x = 3;
+      swm = (tu != 0);
+      // 1370 -> GOSUB 2160.
 
-    System.out.print("UPE: ");
-    for (Double d : upe) {
-      System.out.print(d + " ");
-    }
-    System.out.println();
+      // Return from GOSUB 2160.
+    } else {
+      // 1330
+      tu = 0;
+      sib = ib;
+      sir = 180;
+      x = 1;
+      swm = (tu != 0);
+      // 1340 -> GOSUB 2160.
 
-    System.out.print("MPE: ");
-    for (Double d : mpe) {
-      System.out.print(d + " ");
-    }
-    System.out.println();
+      // Return from GOSUB 2160.
+      ncsm = max;
+      sib = ic;
+      // 1350 -> GOSUB 2160.
 
-    System.out.print("MWI: ");
-    for (Double d : mwi) {
-      System.out.print(d + " ");
+      // Return from GOSUB 2160.
+      ncwm = max;
+      // 1400 !!!
     }
-    System.out.println();
+
+    // End of simulation model run.
 
   }
 
