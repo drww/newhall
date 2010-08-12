@@ -2225,6 +2225,114 @@ public class BASICSimulationModel {
 
       // 1370 -> GOSUB 2160.
 
+      ns = new int[5];
+      ns[x] = 0;
+      ifin = 0;
+      sw = 0;
+      si = 0;
+      max = 0;
+      siz = sib + sir - 1;
+
+      for (int n = sib; n <= siz; n++) {
+        int n1 = n + 1;
+        if (n1 > 360) {
+          n1 = n1 - 360;
+        }
+
+        if (n > 360) {
+          si = n - 360;
+        } else {
+          si = n;
+        }
+
+        if (swm) {
+          // 2250
+          if (iday[si] == x) {
+            // 2270
+            if (iday[si] != iday[n1]) {
+              // 2300
+              if (sw != 0) {
+                // 2320
+                ns[x] = ns[x] + 1;
+                if (ns[x] > max) {
+                  // 2340
+                  max = ns[x];
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                } else {
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                }
+              } else {
+                // 2310 -> 2350
+                continue;
+              }
+            } else {
+              // 2280
+              ns[x] = ns[x] + 1;
+              sw = -1;
+              continue;
+            }
+          } else {
+            // 2350
+            continue;
+          }
+        } else {
+          // 2210
+          if (iday[si] != x) {
+            // 2230
+            if (iday[n1] == x) {
+              // 2300
+              if (sw != 0) {
+                // 2320
+                ns[x] = ns[x] + 1;
+                if (ns[x] > max) {
+                  // 2340
+                  max = ns[x];
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                } else {
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                }
+              } else {
+                // 2310 -> 2350
+                continue;
+              }
+            } else {
+              // 2280
+              ns[x] = ns[x] + 1;
+              sw = -1;
+              continue;
+            }
+          } else {
+            // 2350
+            continue;
+          }
+        }
+
+      }
+
+      if (sw != 0) {
+        ifin = ns[x];
+      }
+
+      if (ifin > max) {
+        max = ifin;
+      }
+
       // Return from GOSUB 2160.
 
       ncsp = max;
@@ -2233,6 +2341,114 @@ public class BASICSimulationModel {
       swm = (tu != 0);
 
       // 1380 -> GOSUB 2160.
+
+      ns = new int[5];
+      ns[x] = 0;
+      ifin = 0;
+      sw = 0;
+      si = 0;
+      max = 0;
+      siz = sib + sir - 1;
+
+      for (int n = sib; n <= siz; n++) {
+        int n1 = n + 1;
+        if (n1 > 360) {
+          n1 = n1 - 360;
+        }
+
+        if (n > 360) {
+          si = n - 360;
+        } else {
+          si = n;
+        }
+
+        if (swm) {
+          // 2250
+          if (iday[si] == x) {
+            // 2270
+            if (iday[si] != iday[n1]) {
+              // 2300
+              if (sw != 0) {
+                // 2320
+                ns[x] = ns[x] + 1;
+                if (ns[x] > max) {
+                  // 2340
+                  max = ns[x];
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                } else {
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                }
+              } else {
+                // 2310 -> 2350
+                continue;
+              }
+            } else {
+              // 2280
+              ns[x] = ns[x] + 1;
+              sw = -1;
+              continue;
+            }
+          } else {
+            // 2350
+            continue;
+          }
+        } else {
+          // 2210
+          if (iday[si] != x) {
+            // 2230
+            if (iday[n1] == x) {
+              // 2300
+              if (sw != 0) {
+                // 2320
+                ns[x] = ns[x] + 1;
+                if (ns[x] > max) {
+                  // 2340
+                  max = ns[x];
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                } else {
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                }
+              } else {
+                // 2310 -> 2350
+                continue;
+              }
+            } else {
+              // 2280
+              ns[x] = ns[x] + 1;
+              sw = -1;
+              continue;
+            }
+          } else {
+            // 2350
+            continue;
+          }
+        }
+
+      }
+
+      if (sw != 0) {
+        ifin = ns[x];
+      }
+
+      if (ifin > max) {
+        max = ifin;
+      }
 
       // Return from GOSUB 2160.
 
@@ -2249,10 +2465,226 @@ public class BASICSimulationModel {
       swm = (tu != 0);
       // 1340 -> GOSUB 2160.
 
+      ns = new int[5];
+      ns[x] = 0;
+      ifin = 0;
+      sw = 0;
+      si = 0;
+      max = 0;
+      siz = sib + sir - 1;
+
+      for (int n = sib; n <= siz; n++) {
+        int n1 = n + 1;
+        if (n1 > 360) {
+          n1 = n1 - 360;
+        }
+
+        if (n > 360) {
+          si = n - 360;
+        } else {
+          si = n;
+        }
+
+        if (swm) {
+          // 2250
+          if (iday[si] == x) {
+            // 2270
+            if (iday[si] != iday[n1]) {
+              // 2300
+              if (sw != 0) {
+                // 2320
+                ns[x] = ns[x] + 1;
+                if (ns[x] > max) {
+                  // 2340
+                  max = ns[x];
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                } else {
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                }
+              } else {
+                // 2310 -> 2350
+                continue;
+              }
+            } else {
+              // 2280
+              ns[x] = ns[x] + 1;
+              sw = -1;
+              continue;
+            }
+          } else {
+            // 2350
+            continue;
+          }
+        } else {
+          // 2210
+          if (iday[si] != x) {
+            // 2230
+            if (iday[n1] == x) {
+              // 2300
+              if (sw != 0) {
+                // 2320
+                ns[x] = ns[x] + 1;
+                if (ns[x] > max) {
+                  // 2340
+                  max = ns[x];
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                } else {
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                }
+              } else {
+                // 2310 -> 2350
+                continue;
+              }
+            } else {
+              // 2280
+              ns[x] = ns[x] + 1;
+              sw = -1;
+              continue;
+            }
+          } else {
+            // 2350
+            continue;
+          }
+        }
+
+      }
+
+      if (sw != 0) {
+        ifin = ns[x];
+      }
+
+      if (ifin > max) {
+        max = ifin;
+      }
+
       // Return from GOSUB 2160.
       ncsm = max;
       sib = ic;
       // 1350 -> GOSUB 2160.
+
+      ns = new int[5];
+      ns[x] = 0;
+      ifin = 0;
+      sw = 0;
+      si = 0;
+      max = 0;
+      siz = sib + sir - 1;
+
+      for (int n = sib; n <= siz; n++) {
+        int n1 = n + 1;
+        if (n1 > 360) {
+          n1 = n1 - 360;
+        }
+
+        if (n > 360) {
+          si = n - 360;
+        } else {
+          si = n;
+        }
+
+        if (swm) {
+          // 2250
+          if (iday[si] == x) {
+            // 2270
+            if (iday[si] != iday[n1]) {
+              // 2300
+              if (sw != 0) {
+                // 2320
+                ns[x] = ns[x] + 1;
+                if (ns[x] > max) {
+                  // 2340
+                  max = ns[x];
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                } else {
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                }
+              } else {
+                // 2310 -> 2350
+                continue;
+              }
+            } else {
+              // 2280
+              ns[x] = ns[x] + 1;
+              sw = -1;
+              continue;
+            }
+          } else {
+            // 2350
+            continue;
+          }
+        } else {
+          // 2210
+          if (iday[si] != x) {
+            // 2230
+            if (iday[n1] == x) {
+              // 2300
+              if (sw != 0) {
+                // 2320
+                ns[x] = ns[x] + 1;
+                if (ns[x] > max) {
+                  // 2340
+                  max = ns[x];
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                } else {
+                  // 2330
+                  ns[x] = 0;
+                  sw = 0;
+                  // 2350
+                  continue;
+                }
+              } else {
+                // 2310 -> 2350
+                continue;
+              }
+            } else {
+              // 2280
+              ns[x] = ns[x] + 1;
+              sw = -1;
+              continue;
+            }
+          } else {
+            // 2350
+            continue;
+          }
+        }
+
+      }
+
+      if (sw != 0) {
+        ifin = ns[x];
+      }
+
+      if (ifin > max) {
+        max = ifin;
+      }
 
       // Return from GOSUB 2160.
       ncwm = max;
