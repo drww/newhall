@@ -2691,11 +2691,43 @@ public class BASICSimulationModel {
       // 1400
     }
 
+    int jb = 0;
+    int jr = 0;
+    int je = 0;
     if(!skipTo1420) {
       // 1400
+      jb = ib;
+      jr = 180;
+      // GOSUB 2380.
+
+      for (int ij = 1; ij <= 3; ij++) {
+        nzd[ij] = 0;
+      }
+
+      je = jb + jr - 1;
+
+      for (int l = jb; l <= je; l++) {
+        int j = l;
+        if (j > 360) {
+          j = j - 360;
+        }
+        int ik = iday[j];
+        nzd[ik] = nzd[ik] + 1;
+      }
+
+      // Return from GOSUB 2380.
+      for(int i = 1; i <= 3; i++) {
+        ntsu[i] = nzd[i];
+      }
+      for(int i = 1; i <= 3; i++) {
+        ntwi[i] = nd[i] = ntsu[i];
+      }
+      // 1420
     }
 
     // 1420
+
+    
 
     // End of simulation model run.
 
