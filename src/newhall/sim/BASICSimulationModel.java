@@ -2201,20 +2201,45 @@ public class BASICSimulationModel {
 
     nccm = max;
     int tu = 0;
+    boolean skipTo1420 = false;
 
     if(nd[3] == 360) {
       // 1390
+      ncsm = 180;
+      ncwm = 180;
+      ncsp = 180;
+      ncwp = 180;
+      ntsu[3] = 180;
+      ntwi[3] = 180;
+      // 1420
+      skipTo1420 = true;
     } else if(nd[1] == 360) {
       // 1420
+      skipTo1420 = true;
     } else if(nd[1] == 0) {
       // 1360
       tu = -1;
       sib = ib;
       x = 3;
       swm = (tu != 0);
+
       // 1370 -> GOSUB 2160.
 
       // Return from GOSUB 2160.
+
+      ncsp = max;
+      sib = ic;
+      sir = 180;
+      swm = (tu != 0);
+
+      // 1380 -> GOSUB 2160.
+
+      // Return from GOSUB 2160.
+
+      ncwp = max;
+
+      // 1400
+
     } else {
       // 1330
       tu = 0;
@@ -2231,8 +2256,14 @@ public class BASICSimulationModel {
 
       // Return from GOSUB 2160.
       ncwm = max;
-      // 1400 !!!
+      // 1400
     }
+
+    if(!skipTo1420) {
+      // 1400
+    }
+
+    // 1420
 
     // End of simulation model run.
 
