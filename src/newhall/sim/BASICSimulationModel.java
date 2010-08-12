@@ -2727,7 +2727,45 @@ public class BASICSimulationModel {
 
     // 1420
 
-    
+
+    if(tc != 0 || tu != 0) {
+      // GOSUB 2990 - Calculate calendar.
+
+      char[] kl = new char[25];    // Dimensions unknown.
+      double[] kr = new double[25];
+      int[] m = new int[25];
+
+      kl[0] = '$';
+      kl[1] = '-';
+      kl[2] = '5';
+      kl[3] = '8';
+
+      for(int i = 1; i <= 24; i++) {
+        kr[i] = 0;
+      }
+
+      if(nbd[1] < 0 && nbd8[1] < 0) {
+        // 3350
+      } else if(nbd[1] == 0 && nbd8[1] < 0) {
+        // 3370
+      } else {
+        // 3020
+        if(nbd8[1] < 0) {
+          nbd8[1] = 0;
+        }
+
+        for(int i = 1; i <= 6; i++) {
+          kr[i] = nbd[i];
+          m[i] = 2;
+        }
+
+        for(int i = 7; i <= 12; i++) {
+          // 3040
+        }
+      }
+
+      // Return from GOSUB 2990.
+    }
 
     // End of simulation model run.
 
