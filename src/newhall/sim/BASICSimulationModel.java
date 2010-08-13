@@ -2734,6 +2734,8 @@ public class BASICSimulationModel {
       char[] kl = new char[25];    // Dimensions unknown.
       double[] kr = new double[25];
       int[] m = new int[25];
+      int kt = 0;
+      int ntd[] = new int[365];
 
       kl[0] = '$';
       kl[1] = '-';
@@ -2746,8 +2748,16 @@ public class BASICSimulationModel {
 
       if(nbd[1] < 0 && nbd8[1] < 0) {
         // 3350
+        for(int i = 1; i <= 360; i++) {
+          ntd[i] = kl[1];
+        }
+        // 3380 -> Return from GOSUB 2990.
       } else if(nbd[1] == 0 && nbd8[1] < 0) {
         // 3370
+        for (int i = 1; i <= 360; i++) {
+          ntd[i] = kl[21];
+        }
+        // 3380 -> Return from GOSUB 2990.
       } else {
         // 3020
         if(nbd8[1] < 0) {
@@ -2760,8 +2770,84 @@ public class BASICSimulationModel {
         }
 
         for(int i = 7; i <= 12; i++) {
-          // 3040
+          kt = i - 6;
+          if(ned[kt] == 0) {
+            // 3070
+            continue;
+          } else {
+            // 3050
+            kr[i] = ned[kt] + 1;
+            if(kr[i] > 360) {
+              kr[i] = 1;
+            }
+            m[i] = 1;
+            continue;
+          }
         }
+
+        // 3080
+
+        for(int i = 13; i <= 18; i++) {
+          kt = i - 12;
+          kr[i] = nbd8[kt];
+          m[i] = 3;
+        }
+
+        for(int i = 19; i <= 24; i++) {
+          kt = i - 18;
+          if(ned8[kt] == 0) {
+            // 3130
+            continue;
+          } else {
+            // 3100
+            kr[i] = ned8[kt] + 1;
+            if(kr[i] > 360) {
+              kr[i] = 1;
+            }
+            m[i] = 2;
+            continue;
+          }
+        }
+
+        // 3140
+
+        int nt = 23;
+        int stt = 0;
+        double itemp = 0;
+        int itm = 0;
+        
+        for(int i = 1; i <= 23; i++) {
+          stt = 0;
+
+          for(int j = 1; j <= nt; j++) {
+            if(kr[j] <= kr[j+1]) {
+              // 3180
+              continue;
+            } else {
+              // 3160
+              itemp = kr[j];
+              itm = m[j];
+              kr[j] = kr[j+1];
+              m[j] = m[j+1];
+              kr[j+1] = itemp;
+              m[j+1] = itm;
+              stt = -1;
+              continue;
+            }
+          }
+
+          // 3180
+
+          if(stt == 0) {
+            // 3210
+          } else {
+            // 3190
+          }
+
+          
+        }
+
+
       }
 
       // Return from GOSUB 2990.
