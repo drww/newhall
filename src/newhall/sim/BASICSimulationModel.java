@@ -2727,7 +2727,6 @@ public class BASICSimulationModel {
 
     // 1420
 
-
     if(tc != 0 || tu != 0) {
       // GOSUB 2990 - Calculate calendar.
 
@@ -2840,17 +2839,79 @@ public class BASICSimulationModel {
 
           if(stt == 0) {
             // 3210
+            break;
           } else {
             // 3190
+            nt = nt - 1;
+            continue;
           }
-
-          
         }
 
+        // 3210
 
+        int ima = m[24];
+        int nul = 0;
+
+        for(int i = 1; i <= 24; i++) {
+          if(kr[i] == 0) {
+            nul++;
+          }
+        }
+
+        int kk = 0;
+        for(int i = 1; i <= 24; i++) {
+          kk = i;
+          int ipl = i + nul;
+          if(ipl > 24) {
+            // 3250
+            break;
+          } else {
+            // 3240
+            kr[i] = kr[ipl];
+            m[i] = m[ipl];
+            continue;
+          }
+        }
+
+        // 3250
+
+        for(int i = kk; i <= 24; i++) {
+          kr[i] = 0;
+        }
+
+        if(kr[1] == 1) {
+          // 3290
+        } else {
+          // 3270
+          ie = (int) (kr[1] - 1);
+          for(int i = 1; i <= ie; i++) {
+            ntd[i] = kl[ima];
+          }
+        }
+
+        // 3290
+
+        int ns2 = 0;        // Original NS is int[], now used as int?
+        int nn = 24 - nul;
+        for(int i = 1; i <= nn; i++) {
+          ns2 = m[i];
+          ib = (int) kr[i];
+          ie = (int) (kr[i + 1] - 1);
+          if(kr[i+1] == 0) {
+            ie = 360;
+          }
+
+          for(int j = ib; j <= ie; j++) {
+            ntd[j] = kl[ns2];
+          }
+        }
+
+        // 3380 -> RETURN
       }
 
-      // Return from GOSUB 2990.
+      // Return from GOSUB 2990 at 1420.
+
+      
     }
 
     // End of simulation model run.
