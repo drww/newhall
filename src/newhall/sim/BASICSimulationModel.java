@@ -2984,7 +2984,32 @@ public class BASICSimulationModel {
 
     // Return from GOSUB 3390 -> 1430
 
-    
+    // Original CC is boolean, cc2 is String?  Also c is boolean?
+    byte[] cc2Bytes = {7, 0, 7, 0, 7};
+    String cc2 = new String(cc2Bytes);
+    int c2 = 0;  // Seems to be index of '.' char in filename.
+
+    // Open for FLX file export.
+    // Write:
+    //    ans, id5c, lt5c, id8c, lt8c, nccd, nccm, ncsm, ncwm, div, q
+    //    ncsp, ncwp, tc, tu, swt, swp
+    //    for i from 1 to 360:
+    //      iday[i],
+    //    whc
+    //    for i from 1 to 6:
+    //      nbd[i], ned[i], nbd8[i], ned8[i]
+    //    for i from 1 to 3:
+    //      nd[i], nzd[i], nsd[i], ntsu[i], ntwi[i]
+    //    ncpm[1], ncpm[2]
+    //    for i from 1 to 5:
+    //      cd[i]
+    //    if(!tc && !tu) skip the following, otherwise:
+    //      for i from 1 to 360:
+    //        ntd[i],
+    // Close file.
+
+    // "Proceed to next step?" -> STORVAR6
+
 
     // End of simulation model run.
 
