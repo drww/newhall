@@ -2909,10 +2909,82 @@ public class BASICSimulationModel {
         // 3380 -> RETURN
       }
 
-      // Return from GOSUB 2990 at 1420.
-
-      
+      // Return from GOSUB 2990 if invoked at 1420.
     }
+
+    // 1430 -> GOSUB 3390
+
+    String ans = " ";
+    String div = " ";
+    String q = " ";
+    if(swt != 0) {
+      ans = "Perudic";
+      // 3570
+      ncsm = 180;
+      ncwm = 180;
+      ncsp = 180;
+      ncwp = 180;
+      ntsu[3] = 180;
+      ntwi[3] = 180;
+      // Return from GOSUB 3390.
+    } else if(nsd[1] > (lt5c/2) && ncpm[2] < 90) {
+      ans = "Aridic";
+      // 3450
+      if(nd[1] == 360) {
+        q = "Extreme";
+      }
+      // 3560
+      div = new String(ans);  // Deep copy.
+      // Return from GOSUB 3390.
+    } else if(tma < 22 && dif >= 5 && nccd >= 45 && nccm >= 45) {
+      ans = "Xeric";
+      // 3470
+      ncsm = 180;
+      ncwm = 180;
+      ncsp = 180;
+      ncwp = 180;
+      ntsu[3] = 180;
+      ntwi[3] = 180;
+      // Return from GOSUB 3390.
+    } else if(nd[1] + nd[2] < 90) {
+      ans = "Udic";
+      // 3480 -> Return from GOSUB 3390.
+    } else if(!trr.equalsIgnoreCase("pergelic") && !trr.equalsIgnoreCase("cryic")) {
+      ans = "Ustic";
+      // 3510
+      if(dif >= 5) {
+        div = "Tempustic";
+        // 3520
+        if(nccm <= 45) {
+          q = "Typic";
+        } else if(nccd > 45) {
+          q = "Xeric";
+        } else {
+          q = "Wet";
+        }
+        // Return from GOSUB 3390.
+      } else {
+        // 3540
+        if(ncpm[2] < 180) {
+          q = "Aridic";
+        } else if(ncpm[2] < 270) {
+          q = "Typic";
+        } else {
+          q = "Udic";
+        }
+        // 3550
+        div = "Tropustic";
+        // Return from GOSUB 3390.
+      }
+    } else {
+      ans = "Undefined";
+      div = new String(ans);
+      // Return from GOSUB 3390.
+    }
+
+    // Return from GOSUB 3390 -> 1430
+
+    
 
     // End of simulation model run.
 
