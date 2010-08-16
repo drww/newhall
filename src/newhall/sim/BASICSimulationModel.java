@@ -1640,7 +1640,7 @@ public class BASICSimulationModel {
       int npj = (kj - 1) / 2;
       int nbj[] = new int[npj + 2];
       int nej[] = new int[npj + 2];
-      for (int i = 1; i <= npj; npj++) {
+      for (int i = 1; i <= npj; i++) {
         ib = 2 * i - 1;
         ie = 2 * i;
         nbj[i] = nj[ib];
