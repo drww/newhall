@@ -53,7 +53,7 @@ public class BASICSimulationModel {
 
     // 425
 
-    double a = (Math.pow(swi, 3) * (6.75 * 10E-7)) - (Math.pow(swi, 2) * (7.71 * 10E-5)) - (swi * 0.01792) + 0.49239;
+    double a = (0.000000675 * swi * swi * swi) - (0.0000771 * swi * swi) + (0.01792 * swi) + 0.49239;
 
     // 430
 
@@ -73,6 +73,7 @@ public class BASICSimulationModel {
             kk = ki;
             if(temperature[i] >= zt[ki] && temperature[i] < zt[kl]) {
               upe[i] = zpe[kk];
+              break;
             }
           }
         }
