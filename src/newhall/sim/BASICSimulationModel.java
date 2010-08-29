@@ -16,7 +16,8 @@ public class BASICSimulationModel {
     // Convert elevation into meters.
     double elevation = dataset.getElevation();
     if(!dataset.isMetric()) {
-      elevation *= 0.305;  // 0.3048, technically.
+      // Feet to meters.  1 foot = 0.3048 m
+      elevation *= 0.305;  // 0.3048, technically.  Using coefficient BASIC version uses.
     }
 
     // Convert temperatures into celsius.
@@ -27,8 +28,11 @@ public class BASICSimulationModel {
       precip[i] = dataset.getPrecipitation().get(i-1);
     }
     if(!dataset.isMetric()) {
+      double cv = 5.0/9.0;
       for(int i = 1; i <= 12; i++) {
-        temperature[i] = (0.555 * (temperature[i] - 32));
+        // Farenheit to Celsius.
+        temperature[i] = cv * (temperature[i] - 32);
+        // Inches to Millimeters.  1 inch = 25.4 mm
         precip[i] = dataset.getPrecipitation().get(i-1) * 25.4;
       }
     }
@@ -60,7 +64,8 @@ public class BASICSimulationModel {
     for(int i = 1; i <= 12; i++) {
       if(temperature[i] > 0) {
         if(temperature[i] < 26.5) {
-          upe[i] = 16 * Math.pow(((10*temperature[i])/swi), a);
+          double aBase = 10 * (temperature[i] / swi);
+          upe[i] = 16 * Math.pow(aBase, a);
         } else if (temperature[i] >= 38) {
           upe[i] = 185.0;
         } else {
@@ -71,8 +76,8 @@ public class BASICSimulationModel {
           for(int ki = 1; ki <= 24; ki++) {
             kl = ki + 1;
             kk = ki;
-            if(temperature[i] >= zt[ki] && temperature[i] < zt[kl]) {
-              upe[i] = zpe[kk];
+            if(temperature[i] >= zt[ki-1] && temperature[i] < zt[kl-1]) {
+              upe[i] = zpe[kk-1];
               break;
             }
           }
@@ -80,26 +85,38 @@ public class BASICSimulationModel {
       }
     }
 
-    if (dataset.getNsHemisphere() == 'N') {    // GOTO 505
+    // 495
+
+    if (dataset.getNsHemisphere() == 'N') {
+      // 505
       int nrow = 0;
       for (int i = 1; i <= 31; i++) {
-        if (dataset.getLatitude() > BASICSimulationModelConstants.rn[i]) {
-          for (int j = 1; j <= 12; j++) {
-            if (upe[j] <= 0) {
-              mpe[j] = upe[j] * BASICSimulationModelConstants.inz[nrow][j];
-            }
-          }
+        if (dataset.getLatitude() < BASICSimulationModelConstants.rn[i-1]) {
+          // 515 - Breaks outside the loop.
           break;
         } else {
+          // 510
           nrow++;
         }
       }
-      // 655
-      // Return from GOSUB 205.
+
+      // 515
+      for (int i = 1; i <= 12; i++) {
+        if(upe[i] <= 0) {
+          // 525
+          continue;
+        } else {
+          // 520
+          mpe[i] = upe[i] * BASICSimulationModelConstants.inz[i-1][nrow-1];
+          continue;
+        }
+      }
+
+      // 530 -> GOTO 655 -> Return from GOSUB 205.
     } else {    // GOTO 535
       int nrow = 0;
       for (int i = 1; i <= 13; i++) {
-        if (dataset.getLatitude() < BASICSimulationModelConstants.rs[i]) {
+        if (dataset.getLatitude() < BASICSimulationModelConstants.rs[i-1]) {
           break;  // And go to 560, also when for() block ends.
         } else {
           nrow++;
@@ -114,17 +131,17 @@ public class BASICSimulationModel {
           if (upe[i] <= 0) {
             // 650
             continue;
-          } else if (nrow >= 13 || BASICSimulationModelConstants.fs[nrow][i]
-                  == BASICSimulationModelConstants.fs[nrow + 1][i]) {
+          } else if (nrow >= 13 || BASICSimulationModelConstants.fs[i-1][nrow-1]
+                  == BASICSimulationModelConstants.fs[i-1][nrow]) {
             // 640
-            double cf = BASICSimulationModelConstants.fs[nrow][i];
+            double cf = BASICSimulationModelConstants.fs[i-1][nrow-1];
             mpe[i] = upe[i] * cf;
           } else {
             // 625
-            double cf = (BASICSimulationModelConstants.fs[nrow + 1][i] - BASICSimulationModelConstants.fs[nrow][i])
-                    * ((dataset.getLatitudeMinutes() - BASICSimulationModelConstants.rs[nrow]) * 60)
-                    / ((BASICSimulationModelConstants.rs[nrow + 1] - BASICSimulationModelConstants.rs[nrow]) * 60);
-            cf += BASICSimulationModelConstants.fs[nrow][i];
+            double cf = (BASICSimulationModelConstants.fs[i-1][nrow] - BASICSimulationModelConstants.fs[i-1][nrow-1])
+                    * ((dataset.getLatitudeMinutes() - BASICSimulationModelConstants.rs[nrow-1]) * 60)
+                    / ((BASICSimulationModelConstants.rs[nrow] - BASICSimulationModelConstants.rs[nrow-1]) * 60);
+            cf += BASICSimulationModelConstants.fs[i-1][nrow-1];
             // 645
             mpe[i] = upe[i] * cf;
           }
@@ -137,11 +154,11 @@ public class BASICSimulationModel {
           if (upe[i] <= 0) {
             continue;
           } else {
-            double cf = (BASICSimulationModelConstants.fs[1][i]
-                    - BASICSimulationModelConstants.inz[1][i])
+            double cf = (BASICSimulationModelConstants.fs[i-1][0]
+                    - BASICSimulationModelConstants.inz[i-1][0])
                     * (dataset.getLatitudeDegrees() * 60 + dataset.getLatitudeMinutes())
                     / 300;
-            cf += BASICSimulationModelConstants.inz[1][i];
+            cf += BASICSimulationModelConstants.inz[i-1][0];
             mpe[i] = upe[i] * cf;
           }
         }
@@ -217,7 +234,7 @@ public class BASICSimulationModel {
     String trr = "";
     for (int i = 1; i <= 10; i++) {
       if (reg[i]) {
-        trr = BASICSimulationModelConstants.tempRegimes[i];
+        trr = BASICSimulationModelConstants.tempRegimes[i-1];
       }
     }
 
@@ -358,16 +375,16 @@ public class BASICSimulationModel {
         for (int i3 = 1; i3 <= 64; i3++) {
           if (zsw == 0) {
             // 2820
-            int nr = BASICSimulationModelConstants.dp[i3];
+            int nr = BASICSimulationModelConstants.dp[i3-1];
             if (sl[nr] <= 0) {
               // 2860
               continue;
             } else {
               // 2830
-              double rpe = sl[nr] * BASICSimulationModelConstants.dr[i3];
+              double rpe = sl[nr] * BASICSimulationModelConstants.dr[i3-1];
               if (npe <= rpe) {
                 // 2850
-                sl[nr] = sl[nr] - (npe / BASICSimulationModelConstants.dr[i3]);
+                sl[nr] = sl[nr] - (npe / BASICSimulationModelConstants.dr[i3-1]);
                 npe = 0;
                 // Return from GOSUB 2750;
                 break;
@@ -453,16 +470,16 @@ public class BASICSimulationModel {
         for (int i3 = 1; i3 <= 64; i3++) {
           if (zsw == 0) {
             // 2820
-            int nr = BASICSimulationModelConstants.dp[i3];
+            int nr = BASICSimulationModelConstants.dp[i3-1];
             if (sl[nr] <= 0) {
               // 2860
               continue;
             } else {
               // 2830
-              double rpe = sl[nr] * BASICSimulationModelConstants.dr[i3];
+              double rpe = sl[nr] * BASICSimulationModelConstants.dr[i3-1];
               if (npe <= rpe) {
                 // 2850
-                sl[nr] = sl[nr] - (npe / BASICSimulationModelConstants.dr[i3]);
+                sl[nr] = sl[nr] - (npe / BASICSimulationModelConstants.dr[i3-1]);
                 npe = 0;
                 // Return from GOSUB 2750;
                 break;
@@ -608,16 +625,16 @@ public class BASICSimulationModel {
               break;
             } else {
               // 1850
-              int nr = BASICSimulationModelConstants.dp[i3];
+              int nr = BASICSimulationModelConstants.dp[i3-1];
               if(sl[nr] <= 0) {
                 // 1910
                 continue;
               } else {
                 // 1870
-                double rpd = sl[nr] * BASICSimulationModelConstants.dr[i3];
+                double rpd = sl[nr] * BASICSimulationModelConstants.dr[i3-1];
                 if(npe <= rpd) {
                   // 1890
-                  sl[nr] -= npe / BASICSimulationModelConstants.dr[i3];
+                  sl[nr] -= npe / BASICSimulationModelConstants.dr[i3-1];
                   npe = 0;
                   // 1750
                 } else {
@@ -991,16 +1008,16 @@ public class BASICSimulationModel {
               break;
             } else {
               // 1850
-              int nr = BASICSimulationModelConstants.dp[i3];
+              int nr = BASICSimulationModelConstants.dp[i3-1];
               if (sl[nr] <= 0) {
                 // 1910
                 continue;
               } else {
                 // 1870
-                double rpd = sl[nr] * BASICSimulationModelConstants.dr[i3];
+                double rpd = sl[nr] * BASICSimulationModelConstants.dr[i3-1];
                 if (npe <= rpd) {
                   // 1890
-                  sl[nr] -= npe / BASICSimulationModelConstants.dr[i3];
+                  sl[nr] -= npe / BASICSimulationModelConstants.dr[i3-1];
                   npe = 0;
                   // 1750
                 } else {
