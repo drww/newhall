@@ -2744,15 +2744,15 @@ public class BASICSimulationModel {
     }
 
     // 1420
+    int ntd[] = new int[365];
 
     if(tc != 0 || tu != 0) {
       // GOSUB 2990 - Calculate calendar.
 
-      char[] kl = new char[25];    // Dimensions unknown.
+      char[] kl = new char[4];    // Dimensions unknown.
       double[] kr = new double[25];
       int[] m = new int[25];
       int kt = 0;
-      int ntd[] = new int[365];
 
       kl[0] = '$';
       kl[1] = '-';
@@ -2772,7 +2772,7 @@ public class BASICSimulationModel {
       } else if(nbd[1] == 0 && nbd8[1] < 0) {
         // 3370
         for (int i = 1; i <= 360; i++) {
-          ntd[i] = kl[21];
+          ntd[i] = kl[2];
         }
         // 3380 -> Return from GOSUB 2990.
       } else {
@@ -3030,6 +3030,26 @@ public class BASICSimulationModel {
 
 
     // End of simulation model run.
+
+    System.out.println("TempCal:");
+    for(int i = 1; i <= 12; i++) {
+      for(int j = 1; j <= 30; j++) {
+        int offset = 30 * (i - 1);
+        System.out.print((char)ntd[offset + j]);
+      }
+      System.out.println();
+    }
+    System.out.println();
+
+    System.out.println("MoistCal:");
+    for(int i = 1; i <= 12; i++) {
+      for(int j = 1; j <= 30; j++) {
+        int offset = 30 * (i - 1);
+        System.out.print(iday[offset + j]);
+      }
+      System.out.println();
+    }
+    System.out.println();
 
     System.out.println("Simulation has run.");
 
