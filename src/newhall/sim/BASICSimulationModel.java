@@ -434,7 +434,7 @@ public class BASICSimulationModel {
             double esl = fsl - sl[i3];
             if (esl >= hp) {
               // 2120
-              sl[i3] = fsl;
+              sl[i3] += hp;
               if (gogr != 0) {
                 // GOSUB 3900
                 // Print "ADDITION", draw, beep.
@@ -925,7 +925,7 @@ public class BASICSimulationModel {
           double esl = fsl - sl[i3];
           if (esl >= hp) {
             // 2120
-            sl[i3] = fsl;
+            sl[i3] += hp;
             if (gogr != 0) {
               // GOSUB 3900
               // Print "ADDITION", draw, beep.
