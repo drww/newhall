@@ -982,6 +982,10 @@ public class BASICSimulationModel {
         cc[i] = false;
       }
 
+      zsw = 0;
+      dpmc = 0;
+      pmc = k;
+
       lp = precip[im] / 2;
       npe = (lp - mpe[im]) / 2;
       cnpe = 0;
