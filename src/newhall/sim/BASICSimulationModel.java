@@ -583,7 +583,7 @@ public class BASICSimulationModel {
 
     // 570
 
-    for(int im = 1; im < 12; im++) {
+    for(int im = 1; im <= 12; im++) {
       
       // 590 - GOSUB 1630
 
