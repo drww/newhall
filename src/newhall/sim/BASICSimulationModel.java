@@ -2742,7 +2742,7 @@ public class BASICSimulationModel {
         ntsu[i] = nzd[i];
       }
       for(int i = 1; i <= 3; i++) {
-        ntwi[i] = nd[i] = ntsu[i];
+        ntwi[i] = nd[i] - ntsu[i];
       }
       // 1420
     }
