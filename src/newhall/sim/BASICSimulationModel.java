@@ -1507,7 +1507,7 @@ public class BASICSimulationModel {
 
           // 810 - Return from GOSUB 2380.
 
-          for(int ic = 1; ic <- 3; ic++) {
+          for(int ic = 1; ic <= 3; ic++) {
             nsd[ic] = nsd[ic] + nzd[ic];
           }
 
