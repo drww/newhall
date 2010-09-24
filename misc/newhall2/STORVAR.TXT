@@ -19,10 +19,10 @@
 220 IF A$<>"1" AND A$<>"2" AND A$<>"3" AND A$<>"4" AND A$<>"5" AND A$<>"6"          THEN CLS:GOTO 150
 230 A=VAL (A$)
 240 ON A GOTO 250,300,350,400,410,450
-250 RUN "dwriter
-300 RUN"STORVAR4
-350 RUN"storvar5
-400 RUN"storvar6
+250 RUN "dwriter.txt"
+300 RUN "STORVAR4.TXT"
+350 RUN "STORVAR5.TXT"
+400 RUN "STORVAR6.TXT"
 409 '       directory of a disk
 410 CLS:INPUT"Which disk do you want to see a directory of? (Hit ENTER for default)",DISK$
 415 IF DISK$="" THEN FILES:GOTO 430

@@ -46,7 +46,7 @@
 185 CLOSE #1:GOSUB 725
 190 PRINT:PRINT:PRINT:GOTO 200
 195 PRINT:PRINT "Wrong symbol for hemisphere; correct input file."
-196 INPUT "Hit ENTER ",A$:RUN"STORVAR
+196 INPUT "Hit ENTER ",A$:RUN "STORVAR.TXT"
 200 ON ERROR GOTO 0:RUN"NSM
 205 GOSUB 745
 210 REM SUBROUTINE TO CALCULATE PET
@@ -155,7 +155,7 @@
 725 IF LEFT$(AS$,1) = "N" OR LEFT$(AS$,1)="n" THEN GOTO 740
 726 ON ERROR GOTO 0
 730 USED = USED + 1:CLOSE #1,#2
-735 PRINT CHR$(12);CHR$(13):CHAIN "STORVAR5"
+735 PRINT CHR$(12);CHR$(13):CHAIN "STORVAR5.TXT"
 740 RETURN
 745 CLS : KEY OFF :SCREEN 1 : COLOR 12,1 
 750 LINE (268,36)-(300,44),2,BF
@@ -196,11 +196,11 @@
 1110 INPUT"hit ENTER when ready",A$:RETURN
 1111 IF V<>25 AND V<>27 THEN GOTO 1152   '   printer off or out of paper
 1112 PRINT"Printer is not on or is out of paper.
-1115 PRINT"Correct the problem, then type C to continue or R toÿrestart this program"
-1120 INPUT M$:IF NOT ((M$<>"C") OR (M$<>"c") OR (M$<>"R") OR (M$<>"r")) THEN          PRINT"Type an R or a Cÿonly":GOTO 1120
+1115 PRINT"Correct the problem, then type C to continue or R toï¿½restart this program"
+1120 INPUT M$:IF NOT ((M$<>"C") OR (M$<>"c") OR (M$<>"R") OR (M$<>"r")) THEN          PRINT"Type an R or a Cï¿½only":GOTO 1120
 1125 IF M$="R" OR M$="r" THEN V=0:RUN ELSE V=0:RESUME
 1152 IF V<>24 THEN GOTO 1160
-1153 PRINT" Printer problems.  Try turning printer OFF, then ONÿto clear the problem.":INPUT "Press ENTER when ready. ",A$:RESUME
+1153 PRINT" Printer problems.  Try turning printer OFF, then ONï¿½to clear the problem.":INPUT "Press ENTER when ready. ",A$:RESUME
 1160 '       file format problems
 1161 IF V<>62 THEN GOTO 1190
 1162 CLOSE #1
@@ -261,5 +261,5 @@
 4090 RETURN 90
 5000 '
 5010 '  return to main menu
-5020 CLOSE #1,#2:RUN"STORVAR
+5020 CLOSE #1,#2:RUN "STORVAR.TXT"
 
