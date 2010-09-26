@@ -12,7 +12,7 @@
 50 PRINT:INPUT "Input data file name";FD$:IF FD$="" THEN GOTO 50
 51 IF FD$="?" THEN GOSUB 8000
 60 PRINT:PRINT"The water holding capacity of the profile is now set at 200 mm"
-61 OPEN "I",#1,FD$
+61 OPEN "I",#1,FD$:KILL "DEBUG.TXT":OPEN "O",#3,"DEBUG.TXT"
 62  INPUT #1,ST$,CO$,RLA1,RLA2,H$,RLO1,RLO2,EW$,EL,ARF,AEV,TRR$,TMA,ST,WT,DIF,      YE(1),YE(2)
 63  FOR I=1 TO 12:INPUT #1,MP(I),T(I),MPE(I):NEXT I:CLOSE #1:WHC%=200
 64 INPUT"Enter the value of your choice (between 0 and 400):";WHC%:PRINT
