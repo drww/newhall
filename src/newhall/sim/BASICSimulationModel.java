@@ -1392,7 +1392,7 @@ public class BASICSimulationModel {
         if(c[11]) {
           // 2590
           nj[kj] = (m0 * 30) + ia +
-            (int)((crr - temperature[m1])/(temperature[m2] - temperature[m1]));
+            (int)(30*(crr - temperature[m1])/(temperature[m2] - temperature[m1]));
           if(nj[kj] > 360) {
             nj[kj] -= 360;
           }
@@ -1620,7 +1620,7 @@ public class BASICSimulationModel {
         if (c[11]) {
           // 2590
           nj[kj] = (m0 * 30) + ia
-                  + (int) ((crr - temperature[m1]) / (temperature[m2] - temperature[m1]));
+                  + (int)(30*(crr - temperature[m1]) / (temperature[m2] - temperature[m1]));
           if (nj[kj] > 360) {
             nj[kj] -= 360;
           }
