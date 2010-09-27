@@ -1,15 +1,15 @@
 package newhall;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import newhall.sim.BASICSimulationModel;
-import newhall.sim.NewhallDataset;
+import newhall.ui.DefaultNewhallFrame;
 
 public class Newhall {
 
   public static void main(String[] args) {
 
-    NewhallDataset nd = null;
+    DefaultNewhallFrame dnf = new DefaultNewhallFrame();
+    dnf.setVisible(true);
+
+    /**NewhallDataset nd = null;
 
     try {
       nd = new NewhallDataset(args[0]);
@@ -17,7 +17,7 @@ public class Newhall {
       Logger.getLogger(Newhall.class.getName()).log(Level.SEVERE, null, e);
     }
 
-    BASICSimulationModel.runSimulation(nd);
+    BASICSimulationModel.runSimulation(nd);**/
 
   }
 
