@@ -41,6 +41,8 @@ public class CSVFileParser {
       records.add(holder);
     }
 
+    fis.close();
+
   }
 
   public String getFilePath() {
