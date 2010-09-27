@@ -17,7 +17,8 @@ public class Newhall {
       Logger.getLogger(Newhall.class.getName()).log(Level.SEVERE, null, e);
     }
 
-    BASICSimulationModel.runSimulation(nd);**/
+    NewhallResults nr = BASICSimulationModel.runSimulation(nd);
+    System.out.println(nr);**/
 
   }
 

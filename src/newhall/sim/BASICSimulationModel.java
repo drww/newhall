@@ -9,7 +9,7 @@ package newhall.sim;
 
 public class BASICSimulationModel {
 
-  public static void runSimulation(NewhallDataset dataset) {
+  public static NewhallResults runSimulation(NewhallDataset dataset) {
 
     System.out.println(dataset);
 
@@ -3035,7 +3035,7 @@ public class BASICSimulationModel {
 
     // End of simulation model run.
 
-    System.out.println("TempCal:");
+    /**System.out.println("TempCal:");
     for(int i = 1; i <= 12; i++) {
       for(int j = 1; j <= 30; j++) {
         int offset = 30 * (i - 1);
@@ -3055,7 +3055,14 @@ public class BASICSimulationModel {
     }
     System.out.println();
 
-    System.out.println("Simulation has run.");
+    System.out.println("Simulation has run.");**/
+
+    /**
+     *   public NewhallResults(double arf, double whc, double[] mpe, int nccd, int nccm, int[] ntd, int[] iday,
+     *     int[] nd, int[] nsd, int[] ncpm, String trr, String ans) {
+     */
+
+    return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd, ncpm, trr, ans);
 
   }
 
