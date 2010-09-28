@@ -17,6 +17,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   public DefaultNewhallFrame() {
     initComponents();
     this.setTitle("Newhall");
+    this.whcSpinner.setValue(200);
     System.out.println("datasetJTable is null: " + (datasetTable == null));
   }
 
@@ -42,6 +43,17 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     datasetScrollPane = new javax.swing.JScrollPane();
     datasetTable = new javax.swing.JTable();
     modelResultsPanel = new javax.swing.JPanel();
+    jLabel3 = new javax.swing.JLabel();
+    jLabel4 = new javax.swing.JLabel();
+    jLabel5 = new javax.swing.JLabel();
+    jLabel6 = new javax.swing.JLabel();
+    whcUnitsText = new javax.swing.JLabel();
+    whcSpinner = new javax.swing.JSpinner();
+    datasetScrollPane1 = new javax.swing.JScrollPane();
+    mpeTable = new javax.swing.JTable();
+    moistureRegimeText = new javax.swing.JLabel();
+    temperatureRegimeText = new javax.swing.JLabel();
+    annualRainfallText = new javax.swing.JLabel();
     jMenuBar1 = new javax.swing.JMenuBar();
     fileMenu = new javax.swing.JMenu();
     openDatasetMenuItem = new javax.swing.JMenuItem();
@@ -139,15 +151,90 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     modelResultsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Model Results"));
 
+    jLabel3.setText("Annual Rainfall:");
+
+    jLabel4.setText("Temperature Regime:");
+
+    jLabel5.setText("Moisture Regime:");
+
+    jLabel6.setText("Waterholding Capacity:");
+
+    whcUnitsText.setText(" ");
+
+    whcSpinner.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200.0d), null, null, Double.valueOf(0.1d)));
+    whcSpinner.setValue(200);
+
+    mpeTable.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+        {"", null, null, null, null, null, null, null, null, null, null, null, null}
+      },
+      new String [] {
+        " ", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      }
+    ) {
+      boolean[] canEdit = new boolean [] {
+        false, false, false, false, false, false, false, false, false, false, false, false, false
+      };
+
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return canEdit [columnIndex];
+      }
+    });
+    mpeTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    datasetScrollPane1.setViewportView(mpeTable);
+
+    moistureRegimeText.setText(" ");
+
+    temperatureRegimeText.setText(" ");
+
+    annualRainfallText.setText(" ");
+
     javax.swing.GroupLayout modelResultsPanelLayout = new javax.swing.GroupLayout(modelResultsPanel);
     modelResultsPanel.setLayout(modelResultsPanelLayout);
     modelResultsPanelLayout.setHorizontalGroup(
       modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 663, Short.MAX_VALUE)
+      .addGroup(modelResultsPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(modelResultsPanelLayout.createSequentialGroup()
+            .addComponent(jLabel3)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(annualRainfallText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jLabel4)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(temperatureRegimeText, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jLabel5)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+          .addGroup(modelResultsPanelLayout.createSequentialGroup()
+            .addComponent(jLabel6)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(whcUnitsText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE))
+        .addContainerGap())
     );
     modelResultsPanelLayout.setVerticalGroup(
       modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 153, Short.MAX_VALUE)
+      .addGroup(modelResultsPanelLayout.createSequentialGroup()
+        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel3)
+          .addComponent(jLabel4)
+          .addComponent(jLabel5)
+          .addComponent(moistureRegimeText)
+          .addComponent(temperatureRegimeText)
+          .addComponent(annualRainfallText))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(datasetScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel6)
+          .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(whcUnitsText))
+        .addContainerGap())
     );
 
     fileMenu.setText("File");
@@ -236,8 +323,28 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     private void toggleUnitsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleUnitsMenuItemActionPerformed
       this.inMetric = !this.inMetric;
-      loadDataset();
-      //runModel();
+
+      double originalWhcValue = 0.0;
+      if(whcSpinner.getValue() instanceof Double) {
+        originalWhcValue = (Double)whcSpinner.getValue();
+      } else {
+        originalWhcValue = (Integer)whcSpinner.getValue();
+      }
+
+      if(this.inMetric) {
+        // Convert WHC from English to Metric.
+        double whcInMm = originalWhcValue * 25.4;
+        whcSpinner.setValue(whcInMm);
+      } else {
+        // Convert WHC from Metric to English.
+        double whcInInches = originalWhcValue * 0.0393700787;
+        whcSpinner.setValue(whcInInches);
+      }
+
+      if (nd != null) {
+        loadDataset();
+      }
+
       System.out.println("inMetric: " + this.inMetric);
     }//GEN-LAST:event_toggleUnitsMenuItemActionPerformed
 
@@ -274,26 +381,73 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       properElevation = nd.getElevation();
     }
 
-    TableModel uiTable = this.datasetTable.getModel();
+    TableModel datasetTableModel = this.datasetTable.getModel();
     if (this.inMetric) {
-      uiTable.setValueAt("Rainfall (mm)", 0, 0);
-      uiTable.setValueAt("Air Temp (C)", 1, 0);
+      datasetTableModel.setValueAt("Rainfall (mm)", 0, 0);
+      datasetTableModel.setValueAt("Air Temp (C)", 1, 0);
       elevationText.setText(roundForDisplay(properElevation) + " meters");
     } else {
-      uiTable.setValueAt("Rainfall (in)", 0, 0);
-      uiTable.setValueAt("Air Temp (F)", 1, 0);
+      datasetTableModel.setValueAt("Rainfall (in)", 0, 0);
+      datasetTableModel.setValueAt("Air Temp (F)", 1, 0);
       elevationText.setText(roundForDisplay(properElevation) + " feet");
     }
 
     datasetTable.getColumnModel().getColumn(0).setPreferredWidth(150);
     for (int i = 0; i < 12; i++) {
-      uiTable.setValueAt(roundForDisplay(properPrecip.get(i)), 0, i + 1);
-      uiTable.setValueAt(roundForDisplay(properTemp.get(i)), 1, i + 1);
+      datasetTableModel.setValueAt(roundForDisplay(properPrecip.get(i)), 0, i + 1);
+      datasetTableModel.setValueAt(roundForDisplay(properTemp.get(i)), 1, i + 1);
     }
 
-    stationText.setText(nd.getName());
+    stationText.setText(nd.getName() + ", " + nd.getCountry());
     latitudeText.setText(roundDegreesForDisplay(nd.getLatitude()) + " degrees " + nd.getNsHemisphere());
     longitudeText.setText(roundDegreesForDisplay(nd.getLongitude()) + " degrees " + nd.getEwHemisphere());
+
+    // Dataset refreshed, now run the model, and refresh those fields too.
+    runModel();
+  }
+
+  public void runModel() {
+
+    double inputWhc = 0.0;
+    if(whcSpinner.getValue() instanceof Integer) {
+      inputWhc = (Integer)whcSpinner.getValue();
+    } else {
+      inputWhc = (Double)whcSpinner.getValue();
+    }
+
+    if(!this.inMetric) {
+      // Convert inches to mm, which the dataset anticipates.
+      inputWhc *= 0.0393700787;
+    }
+
+    try {
+      nr = BASICSimulationModel.runSimulation(nd, inputWhc);
+      System.out.println(nr);
+    } catch (Exception e) {
+      System.out.println("Could not run simulation.");
+      e.printStackTrace();
+      return;
+    }
+
+    TableModel mpeTableModel = this.mpeTable.getModel();
+    mpeTable.getColumnModel().getColumn(0).setPreferredWidth(250);
+    
+    String properAnnualRainfall;
+
+    if(!this.inMetric) {
+      // Results are always in metric, convert to English.
+      properAnnualRainfall = roundForDisplay(nr.getAnnualRainfall() * 0.0393700787) + " in";
+      whcUnitsText.setText("in");
+      mpeTableModel.setValueAt("Evapotranspiration (in)", 0, 0);
+    } else {
+      properAnnualRainfall = roundForDisplay(nr.getAnnualRainfall()) + " mm";
+      whcUnitsText.setText("mm");
+      mpeTableModel.setValueAt("Evapotranspiration (mm)", 0, 0);
+    }
+
+    annualRainfallText.setText(properAnnualRainfall);
+    temperatureRegimeText.setText(nr.getTemperatureRegime());
+    moistureRegimeText.setText(nr.getMoistureRegime());
 
   }
 
@@ -304,20 +458,12 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   public double roundDegreesForDisplay(Double degrees) {
     return Double.valueOf(new DecimalFormat("##.####").format(degrees));
   }
-
-  public void runModel() {
-    try {
-      nr = BASICSimulationModel.runSimulation(nd);
-      System.out.println(nr);
-    } catch (Exception e) {
-      System.out.println("Could not run simulation.");
-      e.printStackTrace();
-    }
-  }
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuItem aboutMenuItem;
+  private javax.swing.JLabel annualRainfallText;
   private javax.swing.JPanel datasetPanel;
   private javax.swing.JScrollPane datasetScrollPane;
+  private javax.swing.JScrollPane datasetScrollPane1;
   private javax.swing.JTable datasetTable;
   private javax.swing.JLabel elevationText;
   private javax.swing.JMenuItem exitMenuItem;
@@ -326,15 +472,24 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel11;
   private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JLabel jLabel4;
+  private javax.swing.JLabel jLabel5;
+  private javax.swing.JLabel jLabel6;
   private javax.swing.JLabel jLabel9;
   private javax.swing.JMenuBar jMenuBar1;
   private javax.swing.JSeparator jSeparator1;
   private javax.swing.JLabel latitudeText;
   private javax.swing.JLabel longitudeText;
   private javax.swing.JPanel modelResultsPanel;
+  private javax.swing.JLabel moistureRegimeText;
+  private javax.swing.JTable mpeTable;
   private javax.swing.JMenuItem openDatasetMenuItem;
   private javax.swing.JMenu optionsMenu;
   private javax.swing.JLabel stationText;
+  private javax.swing.JLabel temperatureRegimeText;
   private javax.swing.JMenuItem toggleUnitsMenuItem;
+  private javax.swing.JSpinner whcSpinner;
+  private javax.swing.JLabel whcUnitsText;
   // End of variables declaration//GEN-END:variables
 }
