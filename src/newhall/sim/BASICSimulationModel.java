@@ -9,7 +9,7 @@ package newhall.sim;
 
 public class BASICSimulationModel {
 
-  public static NewhallResults runSimulation(NewhallDataset dataset) {
+  public static NewhallResults runSimulation(NewhallDataset dataset, double waterHoldingCapacity) {
 
     System.out.println(dataset);
 
@@ -256,7 +256,7 @@ public class BASICSimulationModel {
 
     // 50 - STORVAR5
 
-    double whc = 200;  // Water holding capacity, switch to param.
+    double whc = waterHoldingCapacity;  // Water holding capacity, switch to param.
     double fsl = whc / 64;
     double[] sl = new double[65];
     for (int i = 0; i < sl.length; i++) {
