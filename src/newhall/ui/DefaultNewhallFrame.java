@@ -1,5 +1,6 @@
 package newhall.ui;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.table.TableModel;
@@ -28,25 +29,18 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
+    jSeparator1 = new javax.swing.JSeparator();
     datasetPanel = new javax.swing.JPanel();
-    datasetScrollPane = new javax.swing.JScrollPane();
-    datasetTable = new javax.swing.JTable();
     jLabel1 = new javax.swing.JLabel();
     jLabel2 = new javax.swing.JLabel();
-    jLabel3 = new javax.swing.JLabel();
-    jLabel4 = new javax.swing.JLabel();
     stationText = new javax.swing.JLabel();
     elevationText = new javax.swing.JLabel();
-    annualRainfallText = new javax.swing.JLabel();
-    temperatureRegimeText = new javax.swing.JLabel();
     jLabel9 = new javax.swing.JLabel();
-    jLabel10 = new javax.swing.JLabel();
+    latitudeText = new javax.swing.JLabel();
     jLabel11 = new javax.swing.JLabel();
-    jLabel12 = new javax.swing.JLabel();
-    jLabel13 = new javax.swing.JLabel();
-    moistureRegimeText = new javax.swing.JLabel();
-    jLabel15 = new javax.swing.JLabel();
-    waterholdingCapacityText = new javax.swing.JLabel();
+    longitudeText = new javax.swing.JLabel();
+    datasetScrollPane = new javax.swing.JScrollPane();
+    datasetTable = new javax.swing.JTable();
     modelResultsPanel = new javax.swing.JPanel();
     jMenuBar1 = new javax.swing.JMenuBar();
     fileMenu = new javax.swing.JMenu();
@@ -61,10 +55,26 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     datasetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Dataset"));
 
+    jLabel1.setText("Station:");
+
+    jLabel2.setText("Elevation:");
+
+    stationText.setText(" << No Dataset Loaded >>");
+
+    elevationText.setText(" ");
+
+    jLabel9.setText("Latitude:");
+
+    latitudeText.setText(" ");
+
+    jLabel11.setText("Longitude:");
+
+    longitudeText.setText(" ");
+
     datasetTable.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {"Rainfall", null, null, null, null, null, null, null, null, null, null, null, null},
-        {"Air Temp", null, null, null, null, null, null, null, null, null, null, null, null}
+        {"", null, null, null, null, null, null, null, null, null, null, null, null},
+        {"", null, null, null, null, null, null, null, null, null, null, null, null}
       },
       new String [] {
         " ", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -81,87 +91,30 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     datasetTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     datasetScrollPane.setViewportView(datasetTable);
 
-    jLabel1.setText("Station:");
-
-    jLabel2.setText("Elevation:");
-
-    jLabel3.setText("Annual Rainfall:");
-
-    jLabel4.setText("Temperature Regime:");
-
-    stationText.setText(" << No Dataset Loaded >>");
-
-    elevationText.setText(" ");
-
-    annualRainfallText.setText(" ");
-
-    temperatureRegimeText.setText(" ");
-
-    jLabel9.setText("Latitude:");
-
-    jLabel10.setText(" ");
-
-    jLabel11.setText("Longitude:");
-
-    jLabel12.setText(" ");
-
-    jLabel13.setText("Moisture Regime:");
-
-    moistureRegimeText.setText(" ");
-
-    jLabel15.setText("Waterholding Capacity:");
-
-    waterholdingCapacityText.setText(" ");
-
     javax.swing.GroupLayout datasetPanelLayout = new javax.swing.GroupLayout(datasetPanel);
     datasetPanel.setLayout(datasetPanelLayout);
     datasetPanelLayout.setHorizontalGroup(
       datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(datasetPanelLayout.createSequentialGroup()
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datasetPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(datasetScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+        .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(datasetScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
           .addGroup(datasetPanelLayout.createSequentialGroup()
             .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(datasetPanelLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(stationText, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addGroup(datasetPanelLayout.createSequentialGroup()
-                .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                  .addGroup(javax.swing.GroupLayout.Alignment.LEADING, datasetPanelLayout.createSequentialGroup()
-                    .addComponent(jLabel3)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(annualRainfallText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                  .addGroup(javax.swing.GroupLayout.Alignment.LEADING, datasetPanelLayout.createSequentialGroup()
-                    .addComponent(jLabel2)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(elevationText, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                  .addGroup(datasetPanelLayout.createSequentialGroup()
-                    .addComponent(jLabel4)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(temperatureRegimeText, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGroup(datasetPanelLayout.createSequentialGroup()
-                    .addComponent(jLabel13)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+              .addComponent(jLabel2)
+              .addComponent(jLabel1))
+            .addGap(18, 18, 18)
             .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(datasetPanelLayout.createSequentialGroup()
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
-              .addGroup(datasetPanelLayout.createSequentialGroup()
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(waterholdingCapacityText, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)))))
+              .addComponent(stationText, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(elevationText, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jLabel9)
+              .addComponent(jLabel11))
+            .addGap(18, 18, 18)
+            .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(longitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+              .addComponent(latitudeText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))))
         .addContainerGap())
     );
     datasetPanelLayout.setVerticalGroup(
@@ -171,26 +124,17 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
           .addComponent(jLabel1)
           .addComponent(stationText)
           .addComponent(jLabel9)
-          .addComponent(jLabel12)
-          .addComponent(jLabel10)
-          .addComponent(jLabel11))
+          .addComponent(latitudeText))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel2)
-          .addComponent(elevationText)
-          .addComponent(jLabel4)
-          .addComponent(temperatureRegimeText))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel3)
-          .addComponent(annualRainfallText)
-          .addComponent(jLabel13)
-          .addComponent(moistureRegimeText)
-          .addComponent(jLabel15)
-          .addComponent(waterholdingCapacityText))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(datasetScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(longitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(elevationText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(datasetScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+        .addContainerGap())
     );
 
     modelResultsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Model Results"));
@@ -199,11 +143,11 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     modelResultsPanel.setLayout(modelResultsPanelLayout);
     modelResultsPanelLayout.setHorizontalGroup(
       modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 705, Short.MAX_VALUE)
+      .addGap(0, 663, Short.MAX_VALUE)
     );
     modelResultsPanelLayout.setVerticalGroup(
       modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 140, Short.MAX_VALUE)
+      .addGap(0, 153, Short.MAX_VALUE)
     );
 
     fileMenu.setText("File");
@@ -282,11 +226,10 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         System.out.println("Opening: " + jfc.getSelectedFile().getAbsolutePath());
         try {
           nd = new NewhallDataset(jfc.getSelectedFile().getAbsolutePath());
-          loadDataset();
         } catch (Exception e) {
           System.out.println("File format was unacceptable: " + e);
-          nd = null;
         }
+        loadDataset();
       }
       System.out.println("NewhallDataset loaded: " + (nd != null));
     }//GEN-LAST:event_openDatasetMenuItemActionPerformed
@@ -294,29 +237,72 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     private void toggleUnitsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleUnitsMenuItemActionPerformed
       this.inMetric = !this.inMetric;
       loadDataset();
-      runModel();
+      //runModel();
       System.out.println("inMetric: " + this.inMetric);
     }//GEN-LAST:event_toggleUnitsMenuItemActionPerformed
 
   public void loadDataset() {
+
+    // Refresh the frame with the dataset's fields.
+
     ArrayList<Double> properTemp = new ArrayList<Double>(12);
     ArrayList<Double> properPrecip = new ArrayList<Double>(12);
+    double properElevation = 0.0;
 
     if (this.inMetric && !nd.isMetric()) {
       // Convert English to metric.
+      for (int i = 0; i < 12; i++) {
+        double tempInC = (nd.getTemperature().get(i) - 32) * (5.0 / 9.0);
+        properTemp.add(tempInC);
+        double precipInMm = nd.getPrecipitation().get(i) * 25.4;
+        properPrecip.add(precipInMm);
+        properElevation = nd.getElevation() * 0.3048;
+      }
     } else if (!this.inMetric && nd.isMetric()) {
       // Convert metric to English.
+      for (int i = 0; i < 12; i++) {
+        double tempInF = (nd.getTemperature().get(i) * (9.0 / 5.0)) + 32;
+        properTemp.add(tempInF);
+        double precipInInches = nd.getPrecipitation().get(i) / 25.4;
+        properPrecip.add(precipInInches);
+        properElevation = nd.getElevation() * 3.2808399;
+      }
     } else {
       // Present format is correct.
+      properTemp = nd.getTemperature();
+      properPrecip = nd.getPrecipitation();
+      properElevation = nd.getElevation();
     }
 
     TableModel uiTable = this.datasetTable.getModel();
-
-    for (int i = 0; i < 12; i++) {
-      uiTable.setValueAt(nd.getPrecipitation().get(i), 0, i + 1);
-      uiTable.setValueAt(nd.getTemperature().get(i), 1, i + 1);
+    if (this.inMetric) {
+      uiTable.setValueAt("Rainfall (mm)", 0, 0);
+      uiTable.setValueAt("Air Temp (C)", 1, 0);
+      elevationText.setText(roundForDisplay(properElevation) + " meters");
+    } else {
+      uiTable.setValueAt("Rainfall (in)", 0, 0);
+      uiTable.setValueAt("Air Temp (F)", 1, 0);
+      elevationText.setText(roundForDisplay(properElevation) + " feet");
     }
 
+    datasetTable.getColumnModel().getColumn(0).setPreferredWidth(150);
+    for (int i = 0; i < 12; i++) {
+      uiTable.setValueAt(roundForDisplay(properPrecip.get(i)), 0, i + 1);
+      uiTable.setValueAt(roundForDisplay(properTemp.get(i)), 1, i + 1);
+    }
+
+    stationText.setText(nd.getName());
+    latitudeText.setText(roundDegreesForDisplay(nd.getLatitude()) + " degrees " + nd.getNsHemisphere());
+    longitudeText.setText(roundDegreesForDisplay(nd.getLongitude()) + " degrees " + nd.getEwHemisphere());
+
+  }
+
+  public double roundForDisplay(Double value) {
+    return Double.valueOf(new DecimalFormat("##.##").format(value));
+  }
+
+  public double roundDegreesForDisplay(Double degrees) {
+    return Double.valueOf(new DecimalFormat("##.####").format(degrees));
   }
 
   public void runModel() {
@@ -330,7 +316,6 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   }
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuItem aboutMenuItem;
-  private javax.swing.JLabel annualRainfallText;
   private javax.swing.JPanel datasetPanel;
   private javax.swing.JScrollPane datasetScrollPane;
   private javax.swing.JTable datasetTable;
@@ -339,23 +324,17 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JMenu fileMenu;
   private javax.swing.JMenu helpMenu;
   private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel10;
   private javax.swing.JLabel jLabel11;
-  private javax.swing.JLabel jLabel12;
-  private javax.swing.JLabel jLabel13;
-  private javax.swing.JLabel jLabel15;
   private javax.swing.JLabel jLabel2;
-  private javax.swing.JLabel jLabel3;
-  private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel9;
   private javax.swing.JMenuBar jMenuBar1;
+  private javax.swing.JSeparator jSeparator1;
+  private javax.swing.JLabel latitudeText;
+  private javax.swing.JLabel longitudeText;
   private javax.swing.JPanel modelResultsPanel;
-  private javax.swing.JLabel moistureRegimeText;
   private javax.swing.JMenuItem openDatasetMenuItem;
   private javax.swing.JMenu optionsMenu;
   private javax.swing.JLabel stationText;
-  private javax.swing.JLabel temperatureRegimeText;
   private javax.swing.JMenuItem toggleUnitsMenuItem;
-  private javax.swing.JLabel waterholdingCapacityText;
   // End of variables declaration//GEN-END:variables
 }
