@@ -74,6 +74,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jPanel3 = new javax.swing.JPanel();
     jScrollPane7 = new javax.swing.JScrollPane();
     statisticsText = new javax.swing.JTextArea();
+    jButton1 = new javax.swing.JButton();
+    jButton2 = new javax.swing.JButton();
     jMenuBar1 = new javax.swing.JMenuBar();
     fileMenu = new javax.swing.JMenu();
     openDatasetMenuItem = new javax.swing.JMenuItem();
@@ -324,6 +326,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     statisticsText.setColumns(20);
     statisticsText.setEditable(false);
+    statisticsText.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
     statisticsText.setRows(5);
     statisticsText.setOpaque(false);
     jScrollPane7.setViewportView(statisticsText);
@@ -340,9 +343,20 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jPanel3Layout.setVerticalGroup(
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
         .addContainerGap())
     );
+
+    jButton1.setText("Export to CSV");
+    jButton1.setEnabled(false);
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1ActionPerformed(evt);
+      }
+    });
+
+    jButton2.setText("Export to XML");
+    jButton2.setEnabled(false);
 
     javax.swing.GroupLayout modelResultsPanelLayout = new javax.swing.GroupLayout(modelResultsPanel);
     modelResultsPanel.setLayout(modelResultsPanelLayout);
@@ -350,10 +364,10 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelResultsPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
-          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelResultsPanelLayout.createSequentialGroup()
+        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+          .addGroup(modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jLabel3)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(annualRainfallText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -365,16 +379,20 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addComponent(jLabel5)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
-          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelResultsPanelLayout.createSequentialGroup()
+          .addGroup(modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelResultsPanelLayout.createSequentialGroup()
+          .addGroup(modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jLabel6)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(whcUnitsText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(whcUnitsText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
+            .addComponent(jButton2)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jButton1)))
         .addContainerGap())
     );
     modelResultsPanelLayout.setVerticalGroup(
@@ -399,7 +417,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel6)
           .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(whcUnitsText))
+          .addComponent(whcUnitsText)
+          .addComponent(jButton1)
+          .addComponent(jButton2))
         .addContainerGap())
     );
 
@@ -440,6 +460,11 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     helpMenu.setText("Help");
 
     aboutMenuItem.setText("About");
+    aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        aboutMenuItemActionPerformed(evt);
+      }
+    });
     helpMenu.add(aboutMenuItem);
 
     jMenuBar1.add(helpMenu);
@@ -526,6 +551,14 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         loadDataset();
       }
     }//GEN-LAST:event_whcSpinnerStateChanged
+
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+      new AboutFrame().setVisible(true);
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
   public void loadDataset() {
 
@@ -705,6 +738,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JMenuItem exitMenuItem;
   private javax.swing.JMenu fileMenu;
   private javax.swing.JMenu helpMenu;
+  private javax.swing.JButton jButton1;
+  private javax.swing.JButton jButton2;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel11;
   private javax.swing.JLabel jLabel2;

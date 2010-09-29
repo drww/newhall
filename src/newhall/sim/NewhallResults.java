@@ -110,7 +110,7 @@ public class NewhallResults {
     result += "    Year: " + numConsecutiveDaysMoistInSomeParts + "\n";
     result += "    Temp over 8C: " + numConsecutiveDaysMoistInSomePartsOver8C + "\n";
     result += "  Dry after summer solstice: " + dryDaysAfterSummerSolstice + "\n";
-    result += "  Moist after winter solstice: " + moistDaysAfterWinterSolstice + "\n";
+    result += "  Moist after winter solstice: " + moistDaysAfterWinterSolstice;
 
     return result;
   }
