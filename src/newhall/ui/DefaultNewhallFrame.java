@@ -161,8 +161,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     whcUnitsText.setText(" ");
 
-    whcSpinner.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200.0d), null, null, Double.valueOf(0.1d)));
+    whcSpinner.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200.0d), Double.valueOf(0.0d), null, Double.valueOf(0.1d)));
     whcSpinner.setValue(200);
+    whcSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+      public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        whcSpinnerStateChanged(evt);
+      }
+    });
 
     mpeTable.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
@@ -325,13 +330,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       this.inMetric = !this.inMetric;
 
       double originalWhcValue = 0.0;
-      if(whcSpinner.getValue() instanceof Double) {
-        originalWhcValue = (Double)whcSpinner.getValue();
+      if (whcSpinner.getValue() instanceof Double) {
+        originalWhcValue = (Double) whcSpinner.getValue();
       } else {
-        originalWhcValue = (Integer)whcSpinner.getValue();
+        originalWhcValue = (Integer) whcSpinner.getValue();
       }
 
-      if(this.inMetric) {
+      if (this.inMetric) {
         // Convert WHC from English to Metric.
         double whcInMm = originalWhcValue * 25.4;
         whcSpinner.setValue(whcInMm);
@@ -347,6 +352,10 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
       System.out.println("inMetric: " + this.inMetric);
     }//GEN-LAST:event_toggleUnitsMenuItemActionPerformed
+
+    private void whcSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_whcSpinnerStateChanged
+      loadDataset();
+    }//GEN-LAST:event_whcSpinnerStateChanged
 
   public void loadDataset() {
 
@@ -408,46 +417,65 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
   public void runModel() {
 
+    // Deal with getting the WHC value from the spinner and converting it.
+
     double inputWhc = 0.0;
-    if(whcSpinner.getValue() instanceof Integer) {
-      inputWhc = (Integer)whcSpinner.getValue();
+    if (whcSpinner.getValue() instanceof Integer) {
+      inputWhc = (Integer) whcSpinner.getValue();
     } else {
-      inputWhc = (Double)whcSpinner.getValue();
+      inputWhc = (Double) whcSpinner.getValue();
+    }
+    if (!this.inMetric) {
+      // Convert inches to mm, which the dataset anticipates.
+      System.out.println("WHC inches prior to conversion: " + inputWhc + " in");
+      inputWhc *= 25.4;
+      System.out.println("Giving model WHC of: " + inputWhc + " mm");
     }
 
-    if(!this.inMetric) {
-      // Convert inches to mm, which the dataset anticipates.
-      inputWhc *= 0.0393700787;
-    }
+    // Run the simulation, get the results.
 
     try {
+      nr = null;
       nr = BASICSimulationModel.runSimulation(nd, inputWhc);
-      System.out.println(nr);
     } catch (Exception e) {
       System.out.println("Could not run simulation.");
       e.printStackTrace();
       return;
     }
 
-    TableModel mpeTableModel = this.mpeTable.getModel();
-    mpeTable.getColumnModel().getColumn(0).setPreferredWidth(250);
-    
-    String properAnnualRainfall;
+    // Update model results.
 
-    if(!this.inMetric) {
-      // Results are always in metric, convert to English.
-      properAnnualRainfall = roundForDisplay(nr.getAnnualRainfall() * 0.0393700787) + " in";
-      whcUnitsText.setText("in");
-      mpeTableModel.setValueAt("Evapotranspiration (in)", 0, 0);
-    } else {
-      properAnnualRainfall = roundForDisplay(nr.getAnnualRainfall()) + " mm";
-      whcUnitsText.setText("mm");
-      mpeTableModel.setValueAt("Evapotranspiration (mm)", 0, 0);
+    if (nr != null) {
+
+      TableModel mpeTableModel = this.mpeTable.getModel();
+      mpeTable.getColumnModel().getColumn(0).setPreferredWidth(250);
+
+      String properAnnualRainfall;
+
+      if (!this.inMetric) {
+        // Results are always in metric, convert to English.
+        properAnnualRainfall = roundForDisplay(nr.getAnnualRainfall() * 0.0393700787) + " in";
+        whcUnitsText.setText("in");
+        mpeTableModel.setValueAt("Evapotranspiration (in)", 0, 0);
+        for (int i = 0; i < 12; i++) {
+          double mpeValueForDisplay = roundForDisplay(nr.getMeanPotentialEvapotranspiration().get(i) * 0.0393700787);
+          mpeTableModel.setValueAt(mpeValueForDisplay, 0, i + 1);
+        }
+      } else {
+        properAnnualRainfall = roundForDisplay(nr.getAnnualRainfall()) + " mm";
+        whcUnitsText.setText("mm");
+        mpeTableModel.setValueAt("Evapotranspiration (mm)", 0, 0);
+        for (int i = 0; i < 12; i++) {
+          double mpeValueForDisplay = roundForDisplay(nr.getMeanPotentialEvapotranspiration().get(i));
+          mpeTableModel.setValueAt(mpeValueForDisplay, 0, i + 1);
+        }
+      }
+
+      annualRainfallText.setText(properAnnualRainfall);
+      temperatureRegimeText.setText(nr.getTemperatureRegime());
+      moistureRegimeText.setText(nr.getMoistureRegime());
+
     }
-
-    annualRainfallText.setText(properAnnualRainfall);
-    temperatureRegimeText.setText(nr.getTemperatureRegime());
-    moistureRegimeText.setText(nr.getMoistureRegime());
 
   }
 

@@ -347,12 +347,15 @@
         <Component class="javax.swing.JSpinner" name="whcSpinner">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="200.0" numberType="java.lang.Double" stepSize="0.1" type="number"/>
+              <SpinnerModel initial="200.0" minimum="0.0" numberType="java.lang.Double" stepSize="0.1" type="number"/>
             </Property>
             <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="200" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="whcSpinnerStateChanged"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="datasetScrollPane1">
           <AuxValues>
