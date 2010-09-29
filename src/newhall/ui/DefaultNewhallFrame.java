@@ -18,6 +18,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     initComponents();
     this.setTitle("Newhall");
     this.whcSpinner.setValue(200);
+    this.whcSpinner.setEnabled(false);
     System.out.println("datasetJTable is null: " + (datasetTable == null));
   }
 
@@ -54,6 +55,20 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     moistureRegimeText = new javax.swing.JLabel();
     temperatureRegimeText = new javax.swing.JLabel();
     annualRainfallText = new javax.swing.JLabel();
+    jPanel1 = new javax.swing.JPanel();
+    jScrollPane2 = new javax.swing.JScrollPane();
+    jTextArea1 = new javax.swing.JTextArea();
+    jScrollPane3 = new javax.swing.JScrollPane();
+    jTextArea2 = new javax.swing.JTextArea();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    moistureCalendarText = new javax.swing.JTextArea();
+    jPanel2 = new javax.swing.JPanel();
+    jScrollPane4 = new javax.swing.JScrollPane();
+    jTextArea3 = new javax.swing.JTextArea();
+    jScrollPane5 = new javax.swing.JScrollPane();
+    jTextArea4 = new javax.swing.JTextArea();
+    jScrollPane6 = new javax.swing.JScrollPane();
+    temperatureCalendarText = new javax.swing.JTextArea();
     jMenuBar1 = new javax.swing.JMenuBar();
     fileMenu = new javax.swing.JMenu();
     openDatasetMenuItem = new javax.swing.JMenuItem();
@@ -64,6 +79,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     aboutMenuItem = new javax.swing.JMenuItem();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setResizable(false);
 
     datasetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Dataset"));
 
@@ -107,10 +123,10 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     datasetPanel.setLayout(datasetPanelLayout);
     datasetPanelLayout.setHorizontalGroup(
       datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datasetPanelLayout.createSequentialGroup()
+      .addGroup(datasetPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(datasetScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+        .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(datasetScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
           .addGroup(datasetPanelLayout.createSequentialGroup()
             .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(jLabel2)
@@ -125,8 +141,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
               .addComponent(jLabel11))
             .addGap(18, 18, 18)
             .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(longitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-              .addComponent(latitudeText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))))
+              .addComponent(longitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+              .addComponent(latitudeText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))))
         .addContainerGap())
     );
     datasetPanelLayout.setVerticalGroup(
@@ -159,7 +175,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     jLabel6.setText("Waterholding Capacity:");
 
-    whcUnitsText.setText(" ");
+    whcUnitsText.setText("mm");
 
     whcSpinner.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200.0d), Double.valueOf(0.0d), null, Double.valueOf(0.1d)));
     whcSpinner.setValue(200);
@@ -194,6 +210,102 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     annualRainfallText.setText(" ");
 
+    jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Moisture Calendar"));
+
+    jTextArea1.setColumns(30);
+    jTextArea1.setRows(1);
+    jTextArea1.setText("1''''''''''''15'''''''''''''30");
+    jTextArea1.setBorder(null);
+    jTextArea1.setOpaque(false);
+    jScrollPane2.setViewportView(jTextArea1);
+
+    jTextArea2.setColumns(3);
+    jTextArea2.setRows(12);
+    jTextArea2.setText("JAN\nFEB\nMAR\nAPR\nMAY\nJUN\nJUL\nAUG\nSEP\nOCT\nNOV\nDEC");
+    jTextArea2.setBorder(null);
+    jTextArea2.setOpaque(false);
+    jScrollPane3.setViewportView(jTextArea2);
+
+    moistureCalendarText.setColumns(30);
+    moistureCalendarText.setEditable(false);
+    moistureCalendarText.setRows(12);
+    moistureCalendarText.setBorder(null);
+    moistureCalendarText.setOpaque(false);
+    jScrollPane1.setViewportView(moistureCalendarText);
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jScrollPane1))
+          .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap())
+    );
+    jPanel1Layout.setVerticalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperature Calendar"));
+
+    jTextArea3.setColumns(30);
+    jTextArea3.setRows(1);
+    jTextArea3.setText("1''''''''''''15'''''''''''''30");
+    jTextArea3.setBorder(null);
+    jTextArea3.setOpaque(false);
+    jScrollPane4.setViewportView(jTextArea3);
+
+    jTextArea4.setColumns(3);
+    jTextArea4.setRows(12);
+    jTextArea4.setText("JAN\nFEB\nMAR\nAPR\nMAY\nJUN\nJUL\nAUG\nSEP\nOCT\nNOV\nDEC");
+    jTextArea4.setBorder(null);
+    jTextArea4.setOpaque(false);
+    jScrollPane5.setViewportView(jTextArea4);
+
+    temperatureCalendarText.setColumns(30);
+    temperatureCalendarText.setEditable(false);
+    temperatureCalendarText.setRows(12);
+    temperatureCalendarText.setBorder(null);
+    temperatureCalendarText.setOpaque(false);
+    jScrollPane6.setViewportView(temperatureCalendarText);
+
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel2Layout.createSequentialGroup()
+        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jScrollPane6))
+          .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap())
+    );
+    jPanel2Layout.setVerticalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel2Layout.createSequentialGroup()
+        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
     javax.swing.GroupLayout modelResultsPanelLayout = new javax.swing.GroupLayout(modelResultsPanel);
     modelResultsPanel.setLayout(modelResultsPanelLayout);
     modelResultsPanelLayout.setHorizontalGroup(
@@ -201,6 +313,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       .addGroup(modelResultsPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(modelResultsPanelLayout.createSequentialGroup()
+            .addComponent(datasetScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+            .addContainerGap())
           .addGroup(modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jLabel3)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -212,15 +327,19 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel5)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+            .addContainerGap())
           .addGroup(modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jLabel6)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(whcUnitsText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE))
-        .addContainerGap())
+          .addGroup(modelResultsPanelLayout.createSequentialGroup()
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap())))
     );
     modelResultsPanelLayout.setVerticalGroup(
       modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,13 +353,20 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
           .addComponent(annualRainfallText))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(datasetScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
-        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel6)
-          .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(whcUnitsText))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(modelResultsPanelLayout.createSequentialGroup()
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+            .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(jLabel6)
+              .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(whcUnitsText)))
+          .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addContainerGap())
     );
+
+    jPanel2.getAccessibleContext().setAccessibleName("Temperature Calendar");
 
     fileMenu.setText("File");
 
@@ -317,11 +443,14 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       if (returnCondition == JFileChooser.APPROVE_OPTION) {
         System.out.println("Opening: " + jfc.getSelectedFile().getAbsolutePath());
         try {
+          nd = null;
           nd = new NewhallDataset(jfc.getSelectedFile().getAbsolutePath());
+          loadDataset();
         } catch (Exception e) {
           System.out.println("File format was unacceptable: " + e);
+          unloadDataset();
         }
-        loadDataset();
+
       }
       System.out.println("NewhallDataset loaded: " + (nd != null));
     }//GEN-LAST:event_openDatasetMenuItemActionPerformed
@@ -354,7 +483,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_toggleUnitsMenuItemActionPerformed
 
     private void whcSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_whcSpinnerStateChanged
-      loadDataset();
+      if (nd != null) {
+        loadDataset();
+      }
     }//GEN-LAST:event_whcSpinnerStateChanged
 
   public void loadDataset() {
@@ -407,9 +538,11 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       datasetTableModel.setValueAt(roundForDisplay(properTemp.get(i)), 1, i + 1);
     }
 
-    stationText.setText(nd.getName() + ", " + nd.getCountry());
+    stationText.setText(nd.getName() + ", " + nd.getCountry() + " [" + nd.getStartYear() + "]");
     latitudeText.setText(roundDegreesForDisplay(nd.getLatitude()) + " degrees " + nd.getNsHemisphere());
     longitudeText.setText(roundDegreesForDisplay(nd.getLongitude()) + " degrees " + nd.getEwHemisphere());
+
+    whcSpinner.setEnabled(true);
 
     // Dataset refreshed, now run the model, and refresh those fields too.
     runModel();
@@ -440,6 +573,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     } catch (Exception e) {
       System.out.println("Could not run simulation.");
       e.printStackTrace();
+      unloadDataset();
       return;
     }
 
@@ -474,9 +608,42 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       annualRainfallText.setText(properAnnualRainfall);
       temperatureRegimeText.setText(nr.getTemperatureRegime());
       moistureRegimeText.setText(nr.getMoistureRegime());
+      moistureCalendarText.setText(nr.getFormattedMoistureCalendar());
+      temperatureCalendarText.setText(nr.getFormattedTemperatureCalendar());
 
     }
 
+  }
+
+  public void unloadDataset() {
+    stationText.setText(" << No Dataset Loaded >>");
+    elevationText.setText("");
+    latitudeText.setText("");
+    longitudeText.setText("");
+
+    TableModel mpeTableModel = this.mpeTable.getModel();
+    TableModel datasetTableModel = this.datasetTable.getModel();
+
+    for (int i = 0; i <= 12; i++) {
+      for (int j = 0; j < 2; j++) {
+        datasetTableModel.setValueAt("", j, i);
+      }
+    }
+
+    for (int i = 0; i <= 12; i++) {
+      mpeTableModel.setValueAt("", 0, i);
+    }
+
+    annualRainfallText.setText("");
+    temperatureRegimeText.setText("");
+    moistureRegimeText.setText("");
+
+    temperatureCalendarText.setText("");
+    moistureCalendarText.setText("");
+
+    whcSpinner.setValue(200);
+    whcSpinner.setEnabled(false);
+    this.inMetric = true;
   }
 
   public double roundForDisplay(Double value) {
@@ -506,15 +673,29 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel6;
   private javax.swing.JLabel jLabel9;
   private javax.swing.JMenuBar jMenuBar1;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JPanel jPanel2;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JScrollPane jScrollPane3;
+  private javax.swing.JScrollPane jScrollPane4;
+  private javax.swing.JScrollPane jScrollPane5;
+  private javax.swing.JScrollPane jScrollPane6;
   private javax.swing.JSeparator jSeparator1;
+  private javax.swing.JTextArea jTextArea1;
+  private javax.swing.JTextArea jTextArea2;
+  private javax.swing.JTextArea jTextArea3;
+  private javax.swing.JTextArea jTextArea4;
   private javax.swing.JLabel latitudeText;
   private javax.swing.JLabel longitudeText;
   private javax.swing.JPanel modelResultsPanel;
+  private javax.swing.JTextArea moistureCalendarText;
   private javax.swing.JLabel moistureRegimeText;
   private javax.swing.JTable mpeTable;
   private javax.swing.JMenuItem openDatasetMenuItem;
   private javax.swing.JMenu optionsMenu;
   private javax.swing.JLabel stationText;
+  private javax.swing.JTextArea temperatureCalendarText;
   private javax.swing.JLabel temperatureRegimeText;
   private javax.swing.JMenuItem toggleUnitsMenuItem;
   private javax.swing.JSpinner whcSpinner;

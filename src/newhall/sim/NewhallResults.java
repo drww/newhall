@@ -42,7 +42,7 @@ public class NewhallResults {
 
     this.temperatureCalendar = new ArrayList<Character>();
     for (int i = 1; i <= 360; i++) {
-      this.temperatureCalendar.add((char)ntd[i]);
+      this.temperatureCalendar.add((char) ntd[i]);
     }
 
     this.moistureCalendar = new ArrayList<Integer>();
@@ -61,6 +61,36 @@ public class NewhallResults {
     this.numConsecutiveDaysMoistInSomeParts = ncpm[1];
     this.numConsecutiveDaysMoistInSomePartsOver8C = ncpm[2];
 
+  }
+
+  public String getFormattedMoistureCalendar() {
+    String result = "";
+
+    for (int i = 0; i < 12; i++) {
+      for (int j = 0; j < 30; j++) {
+        result += moistureCalendar.get(j + i * 30);
+      }
+      if (i != 11) {
+        result += "\n";
+      }
+    }
+
+    return result;
+  }
+
+  public String getFormattedTemperatureCalendar() {
+    String result = "";
+
+    for (int i = 0; i < 12; i++) {
+      for (int j = 0; j < 30; j++) {
+        result += temperatureCalendar.get(j + (i * 30));
+      }
+      if (i != 11) {
+        result += "\n";
+      }
+    }
+
+    return result;
   }
 
   @Override
