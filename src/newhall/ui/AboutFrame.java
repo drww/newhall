@@ -43,7 +43,7 @@ public class AboutFrame extends javax.swing.JFrame {
     jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24));
     jLabel1.setText("newhall v1.0");
 
-    jLabel2.setText("SVN build XYZ");
+    jLabel2.setText("SVN build XYZ - YYYYMMDD");
 
     jTextArea1.setColumns(20);
     jTextArea1.setEditable(false);
@@ -59,14 +59,13 @@ public class AboutFrame extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addGap(197, 197, 197)
-            .addComponent(jLabel1))
-          .addGroup(layout.createSequentialGroup()
-            .addGap(231, 231, 231)
-            .addComponent(jLabel2))
-          .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(197, 197, 197)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jLabel2)
+              .addComponent(jLabel1))))
         .addContainerGap())
     );
     layout.setVerticalGroup(

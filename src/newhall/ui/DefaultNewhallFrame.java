@@ -86,26 +86,35 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     aboutMenuItem = new javax.swing.JMenuItem();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    setResizable(false);
 
-    datasetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Dataset"));
+    datasetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dataset", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 11))); // NOI18N
+    datasetPanel.setFont(datasetPanel.getFont());
 
+    jLabel1.setFont(jLabel1.getFont());
     jLabel1.setText("Station:");
 
+    jLabel2.setFont(jLabel2.getFont());
     jLabel2.setText("Elevation:");
 
+    stationText.setFont(stationText.getFont());
     stationText.setText(" << No Dataset Loaded >>");
 
+    elevationText.setFont(elevationText.getFont());
     elevationText.setText(" ");
 
+    jLabel9.setFont(jLabel9.getFont());
     jLabel9.setText("Latitude:");
 
+    latitudeText.setFont(latitudeText.getFont());
     latitudeText.setText(" ");
 
+    jLabel11.setFont(jLabel11.getFont());
     jLabel11.setText("Longitude:");
 
+    longitudeText.setFont(longitudeText.getFont());
     longitudeText.setText(" ");
 
+    datasetTable.setFont(datasetTable.getFont());
     datasetTable.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
         {"", null, null, null, null, null, null, null, null, null, null, null, null},
@@ -133,7 +142,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       .addGroup(datasetPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(datasetScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
+          .addComponent(datasetScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
           .addGroup(datasetPanelLayout.createSequentialGroup()
             .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(jLabel2)
@@ -148,8 +157,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
               .addComponent(jLabel11))
             .addGap(18, 18, 18)
             .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(longitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
-              .addComponent(latitudeText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE))))
+              .addComponent(longitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+              .addComponent(latitudeText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))))
         .addContainerGap())
     );
     datasetPanelLayout.setVerticalGroup(
@@ -191,6 +200,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       }
     });
 
+    mpeTable.setFont(mpeTable.getFont());
     mpeTable.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
         {"", null, null, null, null, null, null, null, null, null, null, null, null}
@@ -218,30 +228,34 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Moisture Calendar"));
 
+    jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
     jTextArea1.setColumns(30);
-    jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+    jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+    jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
     jTextArea1.setRows(1);
     jTextArea1.setText("1''''''''''''15'''''''''''''30");
     jTextArea1.setBorder(null);
-    jTextArea1.setOpaque(false);
     jScrollPane2.setViewportView(jTextArea1);
 
-    jTextArea2.setColumns(3);
-    jTextArea2.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+    jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
+    jTextArea2.setColumns(5);
+    jTextArea2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+    jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
     jTextArea2.setRows(12);
-    jTextArea2.setText("JAN\nFEB\nMAR\nAPR\nMAY\nJUN\nJUL\nAUG\nSEP\nOCT\nNOV\nDEC");
+    jTextArea2.setText(" JAN\n FEB\n MAR\n APR\n MAY\n JUN\n JUL\n AUG\n SEP\n OCT\n NOV\n DEC");
     jTextArea2.setBorder(null);
-    jTextArea2.setOpaque(false);
     jScrollPane3.setViewportView(jTextArea2);
 
+    moistureCalendarText.setBackground(new java.awt.Color(0, 0, 0));
     moistureCalendarText.setColumns(30);
     moistureCalendarText.setEditable(false);
-    moistureCalendarText.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+    moistureCalendarText.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+    moistureCalendarText.setForeground(new java.awt.Color(255, 255, 255));
     moistureCalendarText.setRows(12);
     moistureCalendarText.setBorder(null);
-    moistureCalendarText.setOpaque(false);
     jScrollPane1.setViewportView(moistureCalendarText);
 
+    jLabel7.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
     jLabel7.setText("1 = Dry, 2 = Moist/Dry, 3 = Moist");
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -252,12 +266,14 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addContainerGap()
         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jLabel7)
-          .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-            .addComponent(jScrollPane1)
-            .addComponent(jScrollPane2)))
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addComponent(jScrollPane1)
+          .addComponent(jScrollPane2))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        .addContainerGap(147, Short.MAX_VALUE)
+        .addComponent(jLabel7)
+        .addContainerGap())
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,37 +283,40 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap())
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
 
     jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperature Calendar"));
 
+    jTextArea3.setBackground(new java.awt.Color(0, 0, 0));
     jTextArea3.setColumns(30);
-    jTextArea3.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+    jTextArea3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+    jTextArea3.setForeground(new java.awt.Color(255, 255, 255));
     jTextArea3.setRows(1);
     jTextArea3.setText("1''''''''''''15'''''''''''''30");
     jTextArea3.setBorder(null);
-    jTextArea3.setOpaque(false);
     jScrollPane4.setViewportView(jTextArea3);
 
-    jTextArea4.setColumns(3);
-    jTextArea4.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+    jTextArea4.setBackground(new java.awt.Color(0, 0, 0));
+    jTextArea4.setColumns(5);
+    jTextArea4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+    jTextArea4.setForeground(new java.awt.Color(255, 255, 255));
     jTextArea4.setRows(12);
-    jTextArea4.setText("JAN\nFEB\nMAR\nAPR\nMAY\nJUN\nJUL\nAUG\nSEP\nOCT\nNOV\nDEC");
+    jTextArea4.setText(" JAN\n FEB\n MAR\n APR\n MAY\n JUN\n JUL\n AUG\n SEP\n OCT\n NOV\n DEC");
     jTextArea4.setBorder(null);
-    jTextArea4.setOpaque(false);
     jScrollPane5.setViewportView(jTextArea4);
 
+    temperatureCalendarText.setBackground(new java.awt.Color(0, 0, 0));
     temperatureCalendarText.setColumns(30);
     temperatureCalendarText.setEditable(false);
-    temperatureCalendarText.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+    temperatureCalendarText.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+    temperatureCalendarText.setForeground(new java.awt.Color(255, 255, 255));
     temperatureCalendarText.setRows(12);
     temperatureCalendarText.setBorder(null);
-    temperatureCalendarText.setOpaque(false);
     jScrollPane6.setViewportView(temperatureCalendarText);
 
+    jLabel8.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
     jLabel8.setText("- = Under 5C, 5 = 5C to 8C, 8 = Excess of 8C");
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -305,15 +324,18 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jPanel2Layout.setHorizontalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel2Layout.createSequentialGroup()
-        .addContainerGap()
-        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jLabel8)
-          .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)))
-        .addContainerGap(83, Short.MAX_VALUE))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+              .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING))
+            .addGap(9, 9, 9))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addComponent(jLabel8)
+            .addContainerGap())))
     );
     jPanel2Layout.setVerticalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,16 +345,15 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jScrollPane6)
           .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-        .addComponent(jLabel8)
-        .addContainerGap())
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jLabel8))
     );
 
     jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Extended Statistics"));
 
     statisticsText.setColumns(20);
     statisticsText.setEditable(false);
-    statisticsText.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+    statisticsText.setFont(new java.awt.Font("Monospaced", 0, 11));
     statisticsText.setRows(5);
     statisticsText.setOpaque(false);
     jScrollPane7.setViewportView(statisticsText);
@@ -343,13 +364,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
         .addContainerGap())
     );
     jPanel3Layout.setVerticalGroup(
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -370,10 +391,10 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelResultsPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
-          .addGroup(modelResultsPanelLayout.createSequentialGroup()
+        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jLabel3)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(annualRainfallText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,18 +405,18 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel5)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
-          .addGroup(modelResultsPanelLayout.createSequentialGroup()
+            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addGroup(modelResultsPanelLayout.createSequentialGroup()
+          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jLabel6)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(whcUnitsText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
             .addComponent(jButton2)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jButton1)))
@@ -414,9 +435,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(datasetScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addComponent(jPanel2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jPanel1, 0, 319, Short.MAX_VALUE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -429,8 +450,12 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addContainerGap())
     );
 
-    fileMenu.setText("File");
+    jMenuBar1.setFont(jMenuBar1.getFont());
 
+    fileMenu.setText("File");
+    fileMenu.setFont(fileMenu.getFont());
+
+    openDatasetMenuItem.setFont(openDatasetMenuItem.getFont());
     openDatasetMenuItem.setText("Open Dataset...");
     openDatasetMenuItem.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -439,6 +464,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     });
     fileMenu.add(openDatasetMenuItem);
 
+    exitMenuItem.setFont(exitMenuItem.getFont());
     exitMenuItem.setText("Exit");
     exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -450,7 +476,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jMenuBar1.add(fileMenu);
 
     optionsMenu.setText("Options");
+    optionsMenu.setFont(optionsMenu.getFont());
 
+    toggleUnitsMenuItem.setFont(toggleUnitsMenuItem.getFont());
     toggleUnitsMenuItem.setText("Toggle English/Metric Units");
     toggleUnitsMenuItem.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -462,7 +490,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jMenuBar1.add(optionsMenu);
 
     helpMenu.setText("Help");
+    helpMenu.setFont(helpMenu.getFont());
 
+    aboutMenuItem.setFont(aboutMenuItem.getFont());
     aboutMenuItem.setText("About");
     aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
