@@ -3032,37 +3032,42 @@ public class BASICSimulationModel {
 
     // "Proceed to next step?" -> STORVAR6
 
+    String flxFile = ans + "," + id5c + "," + lt5c + "," + id8c + "," + lt8c + ",";
+    flxFile += nccd + "," + nccm + "," + ncsm + "," + ncwm + "," + div + "," + q + "\n";
+    flxFile += ncsp + "," + ncwp + "," + tc + "," + tu + "," + swt + "," + swp + "\n";
+    for(int i = 1; i < 360; i++) {
+      flxFile += iday[i] + ",";
+    }
+    flxFile += iday[360] + "\n" + whc + "\n";
+    for(int i = 1; i < 6; i++) {
+      flxFile += nbd[i] + "," + ned[i] + "," + nbd8[i] + "," + ned8[i] + ",";
+    }
+    flxFile += nbd[6] + "," + ned[6] + "," + nbd8[6] + "," + ned8[6] + "\n";
+    for (int i = 1; i < 3; i++) {
+      flxFile += nd[i] + "," + nzd[i] + "," + nsd[i] + "," + ntsu[i] + "," + ntwi[i] + ",";
+    }
+    flxFile += nd[3] + "," + nzd[3] + "," + nsd[3] + "," + ntsu[3] + "," + ntwi[3] + "\n";
+    flxFile += ncpm[1] + "," + ncpm[2];
+    for (int i = 1; i < 5; i++) {
+      flxFile += cd[i] + ",";
+    }
+    flxFile += cd[5] + "\n";
+
+    if(tc == 0 && tu == 0) {
+      for(int i = 1; i < 360; i++) {
+        flxFile += ntd[i] + ",";
+      }
+      flxFile += ntd[360] + "\n";
+    }
 
     // End of simulation model run.
-
-    /**System.out.println("TempCal:");
-    for(int i = 1; i <= 12; i++) {
-      for(int j = 1; j <= 30; j++) {
-        int offset = 30 * (i - 1);
-        System.out.print((char)ntd[offset + j]);
-      }
-      System.out.println();
-    }
-    System.out.println();
-
-    System.out.println("MoistCal:");
-    for(int i = 1; i <= 12; i++) {
-      for(int j = 1; j <= 30; j++) {
-        int offset = 30 * (i - 1);
-        System.out.print(iday[offset + j]);
-      }
-      System.out.println();
-    }
-    System.out.println();
-
-    System.out.println("Simulation has run.");**/
 
     /**
      *   public NewhallResults(double arf, double whc, double[] mpe, int nccd, int nccm, int[] ntd, int[] iday,
      *     int[] nd, int[] nsd, int[] ncpm, String trr, String ans) {
      */
 
-    return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd, ncpm, trr, ans);
+    return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd, ncpm, trr, ans, flxFile);
 
   }
 

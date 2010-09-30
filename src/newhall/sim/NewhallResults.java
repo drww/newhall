@@ -24,9 +24,10 @@ public class NewhallResults {
   private ArrayList<Integer> ncpm;
   private String temperatureRegime;
   private String moistureRegime;
+  private String flxFile;
 
   public NewhallResults(double arf, double whc, double[] mpe, int nccd, int nccm, int[] ntd, int[] iday,
-          double[] nd, double[] nsd, int[] ncpm, String trr, String ans) {
+          double[] nd, double[] nsd, int[] ncpm, String trr, String ans, String flxFile) {
 
     this.annualRainfall = arf;
     this.waterHoldingCapacity = whc;
@@ -61,6 +62,7 @@ public class NewhallResults {
     this.numConsecutiveDaysMoistInSomeParts = ncpm[1];
     this.numConsecutiveDaysMoistInSomePartsOver8C = ncpm[2];
 
+    this.flxFile = new String(flxFile);
   }
 
   public String getFormattedMoistureCalendar() {
@@ -113,6 +115,10 @@ public class NewhallResults {
     result += "  Moist after winter solstice: " + moistDaysAfterWinterSolstice;
 
     return result;
+  }
+
+  public String getFlxFile() {
+    return flxFile;
   }
 
   @Override

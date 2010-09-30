@@ -3,10 +3,12 @@ package newhall.ui;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import newhall.sim.BASICSimulationModel;
 import newhall.sim.NewhallDataset;
 import newhall.sim.NewhallResults;
+import newhall.util.CSVResultsExporter;
 
 public class DefaultNewhallFrame extends javax.swing.JFrame {
 
@@ -74,8 +76,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jPanel3 = new javax.swing.JPanel();
     jScrollPane7 = new javax.swing.JScrollPane();
     statisticsText = new javax.swing.JTextArea();
-    jButton1 = new javax.swing.JButton();
-    jButton2 = new javax.swing.JButton();
+    exportCsvButton = new javax.swing.JButton();
+    exportXmlButton = new javax.swing.JButton();
     jMenuBar1 = new javax.swing.JMenuBar();
     fileMenu = new javax.swing.JMenu();
     openDatasetMenuItem = new javax.swing.JMenuItem();
@@ -374,16 +376,21 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addContainerGap())
     );
 
-    jButton1.setText("Export to CSV");
-    jButton1.setEnabled(false);
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
+    exportCsvButton.setText("Export to CSV");
+    exportCsvButton.setEnabled(false);
+    exportCsvButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+        exportCsvButtonActionPerformed(evt);
       }
     });
 
-    jButton2.setText("Export to XML");
-    jButton2.setEnabled(false);
+    exportXmlButton.setText("Export to XML");
+    exportXmlButton.setEnabled(false);
+    exportXmlButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exportXmlButtonActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout modelResultsPanelLayout = new javax.swing.GroupLayout(modelResultsPanel);
     modelResultsPanel.setLayout(modelResultsPanelLayout);
@@ -417,9 +424,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(whcUnitsText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
-            .addComponent(jButton2)
+            .addComponent(exportXmlButton)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton1)))
+            .addComponent(exportCsvButton)))
         .addContainerGap())
     );
     modelResultsPanelLayout.setVerticalGroup(
@@ -445,8 +452,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
           .addComponent(jLabel6)
           .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(whcUnitsText)
-          .addComponent(jButton1)
-          .addComponent(jButton2))
+          .addComponent(exportCsvButton)
+          .addComponent(exportXmlButton))
         .addContainerGap())
     );
 
@@ -590,9 +597,22 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       new AboutFrame().setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void exportCsvButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportCsvButtonActionPerformed
+      JFileChooser jfc = new JFileChooser(".");
+      jfc.showSaveDialog(this);
+      if(jfc.getSelectedFile().exists()) {
+        int result = JOptionPane.showConfirmDialog(null, "File exists, overwrite?", "Confirm Overwrite", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(result == JOptionPane.CANCEL_OPTION) {
+          return;
+        }
+      }
+      CSVResultsExporter cve = new CSVResultsExporter(nr, jfc.getSelectedFile());
+      cve.save();
+    }//GEN-LAST:event_exportCsvButtonActionPerformed
+
+    private void exportXmlButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportXmlButtonActionPerformed
       // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_exportXmlButtonActionPerformed
 
   public void loadDataset() {
 
@@ -649,6 +669,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     longitudeText.setText(roundDegreesForDisplay(nd.getLongitude()) + " degrees " + nd.getEwHemisphere());
 
     whcSpinner.setEnabled(true);
+    exportCsvButton.setEnabled(true);
+    
 
     // Dataset refreshed, now run the model, and refresh those fields too.
     runModel();
@@ -751,6 +773,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     whcSpinner.setValue(200.0);
     whcSpinner.setEnabled(false);
+    exportCsvButton.setEnabled(false);
     this.inMetric = true;
   }
 
@@ -770,10 +793,10 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JTable datasetTable;
   private javax.swing.JLabel elevationText;
   private javax.swing.JMenuItem exitMenuItem;
+  private javax.swing.JButton exportCsvButton;
+  private javax.swing.JButton exportXmlButton;
   private javax.swing.JMenu fileMenu;
   private javax.swing.JMenu helpMenu;
-  private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton2;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel11;
   private javax.swing.JLabel jLabel2;
