@@ -3032,32 +3032,42 @@ public class BASICSimulationModel {
 
     // "Proceed to next step?" -> STORVAR6
 
-    String flxFile = ans + "," + id5c + "," + lt5c + "," + id8c + "," + lt8c + ",";
-    flxFile += nccd + "," + nccm + "," + ncsm + "," + ncwm + "," + div + "," + q + "\n";
+    String flxFile = "\"" + dataset.getName() + "\",\"" + dataset.getCountry() + "\"," + dataset.getLatitudeDegrees() + ",";
+    flxFile += dataset.getLatitudeMinutes() + "," + dataset.getNsHemisphere() + "," + dataset.getLongitudeDegrees();
+    flxFile += "," + dataset.getLongitudeMinutes() + "," + dataset.getEwHemisphere() + "," + dataset.getElevation();
+    flxFile += "," + arf + "," + aev + ",\"" + trr + "\"," + tma + "," + st + "," + wt + "," + dif + ",";
+    flxFile += dataset.getStartYear() + "," + dataset.getEndYear() + "\n";
+
+    for(int i = 1; i <= 12; i++) {
+      flxFile += precip[i] + "," + temperature[i];
+      flxFile += "," + mpe[i] + "\n";
+    }
+
+    flxFile += "\"" + ans + "\"," + id5c + "," + lt5c + "," + id8c + "," + lt8c + ",";
+    flxFile += nccd + "," + nccm + "," + ncsm + "," + ncwm + ",\"" + div + "\",\"" + q + "\"\n";
     flxFile += ncsp + "," + ncwp + "," + tc + "," + tu + "," + swt + "," + swp + "\n";
+
     for(int i = 1; i < 360; i++) {
       flxFile += iday[i] + ",";
     }
-    flxFile += iday[360] + "\n" + whc + "\n";
-    for(int i = 1; i < 6; i++) {
-      flxFile += nbd[i] + "," + ned[i] + "," + nbd8[i] + "," + ned8[i] + ",";
-    }
-    flxFile += nbd[6] + "," + ned[6] + "," + nbd8[6] + "," + ned8[6] + "\n";
-    for (int i = 1; i < 3; i++) {
-      flxFile += nd[i] + "," + nzd[i] + "," + nsd[i] + "," + ntsu[i] + "," + ntwi[i] + ",";
-    }
-    flxFile += nd[3] + "," + nzd[3] + "," + nsd[3] + "," + ntsu[3] + "," + ntwi[3] + "\n";
-    flxFile += ncpm[1] + "," + ncpm[2];
-    for (int i = 1; i < 5; i++) {
-      flxFile += cd[i] + ",";
-    }
-    flxFile += cd[5] + "\n";
+    flxFile += iday[360] + "," + whc + "\n";
 
-    if(tc == 0 && tu == 0) {
-      for(int i = 1; i < 360; i++) {
-        flxFile += ntd[i] + ",";
-      }
-      flxFile += ntd[360] + "\n";
+    for(int i = 1; i <= 6; i++) {
+      flxFile += nbd[i] + "," + ned[i] + "," + nbd8[i] + "," + ned8[i] + "\n";
+    }
+
+    for (int i = 1; i <= 3; i++) {
+      flxFile += nd[i] + "," + nzd[i] + "," + nsd[i] + "," + ntsu[i] + "," + ntwi[i] + "\n";
+    }
+
+    flxFile += ncpm[1] + "," + ncpm[2] + "\n";
+            
+    for (int i = 1; i <= 5; i++) {
+      flxFile += cd[i] + "\n";
+    }
+
+    for(int i = 1; i < 360; i++) {
+      flxFile += (char)ntd[i] + ",";
     }
 
     // End of simulation model run.

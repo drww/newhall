@@ -77,7 +77,6 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jScrollPane7 = new javax.swing.JScrollPane();
     statisticsText = new javax.swing.JTextArea();
     exportCsvButton = new javax.swing.JButton();
-    exportXmlButton = new javax.swing.JButton();
     jMenuBar1 = new javax.swing.JMenuBar();
     fileMenu = new javax.swing.JMenu();
     openDatasetMenuItem = new javax.swing.JMenuItem();
@@ -159,8 +158,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
               .addComponent(jLabel11))
             .addGap(18, 18, 18)
             .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(longitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-              .addComponent(latitudeText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))))
+              .addComponent(longitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+              .addComponent(latitudeText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))))
         .addContainerGap())
     );
     datasetPanelLayout.setVerticalGroup(
@@ -232,7 +231,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
     jTextArea1.setColumns(30);
-    jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+    jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14));
     jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
     jTextArea1.setRows(1);
     jTextArea1.setText("1''''''''''''15'''''''''''''30");
@@ -241,7 +240,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
     jTextArea2.setColumns(5);
-    jTextArea2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+    jTextArea2.setFont(new java.awt.Font("Monospaced", 0, 14));
     jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
     jTextArea2.setRows(12);
     jTextArea2.setText(" JAN\n FEB\n MAR\n APR\n MAY\n JUN\n JUL\n AUG\n SEP\n OCT\n NOV\n DEC");
@@ -251,13 +250,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     moistureCalendarText.setBackground(new java.awt.Color(0, 0, 0));
     moistureCalendarText.setColumns(30);
     moistureCalendarText.setEditable(false);
-    moistureCalendarText.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+    moistureCalendarText.setFont(new java.awt.Font("Monospaced", 0, 14));
     moistureCalendarText.setForeground(new java.awt.Color(255, 255, 255));
     moistureCalendarText.setRows(12);
     moistureCalendarText.setBorder(null);
     jScrollPane1.setViewportView(moistureCalendarText);
 
-    jLabel7.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+    jLabel7.setFont(new java.awt.Font("SansSerif", 0, 11));
     jLabel7.setText("1 = Dry, 2 = Moist/Dry, 3 = Moist");
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -315,13 +314,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     temperatureCalendarText.setBackground(new java.awt.Color(0, 0, 0));
     temperatureCalendarText.setColumns(30);
     temperatureCalendarText.setEditable(false);
-    temperatureCalendarText.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+    temperatureCalendarText.setFont(new java.awt.Font("Monospaced", 0, 14));
     temperatureCalendarText.setForeground(new java.awt.Color(255, 255, 255));
     temperatureCalendarText.setRows(12);
     temperatureCalendarText.setBorder(null);
     jScrollPane6.setViewportView(temperatureCalendarText);
 
-    jLabel8.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+    jLabel8.setFont(new java.awt.Font("SansSerif", 0, 11));
     jLabel8.setText("- = Under 5C, 5 = 5C to 8C, 8 = Excess of 8C");
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -358,8 +357,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     statisticsText.setColumns(20);
     statisticsText.setEditable(false);
-    statisticsText.setFont(new java.awt.Font("Monospaced", 0, 11));
+    statisticsText.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
     statisticsText.setRows(5);
+    statisticsText.setAutoscrolls(false);
     statisticsText.setOpaque(false);
     jScrollPane7.setViewportView(statisticsText);
 
@@ -369,7 +369,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
         .addContainerGap())
     );
     jPanel3Layout.setVerticalGroup(
@@ -379,19 +379,11 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addContainerGap())
     );
 
-    exportCsvButton.setText("Export to CSV");
+    exportCsvButton.setText("Export to FLX");
     exportCsvButton.setEnabled(false);
     exportCsvButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         exportCsvButtonActionPerformed(evt);
-      }
-    });
-
-    exportXmlButton.setText("Export to XML");
-    exportXmlButton.setEnabled(false);
-    exportXmlButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        exportXmlButtonActionPerformed(evt);
       }
     });
 
@@ -415,20 +407,18 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel5)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
           .addGroup(modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jLabel6)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(whcUnitsText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
-            .addComponent(exportXmlButton)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
             .addComponent(exportCsvButton))
           .addGroup(modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap())
     );
@@ -455,8 +445,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
           .addComponent(jLabel6)
           .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(whcUnitsText)
-          .addComponent(exportCsvButton)
-          .addComponent(exportXmlButton))
+          .addComponent(exportCsvButton))
         .addContainerGap())
     );
 
@@ -553,7 +542,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
           nd = new NewhallDataset(jfc.getSelectedFile().getAbsolutePath());
           loadDataset();
         } catch (Exception e) {
-          System.out.println("File format was unacceptable: " + e);
+          JOptionPane.showMessageDialog(this, "File format was unacceptable.  Only Newhall CSVs are\n"
+                  + "accepted.  See documentation for details on file formats.");
           unloadDataset();
         }
 
@@ -602,20 +592,20 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     private void exportCsvButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportCsvButtonActionPerformed
       JFileChooser jfc = new JFileChooser(".");
-      jfc.showSaveDialog(this);
-      if(jfc.getSelectedFile().exists()) {
-        int result = JOptionPane.showConfirmDialog(null, "File exists, overwrite?", "Confirm Overwrite", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if(result == JOptionPane.CANCEL_OPTION) {
-          return;
+      int saveDialogResult = jfc.showSaveDialog(this);
+      if (saveDialogResult == JOptionPane.OK_OPTION) {
+        if (jfc.getSelectedFile() != null && jfc.getSelectedFile().exists()) {
+          int result = JOptionPane.showConfirmDialog(null, "The file " + jfc.getSelectedFile().getName()
+                  + " already exists, overwrite it?", "Confirm Overwrite", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+          if (result == JOptionPane.CANCEL_OPTION) {
+            return;
+          }
         }
-      }
-      CSVResultsExporter cve = new CSVResultsExporter(nr, jfc.getSelectedFile());
-      cve.save();
-    }//GEN-LAST:event_exportCsvButtonActionPerformed
 
-    private void exportXmlButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportXmlButtonActionPerformed
-      // TODO add your handling code here:
-    }//GEN-LAST:event_exportXmlButtonActionPerformed
+        CSVResultsExporter cve = new CSVResultsExporter(nr, jfc.getSelectedFile());
+        cve.save();
+      }
+    }//GEN-LAST:event_exportCsvButtonActionPerformed
 
   public void loadDataset() {
 
@@ -673,7 +663,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     whcSpinner.setEnabled(true);
     exportCsvButton.setEnabled(true);
-    
+
 
     // Dataset refreshed, now run the model, and refresh those fields too.
     runModel();
@@ -797,7 +787,6 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JLabel elevationText;
   private javax.swing.JMenuItem exitMenuItem;
   private javax.swing.JButton exportCsvButton;
-  private javax.swing.JButton exportXmlButton;
   private javax.swing.JMenu fileMenu;
   private javax.swing.JMenu helpMenu;
   private javax.swing.JLabel jLabel1;
