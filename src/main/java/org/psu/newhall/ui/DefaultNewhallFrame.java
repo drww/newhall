@@ -6,13 +6,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import org.psu.newhall.sim.BASICSimulationModel;
-import org.psu.newhall.sim.NewhallDataset;
+import org.psu.newhall.sim.NewhallDatasetOld;
 import org.psu.newhall.sim.NewhallResults;
 import org.psu.newhall.util.CSVResultsExporter;
 
 public class DefaultNewhallFrame extends javax.swing.JFrame {
 
-  private NewhallDataset nd;
+  private NewhallDatasetOld nd;
   private NewhallResults nr;
   private boolean inMetric = true;
 
@@ -537,7 +537,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       if (returnCondition == JFileChooser.APPROVE_OPTION) {
         try {
           nd = null;
-          nd = new NewhallDataset(jfc.getSelectedFile().getAbsolutePath());
+          nd = new NewhallDatasetOld(jfc.getSelectedFile().getAbsolutePath());
           loadDataset();
         } catch (Exception e) {
           JOptionPane.showMessageDialog(this, "File format was unacceptable.  Only Newhall CSVs are\n"
