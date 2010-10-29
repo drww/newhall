@@ -135,6 +135,7 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
           System.out.println("Unacceptable file detected.");
           JOptionPane.showMessageDialog(this,
                   "Selected file is not formatted as a Newhall CSV or XML document.");
+          return;
         }
       }
 
