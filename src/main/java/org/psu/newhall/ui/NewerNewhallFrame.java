@@ -4,6 +4,9 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.psu.newhall.sim.NewhallDataset;
+import org.psu.newhall.util.CSVFileParser;
+import org.psu.newhall.util.CSVParser;
+import org.psu.newhall.util.XMLFileParser;
 
 public class NewerNewhallFrame extends javax.swing.JFrame {
 
@@ -118,18 +121,29 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
     JFileChooser jfc = new JFileChooser(".");
     int returnCondition = jfc.showOpenDialog(this);
     if (returnCondition == JFileChooser.APPROVE_OPTION) {
+      File selectedFile = jfc.getSelectedFile();
+      NewhallDataset newDataset = null;
+
       try {
-        File selectFile = jfc.getSelectedFile();
-        // Init dataset object.
-        // Populate display.
+        XMLFileParser xfp = new XMLFileParser(selectedFile);
+        newDataset = xfp.getDataset();
       } catch (Exception e) {
-        // Rollback changes.
-        JOptionPane.showMessageDialog(this,
-                "Selected file is not formatted as a Newhall CSV or XML document.");
+        // Wasn't an XML file, try CSV.
+        try {
+          CSVFileParser cfp = new CSVFileParser(selectedFile);
+          newDataset = cfp.getDatset();
+        } catch (Exception ee) {
+          // Wasn't either accepted formats.
+          JOptionPane.showMessageDialog(this,
+                  "Selected file is not formatted as a Newhall CSV or XML document.");
+        }
       }
+
+      // Init dataset object.
+      // Populate display.
+
     }
   }//GEN-LAST:event_OpenFileMenuItemActionPerformed
-
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuItem OpenFileMenuItem;
   private javax.swing.JLabel jLabel1;

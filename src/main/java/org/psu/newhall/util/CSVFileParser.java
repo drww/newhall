@@ -1,81 +1,83 @@
 package org.psu.newhall.util;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.psu.newhall.sim.NewhallDataset;
+import org.psu.newhall.sim.NewhallDatasetOld;
 
 public class CSVFileParser {
 
-  String filePath;
-  ArrayList<String> headers;
-  ArrayList<ArrayList<String>> records;
+  NewhallDataset datset;
 
-  public CSVFileParser(String filePath, boolean hasHeader) throws FileNotFoundException, IOException {
+  public CSVFileParser(File inputFile) {
 
-    FileInputStream fis = new FileInputStream(filePath);
-    DataInputStream dis = new DataInputStream(fis);
-    InputStreamReader isr = new InputStreamReader(dis);
-    BufferedReader br = new BufferedReader(isr);
+    ArrayList<Double> temperature;
+    ArrayList<Double> precipitation;
+    String name;
+    String country;
+    double latitude;
+    char nsHemisphere;
+    double longitude;
+    char ewHemisphere;
+    double elevation;
+    int startYear;
+    int endYear;
+    boolean isMetric;
 
-    this.filePath = filePath;
-    this.headers = new ArrayList<String>();
-    this.records = new ArrayList<ArrayList<String>>();
-    String line = "";
+    CSVParser parser = null;
 
-    if (hasHeader) {
-      line = br.readLine();
-      for (String str : line.split(",")) {
-        headers.add(str);
-      }
+    try {
+      parser = new CSVParser(inputFile.getAbsolutePath(), false);
+    } catch (FileNotFoundException ex) {
+      Logger.getLogger(NewhallDatasetOld.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (IOException ex) {
+      Logger.getLogger(NewhallDatasetOld.class.getName()).log(Level.SEVERE, null, ex);
     }
 
-    while((line = br.readLine()) != null) {
-      ArrayList<String> holder = new ArrayList<String>();
-      for(String str : line.split(",")) {
-        holder.add(str);
-      }
-      records.add(holder);
+    ArrayList<String> firstRow = parser.getRecords().get(0);
+    ArrayList<String> secondRow = parser.getRecords().get(1);
+
+    precipitation = new ArrayList<Double>(12);
+    temperature = new ArrayList<Double>(12);
+
+    name = firstRow.get(0).replace("\"", "");
+    country = firstRow.get(1).replace("\"", "");
+    latitude = Double.parseDouble(firstRow.get(2))
+            + Double.parseDouble(firstRow.get(3)) / 60;
+    nsHemisphere = firstRow.get(4).toUpperCase().charAt(1);
+    longitude = Double.parseDouble(firstRow.get(5))
+            + Double.parseDouble(firstRow.get(6)) / 60;
+    ewHemisphere = firstRow.get(7).toUpperCase().charAt(1);
+    elevation = Double.parseDouble(firstRow.get(8));
+
+    for (int i = 0; i <= 11; i++) {
+      precipitation.add(Double.parseDouble(secondRow.get(i)));
     }
 
-    fis.close();
+    for (int i = 12; i <= 23; i++) {
+      temperature.add(Double.parseDouble(secondRow.get(i)));
+    }
+
+    startYear = Integer.parseInt(secondRow.get(24));
+    endYear = Integer.parseInt(secondRow.get(25));
+
+    isMetric = false;
+    if (secondRow.get(26).charAt(1) == 'M') {
+      isMetric = true;
+    }
+
+    this.datset = new NewhallDataset(name, country, latitude,
+            longitude, nsHemisphere, ewHemisphere, elevation,
+            precipitation, temperature, startYear, endYear, isMetric);
 
   }
 
-  public String getFilePath() {
-    return filePath;
-  }
-
-  public ArrayList<String> getHeaders() {
-    return headers;
-  }
-
-  public ArrayList<ArrayList<String>> getRecords() {
-    return records;
-  }
-
-  @Override
-  public String toString() {
-    String result = this.getClass().toString();
-    result += "\n  " + filePath;
-    if (!headers.isEmpty()) {
-      result += "\n  ";
-      for (String str : headers) {
-        result += str + " ";
-      }
-    } else {
-      result += "\n  File has no headers.";
-    }
-    for(ArrayList<String> row : records) {
-      result += "\n    ";
-      for(String str : row) {
-        result += str + " ";
-      }
-    }
-    return result;
+  public NewhallDataset getDatset() {
+    return datset;
   }
 
 }

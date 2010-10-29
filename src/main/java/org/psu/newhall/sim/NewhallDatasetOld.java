@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.psu.newhall.util.CSVFileParser;
+import org.psu.newhall.util.CSVParser;
 
 public class NewhallDatasetOld {
 
@@ -24,10 +24,10 @@ public class NewhallDatasetOld {
 
   public NewhallDatasetOld(String filepath) {
 
-    CSVFileParser parser = null;
+    CSVParser parser = null;
 
     try {
-      parser = new CSVFileParser(filepath, false);
+      parser = new CSVParser(filepath, false);
     } catch (FileNotFoundException ex) {
       Logger.getLogger(NewhallDatasetOld.class.getName()).log(Level.SEVERE, null, ex);
     } catch (IOException ex) {
