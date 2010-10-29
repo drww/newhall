@@ -9,6 +9,7 @@ import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import org.psu.newhall.sim.NewhallDataset;
+import org.psu.newhall.sim.NewhallDatasetMetadata;
 
 public class XMLFileParser {
 
@@ -117,6 +118,12 @@ public class XMLFileParser {
     this.dataset = new NewhallDataset(stationName, country, lat, lon,
             'N', 'E', stationElevation, allPrecipsDbl, allAirTempsDbl, pdbegin, pdend, true);
 
+    NewhallDatasetMetadata ndm = new NewhallDatasetMetadata(stationName, stationId, stationElevation,
+            stateProvidence, country, mlraName, mlraId, firstName, lastName, title, cntorg,
+            address, city, stateprov, postal, cntCountry, cntemail, cntphone, allNotesStr,
+            rundate, modelVers, unitsys);
+    this.dataset.setMetadata(ndm);
+    
   }
 
   public NewhallDataset getDataset() {
