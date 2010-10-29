@@ -16,6 +16,7 @@ public class NewhallDataset {
   private int startYear;
   private int endYear;
   private boolean isMetric;
+  private NewhallDatasetMetadata metadata;
 
   public NewhallDataset(String name, String country, double latitude, double longitude, char nsHemisphere, char ewHemisphere, double elevation, List<Double> precipitation, List<Double> temperature, int startYear, int endYear, boolean isMetric) {
     this.name = name;
@@ -80,4 +81,11 @@ public class NewhallDataset {
     return temperature;
   }
 
+  public void setMetadata(NewhallDatasetMetadata metadata) {
+    this.metadata = metadata;
+  }
+
+  public NewhallDatasetMetadata getMetadata() {
+    return metadata;
+  }
 }

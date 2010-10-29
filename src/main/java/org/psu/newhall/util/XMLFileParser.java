@@ -1,5 +1,6 @@
 package org.psu.newhall.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,11 @@ public class XMLFileParser {
 
   NewhallDataset dataset;
 
-  public XMLFileParser(String filePath) throws JDOMException, IOException {
+  public XMLFileParser(File file) throws JDOMException, IOException {
 
     SAXBuilder builder = new SAXBuilder();
     Document doc = null;
-    doc = builder.build(filePath);
+    doc = builder.build(file.getAbsolutePath());
 
     Element root = doc.getRootElement();
     String modelVers = root.getAttributeValue("version");
