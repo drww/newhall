@@ -88,4 +88,46 @@ public class NewhallDataset {
   public NewhallDatasetMetadata getMetadata() {
     return metadata;
   }
+
+  @Override
+  public String toString() {
+    String result = this.getClass().toString();
+    result += "\n  Name: " + name;
+    result += "\n  Country: " + country;
+    result += "\n  Latitude: " + latitude + " " + nsHemisphere;
+    result += "\n  Longitude: " + longitude + " " + ewHemisphere;
+    result += "\n  Elevation: " + elevation;
+
+    if (isMetric) {
+      result += " meters";
+    } else {
+      result += " feet";
+    }
+
+    result += "\n  Precipitation(";
+    if (isMetric) {
+      result += "mm): ";
+    } else {
+      result += "in): ";
+    }
+    for (Double precip : precipitation) {
+      result += precip + " ";
+    }
+
+    result += "\n  Temperature(";
+    if (isMetric) {
+      result += "C): ";
+    } else {
+      result += "F): ";
+    }
+    for (Double temp : temperature) {
+      result += temp + " ";
+    }
+
+    result += "\n  Starting Year: " + startYear;
+    result += "\n  Ending Year: " + endYear;
+    result += "\n  Has Metadata: " + (getMetadata() != null);
+
+    return result;
+  }
 }

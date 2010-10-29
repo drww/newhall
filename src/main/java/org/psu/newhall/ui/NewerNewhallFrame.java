@@ -5,7 +5,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.psu.newhall.sim.NewhallDataset;
 import org.psu.newhall.util.CSVFileParser;
-import org.psu.newhall.util.CSVParser;
 import org.psu.newhall.util.XMLFileParser;
 
 public class NewerNewhallFrame extends javax.swing.JFrame {
@@ -128,16 +127,18 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
         XMLFileParser xfp = new XMLFileParser(selectedFile);
         newDataset = xfp.getDataset();
       } catch (Exception e) {
-        // Wasn't an XML file, try CSV.
+        System.out.println("Attempting CSV parsing.");
         try {
           CSVFileParser cfp = new CSVFileParser(selectedFile);
           newDataset = cfp.getDatset();
         } catch (Exception ee) {
-          // Wasn't either accepted formats.
+          System.out.println("Unacceptable file detected.");
           JOptionPane.showMessageDialog(this,
                   "Selected file is not formatted as a Newhall CSV or XML document.");
         }
       }
+
+      System.out.println(newDataset);
 
       // Init dataset object.
       // Populate display.

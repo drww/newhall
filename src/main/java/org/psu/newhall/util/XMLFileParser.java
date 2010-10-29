@@ -73,7 +73,7 @@ public class XMLFileParser {
 
     Element location = input.getChild("location");
     double lat = Double.parseDouble(location.getChildText("lat"));
-    double lon = Double.parseDouble(location.getChildText("long"));
+    double lon = Double.parseDouble(location.getChildText("lon"));
     String usercoordfmt = location.getChildText("usercoordfmt");
 
     Element recordpd = input.getChild("recordpd");
