@@ -120,9 +120,9 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
     JFileChooser jfc = new JFileChooser(".");
     int returnCondition = jfc.showOpenDialog(this);
     if (returnCondition == JFileChooser.APPROVE_OPTION) {
+      System.out.println("Attempting XML parsing.");
       File selectedFile = jfc.getSelectedFile();
       NewhallDataset newDataset = null;
-
       try {
         XMLFileParser xfp = new XMLFileParser(selectedFile);
         newDataset = xfp.getDataset();
@@ -138,9 +138,9 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
         }
       }
 
-      System.out.println(newDataset);
+      System.out.println("Loaded: " + newDataset);
 
-      // Init dataset object.
+      // Run model.
       // Populate display.
 
     }

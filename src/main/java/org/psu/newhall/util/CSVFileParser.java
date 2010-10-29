@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.psu.newhall.sim.NewhallDataset;
-import org.psu.newhall.sim.NewhallDatasetOld;
 
 public class CSVFileParser {
 
@@ -33,9 +32,9 @@ public class CSVFileParser {
     try {
       parser = new CSVParser(inputFile.getAbsolutePath(), false);
     } catch (FileNotFoundException ex) {
-      Logger.getLogger(NewhallDatasetOld.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(NewhallDataset.class.getName()).log(Level.SEVERE, null, ex);
     } catch (IOException ex) {
-      Logger.getLogger(NewhallDatasetOld.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(NewhallDataset.class.getName()).log(Level.SEVERE, null, ex);
     }
 
     ArrayList<String> firstRow = parser.getRecords().get(0);

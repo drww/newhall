@@ -9,7 +9,7 @@ package org.psu.newhall.sim;
 
 public class BASICSimulationModel {
 
-  public static NewhallResults runSimulation(NewhallDatasetOld dataset, double waterHoldingCapacity) {
+  public static NewhallResults runSimulation(NewhallDataset dataset, double waterHoldingCapacity) {
 
     // Convert elevation into meters.
     double elevation = dataset.getElevation();

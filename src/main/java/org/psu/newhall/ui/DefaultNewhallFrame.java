@@ -1,18 +1,22 @@
 package org.psu.newhall.ui;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import org.psu.newhall.sim.BASICSimulationModel;
-import org.psu.newhall.sim.NewhallDatasetOld;
+import org.psu.newhall.sim.NewhallDataset;
 import org.psu.newhall.sim.NewhallResults;
+import org.psu.newhall.util.CSVFileParser;
 import org.psu.newhall.util.CSVResultsExporter;
+import org.psu.newhall.util.XMLFileParser;
 
 public class DefaultNewhallFrame extends javax.swing.JFrame {
 
-  private NewhallDatasetOld nd;
+  private NewhallDataset nd;
   private NewhallResults nr;
   private boolean inMetric = true;
 
@@ -535,15 +539,26 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       JFileChooser jfc = new JFileChooser(".");
       int returnCondition = jfc.showOpenDialog(this);
       if (returnCondition == JFileChooser.APPROVE_OPTION) {
+        System.out.println("Attempting XML parsing.");
+        File selectedFile = jfc.getSelectedFile();
+        NewhallDataset newDataset = null;
         try {
-          nd = null;
-          nd = new NewhallDatasetOld(jfc.getSelectedFile().getAbsolutePath());
-          loadDataset();
+          XMLFileParser xfp = new XMLFileParser(selectedFile);
+          newDataset = xfp.getDataset();
         } catch (Exception e) {
-          JOptionPane.showMessageDialog(this, "File format was unacceptable.  Only Newhall CSVs are\n"
-                  + "accepted.  See documentation for details on file formats.");
-          unloadDataset();
+          System.out.println("Attempting CSV parsing.");
+          try {
+            CSVFileParser cfp = new CSVFileParser(selectedFile);
+            newDataset = cfp.getDatset();
+          } catch (Exception ee) {
+            System.out.println("Unacceptable file detected.");
+            JOptionPane.showMessageDialog(this,
+                    "Selected file is not formatted as a Newhall CSV or XML document.");
+          }
         }
+
+        nd = newDataset;
+        loadDataset();
 
       }
     }//GEN-LAST:event_openDatasetMenuItemActionPerformed
@@ -606,8 +621,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     // Refresh the frame with the dataset's fields.
 
-    ArrayList<Double> properTemp = new ArrayList<Double>(12);
-    ArrayList<Double> properPrecip = new ArrayList<Double>(12);
+    List<Double> properTemp = new ArrayList<Double>(12);
+    List<Double> properPrecip = new ArrayList<Double>(12);
     double properElevation = 0.0;
 
     if (this.inMetric && !nd.isMetric()) {

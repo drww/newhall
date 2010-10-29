@@ -49,7 +49,7 @@ public class NewhallDataset {
     return ewHemisphere;
   }
 
-  public boolean isIsMetric() {
+  public boolean isMetric() {
     return isMetric;
   }
 
@@ -57,8 +57,26 @@ public class NewhallDataset {
     return latitude;
   }
 
+  public int getLatitudeDegrees() {
+    return (int)latitude;
+  }
+
+  public double getLatitudeMinutes() {
+    double remainder = latitude - (int)latitude;
+    return remainder * 60;
+  }
+
   public double getLongitude() {
     return longitude;
+  }
+
+  public int getLongitudeDegrees() {
+    return (int)longitude;
+  }
+
+  public double getLongitudeMinutes() {
+    double remainder = longitude - (int)longitude;
+    return remainder * 60;
   }
 
   public String getName() {

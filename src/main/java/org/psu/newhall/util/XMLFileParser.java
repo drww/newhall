@@ -116,7 +116,8 @@ public class XMLFileParser {
     Double maatmast = Double.parseDouble(soilairrel.getChildText("maatmast"));
 
     this.dataset = new NewhallDataset(stationName, country, lat, lon,
-            'N', 'E', stationElevation, allPrecipsDbl, allAirTempsDbl, pdbegin, pdend, true);
+            'N', 'E', stationElevation, allPrecipsDbl, allAirTempsDbl,
+            pdbegin, pdend, unitsys.equals("metric"));
 
     NewhallDatasetMetadata ndm = new NewhallDatasetMetadata(stationName, stationId, stationElevation,
             stateProvidence, country, mlraName, mlraId, firstName, lastName, title, cntorg,
