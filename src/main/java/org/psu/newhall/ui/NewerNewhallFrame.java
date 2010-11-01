@@ -76,8 +76,8 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
     email = new javax.swing.JTextField();
     phone = new javax.swing.JTextField();
     notesPanel = new javax.swing.JPanel();
-    jScrollPane1 = new javax.swing.JScrollPane();
-    jTextArea1 = new javax.swing.JTextArea();
+    notesScrollPane = new javax.swing.JScrollPane();
+    notes = new javax.swing.JTextArea();
     lastRunMetadata = new javax.swing.JPanel();
     lastRunDateLabel = new javax.swing.JLabel();
     lastRunDate = new javax.swing.JLabel();
@@ -362,9 +362,9 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
 
     tabPane.addTab("Dataset Metadata", metadataPanel);
 
-    jTextArea1.setColumns(20);
-    jTextArea1.setRows(5);
-    jScrollPane1.setViewportView(jTextArea1);
+    notes.setColumns(20);
+    notes.setRows(5);
+    notesScrollPane.setViewportView(notes);
 
     lastRunMetadata.setBorder(javax.swing.BorderFactory.createTitledBorder("Last Run Details"));
 
@@ -420,7 +420,7 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, notesPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(notesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+          .addComponent(notesScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
           .addComponent(lastRunMetadata, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addContainerGap())
     );
@@ -428,7 +428,7 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
       notesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, notesPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+        .addComponent(notesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(lastRunMetadata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap())
@@ -716,8 +716,6 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JTextField firstName;
   private javax.swing.JLabel firstNameLabel;
   private javax.swing.JPanel inputPanel;
-  private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTextArea jTextArea1;
   private javax.swing.JTextField lastName;
   private javax.swing.JLabel lastNameLabel;
   private javax.swing.JLabel lastRunDate;
@@ -739,7 +737,9 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JLabel mlraIDLabel;
   private javax.swing.JTextField mlraName;
   private javax.swing.JLabel mlraNameLabel;
+  private javax.swing.JTextArea notes;
   private javax.swing.JPanel notesPanel;
+  private javax.swing.JScrollPane notesScrollPane;
   private javax.swing.JMenu open;
   private javax.swing.JTextField organization;
   private javax.swing.JLabel organizationLabel;
