@@ -1,7 +1,7 @@
 package org.psu.newhall;
 
 import javax.swing.UIManager;
-import org.psu.newhall.ui.DefaultNewhallFrame;
+import org.psu.newhall.ui.NewerNewhallFrame;
 
 public class Newhall {
 
@@ -13,7 +13,7 @@ public class Newhall {
       System.out.println(e);
     }
 
-    DefaultNewhallFrame dnf = new DefaultNewhallFrame();
+    NewerNewhallFrame dnf = new NewerNewhallFrame();
     dnf.setVisible(true);
 
   }

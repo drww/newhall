@@ -25,7 +25,6 @@ public class CSVResultsExporter {
       fw = new FileWriter(outputFile);
       pw = new PrintWriter(fw);
     } catch(Exception e) {
-      e.printStackTrace();
       JOptionPane.showMessageDialog(null, "Error occured while saving file: \n\n" + e.getMessage());
       return;
     }
