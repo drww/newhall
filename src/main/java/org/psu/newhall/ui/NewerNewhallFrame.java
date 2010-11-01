@@ -6,8 +6,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
 import org.psu.newhall.sim.BASICSimulationModel;
 import org.psu.newhall.sim.NewhallDataset;
+import org.psu.newhall.sim.NewhallDatasetMetadata;
 import org.psu.newhall.sim.NewhallResults;
 import org.psu.newhall.util.CSVFileParser;
 import org.psu.newhall.util.XMLFileParser;
@@ -16,9 +19,12 @@ import org.psu.newhall.util.XMLResultsExporter;
 public class NewerNewhallFrame extends javax.swing.JFrame {
 
   NewhallDataset dataset;
+  NewhallResults results;
+  boolean isInMetric;
 
   public NewerNewhallFrame() {
     initComponents();
+    isInMetric = true;
   }
 
   @SuppressWarnings("unchecked")
@@ -93,6 +99,21 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
     tempScrollPane = new javax.swing.JScrollPane();
     tempTable = new javax.swing.JTable();
     resultsPanel = new javax.swing.JPanel();
+    petPanel = new javax.swing.JPanel();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    petTable = new javax.swing.JTable();
+    annualRainfallLabel = new javax.swing.JLabel();
+    tempRegimeLabel = new javax.swing.JLabel();
+    annualRainfall = new javax.swing.JLabel();
+    tempRegime = new javax.swing.JLabel();
+    moistRegimeLabel = new javax.swing.JLabel();
+    moistRegime = new javax.swing.JLabel();
+    extendedStatisticsPanel = new javax.swing.JPanel();
+    jScrollPane2 = new javax.swing.JScrollPane();
+    extendedStatistics = new javax.swing.JTextArea();
+    whcResultLabel = new javax.swing.JLabel();
+    whcResult = new javax.swing.JLabel();
+    whcResultUnits = new javax.swing.JLabel();
     exportXmlButton = new javax.swing.JButton();
     whcSpinnerLabel = new javax.swing.JLabel();
     whcSpinner = new javax.swing.JSpinner();
@@ -454,7 +475,7 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
         {null, null}
       },
       new String [] {
-        "Title 1", "Title 2"
+        " ", " "
       }
     ) {
       Class[] types = new Class [] {
@@ -501,7 +522,7 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
         {null, null}
       },
       new String [] {
-        "Title 1", "Title 2"
+        " ", " "
       }
     ) {
       Class[] types = new Class [] {
@@ -553,15 +574,146 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
 
     tabPane.addTab("Input Datum", inputPanel);
 
+    petPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Potential Evapotranspiration"));
+
+    petTable.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null}
+      },
+      new String [] {
+        " ", " "
+      }
+    ));
+    jScrollPane1.setViewportView(petTable);
+
+    javax.swing.GroupLayout petPanelLayout = new javax.swing.GroupLayout(petPanel);
+    petPanel.setLayout(petPanelLayout);
+    petPanelLayout.setHorizontalGroup(
+      petPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(petPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+    petPanelLayout.setVerticalGroup(
+      petPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(petPanelLayout.createSequentialGroup()
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    annualRainfallLabel.setText("Annual Rainfall:");
+
+    tempRegimeLabel.setText("Temperature Regime:");
+
+    annualRainfall.setText(" ");
+
+    tempRegime.setText(" ");
+
+    moistRegimeLabel.setText("Moisture Regime:");
+
+    moistRegime.setText(" ");
+
+    extendedStatisticsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Extended Statistics"));
+
+    extendedStatistics.setColumns(20);
+    extendedStatistics.setRows(5);
+    jScrollPane2.setViewportView(extendedStatistics);
+
+    javax.swing.GroupLayout extendedStatisticsPanelLayout = new javax.swing.GroupLayout(extendedStatisticsPanel);
+    extendedStatisticsPanel.setLayout(extendedStatisticsPanelLayout);
+    extendedStatisticsPanelLayout.setHorizontalGroup(
+      extendedStatisticsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, extendedStatisticsPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+    extendedStatisticsPanelLayout.setVerticalGroup(
+      extendedStatisticsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(extendedStatisticsPanelLayout.createSequentialGroup()
+        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    whcResultLabel.setText("Waterholding Capacity:");
+
+    whcResult.setText(" ");
+
+    whcResultUnits.setText(" ");
+
     javax.swing.GroupLayout resultsPanelLayout = new javax.swing.GroupLayout(resultsPanel);
     resultsPanel.setLayout(resultsPanelLayout);
     resultsPanelLayout.setHorizontalGroup(
       resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 572, Short.MAX_VALUE)
+      .addGroup(resultsPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(resultsPanelLayout.createSequentialGroup()
+              .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(petPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                  .addComponent(moistRegime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addGroup(javax.swing.GroupLayout.Alignment.LEADING, resultsPanelLayout.createSequentialGroup()
+                    .addComponent(tempRegimeLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(tempRegime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                  .addGroup(javax.swing.GroupLayout.Alignment.LEADING, resultsPanelLayout.createSequentialGroup()
+                    .addComponent(annualRainfallLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(annualRainfall, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+            .addComponent(moistRegimeLabel, javax.swing.GroupLayout.Alignment.LEADING))
+          .addGroup(resultsPanelLayout.createSequentialGroup()
+            .addComponent(whcResultLabel)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(whcResult, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(whcResultUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addGap(6, 6, 6)
+        .addComponent(extendedStatisticsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addContainerGap())
     );
     resultsPanelLayout.setVerticalGroup(
       resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 446, Short.MAX_VALUE)
+      .addGroup(resultsPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(resultsPanelLayout.createSequentialGroup()
+            .addComponent(extendedStatisticsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap())
+          .addGroup(resultsPanelLayout.createSequentialGroup()
+            .addComponent(petPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(annualRainfallLabel)
+              .addComponent(annualRainfall))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(tempRegimeLabel)
+              .addComponent(tempRegime))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(moistRegimeLabel)
+              .addComponent(moistRegime))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(whcResultLabel)
+              .addComponent(whcResult)
+              .addComponent(whcResultUnits, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE))
+            .addGap(58, 58, 58))))
     );
 
     tabPane.addTab("Model Results", resultsPanel);
@@ -610,7 +762,7 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
             .addComponent(exportFlxButton)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(exportXmlButton))
-          .addComponent(tabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))
+          .addComponent(tabPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -665,6 +817,136 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_OpenFileMenuItemActionPerformed
 
+  private void refreshFields() {
+    resetFields();
+    if(dataset == null) {
+      // Don't bother refreshing fields, no data for them.
+      return;
+    }
+
+    stationName.setText(dataset.getName());
+    country.setText(dataset.getCountry());
+    latitude.setText(Double.toString(dataset.getLatitude()));
+    latitudeNSLabel.setText(dataset.getNsHemisphere() + "");
+    longitude.setText(Double.toString(dataset.getLongitude()));
+    longitudeEWLabel.setText(dataset.getEwHemisphere() + "");
+
+    if(isInMetric && !dataset.isMetric()) {
+      // Convert English to Metric.
+      Double elevAsMetric = dataset.getElevation() * 0.3048;
+      elevation.setText(elevAsMetric.toString());
+      elevationUnitsLabel.setText("m");
+    } else if(!isInMetric && dataset.isMetric()) {
+      // Convert Metric to English.
+      Double elevAsEnglish = dataset.getElevation() / 0.3048;
+      elevation.setText(elevAsEnglish.toString());
+      elevationUnitsLabel.setText("ft");
+    }
+
+    startYear.setText(Integer.toString(dataset.getStartYear()));
+    endYear.setText(Integer.toString(dataset.getEndYear()));
+    if(dataset.isMetric()) {
+      unitSystem.setText("Metric");
+    } else {
+      unitSystem.setText("English");
+    }
+
+    if (dataset.getMetadata() != null) {
+      NewhallDatasetMetadata metadata = dataset.getMetadata();
+      stateProv.setText(metadata.getStationStateProvidence());
+      mlraName.setText(metadata.getMlraName());
+      mlraID.setText(Integer.toString(metadata.getMlraId()));
+      firstName.setText(metadata.getContribFirstName());
+      lastName.setText(metadata.getContribLastName());
+      title.setText(metadata.getContribTitle());
+      organization.setText(metadata.getContribOrg());
+      address.setText(metadata.getContribAddress());
+      city.setText(metadata.getContribCity());
+      stateProvContrib.setText(metadata.getContribStateProvidence());
+      postal.setText(metadata.getContribPostal());
+      countryContrib.setText(metadata.getContribCountry());
+      email.setText(metadata.getContribEmail());
+      phone.setText(metadata.getContribPhone());
+      lastRunDate.setText(metadata.getRunDate());
+      lastRunVersion.setText(metadata.getModelVersion());
+      lastRunUnitsys.setText(metadata.getUnitSystem());
+
+      String formattedNotes = "";
+      for(String str : metadata.getNotes()) {
+        formattedNotes += str + "\n";
+      }
+      notes.setText(formattedNotes);
+    }
+    
+    whcSpinner.setValue(200.0);
+    whcUnitsLabel.setText("mm");
+
+    /** RESUME HERE **/
+
+    resetTable(precipTable);
+    resetTable(tempTable);
+    resetTable(petTable);
+    annualRainfall.setText("");
+    tempRegime.setText("");
+    moistRegime.setText("");
+    whcResult.setText("");
+    whcResultUnits.setText("");
+    extendedStatistics.setText("");
+  }
+
+  private void resetFields() {
+    this.isInMetric = true;
+    stationName.setText("");
+    country.setText("");
+    stateProv.setText("");
+    latitude.setText("");
+    latitudeNSLabel.setText("");
+    longitude.setText("");
+    longitude.setText("");
+    elevation.setText("");
+    elevationUnitsLabel.setText("");
+    mlraName.setText("");
+    mlraID.setText("");
+    startYear.setText("");
+    endYear.setText("");
+    unitSystem.setText("");
+    firstName.setText("");
+    lastName.setText("");
+    title.setText("");
+    organization.setText("");
+    address.setText("");
+    city.setText("");
+    stateProvContrib.setText("");
+    postal.setText("");
+    countryContrib.setText("");
+    email.setText("");
+    phone.setText("");
+    whcSpinner.setValue(200.0);
+    whcUnitsLabel.setText("mm");
+    notes.setText("");
+    lastRunDate.setText("");
+    lastRunVersion.setText("");
+    lastRunUnitsys.setText("");
+    resetTable(precipTable);
+    resetTable(tempTable);
+    resetTable(petTable);
+    annualRainfall.setText("");
+    tempRegime.setText("");
+    moistRegime.setText("");
+    whcResult.setText("");
+    whcResultUnits.setText("");
+    extendedStatistics.setText("");
+  }
+
+  private void resetTable(JTable table) {
+    TableModel model = table.getModel();
+    for (int i = 0; i < model.getRowCount(); i++) {
+      for (int j = 0; j < model.getColumnCount(); j++) {
+        model.setValueAt("", i, j);
+      }
+    }
+  }
+
   private void exportXmlButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportXmlButtonActionPerformed
 
     JFileChooser jfc = new JFileChooser(".");
@@ -680,7 +962,6 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
 
       XMLResultsExporter exporter = new XMLResultsExporter(jfc.getSelectedFile());
       try {
-        NewhallResults results = BASICSimulationModel.runSimulation(dataset, Double.valueOf(whcSpinner.getValue().toString()).doubleValue());
         exporter.export(results, dataset);
       } catch (IOException ex) {
         Logger.getLogger(NewerNewhallFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -697,6 +978,8 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JMenuItem OpenFileMenuItem;
   private javax.swing.JTextField address;
   private javax.swing.JLabel addressLabel;
+  private javax.swing.JLabel annualRainfall;
+  private javax.swing.JLabel annualRainfallLabel;
   private javax.swing.JTextField city;
   private javax.swing.JLabel cityLabel;
   private javax.swing.JPanel contributorPanel;
@@ -713,9 +996,13 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JLabel endYearLabel;
   private javax.swing.JButton exportFlxButton;
   private javax.swing.JButton exportXmlButton;
+  private javax.swing.JTextArea extendedStatistics;
+  private javax.swing.JPanel extendedStatisticsPanel;
   private javax.swing.JTextField firstName;
   private javax.swing.JLabel firstNameLabel;
   private javax.swing.JPanel inputPanel;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JScrollPane jScrollPane2;
   private javax.swing.JTextField lastName;
   private javax.swing.JLabel lastNameLabel;
   private javax.swing.JLabel lastRunDate;
@@ -737,12 +1024,16 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JLabel mlraIDLabel;
   private javax.swing.JTextField mlraName;
   private javax.swing.JLabel mlraNameLabel;
+  private javax.swing.JLabel moistRegime;
+  private javax.swing.JLabel moistRegimeLabel;
   private javax.swing.JTextArea notes;
   private javax.swing.JPanel notesPanel;
   private javax.swing.JScrollPane notesScrollPane;
   private javax.swing.JMenu open;
   private javax.swing.JTextField organization;
   private javax.swing.JLabel organizationLabel;
+  private javax.swing.JPanel petPanel;
+  private javax.swing.JTable petTable;
   private javax.swing.JTextField phone;
   private javax.swing.JLabel phoneLabel;
   private javax.swing.JTextField postal;
@@ -761,12 +1052,17 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JLabel stationNameLabel;
   private javax.swing.JTabbedPane tabPane;
   private javax.swing.JPanel tempPanel;
+  private javax.swing.JLabel tempRegime;
+  private javax.swing.JLabel tempRegimeLabel;
   private javax.swing.JScrollPane tempScrollPane;
   private javax.swing.JTable tempTable;
   private javax.swing.JTextField title;
   private javax.swing.JLabel titleLabel;
   private javax.swing.JTextField unitSystem;
   private javax.swing.JLabel unitSystemLabel;
+  private javax.swing.JLabel whcResult;
+  private javax.swing.JLabel whcResultLabel;
+  private javax.swing.JLabel whcResultUnits;
   private javax.swing.JSpinner whcSpinner;
   private javax.swing.JLabel whcSpinnerLabel;
   private javax.swing.JLabel whcUnitsLabel;
