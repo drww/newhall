@@ -87,6 +87,11 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
     lastRunUnitsys = new javax.swing.JLabel();
     inputPanel = new javax.swing.JPanel();
     precipPanel = new javax.swing.JPanel();
+    precipScrollPane = new javax.swing.JScrollPane();
+    precipTable = new javax.swing.JTable();
+    tempPanel = new javax.swing.JPanel();
+    tempScrollPane = new javax.swing.JScrollPane();
+    tempTable = new javax.swing.JTable();
     resultsPanel = new javax.swing.JPanel();
     exportXmlButton = new javax.swing.JButton();
     whcSpinnerLabel = new javax.swing.JLabel();
@@ -433,15 +438,96 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
 
     precipPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Precipitation"));
 
+    precipTable.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null}
+      },
+      new String [] {
+        "Title 1", "Title 2"
+      }
+    ) {
+      Class[] types = new Class [] {
+        java.lang.String.class, java.lang.Double.class
+      };
+
+      public Class getColumnClass(int columnIndex) {
+        return types [columnIndex];
+      }
+    });
+    precipScrollPane.setViewportView(precipTable);
+
     javax.swing.GroupLayout precipPanelLayout = new javax.swing.GroupLayout(precipPanel);
     precipPanel.setLayout(precipPanelLayout);
     precipPanelLayout.setHorizontalGroup(
       precipPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 536, Short.MAX_VALUE)
+      .addGroup(precipPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(precipScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+        .addContainerGap())
     );
     precipPanelLayout.setVerticalGroup(
       precipPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 100, Short.MAX_VALUE)
+      .addGroup(precipPanelLayout.createSequentialGroup()
+        .addComponent(precipScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    tempPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperature"));
+
+    tempTable.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null},
+        {null, null}
+      },
+      new String [] {
+        "Title 1", "Title 2"
+      }
+    ) {
+      Class[] types = new Class [] {
+        java.lang.String.class, java.lang.Double.class
+      };
+
+      public Class getColumnClass(int columnIndex) {
+        return types [columnIndex];
+      }
+    });
+    tempScrollPane.setViewportView(tempTable);
+
+    javax.swing.GroupLayout tempPanelLayout = new javax.swing.GroupLayout(tempPanel);
+    tempPanel.setLayout(tempPanelLayout);
+    tempPanelLayout.setHorizontalGroup(
+      tempPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(tempPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(tempScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+    tempPanelLayout.setVerticalGroup(
+      tempPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(tempPanelLayout.createSequentialGroup()
+        .addComponent(tempScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+        .addContainerGap())
     );
 
     javax.swing.GroupLayout inputPanelLayout = new javax.swing.GroupLayout(inputPanel);
@@ -450,15 +536,19 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
       inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(inputPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(precipPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(precipPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(tempPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addContainerGap())
     );
     inputPanelLayout.setVerticalGroup(
       inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(inputPanelLayout.createSequentialGroup()
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inputPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(precipPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(307, Short.MAX_VALUE))
+        .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(tempPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(precipPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addContainerGap())
     );
 
     tabPane.addTab("Input Datum", inputPanel);
@@ -658,6 +748,8 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JTextField postal;
   private javax.swing.JLabel postalLabel;
   private javax.swing.JPanel precipPanel;
+  private javax.swing.JScrollPane precipScrollPane;
+  private javax.swing.JTable precipTable;
   private javax.swing.JPanel resultsPanel;
   private javax.swing.JTextField startYear;
   private javax.swing.JLabel startYearLabel;
@@ -668,6 +760,9 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JTextField stationName;
   private javax.swing.JLabel stationNameLabel;
   private javax.swing.JTabbedPane tabPane;
+  private javax.swing.JPanel tempPanel;
+  private javax.swing.JScrollPane tempScrollPane;
+  private javax.swing.JTable tempTable;
   private javax.swing.JTextField title;
   private javax.swing.JLabel titleLabel;
   private javax.swing.JTextField unitSystem;
