@@ -26,6 +26,47 @@ public class XMLResultsExporter {
 
     /** Extract Metadata, build empty set if null. **/
 
+    Element metadata = new Element("metadata");
+
+    Element stninfo = new Element("stninfo");
+    Element stnid = new Element("stnid");
+    Element stnname = new Element("stnname");
+    stnname.setText(dataset.getName());
+    Element stnelev = new Element("stnelev");
+    stnelev.setText(Double.toString(dataset.getElevation()));
+    Element stateprov = new Element("stateprov");
+    Element country = new Element("country");
+    country.setText(dataset.getCountry());
+
+    if(dataset.getMetadata() != null) {
+      stnid.setText(dataset.getMetadata().getStationId());
+      stateprov.setText(dataset.getMetadata().getStationStateProvidence());
+    }
+
+    stninfo.addContent(stnname);
+    stninfo.addContent(stnid);
+    stninfo.addContent(stnelev);
+    stninfo.addContent(stateprov);
+    stninfo.addContent(country);
+    metadata.addContent(stninfo);
+
+    Element mlra = new Element("mlra");
+    Element mlraname = new Element("mlraname");
+    Element mlraid = new Element("mlraid");
+
+    if(dataset.getMetadata() != null) {
+      mlraname.setText(dataset.getMetadata().getMlraName());
+      mlraid.setText(Integer.toString(dataset.getMetadata().getMlraId()));
+    }
+
+    mlra.addContent(mlraname);
+    mlra.addContent(mlraid);
+    metadata.addContent(mlra);
+
+    Element cntinfo = new Element("cntinfo");
+
+    metadata.addContent(cntinfo);
+
     /** Extract dataset input data. **/
     
     Element input = new Element("input");
