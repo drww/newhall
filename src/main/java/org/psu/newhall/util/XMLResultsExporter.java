@@ -26,9 +26,8 @@ public class XMLResultsExporter {
 
     /** Extract Metadata, build empty set if null. **/
 
-
     /** Extract dataset input data. **/
-
+    
     Element input = new Element("input");
 
     Element location = new Element("location");
@@ -43,11 +42,57 @@ public class XMLResultsExporter {
     location.addContent(usercoordfmt);
     input.addContent(location);
 
+    Element recordpd = new Element("recordpd");
+    Element pdtype = new Element("pdtype");
+    pdtype.setText("normal");
+    Element pdbegin = new Element("pdbegin");
+    pdbegin.setText(Integer.toString(dataset.getStartYear()));
+    Element pdend = new Element("pdend");
+    pdend.setText(Integer.toString(dataset.getEndYear()));
+    recordpd.addContent(pdtype);
+    recordpd.addContent(pdbegin);
+    recordpd.addContent(pdend);
+    input.addContent(recordpd);
+
+    Element precips = new Element("precips");
+    String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    for (int i = 0; i < months.length; i++) {
+      Element precip = new Element("precip");
+      precip.setAttribute("id", months[i]);
+      precip.setText(Double.toString(dataset.getPrecipitation().get(i)));
+      precips.addContent(precip);
+    }
+    input.addContent(precips);
+
+    Element airtemps = new Element("airtemps");
+    for(int i = 0; i< months.length; i++) {
+      Element airtemp = new Element("airtemp");
+      airtemp.setAttribute("id", months[i]);
+      airtemp.setText(Double.toString(dataset.getTemperature().get(i)));
+      airtemps.addContent(airtemp);
+    }
+    input.addContent(airtemps);
+
+    Element smcsawc = new Element("smcsawc");
+    smcsawc.setText(Double.toString(results.getWaterHoldingCapacity()));
+    input.addContent(smcsawc);
+
+    Element soilairrel = new Element("soilairrel");
+    Element lag = new Element("lag");
+    lag.setText("18");
+    Element ampltd = new Element("ampltd");
+    ampltd.setText("0.66");
+    Element maatmast = new Element("maatmast");
+    maatmast.setText("1.2");
+    soilairrel.addContent(lag);
+    soilairrel.addContent(ampltd);
+    soilairrel.addContent(maatmast);
+    input.addContent(soilairrel);
+
     model.addContent(input);
 
     /** Extract model output data. **/
-
-
     XMLOutputter outputter = new XMLOutputter();
     outputter.setFormat(Format.getPrettyFormat());
     FileWriter writer = new FileWriter(outputFile);
@@ -55,5 +100,4 @@ public class XMLResultsExporter {
     writer.close();
 
   }
-
 }
