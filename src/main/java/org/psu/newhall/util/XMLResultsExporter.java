@@ -30,7 +30,10 @@ public class XMLResultsExporter {
     Element model = new Element("model");
     doc.setRootElement(model);
 
-    /** Extract Metadata, build empty set if null. **/
+    /**
+     * Extract Metadata, build empty set if null.
+     * 
+     **/
     Element metadata = new Element("metadata");
 
     Element stninfo = new Element("stninfo");
@@ -141,7 +144,7 @@ public class XMLResultsExporter {
     rundate.setText(sdf.format(new Date()));
     metadata.addContent(rundate);
 
-    Element nsmversion = new Element("nsmversion");
+    Element nsmversion = new Element("nsmver");
     Element unitsys = new Element("unitsys");
     nsmversion.setText(org.psu.newhall.Newhall.NSM_VERSION);
     if (dataset.isMetric()) {
@@ -152,7 +155,10 @@ public class XMLResultsExporter {
     metadata.addContent(nsmversion);
     metadata.addContent(unitsys);
 
-    /** Extract dataset input data. **/
+    /**
+     * Extract dataset input data.
+     *
+     **/
     Element input = new Element("input");
 
     Element location = new Element("location");
@@ -215,9 +221,36 @@ public class XMLResultsExporter {
     soilairrel.addContent(maatmast);
     input.addContent(soilairrel);
 
+    /**
+     * Extract Output data.
+     *
+     **/
+    Element output = new Element("output");
+
+    Element smrclass = new Element("smrclass");
+    Element strclass = new Element("strclass");
+    Element awb = new Element("awb");
+    Element swb = new Element("swb");
+    Element smcstates = new Element("smcstates");
+    Element pets = new Element("pets");
+    Element soiltemps = new Element("soiltemps");
+    Element calendars = new Element("calendars");
+
+    
+
+    output.addContent(smrclass);
+    output.addContent(strclass);
+    output.addContent(awb);
+    output.addContent(swb);
+    output.addContent(smcstates);
+    output.addContent(pets);
+    output.addContent(soiltemps);
+    output.addContent(calendars);
+
     /** Combine tags into root tag. **/
     model.addContent(metadata);
     model.addContent(input);
+    model.addContent(output);
 
     /** Extract model output data. **/
     XMLOutputter outputter = new XMLOutputter();
