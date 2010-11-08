@@ -3,8 +3,12 @@ package org.psu.newhall.util;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
@@ -27,7 +31,6 @@ public class XMLResultsExporter {
     doc.setRootElement(model);
 
     /** Extract Metadata, build empty set if null. **/
-
     Element metadata = new Element("metadata");
 
     Element stninfo = new Element("stninfo");
@@ -40,7 +43,7 @@ public class XMLResultsExporter {
     Element country = new Element("country");
     country.setText(dataset.getCountry());
 
-    if(dataset.getMetadata() != null) {
+    if (dataset.getMetadata() != null) {
       stnid.setText(dataset.getMetadata().getStationId());
       stateprov.setText(dataset.getMetadata().getStationStateProvidence());
     }
@@ -56,7 +59,7 @@ public class XMLResultsExporter {
     Element mlraname = new Element("mlraname");
     Element mlraid = new Element("mlraid");
 
-    if(dataset.getMetadata() != null) {
+    if (dataset.getMetadata() != null) {
       mlraname.setText(dataset.getMetadata().getMlraName());
       mlraid.setText(Integer.toString(dataset.getMetadata().getMlraId()));
     }
@@ -72,7 +75,7 @@ public class XMLResultsExporter {
     Element lastname = new Element("lastname");
     Element title = new Element("title");
 
-    if(dataset.getMetadata() != null) {
+    if (dataset.getMetadata() != null) {
       firstname.setText(dataset.getMetadata().getContribFirstName());
       lastname.setText(dataset.getMetadata().getContribLastName());
       title.setText(dataset.getMetadata().getContribTitle());
@@ -84,7 +87,7 @@ public class XMLResultsExporter {
     cntinfo.addContent(cntper);
 
     Element cntorg = new Element("cntorg");
-    if(dataset.getMetadata() != null) {
+    if (dataset.getMetadata() != null) {
       cntorg.setText(dataset.getMetadata().getContribOrg());
     }
     cntinfo.addContent(cntorg);
@@ -96,7 +99,7 @@ public class XMLResultsExporter {
     Element postal = new Element("postal");
     Element countryContrib = new Element("country");
 
-    if(dataset.getMetadata() != null) {
+    if (dataset.getMetadata() != null) {
       address.setText(dataset.getMetadata().getContribAddress());
       city.setText(dataset.getMetadata().getContribCity());
       stateprovContrib.setText(dataset.getMetadata().getContribStateProvidence());
@@ -114,7 +117,7 @@ public class XMLResultsExporter {
     Element cntemail = new Element("cntemail");
     Element cntphone = new Element("cntphone");
 
-    if(dataset.getMetadata() != null) {
+    if (dataset.getMetadata() != null) {
       cntemail.setText(dataset.getMetadata().getContribEmail());
       cntphone.setText(dataset.getMetadata().getContribPhone());
     }
@@ -124,8 +127,8 @@ public class XMLResultsExporter {
     metadata.addContent(cntinfo);
 
     Element notes = new Element("notes");
-    if(dataset.getMetadata() != null) {
-      for(String noteText : dataset.getMetadata().getNotes()) {
+    if (dataset.getMetadata() != null) {
+      for (String noteText : dataset.getMetadata().getNotes()) {
         Element note = new Element("note");
         note.setText(noteText);
         notes.addContent(note);
@@ -135,13 +138,13 @@ public class XMLResultsExporter {
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
     Element rundate = new Element("rundate");
-    rundate.setText(sdf.toPattern());
+    rundate.setText(sdf.format(new Date()));
     metadata.addContent(rundate);
 
     Element nsmversion = new Element("nsmversion");
     Element unitsys = new Element("unitsys");
     nsmversion.setText(org.psu.newhall.Newhall.NSM_VERSION);
-    if(dataset.isMetric()) {
+    if (dataset.isMetric()) {
       unitsys.setText("metric");
     } else {
       unitsys.setText("english");
@@ -150,7 +153,6 @@ public class XMLResultsExporter {
     metadata.addContent(unitsys);
 
     /** Extract dataset input data. **/
-    
     Element input = new Element("input");
 
     Element location = new Element("location");
@@ -189,7 +191,7 @@ public class XMLResultsExporter {
     input.addContent(precips);
 
     Element airtemps = new Element("airtemps");
-    for(int i = 0; i< months.length; i++) {
+    for (int i = 0; i < months.length; i++) {
       Element airtemp = new Element("airtemp");
       airtemp.setAttribute("id", months[i]);
       airtemp.setText(Double.toString(dataset.getTemperature().get(i)));
@@ -213,6 +215,8 @@ public class XMLResultsExporter {
     soilairrel.addContent(maatmast);
     input.addContent(soilairrel);
 
+    /** Combine tags into root tag. **/
+    model.addContent(metadata);
     model.addContent(input);
 
     /** Extract model output data. **/
