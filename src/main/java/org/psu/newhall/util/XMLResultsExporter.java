@@ -236,7 +236,8 @@ public class XMLResultsExporter {
     Element soiltemps = new Element("soiltemps");
     Element calendars = new Element("calendars");
 
-    
+    smrclass.setText(results.getMoistureRegime());
+    strclass.setText(results.getTemperatureRegime());
 
     output.addContent(smrclass);
     output.addContent(strclass);
