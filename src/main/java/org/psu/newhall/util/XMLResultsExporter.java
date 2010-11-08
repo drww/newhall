@@ -65,6 +65,55 @@ public class XMLResultsExporter {
 
     Element cntinfo = new Element("cntinfo");
 
+    Element cntper = new Element("cntper");
+    Element firstname = new Element("firstname");
+    Element lastname = new Element("lastname");
+    Element title = new Element("title");
+
+    if(dataset.getMetadata() != null) {
+      firstname.setText(dataset.getMetadata().getContribFirstName());
+      lastname.setText(dataset.getMetadata().getContribLastName());
+      title.setText(dataset.getMetadata().getContribTitle());
+    }
+
+    cntper.addContent(firstname);
+    cntper.addContent(lastname);
+    cntper.addContent(title);
+    cntinfo.addContent(cntper);
+
+    Element cntorg = new Element("cntorg");
+    if(dataset.getMetadata() != null) {
+      cntorg.setText(dataset.getMetadata().getContribOrg());
+    }
+    cntinfo.addContent(cntorg);
+
+    Element cntaddr = new Element("cntaddr");
+    Element address = new Element("address");
+    Element city = new Element("city");
+    Element stateprovContrib = new Element("stateprov");
+    Element postal = new Element("postal");
+    Element countryContrib = new Element("country");
+
+    if(dataset.getMetadata() != null) {
+      address.setText(dataset.getMetadata().getContribAddress());
+      city.setText(dataset.getMetadata().getContribCity());
+      stateprovContrib.setText(dataset.getMetadata().getContribStateProvidence());
+      postal.setText(dataset.getMetadata().getContribPostal());
+      countryContrib.setText(dataset.getMetadata().getContribCountry());
+    }
+
+    cntaddr.addContent(address);
+    cntaddr.addContent(city);
+    cntaddr.addContent(stateprovContrib);
+    cntaddr.addContent(postal);
+    cntaddr.addContent(countryContrib);
+    cntinfo.addContent(cntaddr);
+
+
+
+    Element cntemail = new Element("cntemail");
+    Element cntphone = new Element("cntphone");
+
     metadata.addContent(cntinfo);
 
     /** Extract dataset input data. **/
