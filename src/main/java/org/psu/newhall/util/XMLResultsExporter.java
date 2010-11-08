@@ -3,6 +3,8 @@ package org.psu.newhall.util;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
@@ -109,12 +111,43 @@ public class XMLResultsExporter {
     cntaddr.addContent(countryContrib);
     cntinfo.addContent(cntaddr);
 
-
-
     Element cntemail = new Element("cntemail");
     Element cntphone = new Element("cntphone");
 
+    if(dataset.getMetadata() != null) {
+      cntemail.setText(dataset.getMetadata().getContribEmail());
+      cntphone.setText(dataset.getMetadata().getContribPhone());
+    }
+
+    cntinfo.addContent(cntemail);
+    cntinfo.addContent(cntphone);
     metadata.addContent(cntinfo);
+
+    Element notes = new Element("notes");
+    if(dataset.getMetadata() != null) {
+      for(String noteText : dataset.getMetadata().getNotes()) {
+        Element note = new Element("note");
+        note.setText(noteText);
+        notes.addContent(note);
+      }
+    }
+    metadata.addContent(notes);
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+    Element rundate = new Element("rundate");
+    rundate.setText(sdf.toPattern());
+    metadata.addContent(rundate);
+
+    Element nsmversion = new Element("nsmversion");
+    Element unitsys = new Element("unitsys");
+    nsmversion.setText(org.psu.newhall.Newhall.NSM_VERSION);
+    if(dataset.isMetric()) {
+      unitsys.setText("metric");
+    } else {
+      unitsys.setText("english");
+    }
+    metadata.addContent(nsmversion);
+    metadata.addContent(unitsys);
 
     /** Extract dataset input data. **/
     
