@@ -122,7 +122,8 @@ public class XMLFileParser {
     NewhallDatasetMetadata ndm = new NewhallDatasetMetadata(stationName, stationId, stationElevation,
             stateProvidence, country, mlraName, mlraId, firstName, lastName, title, cntorg,
             address, city, stateprov, postal, cntCountry, cntemail, cntphone, allNotesStr,
-            rundate, modelVers, unitsys);
+            rundate, modelVers, unitsys, maatmast);
+    
     this.dataset.setMetadata(ndm);
     
   }

@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.psu.newhall.sim.NewhallDataset;
+import org.psu.newhall.sim.NewhallDatasetMetadata;
 
 public class CSVFileParser {
 
-  NewhallDataset datset;
+  NewhallDataset dataset;
 
   public CSVFileParser(File inputFile) {
 
@@ -69,14 +70,22 @@ public class CSVFileParser {
       isMetric = true;
     }
 
-    this.datset = new NewhallDataset(name, country, latitude,
+    this.dataset = new NewhallDataset(name, country, latitude,
             longitude, nsHemisphere, ewHemisphere, elevation,
             precipitation, temperature, startYear, endYear, isMetric);
+
+    // Add mostly empty metadata object.
+    NewhallDatasetMetadata ndm = new NewhallDatasetMetadata();
+    ndm.setStationName(name);
+    ndm.setStationCountry(country);
+    ndm.setStationElevation(elevation);
+
+    this.dataset.setMetadata(ndm);
 
   }
 
   public NewhallDataset getDatset() {
-    return datset;
+    return dataset;
   }
 
 }
