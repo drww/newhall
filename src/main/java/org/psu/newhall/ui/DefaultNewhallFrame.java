@@ -39,38 +39,31 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private void initComponents() {
 
     jSeparator1 = new javax.swing.JSeparator();
+    datasetScrollPane2 = new javax.swing.JScrollPane();
+    rainfallTable1 = new javax.swing.JTable();
+    tabPane = new javax.swing.JTabbedPane();
+    inputPanel = new javax.swing.JPanel();
     datasetPanel = new javax.swing.JPanel();
-    jLabel1 = new javax.swing.JLabel();
-    jLabel2 = new javax.swing.JLabel();
-    stationText = new javax.swing.JLabel();
-    elevationText = new javax.swing.JLabel();
-    jLabel9 = new javax.swing.JLabel();
-    latitudeText = new javax.swing.JLabel();
-    jLabel11 = new javax.swing.JLabel();
-    longitudeText = new javax.swing.JLabel();
     datasetScrollPane = new javax.swing.JScrollPane();
-    datasetTable = new javax.swing.JTable();
-    modelResultsPanel = new javax.swing.JPanel();
-    jLabel3 = new javax.swing.JLabel();
-    jLabel4 = new javax.swing.JLabel();
-    jLabel5 = new javax.swing.JLabel();
-    jLabel6 = new javax.swing.JLabel();
-    whcUnitsText = new javax.swing.JLabel();
-    whcSpinner = new javax.swing.JSpinner();
-    datasetScrollPane1 = new javax.swing.JScrollPane();
-    mpeTable = new javax.swing.JTable();
-    moistureRegimeText = new javax.swing.JLabel();
-    temperatureRegimeText = new javax.swing.JLabel();
-    annualRainfallText = new javax.swing.JLabel();
-    jPanel1 = new javax.swing.JPanel();
-    jScrollPane2 = new javax.swing.JScrollPane();
-    jTextArea1 = new javax.swing.JTextArea();
-    jScrollPane3 = new javax.swing.JScrollPane();
-    jTextArea2 = new javax.swing.JTextArea();
-    jScrollPane1 = new javax.swing.JScrollPane();
-    moistureCalendarText = new javax.swing.JTextArea();
-    jLabel7 = new javax.swing.JLabel();
-    jPanel2 = new javax.swing.JPanel();
+    rainfallTable = new javax.swing.JTable();
+    datasetScrollPane3 = new javax.swing.JScrollPane();
+    tempTable = new javax.swing.JTable();
+    stationLabel = new javax.swing.JLabel();
+    stationText = new javax.swing.JLabel();
+    elevationLabel = new javax.swing.JLabel();
+    elevationText = new javax.swing.JLabel();
+    latitudeLabel = new javax.swing.JLabel();
+    latitudeText = new javax.swing.JLabel();
+    longitudeLabel = new javax.swing.JLabel();
+    longitudeText = new javax.swing.JLabel();
+    countryLabel = new javax.swing.JLabel();
+    countryText = new javax.swing.JLabel();
+    startYearLabel = new javax.swing.JLabel();
+    startingYearText = new javax.swing.JLabel();
+    endingYearLabel = new javax.swing.JLabel();
+    endingYearText = new javax.swing.JLabel();
+    calendarPanel = new javax.swing.JPanel();
+    tempCalPanel = new javax.swing.JPanel();
     jScrollPane4 = new javax.swing.JScrollPane();
     jTextArea3 = new javax.swing.JTextArea();
     jScrollPane5 = new javax.swing.JScrollPane();
@@ -78,11 +71,31 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jScrollPane6 = new javax.swing.JScrollPane();
     temperatureCalendarText = new javax.swing.JTextArea();
     jLabel8 = new javax.swing.JLabel();
+    moistCalPanel = new javax.swing.JPanel();
+    jScrollPane2 = new javax.swing.JScrollPane();
+    jTextArea1 = new javax.swing.JTextArea();
+    jScrollPane3 = new javax.swing.JScrollPane();
+    jTextArea2 = new javax.swing.JTextArea();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    moistureCalendarText = new javax.swing.JTextArea();
+    jLabel7 = new javax.swing.JLabel();
+    modelResultsPanel = new javax.swing.JPanel();
+    jLabel3 = new javax.swing.JLabel();
+    jLabel4 = new javax.swing.JLabel();
+    jLabel5 = new javax.swing.JLabel();
+    datasetScrollPane1 = new javax.swing.JScrollPane();
+    mpeTable = new javax.swing.JTable();
+    moistureRegimeText = new javax.swing.JLabel();
+    temperatureRegimeText = new javax.swing.JLabel();
+    annualRainfallText = new javax.swing.JLabel();
     jPanel3 = new javax.swing.JPanel();
     jScrollPane7 = new javax.swing.JScrollPane();
     statisticsText = new javax.swing.JTextArea();
-    exportCsvButton = new javax.swing.JButton();
+    jLabel6 = new javax.swing.JLabel();
+    whcSpinner = new javax.swing.JSpinner();
+    whcUnitsText = new javax.swing.JLabel();
     exportXmlButton = new javax.swing.JButton();
+    exportCsvButton = new javax.swing.JButton();
     jMenuBar1 = new javax.swing.JMenuBar();
     fileMenu = new javax.swing.JMenu();
     openDatasetMenuItem = new javax.swing.JMenuItem();
@@ -92,37 +105,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     helpMenu = new javax.swing.JMenu();
     aboutMenuItem = new javax.swing.JMenuItem();
 
-    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-    datasetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dataset", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 11))); // NOI18N
-    datasetPanel.setFont(datasetPanel.getFont());
-
-    jLabel1.setFont(jLabel1.getFont());
-    jLabel1.setText("Station:");
-
-    jLabel2.setFont(jLabel2.getFont());
-    jLabel2.setText("Elevation:");
-
-    stationText.setFont(stationText.getFont());
-    stationText.setText(" << No Dataset Loaded >>");
-
-    elevationText.setFont(elevationText.getFont());
-    elevationText.setText(" ");
-
-    jLabel9.setFont(jLabel9.getFont());
-    jLabel9.setText("Latitude:");
-
-    latitudeText.setFont(latitudeText.getFont());
-    latitudeText.setText(" ");
-
-    jLabel11.setFont(jLabel11.getFont());
-    jLabel11.setText("Longitude:");
-
-    longitudeText.setFont(longitudeText.getFont());
-    longitudeText.setText(" ");
-
-    datasetTable.setFont(datasetTable.getFont());
-    datasetTable.setModel(new javax.swing.table.DefaultTableModel(
+    rainfallTable1.setFont(rainfallTable1.getFont());
+    rainfallTable1.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
         {"", null, null, null, null, null, null, null, null, null, null, null, null},
         {"", null, null, null, null, null, null, null, null, null, null, null, null}
@@ -139,76 +123,16 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         return canEdit [columnIndex];
       }
     });
-    datasetTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-    datasetScrollPane.setViewportView(datasetTable);
+    rainfallTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    datasetScrollPane2.setViewportView(rainfallTable1);
 
-    javax.swing.GroupLayout datasetPanelLayout = new javax.swing.GroupLayout(datasetPanel);
-    datasetPanel.setLayout(datasetPanelLayout);
-    datasetPanelLayout.setHorizontalGroup(
-      datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(datasetPanelLayout.createSequentialGroup()
-        .addContainerGap()
-        .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(datasetScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
-          .addGroup(datasetPanelLayout.createSequentialGroup()
-            .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jLabel2)
-              .addComponent(jLabel1))
-            .addGap(18, 18, 18)
-            .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(stationText, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(elevationText, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jLabel9)
-              .addComponent(jLabel11))
-            .addGap(18, 18, 18)
-            .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(longitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-              .addComponent(latitudeText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE))))
-        .addContainerGap())
-    );
-    datasetPanelLayout.setVerticalGroup(
-      datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(datasetPanelLayout.createSequentialGroup()
-        .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel1)
-          .addComponent(stationText)
-          .addComponent(jLabel9)
-          .addComponent(latitudeText))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(longitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(elevationText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addComponent(datasetScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-        .addContainerGap())
-    );
+    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-    modelResultsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Model Results"));
+    datasetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dataset", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 11))); // NOI18N
+    datasetPanel.setFont(datasetPanel.getFont());
 
-    jLabel3.setText("Annual Rainfall:");
-
-    jLabel4.setText("Temperature Regime:");
-
-    jLabel5.setText("Moisture Regime:");
-
-    jLabel6.setText("Waterholding Capacity:");
-
-    whcUnitsText.setText("mm");
-
-    whcSpinner.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200.0d), Double.valueOf(0.0d), null, Double.valueOf(0.1d)));
-    whcSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
-      public void stateChanged(javax.swing.event.ChangeEvent evt) {
-        whcSpinnerStateChanged(evt);
-      }
-    });
-
-    mpeTable.setFont(mpeTable.getFont());
-    mpeTable.setModel(new javax.swing.table.DefaultTableModel(
+    rainfallTable.setFont(rainfallTable.getFont());
+    rainfallTable.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
         {"", null, null, null, null, null, null, null, null, null, null, null, null}
       },
@@ -224,80 +148,160 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         return canEdit [columnIndex];
       }
     });
-    mpeTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-    datasetScrollPane1.setViewportView(mpeTable);
+    rainfallTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    datasetScrollPane.setViewportView(rainfallTable);
 
-    moistureRegimeText.setText(" ");
+    tempTable.setFont(tempTable.getFont());
+    tempTable.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+        {"", null, null, null, null, null, null, null, null, null, null, null, null}
+      },
+      new String [] {
+        " ", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      }
+    ) {
+      boolean[] canEdit = new boolean [] {
+        false, false, false, false, false, false, false, false, false, false, false, false, false
+      };
 
-    temperatureRegimeText.setText(" ");
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return canEdit [columnIndex];
+      }
+    });
+    tempTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    datasetScrollPane3.setViewportView(tempTable);
 
-    annualRainfallText.setText(" ");
-
-    jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Moisture Calendar"));
-
-    jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
-    jTextArea1.setColumns(30);
-    jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14));
-    jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
-    jTextArea1.setRows(1);
-    jTextArea1.setText("1''''''''''''15'''''''''''''30");
-    jTextArea1.setBorder(null);
-    jScrollPane2.setViewportView(jTextArea1);
-
-    jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
-    jTextArea2.setColumns(5);
-    jTextArea2.setFont(new java.awt.Font("Monospaced", 0, 14));
-    jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
-    jTextArea2.setRows(12);
-    jTextArea2.setText(" JAN\n FEB\n MAR\n APR\n MAY\n JUN\n JUL\n AUG\n SEP\n OCT\n NOV\n DEC");
-    jTextArea2.setBorder(null);
-    jScrollPane3.setViewportView(jTextArea2);
-
-    moistureCalendarText.setBackground(new java.awt.Color(0, 0, 0));
-    moistureCalendarText.setColumns(30);
-    moistureCalendarText.setEditable(false);
-    moistureCalendarText.setFont(new java.awt.Font("Monospaced", 0, 14));
-    moistureCalendarText.setForeground(new java.awt.Color(255, 255, 255));
-    moistureCalendarText.setRows(12);
-    moistureCalendarText.setBorder(null);
-    jScrollPane1.setViewportView(moistureCalendarText);
-
-    jLabel7.setFont(new java.awt.Font("SansSerif", 0, 11));
-    jLabel7.setText("1 = Dry, 2 = Moist/Dry, 3 = Moist");
-
-    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-    jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel1Layout.createSequentialGroup()
+    javax.swing.GroupLayout datasetPanelLayout = new javax.swing.GroupLayout(datasetPanel);
+    datasetPanel.setLayout(datasetPanelLayout);
+    datasetPanelLayout.setHorizontalGroup(
+      datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datasetPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-              .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-              .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-              .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addContainerGap()))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-            .addComponent(jLabel7)
+        .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(datasetScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+          .addComponent(datasetScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE))
+        .addContainerGap())
+    );
+    datasetPanelLayout.setVerticalGroup(
+      datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datasetPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(datasetScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+        .addGap(18, 18, 18)
+        .addComponent(datasetScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    stationLabel.setFont(stationLabel.getFont());
+    stationLabel.setText("Station:");
+
+    stationText.setFont(stationText.getFont());
+    stationText.setText(" << No Dataset Loaded >>");
+
+    elevationLabel.setFont(elevationLabel.getFont());
+    elevationLabel.setText("Elevation:");
+
+    elevationText.setFont(elevationText.getFont());
+    elevationText.setText(" ");
+
+    latitudeLabel.setFont(latitudeLabel.getFont());
+    latitudeLabel.setText("Latitude:");
+
+    latitudeText.setFont(latitudeText.getFont());
+    latitudeText.setText(" ");
+
+    longitudeLabel.setFont(longitudeLabel.getFont());
+    longitudeLabel.setText("Longitude:");
+
+    longitudeText.setFont(longitudeText.getFont());
+    longitudeText.setText(" ");
+
+    countryLabel.setText("Station Country:");
+
+    countryText.setText(" ");
+
+    startYearLabel.setText("Starting Year:");
+
+    startingYearText.setText(" ");
+
+    endingYearLabel.setText("Ending Year:");
+
+    endingYearText.setText(" ");
+
+    javax.swing.GroupLayout inputPanelLayout = new javax.swing.GroupLayout(inputPanel);
+    inputPanel.setLayout(inputPanelLayout);
+    inputPanelLayout.setHorizontalGroup(
+      inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(inputPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(inputPanelLayout.createSequentialGroup()
+            .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(countryLabel)
+              .addComponent(stationLabel)
+              .addComponent(elevationLabel)
+              .addComponent(latitudeLabel)
+              .addComponent(longitudeLabel))
+            .addGap(18, 18, 18)
+            .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(longitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(latitudeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(elevationText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(stationText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(countryText, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
+            .addGap(18, 104, Short.MAX_VALUE)
+            .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(startYearLabel)
+              .addComponent(endingYearLabel))
+            .addGap(31, 31, 31)
+            .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(startingYearText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(endingYearText, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
+            .addGap(213, 213, 213))
+          .addGroup(inputPanelLayout.createSequentialGroup()
+            .addComponent(datasetPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addContainerGap())))
     );
-    jPanel1Layout.setVerticalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel1Layout.createSequentialGroup()
-        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+    inputPanelLayout.setVerticalGroup(
+      inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inputPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(inputPanelLayout.createSequentialGroup()
+            .addComponent(stationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(countryLabel)
+              .addComponent(countryText)))
+          .addGroup(inputPanelLayout.createSequentialGroup()
+            .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(startYearLabel)
+              .addComponent(startingYearText)
+              .addComponent(stationText))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(endingYearLabel)
+              .addComponent(endingYearText))))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addComponent(jScrollPane1)
-          .addComponent(jScrollPane3))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(elevationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(elevationText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(latitudeLabel)
+          .addComponent(latitudeText, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(longitudeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(longitudeText, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(datasetPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(23, 23, 23))
     );
 
-    jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperature Calendar"));
+    tabPane.addTab("Input", inputPanel);
+
+    tempCalPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperature Calendar"));
 
     jTextArea3.setBackground(new java.awt.Color(0, 0, 0));
     jTextArea3.setColumns(30);
@@ -329,35 +333,159 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jLabel8.setFont(new java.awt.Font("SansSerif", 0, 11));
     jLabel8.setText("- = Under 5C, 5 = 5C to 8C, 8 = Excess of 8C");
 
-    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-    jPanel2.setLayout(jPanel2Layout);
-    jPanel2Layout.setHorizontalGroup(
-      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel2Layout.createSequentialGroup()
+    javax.swing.GroupLayout tempCalPanelLayout = new javax.swing.GroupLayout(tempCalPanel);
+    tempCalPanel.setLayout(tempCalPanelLayout);
+    tempCalPanelLayout.setHorizontalGroup(
+      tempCalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(tempCalPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(jPanel2Layout.createSequentialGroup()
+        .addGroup(tempCalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(tempCalPanelLayout.createSequentialGroup()
             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tempCalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(jScrollPane6)
               .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(9, 9, 9))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tempCalPanelLayout.createSequentialGroup()
             .addComponent(jLabel8)
             .addContainerGap())))
     );
-    jPanel2Layout.setVerticalGroup(
-      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel2Layout.createSequentialGroup()
+    tempCalPanelLayout.setVerticalGroup(
+      tempCalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(tempCalPanelLayout.createSequentialGroup()
         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        .addGroup(tempCalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
           .addComponent(jScrollPane6)
           .addComponent(jScrollPane5))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jLabel8))
     );
+
+    moistCalPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Moisture Calendar"));
+
+    jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
+    jTextArea1.setColumns(30);
+    jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14));
+    jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
+    jTextArea1.setRows(1);
+    jTextArea1.setText("1''''''''''''15'''''''''''''30");
+    jTextArea1.setBorder(null);
+    jScrollPane2.setViewportView(jTextArea1);
+
+    jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
+    jTextArea2.setColumns(5);
+    jTextArea2.setFont(new java.awt.Font("Monospaced", 0, 14));
+    jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
+    jTextArea2.setRows(12);
+    jTextArea2.setText(" JAN\n FEB\n MAR\n APR\n MAY\n JUN\n JUL\n AUG\n SEP\n OCT\n NOV\n DEC");
+    jTextArea2.setBorder(null);
+    jScrollPane3.setViewportView(jTextArea2);
+
+    moistureCalendarText.setBackground(new java.awt.Color(0, 0, 0));
+    moistureCalendarText.setColumns(30);
+    moistureCalendarText.setEditable(false);
+    moistureCalendarText.setFont(new java.awt.Font("Monospaced", 0, 14));
+    moistureCalendarText.setForeground(new java.awt.Color(255, 255, 255));
+    moistureCalendarText.setRows(12);
+    moistureCalendarText.setBorder(null);
+    jScrollPane1.setViewportView(moistureCalendarText);
+
+    jLabel7.setFont(new java.awt.Font("SansSerif", 0, 11));
+    jLabel7.setText("1 = Dry, 2 = Moist/Dry, 3 = Moist");
+
+    javax.swing.GroupLayout moistCalPanelLayout = new javax.swing.GroupLayout(moistCalPanel);
+    moistCalPanel.setLayout(moistCalPanelLayout);
+    moistCalPanelLayout.setHorizontalGroup(
+      moistCalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(moistCalPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(moistCalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(moistCalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(moistCalPanelLayout.createSequentialGroup()
+              .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+              .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, moistCalPanelLayout.createSequentialGroup()
+              .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addContainerGap()))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, moistCalPanelLayout.createSequentialGroup()
+            .addComponent(jLabel7)
+            .addContainerGap())))
+    );
+    moistCalPanelLayout.setVerticalGroup(
+      moistCalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(moistCalPanelLayout.createSequentialGroup()
+        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(moistCalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addComponent(jScrollPane1)
+          .addComponent(jScrollPane3))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+    );
+
+    javax.swing.GroupLayout calendarPanelLayout = new javax.swing.GroupLayout(calendarPanel);
+    calendarPanel.setLayout(calendarPanelLayout);
+    calendarPanelLayout.setHorizontalGroup(
+      calendarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calendarPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(tempCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+        .addComponent(moistCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap())
+    );
+    calendarPanelLayout.setVerticalGroup(
+      calendarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(calendarPanelLayout.createSequentialGroup()
+        .addGroup(calendarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(calendarPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(tempCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, calendarPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(moistCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(12, Short.MAX_VALUE))
+    );
+
+    tabPane.addTab("Calendars", calendarPanel);
+
+    modelResultsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Model Results"));
+
+    jLabel3.setText("Annual Rainfall:");
+
+    jLabel4.setText("Temperature Regime:");
+
+    jLabel5.setText("Moisture Regime:");
+
+    mpeTable.setFont(mpeTable.getFont());
+    mpeTable.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+        {"", null, null, null, null, null, null, null, null, null, null, null, null}
+      },
+      new String [] {
+        " ", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      }
+    ) {
+      boolean[] canEdit = new boolean [] {
+        false, false, false, false, false, false, false, false, false, false, false, false, false
+      };
+
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return canEdit [columnIndex];
+      }
+    });
+    mpeTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    datasetScrollPane1.setViewportView(mpeTable);
+
+    moistureRegimeText.setText(" ");
+
+    temperatureRegimeText.setText(" ");
+
+    annualRainfallText.setText(" ");
 
     jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Extended Statistics"));
 
@@ -374,31 +502,15 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
         .addContainerGap())
     );
     jPanel3Layout.setVerticalGroup(
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
         .addContainerGap())
     );
-
-    exportCsvButton.setText("Export to FLX");
-    exportCsvButton.setEnabled(false);
-    exportCsvButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        exportCsvButtonActionPerformed(evt);
-      }
-    });
-
-    exportXmlButton.setText("Export to XML");
-    exportXmlButton.setEnabled(false);
-    exportXmlButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        exportXmlButtonActionPerformed(evt);
-      }
-    });
 
     javax.swing.GroupLayout modelResultsPanelLayout = new javax.swing.GroupLayout(modelResultsPanel);
     modelResultsPanel.setLayout(modelResultsPanelLayout);
@@ -406,10 +518,10 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelResultsPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
-          .addGroup(modelResultsPanelLayout.createSequentialGroup()
+        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
+          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jLabel3)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(annualRainfallText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -420,21 +532,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel5)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
-          .addGroup(modelResultsPanelLayout.createSequentialGroup()
-            .addComponent(jLabel6)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(whcUnitsText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
-            .addComponent(exportXmlButton)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(exportCsvButton))
-          .addGroup(modelResultsPanelLayout.createSequentialGroup()
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)))
         .addContainerGap())
     );
     modelResultsPanelLayout.setVerticalGroup(
@@ -450,20 +548,38 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(datasetScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel6)
-          .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(whcUnitsText)
-          .addComponent(exportCsvButton)
-          .addComponent(exportXmlButton))
         .addContainerGap())
     );
+
+    tabPane.addTab("Results", modelResultsPanel);
+
+    jLabel6.setText("Waterholding Capacity:");
+
+    whcSpinner.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(200.0d), Double.valueOf(0.0d), null, Double.valueOf(0.1d)));
+    whcSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+      public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        whcSpinnerStateChanged(evt);
+      }
+    });
+
+    whcUnitsText.setText("mm");
+
+    exportXmlButton.setText("Export to XML");
+    exportXmlButton.setEnabled(false);
+    exportXmlButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exportXmlButtonActionPerformed(evt);
+      }
+    });
+
+    exportCsvButton.setText("Export to FLX");
+    exportCsvButton.setEnabled(false);
+    exportCsvButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exportCsvButtonActionPerformed(evt);
+      }
+    });
 
     jMenuBar1.setFont(jMenuBar1.getFont());
 
@@ -524,20 +640,34 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+      .addGroup(layout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(modelResultsPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(datasetPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(tabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+          .addGroup(layout.createSequentialGroup()
+            .addComponent(jLabel6)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(whcUnitsText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 357, Short.MAX_VALUE)
+            .addComponent(exportXmlButton)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(exportCsvButton)))
         .addContainerGap())
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(datasetPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(modelResultsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(tabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel6)
+          .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(whcUnitsText)
+          .addComponent(exportCsvButton)
+          .addComponent(exportXmlButton))
         .addContainerGap())
     );
 
@@ -688,26 +818,31 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       properElevation = nd.getElevation();
     }
 
-    TableModel datasetTableModel = this.datasetTable.getModel();
+    TableModel tempTableModel = this.tempTable.getModel();
+    TableModel rainfallTableModel = this.rainfallTable.getModel();
     if (this.inMetric) {
-      datasetTableModel.setValueAt("Rainfall (mm)", 0, 0);
-      datasetTableModel.setValueAt("Air Temp (C)", 1, 0);
+      tempTableModel.setValueAt("Air Temp (C)", 0, 0);
+      rainfallTableModel.setValueAt("Rainfall (mm)", 0, 0);
       elevationText.setText(roundForDisplay(properElevation) + " meters");
     } else {
-      datasetTableModel.setValueAt("Rainfall (in)", 0, 0);
-      datasetTableModel.setValueAt("Air Temp (F)", 1, 0);
+      tempTableModel.setValueAt("Air Temp (F)", 0, 0);
+      rainfallTableModel.setValueAt("Rainfall (in)", 0, 0);
       elevationText.setText(roundForDisplay(properElevation) + " feet");
     }
 
-    datasetTable.getColumnModel().getColumn(0).setPreferredWidth(150);
+    tempTable.getColumnModel().getColumn(0).setPreferredWidth(150);
+    rainfallTable.getColumnModel().getColumn(0).setPreferredWidth(150);
     for (int i = 0; i < 12; i++) {
-      datasetTableModel.setValueAt(roundForDisplay(properPrecip.get(i)), 0, i + 1);
-      datasetTableModel.setValueAt(roundForDisplay(properTemp.get(i)), 1, i + 1);
+      rainfallTableModel.setValueAt(roundForDisplay(properPrecip.get(i)), 0, i + 1);
+      tempTableModel.setValueAt(roundForDisplay(properTemp.get(i)), 0, i + 1);
     }
 
-    stationText.setText(nd.getName() + ", " + nd.getCountry() + " [" + nd.getStartYear() + "]");
+    stationText.setText(nd.getName());
     latitudeText.setText(roundDegreesForDisplay(nd.getLatitude()) + " degrees " + nd.getNsHemisphere());
     longitudeText.setText(roundDegreesForDisplay(nd.getLongitude()) + " degrees " + nd.getEwHemisphere());
+    countryText.setText(nd.getCountry());
+    startingYearText.setText(nd.getStartYear() + "");
+    endingYearText.setText(nd.getEndYear() + "");
 
     whcSpinner.setEnabled(true);
     exportCsvButton.setEnabled(true);
@@ -788,14 +923,17 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     elevationText.setText("");
     latitudeText.setText("");
     longitudeText.setText("");
+    countryText.setText("");
+    startingYearText.setText("");
+    endingYearText.setText("");
 
     TableModel mpeTableModel = this.mpeTable.getModel();
-    TableModel datasetTableModel = this.datasetTable.getModel();
+    TableModel rainfallTableModel = this.rainfallTable.getModel();
+    TableModel tempTableModel = this.tempTable.getModel();
 
     for (int i = 0; i <= 12; i++) {
-      for (int j = 0; j < 2; j++) {
-        datasetTableModel.setValueAt("", j, i);
-      }
+      rainfallTableModel.setValueAt("", 0, i);
+      tempTableModel.setValueAt("", 0, i);
     }
 
     for (int i = 0; i <= 12; i++) {
@@ -828,29 +966,31 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuItem aboutMenuItem;
   private javax.swing.JLabel annualRainfallText;
+  private javax.swing.JPanel calendarPanel;
+  private javax.swing.JLabel countryLabel;
+  private javax.swing.JLabel countryText;
   private javax.swing.JPanel datasetPanel;
   private javax.swing.JScrollPane datasetScrollPane;
   private javax.swing.JScrollPane datasetScrollPane1;
-  private javax.swing.JTable datasetTable;
+  private javax.swing.JScrollPane datasetScrollPane2;
+  private javax.swing.JScrollPane datasetScrollPane3;
+  private javax.swing.JLabel elevationLabel;
   private javax.swing.JLabel elevationText;
+  private javax.swing.JLabel endingYearLabel;
+  private javax.swing.JLabel endingYearText;
   private javax.swing.JMenuItem exitMenuItem;
   private javax.swing.JButton exportCsvButton;
   private javax.swing.JButton exportXmlButton;
   private javax.swing.JMenu fileMenu;
   private javax.swing.JMenu helpMenu;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel11;
-  private javax.swing.JLabel jLabel2;
+  private javax.swing.JPanel inputPanel;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel5;
   private javax.swing.JLabel jLabel6;
   private javax.swing.JLabel jLabel7;
   private javax.swing.JLabel jLabel8;
-  private javax.swing.JLabel jLabel9;
   private javax.swing.JMenuBar jMenuBar1;
-  private javax.swing.JPanel jPanel1;
-  private javax.swing.JPanel jPanel2;
   private javax.swing.JPanel jPanel3;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JScrollPane jScrollPane2;
@@ -864,16 +1004,27 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JTextArea jTextArea2;
   private javax.swing.JTextArea jTextArea3;
   private javax.swing.JTextArea jTextArea4;
+  private javax.swing.JLabel latitudeLabel;
   private javax.swing.JLabel latitudeText;
+  private javax.swing.JLabel longitudeLabel;
   private javax.swing.JLabel longitudeText;
   private javax.swing.JPanel modelResultsPanel;
+  private javax.swing.JPanel moistCalPanel;
   private javax.swing.JTextArea moistureCalendarText;
   private javax.swing.JLabel moistureRegimeText;
   private javax.swing.JTable mpeTable;
   private javax.swing.JMenuItem openDatasetMenuItem;
   private javax.swing.JMenu optionsMenu;
+  private javax.swing.JTable rainfallTable;
+  private javax.swing.JTable rainfallTable1;
+  private javax.swing.JLabel startYearLabel;
+  private javax.swing.JLabel startingYearText;
+  private javax.swing.JLabel stationLabel;
   private javax.swing.JLabel stationText;
   private javax.swing.JTextArea statisticsText;
+  private javax.swing.JTabbedPane tabPane;
+  private javax.swing.JPanel tempCalPanel;
+  private javax.swing.JTable tempTable;
   private javax.swing.JTextArea temperatureCalendarText;
   private javax.swing.JLabel temperatureRegimeText;
   private javax.swing.JMenuItem toggleUnitsMenuItem;
