@@ -215,7 +215,7 @@ public class XMLResultsExporter {
     Element ampltd = new Element("ampltd");
     ampltd.setText("0.66");
     Element maatmast = new Element("maatmast");
-    maatmast.setText("1.2");
+    maatmast.setText(Double.toString(dataset.getMetadata().getSoilAirOffset()));
     soilairrel.addContent(lag);
     soilairrel.addContent(ampltd);
     soilairrel.addContent(maatmast);

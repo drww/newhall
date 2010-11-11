@@ -265,4 +265,8 @@ public class NewhallDatasetMetadata {
   public void setUnitSystem(String unitSystem) {
     this.unitSystem = unitSystem;
   }
+
+  public double getSoilAirOffset() {
+    return soilAirOffset;
+  }
 }

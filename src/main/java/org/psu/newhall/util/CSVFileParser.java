@@ -79,6 +79,7 @@ public class CSVFileParser {
     ndm.setStationName(name);
     ndm.setStationCountry(country);
     ndm.setStationElevation(elevation);
+    ndm.setSoilAirOffset(2.5);
 
     this.dataset.setMetadata(ndm);
 
