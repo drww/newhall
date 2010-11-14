@@ -62,6 +62,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     startingYearText = new javax.swing.JLabel();
     endingYearLabel = new javax.swing.JLabel();
     endingYearText = new javax.swing.JLabel();
+    srcUnitSystemLabel = new javax.swing.JLabel();
+    srcUnitSystem = new javax.swing.JLabel();
     calendarPanel = new javax.swing.JPanel();
     tempCalPanel = new javax.swing.JPanel();
     jScrollPane4 = new javax.swing.JScrollPane();
@@ -106,6 +108,11 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jLabel16 = new javax.swing.JLabel();
     jLabel17 = new javax.swing.JLabel();
     jLabel18 = new javax.swing.JLabel();
+    stateProvLabel = new javax.swing.JLabel();
+    postalLabel = new javax.swing.JLabel();
+    contribCountryLabel = new javax.swing.JLabel();
+    emailLabel = new javax.swing.JLabel();
+    phoneLabel = new javax.swing.JLabel();
     jLabel6 = new javax.swing.JLabel();
     whcSpinner = new javax.swing.JSpinner();
     whcUnitsText = new javax.swing.JLabel();
@@ -243,6 +250,10 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     endingYearText.setText(" ");
 
+    srcUnitSystemLabel.setText("Source Unit System:");
+
+    srcUnitSystem.setText(" ");
+
     javax.swing.GroupLayout inputPanelLayout = new javax.swing.GroupLayout(inputPanel);
     inputPanel.setLayout(inputPanelLayout);
     inputPanelLayout.setHorizontalGroup(
@@ -266,12 +277,18 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
               .addComponent(countryText, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
             .addGap(18, 18, Short.MAX_VALUE)
             .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(startYearLabel)
-              .addComponent(endingYearLabel))
-            .addGap(31, 31, 31)
-            .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-              .addComponent(startingYearText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(endingYearText, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
+              .addGroup(inputPanelLayout.createSequentialGroup()
+                .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(startYearLabel)
+                  .addComponent(endingYearLabel))
+                .addGap(31, 31, 31)
+                .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                  .addComponent(startingYearText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addComponent(endingYearText, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)))
+              .addGroup(inputPanelLayout.createSequentialGroup()
+                .addComponent(srcUnitSystemLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(srcUnitSystem)))
             .addGap(213, 213, 213))
           .addGroup(inputPanelLayout.createSequentialGroup()
             .addComponent(datasetPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -300,7 +317,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(elevationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(elevationText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+          .addComponent(elevationText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(srcUnitSystemLabel)
+          .addComponent(srcUnitSystem))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(latitudeLabel)
@@ -506,7 +525,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     statisticsText.setColumns(20);
     statisticsText.setEditable(false);
-    statisticsText.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+    statisticsText.setFont(new java.awt.Font("Monospaced", 0, 11));
     statisticsText.setRows(15);
     statisticsText.setOpaque(false);
     jScrollPane7.setViewportView(statisticsText);
@@ -597,6 +616,16 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     jLabel18.setText("City:");
 
+    stateProvLabel.setText("State/Prov:");
+
+    postalLabel.setText("Postal:");
+
+    contribCountryLabel.setText("Country:");
+
+    emailLabel.setText("Email:");
+
+    phoneLabel.setText("Phone:");
+
     javax.swing.GroupLayout contributorPanelLayout = new javax.swing.GroupLayout(contributorPanel);
     contributorPanel.setLayout(contributorPanelLayout);
     contributorPanelLayout.setHorizontalGroup(
@@ -604,6 +633,11 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       .addGroup(contributorPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(contributorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(phoneLabel)
+          .addComponent(emailLabel)
+          .addComponent(contribCountryLabel)
+          .addComponent(postalLabel)
+          .addComponent(stateProvLabel)
           .addComponent(jLabel18)
           .addComponent(jLabel15)
           .addComponent(jLabel14)
@@ -626,7 +660,17 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addComponent(jLabel17)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jLabel18)
-        .addContainerGap(180, Short.MAX_VALUE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(stateProvLabel)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(postalLabel)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(contribCountryLabel)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(emailLabel)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(phoneLabel)
+        .addContainerGap(80, Short.MAX_VALUE))
     );
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -643,7 +687,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
           .addComponent(jLabel2)
           .addComponent(jLabel1)
           .addComponent(stationNameLabel))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
         .addComponent(contributorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap())
     );
@@ -1085,6 +1129,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JMenuItem aboutMenuItem;
   private javax.swing.JLabel annualRainfallText;
   private javax.swing.JPanel calendarPanel;
+  private javax.swing.JLabel contribCountryLabel;
   private javax.swing.JPanel contributorPanel;
   private javax.swing.JLabel countryLabel;
   private javax.swing.JLabel countryText;
@@ -1095,6 +1140,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JScrollPane datasetScrollPane3;
   private javax.swing.JLabel elevationLabel;
   private javax.swing.JLabel elevationText;
+  private javax.swing.JLabel emailLabel;
   private javax.swing.JLabel endingYearLabel;
   private javax.swing.JLabel endingYearText;
   private javax.swing.JMenuItem exitMenuItem;
@@ -1147,10 +1193,15 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JTable mpeTable;
   private javax.swing.JMenuItem openDatasetMenuItem;
   private javax.swing.JMenu optionsMenu;
+  private javax.swing.JLabel phoneLabel;
+  private javax.swing.JLabel postalLabel;
   private javax.swing.JTable rainfallTable;
   private javax.swing.JTable rainfallTable1;
+  private javax.swing.JLabel srcUnitSystem;
+  private javax.swing.JLabel srcUnitSystemLabel;
   private javax.swing.JLabel startYearLabel;
   private javax.swing.JLabel startingYearText;
+  private javax.swing.JLabel stateProvLabel;
   private javax.swing.JLabel stationLabel;
   private javax.swing.JLabel stationNameLabel;
   private javax.swing.JLabel stationText;

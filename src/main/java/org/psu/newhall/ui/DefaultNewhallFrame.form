@@ -243,13 +243,22 @@
                               </Group>
                               <EmptySpace type="separate" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="startYearLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="endingYearLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="startingYearText" max="32767" attributes="1"/>
-                                  <Component id="endingYearText" alignment="0" pref="49" max="32767" attributes="1"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="startYearLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="endingYearLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="startingYearText" max="32767" attributes="1"/>
+                                          <Component id="endingYearText" alignment="0" pref="49" max="32767" attributes="1"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="srcUnitSystemLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="srcUnitSystem" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
                           </Group>
@@ -291,6 +300,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="elevationLabel" alignment="3" max="32767" attributes="1"/>
                           <Component id="elevationText" alignment="3" max="32767" attributes="1"/>
+                          <Component id="srcUnitSystemLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="srcUnitSystem" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -543,6 +554,16 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="endingYearText">
+              <Properties>
+                <Property name="text" type="java.lang.String" value=" "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="srcUnitSystemLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Source Unit System:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="srcUnitSystem">
               <Properties>
                 <Property name="text" type="java.lang.String" value=" "/>
               </Properties>
@@ -1087,7 +1108,7 @@
                           <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="stationNameLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="332" max="32767" attributes="0"/>
+                      <EmptySpace pref="331" max="32767" attributes="0"/>
                       <Component id="contributorPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1171,6 +1192,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="phoneLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="emailLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="contribCountryLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="postalLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="stateProvLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel18" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel15" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel14" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -1196,7 +1222,17 @@
                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="180" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="stateProvLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="postalLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="contribCountryLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="emailLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="phoneLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="80" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1230,6 +1266,31 @@
                 <Component class="javax.swing.JLabel" name="jLabel18">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="City:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="stateProvLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="State/Prov:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="postalLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Postal:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="contribCountryLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Country:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="emailLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Email:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="phoneLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Phone:"/>
                   </Properties>
                 </Component>
               </SubComponents>
