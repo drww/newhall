@@ -3,6 +3,7 @@ package org.psu.newhall.util;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -290,14 +291,14 @@ public class XMLResultsExporter {
     for (int i = 0; i < months.length; i++) {
       Element pet = new Element("pet");
       pet.setAttribute("id", months[i]);
-      pet.setText(Double.toString(results.getMeanPotentialEvapotranspiration().get(i)));
+      pet.setText(Double.toString(round(results.getMeanPotentialEvapotranspiration().get(i))));
       pets.addContent(pet);
     }
 
     for (int i = 0; i < months.length; i++) {
       Element soiltemp = new Element("soiltemp");
       soiltemp.setAttribute("id", months[i]);
-      soiltemp.setText(Double.toString(dataset.getTemperature().get(i) + dataset.getMetadata().getSoilAirOffset()));
+      soiltemp.setText(Double.toString(round(dataset.getTemperature().get(i) + dataset.getMetadata().getSoilAirOffset())));
       soiltemps.addContent(soiltemp);
     }
 
@@ -398,5 +399,10 @@ public class XMLResultsExporter {
     outputter.output(doc, writer);
     writer.close();
 
+  }
+
+  double round(double d) {
+    DecimalFormat df = new DecimalFormat("#.##");
+    return Double.valueOf(df.format(d));
   }
 }
