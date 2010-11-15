@@ -31,7 +31,7 @@ public class XMLResultsExporter {
     doc.setRootElement(model);
 
     /**
-     * Extract Metadata, build empty set if null.
+     * Build Metadata, populate empty tags if no metadata.
      * 
      **/
     Element metadata = new Element("metadata");
@@ -156,7 +156,7 @@ public class XMLResultsExporter {
     metadata.addContent(unitsys);
 
     /**
-     * Extract dataset input data.
+     * Recite dataset input data.
      *
      **/
     Element input = new Element("input");
@@ -222,7 +222,7 @@ public class XMLResultsExporter {
     input.addContent(soilairrel);
 
     /**
-     * Extract Output data.
+     * Export Output data.
      *
      **/
     Element output = new Element("output");
@@ -238,6 +238,39 @@ public class XMLResultsExporter {
 
     smrclass.setText(results.getMoistureRegime());
     strclass.setText(results.getTemperatureRegime());
+
+    /** <WAGS> **/
+    awb.setText("340");
+    swb.setText("-74");
+    /** </WAGS> **/
+
+    Element cumdays = new Element("cumdays");
+    Element yrdry = new Element("yrdry");
+    Element yrmd = new Element("yrmd");
+    Element yrmst = new Element("yrmst");
+    Element bio5dry = new Element("bio5dry");
+    Element bio5md = new Element("bio5md");
+    Element bio5mst = new Element("bio5mst");
+
+    yrdry.setText(Integer.toString(results.getNumCumulativeDaysDry()));
+    yrmd.setText(Integer.toString(results.getNumCumulativeDaysMoistDry()));
+    yrmst.setText(Integer.toString(results.getNumCumulativeDaysMoist()));
+
+    bio5dry.setText(Integer.toString(results.getNumCumulativeDaysDryOver5C()));
+    bio5md.setText(Integer.toString(results.getNumCumulativeDaysMoistDryOver5C()));
+    bio5mst.setText(Integer.toString(results.getNumCumulativeDaysMoistOver5C()));
+
+    cumdays.addContent(yrdry);
+    cumdays.addContent(yrmd);
+    cumdays.addContent(yrmst);
+    cumdays.addContent(bio5dry);
+    cumdays.addContent(bio5md);
+    cumdays.addContent(bio5mst);
+
+    Element consdays = new Element("consdays");
+
+    smcstates.addContent(cumdays);
+    smcstates.addContent(consdays);
 
     output.addContent(smrclass);
     output.addContent(strclass);
