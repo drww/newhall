@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jdom.Document;
@@ -292,6 +293,51 @@ public class XMLResultsExporter {
       pet.setText(Double.toString(results.getMeanPotentialEvapotranspiration().get(i)));
       pets.addContent(pet);
     }
+
+    for (int i = 0; i < months.length; i++) {
+      Element soiltemp = new Element("soiltemp");
+      soiltemp.setAttribute("id", months[i]);
+      soiltemp.setText(Double.toString(dataset.getTemperature().get(i) + dataset.getMetadata().getSoilAirOffset()));
+      soiltemps.addContent(soiltemp);
+    }
+
+    Element tempCalElement = new Element("tempcal");
+    List<Character> tempCal = results.getTemperatureCalendar();
+    char lastChar = tempCal.get(0);
+    int lastPos = 0;
+    for(int i = 1; i < tempCal.size(); i++) {
+      char thisChar = tempCal.get(i);
+      if(thisChar == lastChar && i != tempCal.size() - 1) {
+        continue;
+      } else {
+        Element blockToAdd = null;
+
+        switch(lastChar) {
+          case '-': blockToAdd = new Element("stlt5"); break;
+          case '5': blockToAdd = new Element("st5to8"); break;
+          case '8': blockToAdd = new Element("stgt8"); break;
+          default: blockToAdd = new Element("unknown"); break;
+        }
+
+        Element beginday = new Element("beginday");
+        Element endday = new Element("endday");
+        beginday.setText(Integer.toString(lastPos + 1));
+        endday.setText(Integer.toString(i));
+
+        // Edge case at the end of the calendar.
+        if(i == tempCal.size() - 1) {
+          endday.setText(Integer.toString(tempCal.size()));
+        }
+
+        blockToAdd.addContent(beginday);
+        blockToAdd.addContent(endday);
+        tempCalElement.addContent(blockToAdd);
+        
+        lastChar = thisChar;
+        lastPos = i;
+      }
+    }
+    calendars.addContent(tempCalElement);
 
     output.addContent(smrclass);
     output.addContent(strclass);
