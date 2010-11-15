@@ -268,6 +268,20 @@ public class XMLResultsExporter {
     cumdays.addContent(bio5mst);
 
     Element consdays = new Element("consdays");
+    Element yrmst2 = new Element("yrmst");
+    Element bio8mst = new Element("bio8mst");
+    Element smrdry = new Element("smrdry");
+    Element wtrmst = new Element("wtrmst");
+
+    yrmst2.setText(Integer.toString(results.getNumConsecutiveDaysMoistInSomeParts()));
+    bio8mst.setText(Integer.toString(results.getNumConsecutiveDaysMoistInSomePartsOver8C()));
+    smrdry.setText(Integer.toString(results.getDryDaysAfterSummerSolstice()));
+    wtrmst.setText(Integer.toString(results.getMoistDaysAfterWinterSolstice()));
+
+    consdays.addContent(yrmst2);
+    consdays.addContent(bio8mst);
+    consdays.addContent(smrdry);
+    consdays.addContent(wtrmst);
 
     smcstates.addContent(cumdays);
     smcstates.addContent(consdays);
