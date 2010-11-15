@@ -339,6 +339,44 @@ public class XMLResultsExporter {
     }
     calendars.addContent(tempCalElement);
 
+    Element moistCalElement = new Element("moistcal");
+    List<Integer> moistCal = results.getMoistureCalendar();
+    int lastVal = moistCal.get(0);
+    lastPos = 0;
+    for(int i = 1; i < moistCal.size(); i++) {
+      int thisVal = moistCal.get(i);
+      if(thisVal == lastVal && i != moistCal.size() - 1) {
+        continue;
+      } else {
+        Element blockToAdd = null;
+
+        switch(lastVal) {
+          case 1: blockToAdd = new Element("dry"); break;
+          case 2: blockToAdd = new Element("moistdry"); break;
+          case 3: blockToAdd = new Element("moist"); break;
+          default: blockToAdd = new Element("unknown"); break;
+        }
+
+        Element beginday = new Element("beginday");
+        Element endday = new Element("endday");
+        beginday.setText(Integer.toString(lastPos + 1));
+        endday.setText(Integer.toString(i));
+
+        // Edge case at the end of the calendar.
+        if(i == moistCal.size() - 1) {
+          endday.setText(Integer.toString(moistCal.size()));
+        }
+
+        blockToAdd.addContent(beginday);
+        blockToAdd.addContent(endday);
+        moistCalElement.addContent(blockToAdd);
+
+        lastVal = thisVal;
+        lastPos = i;
+      }
+    }
+    calendars.addContent(moistCalElement);
+
     output.addContent(smrclass);
     output.addContent(strclass);
     output.addContent(awb);
