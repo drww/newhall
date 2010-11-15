@@ -285,6 +285,13 @@ public class XMLResultsExporter {
 
     smcstates.addContent(cumdays);
     smcstates.addContent(consdays);
+    
+    for (int i = 0; i < months.length; i++) {
+      Element pet = new Element("pet");
+      pet.setAttribute("id", months[i]);
+      pet.setText(Double.toString(results.getMeanPotentialEvapotranspiration().get(i)));
+      pets.addContent(pet);
+    }
 
     output.addContent(smrclass);
     output.addContent(strclass);
