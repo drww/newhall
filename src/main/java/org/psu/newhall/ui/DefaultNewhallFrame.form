@@ -628,6 +628,9 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="soilAirOffsetStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="soilAirOffsetUnits">
               <Properties>
@@ -1567,6 +1570,7 @@
                     <Component class="javax.swing.JTextArea" name="notes">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="rows" type="int" value="5"/>
                       </Properties>
                     </Component>

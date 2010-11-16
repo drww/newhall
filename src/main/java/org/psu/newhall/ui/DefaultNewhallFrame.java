@@ -290,6 +290,11 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     soilAirOffset.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.2d), null, null, Double.valueOf(0.1d)));
     soilAirOffset.setEnabled(false);
     soilAirOffset.setVerifyInputWhenFocusTarget(false);
+    soilAirOffset.addChangeListener(new javax.swing.event.ChangeListener() {
+      public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        soilAirOffsetStateChanged(evt);
+      }
+    });
 
     soilAirOffsetUnits.setText("C");
 
@@ -820,6 +825,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     notesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Notes"));
 
     notes.setColumns(20);
+    notes.setEditable(false);
     notes.setRows(5);
     jScrollPane8.setViewportView(notes);
 
@@ -1166,6 +1172,18 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       }
     }//GEN-LAST:event_exportXmlButtonActionPerformed
 
+    private void soilAirOffsetStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_soilAirOffsetStateChanged
+      double newOffset = 0.0;
+
+      if(soilAirOffset.getValue() instanceof Integer) {
+        newOffset = (Integer)soilAirOffset.getValue();
+      } else {
+        newOffset = (Double)soilAirOffset.getValue();
+      }
+
+      nd.getMetadata().setSoilAirOffset(newOffset);
+    }//GEN-LAST:event_soilAirOffsetStateChanged
+
   public void loadDataset() {
 
     // Refresh the frame with the dataset's fields.
@@ -1205,11 +1223,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       tempTableModel.setValueAt("Air Temp (C)", 0, 0);
       rainfallTableModel.setValueAt("Rainfall (mm)", 0, 0);
       elevationText.setText(roundForDisplay(properElevation) + " meters");
+      elevation.setText(roundForDisplay(properElevation) + " meters");
       soilAirOffsetUnits.setText("C");
     } else {
       tempTableModel.setValueAt("Air Temp (F)", 0, 0);
       rainfallTableModel.setValueAt("Rainfall (in)", 0, 0);
       elevationText.setText(roundForDisplay(properElevation) + " feet");
+      elevation.setText(roundForDisplay(properElevation) + " feet");
       soilAirOffsetUnits.setText("F");
     }
 
@@ -1238,6 +1258,30 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     exportCsvButton.setEnabled(true);
     exportXmlButton.setEnabled(true);
 
+    stationName.setText(nd.getMetadata().getStationName());
+    stationId.setText(nd.getMetadata().getStationId());
+    stationStateProv.setText(nd.getMetadata().getStationStateProvidence());
+    stationCountry.setText(nd.getMetadata().getStationCountry());
+    mlraName.setText(nd.getMetadata().getMlraName());
+    mlraId.setText(Integer.toString(nd.getMetadata().getMlraId()));
+
+    firstName.setText(nd.getMetadata().getContribFirstName());
+    lastName.setText(nd.getMetadata().getContribLastName());
+    title.setText(nd.getMetadata().getContribTitle());
+    orginization.setText(nd.getMetadata().getContribOrg());
+    address.setText(nd.getMetadata().getContribAddress());
+    city.setText(nd.getMetadata().getContribCity());
+    stateProv.setText(nd.getMetadata().getContribStateProvidence());
+    postal.setText(nd.getMetadata().getContribPostal());
+    country.setText(nd.getMetadata().getContribCountry());
+    email.setText(nd.getMetadata().getContribEmail());
+    phone.setText(nd.getMetadata().getContribPhone());
+    
+    String totalNotes = "";
+    for(String note : nd.getMetadata().getNotes()) {
+      totalNotes += note + "\n\n";
+    }
+    notes.setText(totalNotes);
 
     // Dataset refreshed, now run the model, and refresh those fields too.
     runModel();
@@ -1343,6 +1387,28 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     soilAirOffset.setEnabled(false);
     exportCsvButton.setEnabled(false);
     exportXmlButton.setEnabled(false);
+
+    stationName.setText("");
+    stationId.setText("");
+    elevation.setText("");
+    stationStateProv.setText("");
+    stationCountry.setText("");
+    mlraName.setText("");
+    mlraId.setText("");
+
+    firstName.setText("");
+    lastName.setText("");
+    title.setText("");
+    orginization.setText("");
+    address.setText("");
+    city.setText("");
+    stateProv.setText("");
+    postal.setText("");
+    country.setText("");
+    email.setText("");
+    phone.setText("");
+
+    notes.setText("");
 
     this.inMetric = true;
   }
