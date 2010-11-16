@@ -79,7 +79,10 @@ public class CSVFileParser {
     ndm.setStationName(name);
     ndm.setStationCountry(country);
     ndm.setStationElevation(elevation);
-    ndm.setSoilAirOffset(2.5);
+    ndm.setSoilAirOffset(1.2);
+    ndm.setMlraId(-1);
+    ndm.setNotes(new ArrayList<String>());
+    ndm.getNotes().add("Results generated from legacy Newhall input format.");
 
     this.dataset.setMetadata(ndm);
 

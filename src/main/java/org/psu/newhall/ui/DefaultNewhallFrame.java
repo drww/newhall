@@ -615,11 +615,12 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Extended Statistics"));
 
+    statisticsText.setBackground(new java.awt.Color(0, 0, 0));
     statisticsText.setColumns(20);
     statisticsText.setEditable(false);
-    statisticsText.setFont(new java.awt.Font("Monospaced", 0, 11));
+    statisticsText.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+    statisticsText.setForeground(new java.awt.Color(255, 255, 255));
     statisticsText.setRows(15);
-    statisticsText.setOpaque(false);
     jScrollPane7.setViewportView(statisticsText);
 
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -718,27 +719,27 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     phoneLabel.setText("Phone:");
 
-    firstName.setText("jLabel24");
+    firstName.setText(" ");
 
-    lastName.setText("jLabel25");
+    lastName.setText(" ");
 
-    title.setText("jLabel26");
+    title.setText(" ");
 
-    orginization.setText("jLabel27");
+    orginization.setText(" ");
 
-    address.setText("jLabel28");
+    address.setText("  ");
 
-    city.setText("jLabel29");
+    city.setText(" ");
 
-    stateProv.setText("jLabel30");
+    stateProv.setText(" ");
 
-    postal.setText("jLabel31");
+    postal.setText(" ");
 
-    country.setText("jLabel32");
+    country.setText(" ");
 
-    email.setText("jLabel33");
+    email.setText(" ");
 
-    phone.setText("jLabel34");
+    phone.setText(" ");
 
     javax.swing.GroupLayout contributorPanelLayout = new javax.swing.GroupLayout(contributorPanel);
     contributorPanel.setLayout(contributorPanelLayout);
@@ -771,7 +772,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
           .addComponent(country)
           .addComponent(email)
           .addComponent(phone))
-        .addContainerGap(130, Short.MAX_VALUE))
+        .addContainerGap(164, Short.MAX_VALUE))
     );
     contributorPanelLayout.setVerticalGroup(
       contributorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -845,19 +846,19 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addContainerGap())
     );
 
-    stationName.setText("jLabel24");
+    stationName.setText(" ");
 
-    stationId.setText("jLabel25");
+    stationId.setText(" ");
 
-    elevation.setText("jLabel26");
+    elevation.setText(" ");
 
-    stationStateProv.setText("jLabel27");
+    stationStateProv.setText(" ");
 
-    stationCountry.setText("jLabel28");
+    stationCountry.setText(" ");
 
-    mlraName.setText("jLabel29");
+    mlraName.setText(" ");
 
-    mlraId.setText("jLabel30");
+    mlraId.setText(" ");
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
