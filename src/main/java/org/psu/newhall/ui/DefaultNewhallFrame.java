@@ -355,13 +355,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addComponent(soilAirOffsetUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel23)
-            .addGap(119, 119, 119)
+            .addGap(63, 63, 63)
             .addComponent(jLabel19)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel20)
-            .addGap(81, 81, 81)
+            .addGap(50, 50, 50)
             .addComponent(jLabel21)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel22)
             .addContainerGap())
           .addGroup(inputPanelLayout.createSequentialGroup()
@@ -412,12 +412,12 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(soilAirOffsetLabel)
           .addComponent(soilAirOffset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(soilAirOffsetUnits)
+          .addComponent(jLabel23)
           .addComponent(jLabel19)
-          .addComponent(jLabel20)
           .addComponent(jLabel21)
           .addComponent(jLabel22)
-          .addComponent(soilAirOffsetUnits)
-          .addComponent(jLabel23))
+          .addComponent(jLabel20))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -618,7 +618,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     statisticsText.setBackground(new java.awt.Color(0, 0, 0));
     statisticsText.setColumns(20);
     statisticsText.setEditable(false);
-    statisticsText.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+    statisticsText.setFont(new java.awt.Font("Monospaced", 0, 11));
     statisticsText.setForeground(new java.awt.Color(255, 255, 255));
     statisticsText.setRows(15);
     jScrollPane7.setViewportView(statisticsText);
