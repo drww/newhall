@@ -169,7 +169,7 @@ public class XMLResultsExporter {
     Element lon = new Element("lon");
     lon.setText(Double.toString(dataset.getLongitude()));
     Element usercoordfmt = new Element("usercoordfmt");
-    usercoordfmt.setText("DMS");
+    usercoordfmt.setText("DD");
     location.addContent(lat);
     location.addContent(lon);
     location.addContent(usercoordfmt);
