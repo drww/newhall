@@ -1165,7 +1165,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
         try {
           XMLResultsExporter xre = new XMLResultsExporter(jfc.getSelectedFile());
-          xre.export(nr, nd);
+          xre.export(nr, nd, inMetric);
         } catch (IOException e) {
           System.out.println("XML Export failed: " + e.getMessage());
         }

@@ -22,7 +22,7 @@ public class XMLResultsExporter {
     this.outputFile = outputFile;
   }
 
-  public void export(NewhallResults results, NewhallDataset dataset) throws IOException {
+  public void export(NewhallResults results, NewhallDataset dataset, boolean toMetric) throws IOException {
 
     Document doc = new Document();
     Element model = new Element("model");
@@ -145,7 +145,7 @@ public class XMLResultsExporter {
     Element nsmversion = new Element("nsmver");
     Element unitsys = new Element("unitsys");
     nsmversion.setText(org.psu.newhall.Newhall.NSM_VERSION);
-    if (dataset.isMetric()) {
+    if (toMetric) {
       unitsys.setText("metric");
     } else {
       unitsys.setText("english");
@@ -189,7 +189,15 @@ public class XMLResultsExporter {
     for (int i = 0; i < months.length; i++) {
       Element precip = new Element("precip");
       precip.setAttribute("id", months[i]);
-      precip.setText(Double.toString(dataset.getPrecipitation().get(i)));
+      Double precipVal = dataset.getPrecipitation().get(i);
+      if(toMetric && !dataset.isMetric()) {
+        // Convert inches to mm.
+        precipVal = precipVal * 25.4;
+      } else if(!toMetric && dataset.isMetric()) {
+        // Convert mm to inches.
+        precipVal = precipVal * 0.0393700787;
+      }
+      precip.setText(Double.toString(precipVal));
       precips.addContent(precip);
     }
     input.addContent(precips);
@@ -198,7 +206,15 @@ public class XMLResultsExporter {
     for (int i = 0; i < months.length; i++) {
       Element airtemp = new Element("airtemp");
       airtemp.setAttribute("id", months[i]);
-      airtemp.setText(Double.toString(dataset.getTemperature().get(i)));
+      Double airtempVal = dataset.getTemperature().get(i);
+      if (toMetric && !dataset.isMetric()) {
+        // Convert F to C.
+        airtempVal = (airtempVal - 32) * 5.0 / 9.0;
+      } else if (!toMetric && dataset.isMetric()) {
+        // Convert C to F.
+        airtempVal = (airtempVal * 9.0 / 5.0) + 32;
+      }
+      airtemp.setText(Double.toString(airtempVal));
       airtemps.addContent(airtemp);
     }
     input.addContent(airtemps);
@@ -220,7 +236,7 @@ public class XMLResultsExporter {
     input.addContent(soilairrel);
 
     /**
-     * Export Output data.
+     * Export Output data.  Results object is always metric, so it is converted accordingly.
      *
      **/
     Element output = new Element("output");

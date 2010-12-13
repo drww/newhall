@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
@@ -54,7 +54,7 @@
                       <Component id="whcSpinner" min="-2" pref="59" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="whcUnitsLabel" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace pref="115" max="32767" attributes="0"/>
+                      <EmptySpace pref="158" max="32767" attributes="0"/>
                       <Component id="exportFlxButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="exportXmlButton" min="-2" max="-2" attributes="0"/>
@@ -122,10 +122,10 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="latitude" alignment="0" pref="151" max="32767" attributes="1"/>
-                                          <Component id="longitude" alignment="0" pref="151" max="32767" attributes="1"/>
-                                          <Component id="elevation" alignment="0" pref="151" max="32767" attributes="1"/>
-                                          <Component id="stateProv" alignment="1" pref="151" max="32767" attributes="0"/>
+                                          <Component id="latitude" alignment="0" pref="182" max="32767" attributes="1"/>
+                                          <Component id="longitude" alignment="0" pref="182" max="32767" attributes="1"/>
+                                          <Component id="elevation" alignment="0" pref="182" max="32767" attributes="1"/>
+                                          <Component id="stateProv" alignment="1" pref="182" max="32767" attributes="0"/>
                                           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="country" alignment="1" max="32767" attributes="1"/>
                                               <Component id="stationName" alignment="1" pref="151" max="32767" attributes="1"/>
@@ -160,9 +160,9 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="endYear" pref="156" max="32767" attributes="1"/>
-                                          <Component id="startYear" alignment="0" pref="156" max="32767" attributes="1"/>
-                                          <Component id="unitSystem" alignment="0" pref="156" max="32767" attributes="1"/>
+                                          <Component id="endYear" pref="194" max="32767" attributes="1"/>
+                                          <Component id="startYear" alignment="0" pref="194" max="32767" attributes="1"/>
+                                          <Component id="unitSystem" alignment="0" pref="194" max="32767" attributes="1"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -373,11 +373,11 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="email" alignment="0" pref="168" max="32767" attributes="0"/>
-                              <Component id="postal" pref="168" max="32767" attributes="0"/>
-                              <Component id="countryContrib" alignment="0" pref="168" max="32767" attributes="0"/>
-                              <Component id="stateProvContrib" alignment="0" pref="168" max="32767" attributes="0"/>
-                              <Component id="phone" alignment="1" pref="168" max="32767" attributes="0"/>
+                              <Component id="email" alignment="0" pref="217" max="32767" attributes="0"/>
+                              <Component id="postal" pref="217" max="32767" attributes="0"/>
+                              <Component id="countryContrib" alignment="0" pref="217" max="32767" attributes="0"/>
+                              <Component id="stateProvContrib" alignment="0" pref="217" max="32767" attributes="0"/>
+                              <Component id="phone" alignment="1" pref="217" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -547,7 +547,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="notesScrollPane" alignment="0" pref="548" max="32767" attributes="0"/>
+                          <Component id="notesScrollPane" alignment="0" pref="555" max="32767" attributes="0"/>
                           <Component id="lastRunMetadata" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -558,7 +558,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="notesScrollPane" pref="349" max="32767" attributes="0"/>
+                      <Component id="notesScrollPane" pref="363" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lastRunMetadata" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -599,7 +599,7 @@
                           <Component id="lastRunDateLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lastRunDate" min="-2" pref="61" max="-2" attributes="0"/>
-                          <EmptySpace pref="60" max="32767" attributes="0"/>
+                          <EmptySpace pref="113" max="32767" attributes="0"/>
                           <Component id="lastRunVersionLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lastRunVersion" min="-2" pref="84" max="-2" attributes="0"/>
@@ -720,7 +720,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="precipScrollPane" pref="383" max="32767" attributes="0"/>
+                          <Component id="precipScrollPane" pref="394" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -779,7 +779,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tempScrollPane" pref="238" max="32767" attributes="0"/>
+                          <Component id="tempScrollPane" pref="253" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -787,7 +787,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="tempScrollPane" pref="383" max="32767" attributes="0"/>
+                          <Component id="tempScrollPane" pref="394" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -850,24 +850,21 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="petPanel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="moistRegime" alignment="0" max="32767" attributes="1"/>
-                                          <Group type="102" alignment="0" attributes="1">
-                                              <Component id="tempRegimeLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tempRegime" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="annualRainfallLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="annualRainfall" min="-2" pref="98" max="-2" attributes="0"/>
-                                          </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="petPanel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="moistRegime" alignment="0" max="32767" attributes="1"/>
+                                      <Group type="102" alignment="0" attributes="1">
+                                          <Component id="tempRegimeLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="tempRegime" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="annualRainfallLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="annualRainfall" min="-2" pref="98" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                               <Component id="moistRegimeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -911,7 +908,7 @@
                                   <Component id="moistRegimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="moistRegime" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="21" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="whcResultLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="whcResult" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1036,7 +1033,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" pref="291" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="306" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1044,7 +1041,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane2" pref="384" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="394" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>

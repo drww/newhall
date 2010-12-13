@@ -962,7 +962,7 @@ public class NewerNewhallFrame extends javax.swing.JFrame {
 
       XMLResultsExporter exporter = new XMLResultsExporter(jfc.getSelectedFile());
       try {
-        exporter.export(results, dataset);
+        exporter.export(results, dataset, isInMetric);
       } catch (IOException ex) {
         Logger.getLogger(NewerNewhallFrame.class.getName()).log(Level.SEVERE, null, ex);
       }
