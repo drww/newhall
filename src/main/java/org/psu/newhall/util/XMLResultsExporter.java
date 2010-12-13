@@ -161,9 +161,9 @@ public class XMLResultsExporter {
 
     Element location = new Element("location");
     Element lat = new Element("lat");
-    lat.setText(Double.toString(dataset.getLatitude()));
+    lat.setText(Double.toString(round(dataset.getLatitude(), 4)));
     Element lon = new Element("lon");
-    lon.setText(Double.toString(dataset.getLongitude()));
+    lon.setText(Double.toString(round(dataset.getLongitude(), 4)));
     Element usercoordfmt = new Element("usercoordfmt");
     usercoordfmt.setText("DD");
     location.addContent(lat);
@@ -197,7 +197,7 @@ public class XMLResultsExporter {
         // Convert mm to inches.
         precipVal = precipVal * 0.0393700787;
       }
-      precip.setText(Double.toString(precipVal));
+      precip.setText(Double.toString(round(precipVal, 2)));
       precips.addContent(precip);
     }
     input.addContent(precips);
@@ -214,7 +214,7 @@ public class XMLResultsExporter {
         // Convert C to F.
         airtempVal = (airtempVal * 9.0 / 5.0) + 32;
       }
-      airtemp.setText(Double.toString(airtempVal));
+      airtemp.setText(Double.toString(round(airtempVal, 2)));
       airtemps.addContent(airtemp);
     }
     input.addContent(airtemps);
@@ -303,14 +303,27 @@ public class XMLResultsExporter {
     for (int i = 0; i < months.length; i++) {
       Element pet = new Element("pet");
       pet.setAttribute("id", months[i]);
-      pet.setText(Double.toString(round(results.getMeanPotentialEvapotranspiration().get(i))));
+      Double petVal = results.getMeanPotentialEvapotranspiration().get(i);
+      if(!toMetric) {
+        // Convert mm to inches.  PETs in Results object are always in metric.
+        petVal = petVal * 0.0393700787;
+      }
+      pet.setText(Double.toString(round(petVal, 2)));
       pets.addContent(pet);
     }
 
     for (int i = 0; i < months.length; i++) {
       Element soiltemp = new Element("soiltemp");
       soiltemp.setAttribute("id", months[i]);
-      soiltemp.setText(Double.toString(round(dataset.getTemperature().get(i) + dataset.getMetadata().getSoilAirOffset())));
+      Double soiltempVal = dataset.getTemperature().get(i);
+      if (toMetric && !dataset.isMetric()) {
+        // Convert F to C.
+        soiltempVal = (soiltempVal - 32) * 5.0 / 9.0;
+      } else if (!toMetric && dataset.isMetric()) {
+        // Convert C to F.
+        soiltempVal = (soiltempVal * 9.0 / 5.0) + 32;
+      }
+      soiltemp.setText(Double.toString(round(soiltempVal + dataset.getMetadata().getSoilAirOffset(), 2)));
       soiltemps.addContent(soiltemp);
     }
 
@@ -413,8 +426,12 @@ public class XMLResultsExporter {
 
   }
 
-  double round(double d) {
-    DecimalFormat df = new DecimalFormat("#.##");
+  double round(double d, int decimalPlaces) {
+    String format = "#.#";
+    for(int i = decimalPlaces - 1; i > 0; i--) {
+      format += "#";
+    }
+    DecimalFormat df = new DecimalFormat(format);
     return Double.valueOf(df.format(d));
   }
 }
