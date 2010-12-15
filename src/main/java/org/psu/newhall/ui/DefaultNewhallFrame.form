@@ -177,7 +177,11 @@
                       <Component id="whcSpinner" min="-2" pref="57" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="whcUnitsText" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace pref="294" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                      <Component id="activeUnitSystemLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="activeUnitSystemText" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="97" max="32767" attributes="0"/>
                       <Component id="exportXmlButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="exportCsvButton" min="-2" max="-2" attributes="0"/>
@@ -200,6 +204,8 @@
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="whcSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="whcUnitsText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="activeUnitSystemLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="activeUnitSystemText" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -1659,6 +1665,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exportCsvButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="activeUnitSystemLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Active/Export Unit System:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="activeUnitSystemText">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" "/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

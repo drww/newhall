@@ -149,6 +149,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     whcUnitsText = new javax.swing.JLabel();
     exportXmlButton = new javax.swing.JButton();
     exportCsvButton = new javax.swing.JButton();
+    activeUnitSystemLabel = new javax.swing.JLabel();
+    activeUnitSystemText = new javax.swing.JLabel();
     menuBar = new javax.swing.JMenuBar();
     fileMenu = new javax.swing.JMenu();
     openDatasetMenuItem = new javax.swing.JMenuItem();
@@ -958,6 +960,10 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       }
     });
 
+    activeUnitSystemLabel.setText("Active/Export Unit System:");
+
+    activeUnitSystemText.setText(" ");
+
     menuBar.setFont(menuBar.getFont());
 
     fileMenu.setText("File");
@@ -1027,7 +1033,11 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(whcUnitsText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+            .addGap(58, 58, 58)
+            .addComponent(activeUnitSystemLabel)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(activeUnitSystemText)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
             .addComponent(exportXmlButton)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(exportCsvButton)))
@@ -1045,7 +1055,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
             .addComponent(jLabel6)
             .addComponent(whcSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(whcUnitsText)))
+            .addComponent(whcUnitsText)
+            .addComponent(activeUnitSystemLabel)
+            .addComponent(activeUnitSystemText)))
         .addContainerGap())
     );
 
@@ -1107,16 +1119,18 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         double whcInMm = originalWhcValue * 25.4;
         double savInC = (originalSoilAirValue - 32) * (5.0 / 9.0);
         whcSpinner.setValue(whcInMm);
-        soilAirOffset.setValue(savInC);
+        //soilAirOffset.setValue(savInC);
         whcUnitsText.setText("mm");
         soilAirOffsetUnits.setText("C");
+        activeUnitSystemText.setText("metric");
       } else {
         double whcInInches = originalWhcValue * 0.0393700787;
         double savInF = (originalSoilAirValue * (9.0 / 5.0)) + 32;
         whcSpinner.setValue(whcInInches);
-        soilAirOffset.setValue(savInF);
+        //soilAirOffset.setValue(savInF);
         whcUnitsText.setText("in");
         soilAirOffsetUnits.setText("F");
+        activeUnitSystemText.setText("english");
       }
 
       if (nd != null) {
@@ -1226,12 +1240,14 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       elevationText.setText(roundForDisplay(properElevation) + " meters");
       elevation.setText(roundForDisplay(properElevation) + " meters");
       soilAirOffsetUnits.setText("C");
+      activeUnitSystemText.setText("metric");
     } else {
       tempTableModel.setValueAt("Air Temp (F)", 0, 0);
       rainfallTableModel.setValueAt("Rainfall (in)", 0, 0);
       elevationText.setText(roundForDisplay(properElevation) + " feet");
       elevation.setText(roundForDisplay(properElevation) + " feet");
       soilAirOffsetUnits.setText("F");
+      activeUnitSystemText.setText("english");
     }
 
     tempTable.getColumnModel().getColumn(0).setPreferredWidth(150);
@@ -1411,6 +1427,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     notes.setText("");
 
+    activeUnitSystemText.setText("");
     this.inMetric = true;
   }
 
@@ -1423,6 +1440,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   }
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuItem aboutMenuItem;
+  private javax.swing.JLabel activeUnitSystemLabel;
+  private javax.swing.JLabel activeUnitSystemText;
   private javax.swing.JLabel address;
   private javax.swing.JLabel annualRainfallText;
   private javax.swing.JPanel calendarPanel;
