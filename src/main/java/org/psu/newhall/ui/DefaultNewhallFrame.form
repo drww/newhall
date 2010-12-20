@@ -170,7 +170,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="tabPane" alignment="0" pref="705" max="32767" attributes="0"/>
+                  <Component id="tabPane" alignment="0" pref="893" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -253,24 +253,24 @@
                                   <Component id="stationText" alignment="0" max="32767" attributes="1"/>
                                   <Component id="countryText" alignment="0" pref="191" max="32767" attributes="1"/>
                               </Group>
-                              <EmptySpace type="separate" pref="45" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" pref="148" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="srcUnitSystemLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="endingYearLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="startYearLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="startingYearText" max="32767" attributes="1"/>
                                       <Component id="endingYearText" alignment="0" min="-2" pref="49" max="-2" attributes="1"/>
                                   </Group>
-                                  <Component id="srcUnitSystem" min="-2" pref="49" max="-2" attributes="0"/>
+                                  <Component id="srcUnitSystem" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSeparator2" pref="680" max="32767" attributes="0"/>
+                              <Component id="jSeparator2" pref="864" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -281,18 +281,14 @@
                               <Component id="soilAirOffsetUnits" min="-2" pref="11" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace pref="253" max="32767" attributes="0"/>
                               <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                              <Component id="amplitudeSpinner" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSeparator3" pref="680" max="32767" attributes="0"/>
+                              <Component id="jSeparator3" pref="864" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -357,10 +353,8 @@
                           <Component id="soilAirOffset" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="soilAirOffsetUnits" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="amplitudeSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
@@ -394,8 +388,8 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="datasetScrollPane3" alignment="0" pref="648" max="32767" attributes="0"/>
-                              <Component id="datasetScrollPane" alignment="0" pref="648" max="32767" attributes="0"/>
+                              <Component id="datasetScrollPane3" alignment="0" pref="830" max="32767" attributes="0"/>
+                              <Component id="datasetScrollPane" alignment="0" pref="830" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -645,30 +639,17 @@
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator3">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel19">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Lag:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel20">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="18"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel21">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Amplitude:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel22">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="0.66"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel23">
               <Properties>
                 <Property name="text" type="java.lang.String" value="greater than air temperature"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="amplitudeSpinner">
             </Component>
           </SubComponents>
         </Container>
@@ -687,7 +668,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="tempCalPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace pref="215" max="32767" attributes="0"/>
                       <Component id="moistCalPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -706,7 +687,7 @@
                               <Component id="moistCalPanel" min="-2" max="-2" attributes="1"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="101" max="32767" attributes="0"/>
+                      <EmptySpace pref="140" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1024,7 +1005,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
-                          <Component id="datasetScrollPane1" alignment="0" pref="668" max="32767" attributes="0"/>
+                          <Component id="datasetScrollPane1" alignment="0" pref="854" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1036,7 +1017,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="moistureRegimeText" pref="145" max="32767" attributes="0"/>
+                              <Component id="moistureRegimeText" pref="205" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1148,7 +1129,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane7" pref="636" max="32767" attributes="0"/>
+                          <Component id="jScrollPane7" pref="820" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1156,7 +1137,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane7" pref="285" max="32767" attributes="0"/>
+                          <Component id="jScrollPane7" pref="287" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1424,7 +1405,7 @@
                               <Component id="phoneLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="phone" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="169" max="32767" attributes="0"/>
+                          <EmptySpace pref="159" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1556,7 +1537,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane8" pref="384" max="32767" attributes="0"/>
+                          <Component id="jScrollPane8" pref="537" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1564,7 +1545,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane8" pref="232" max="32767" attributes="0"/>
+                          <Component id="jScrollPane8" pref="225" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>

@@ -28,12 +28,13 @@ public class NewhallDatasetMetadata {
   String modelVersion;
   String unitSystem;
   double soilAirOffset;
+  double amplitude;
 
   public NewhallDatasetMetadata(String stationName, String stationId, double stationElevation, String stationStateProvidence,
           String stationCountry, String mlraName, int mlraId, String contribFirstName, String contribLastName, String contribTitle,
           String contribOrg, String contribAddress, String contribCity, String contribStateProvidence, String contribPostal,
           String contribCountry, String contribEmail, String contribPhone, List<String> notes, String runDate, String modelVersion,
-          String unitSystem, double soilAirOffset) {
+          String unitSystem, double soilAirOffset, double amplitude) {
 
     this.stationName = stationName;
     this.stationId = stationId;
@@ -58,6 +59,7 @@ public class NewhallDatasetMetadata {
     this.modelVersion = modelVersion;
     this.unitSystem = unitSystem;
     this.soilAirOffset = soilAirOffset;
+    this.amplitude = amplitude;
   }
 
   public NewhallDatasetMetadata() {
@@ -83,7 +85,8 @@ public class NewhallDatasetMetadata {
     this.runDate = "";
     this.modelVersion = "";
     this.unitSystem = "";
-    this.soilAirOffset = 0;
+    this.soilAirOffset = BASICSimulationModelConstants.fc;
+    this.amplitude = BASICSimulationModelConstants.fcd;
   }
 
   public String getContribAddress() {
@@ -269,4 +272,13 @@ public class NewhallDatasetMetadata {
   public double getSoilAirOffset() {
     return soilAirOffset;
   }
+
+  public double getAmplitude() {
+    return amplitude;
+  }
+
+  public void setAmplitude(double amplitude) {
+    this.amplitude = amplitude;
+  }
+
 }

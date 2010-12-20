@@ -69,11 +69,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     soilAirOffset = new javax.swing.JSpinner();
     soilAirOffsetUnits = new javax.swing.JLabel();
     jSeparator3 = new javax.swing.JSeparator();
-    jLabel19 = new javax.swing.JLabel();
-    jLabel20 = new javax.swing.JLabel();
     jLabel21 = new javax.swing.JLabel();
-    jLabel22 = new javax.swing.JLabel();
     jLabel23 = new javax.swing.JLabel();
+    amplitudeSpinner = new javax.swing.JSpinner();
     calendarPanel = new javax.swing.JPanel();
     tempCalPanel = new javax.swing.JPanel();
     jScrollPane4 = new javax.swing.JScrollPane();
@@ -233,8 +231,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datasetPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(datasetScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
-          .addComponent(datasetScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE))
+          .addComponent(datasetScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+          .addComponent(datasetScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE))
         .addContainerGap())
     );
     datasetPanelLayout.setVerticalGroup(
@@ -300,13 +298,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     soilAirOffsetUnits.setText("C");
 
-    jLabel19.setText("Lag:");
-
-    jLabel20.setText("18");
-
     jLabel21.setText("Amplitude:");
-
-    jLabel22.setText("0.66");
 
     jLabel23.setText("greater than air temperature");
 
@@ -334,20 +326,20 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
               .addComponent(elevationText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(stationText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(countryText, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
-            .addGap(18, 45, Short.MAX_VALUE)
+            .addGap(18, 148, Short.MAX_VALUE)
             .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(srcUnitSystemLabel)
               .addComponent(endingYearLabel)
               .addComponent(startYearLabel))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(startingYearText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(endingYearText, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addComponent(srcUnitSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(204, 204, 204))
+              .addComponent(srcUnitSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(167, 167, 167))
           .addGroup(inputPanelLayout.createSequentialGroup()
-            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
             .addContainerGap())
           .addGroup(inputPanelLayout.createSequentialGroup()
             .addComponent(soilAirOffsetLabel)
@@ -357,17 +349,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addComponent(soilAirOffsetUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel23)
-            .addGap(63, 63, 63)
-            .addComponent(jLabel19)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jLabel20)
-            .addGap(50, 50, 50)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
             .addComponent(jLabel21)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jLabel22)
+            .addComponent(amplitudeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
           .addGroup(inputPanelLayout.createSequentialGroup()
-            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
             .addContainerGap())))
     );
     inputPanelLayout.setVerticalGroup(
@@ -416,10 +404,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
           .addComponent(soilAirOffset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(soilAirOffsetUnits)
           .addComponent(jLabel23)
-          .addComponent(jLabel19)
           .addComponent(jLabel21)
-          .addComponent(jLabel22)
-          .addComponent(jLabel20))
+          .addComponent(amplitudeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -562,7 +548,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calendarPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addComponent(tempCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
         .addComponent(moistCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap())
     );
@@ -576,7 +562,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
           .addGroup(javax.swing.GroupLayout.Alignment.LEADING, calendarPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(moistCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(101, Short.MAX_VALUE))
+        .addContainerGap(140, Short.MAX_VALUE))
     );
 
     tabPane.addTab("Calendars", calendarPanel);
@@ -631,13 +617,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
         .addContainerGap())
     );
     jPanel3Layout.setVerticalGroup(
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -649,7 +635,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addContainerGap()
         .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
           .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
           .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jLabel3)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -661,7 +647,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel5)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)))
+            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
         .addContainerGap())
     );
     modelResultsPanelLayout.setVerticalGroup(
@@ -822,7 +808,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addGroup(contributorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(phoneLabel)
           .addComponent(phone))
-        .addContainerGap(169, Short.MAX_VALUE))
+        .addContainerGap(159, Short.MAX_VALUE))
     );
 
     notesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Notes"));
@@ -838,13 +824,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       notesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(notesPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
         .addContainerGap())
     );
     notesPanelLayout.setVerticalGroup(
       notesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(notesPanelLayout.createSequentialGroup()
-        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -1026,7 +1012,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(tabPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
+          .addComponent(tabPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE)
           .addGroup(layout.createSequentialGroup()
             .addComponent(jLabel6)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1115,22 +1101,28 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         originalSoilAirValue = (Integer) soilAirOffset.getValue();
       }
 
+      if(this.inMetric && !nd.isMetric()) {
+        // Offset is F, needs to be C.
+      } else if(!this.inMetric && nd.isMetric()) {
+        // Offset is C, needs to be F.
+      }
+
       if (this.inMetric) {
         double whcInMm = originalWhcValue * 25.4;
-        double savInC = (originalSoilAirValue - 32) * (5.0 / 9.0);
+        double savInC = originalSoilAirValue * (5.0 / 9.0);
         whcSpinner.setValue(whcInMm);
-        //soilAirOffset.setValue(savInC);
+        soilAirOffset.setValue(savInC);
         whcUnitsText.setText("mm");
         soilAirOffsetUnits.setText("C");
-        activeUnitSystemText.setText("metric");
+        activeUnitSystemText.setText("Metric");
       } else {
         double whcInInches = originalWhcValue * 0.0393700787;
-        double savInF = (originalSoilAirValue * (9.0 / 5.0)) + 32;
+        double savInF = (originalSoilAirValue * (9.0 / 5.0));
         whcSpinner.setValue(whcInInches);
-        //soilAirOffset.setValue(savInF);
+        soilAirOffset.setValue(savInF);
         whcUnitsText.setText("in");
         soilAirOffsetUnits.setText("F");
-        activeUnitSystemText.setText("english");
+        activeUnitSystemText.setText("English");
       }
 
       if (nd != null) {
@@ -1190,10 +1182,10 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     private void soilAirOffsetStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_soilAirOffsetStateChanged
       double newOffset = 0.0;
 
-      if(soilAirOffset.getValue() instanceof Integer) {
-        newOffset = (Integer)soilAirOffset.getValue();
+      if (soilAirOffset.getValue() instanceof Integer) {
+        newOffset = (Integer) soilAirOffset.getValue();
       } else {
-        newOffset = (Double)soilAirOffset.getValue();
+        newOffset = (Double) soilAirOffset.getValue();
       }
 
       nd.getMetadata().setSoilAirOffset(newOffset);
@@ -1214,8 +1206,12 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         properTemp.add(tempInC);
         double precipInMm = nd.getPrecipitation().get(i) * 25.4;
         properPrecip.add(precipInMm);
-        properElevation = nd.getElevation() * 0.3048;
       }
+
+      double offsetInC = nd.getMetadata().getSoilAirOffset() * (5.0 / 9.0);
+      soilAirOffset.setValue(offsetInC);
+      properElevation = nd.getElevation() * 0.3048;
+
     } else if (!this.inMetric && nd.isMetric()) {
       // Convert metric to English.
       for (int i = 0; i < 12; i++) {
@@ -1223,13 +1219,17 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         properTemp.add(tempInF);
         double precipInInches = nd.getPrecipitation().get(i) / 25.4;
         properPrecip.add(precipInInches);
-        properElevation = nd.getElevation() * 3.2808399;
       }
+
+      double offsetInF = nd.getMetadata().getSoilAirOffset() * (9.0 / 5.0);
+      soilAirOffset.setValue(offsetInF);
+      properElevation = nd.getElevation() * 3.2808399;
     } else {
       // Present format is correct.
       properTemp = nd.getTemperature();
       properPrecip = nd.getPrecipitation();
       properElevation = nd.getElevation();
+      soilAirOffset.setValue(nd.getMetadata().getSoilAirOffset());
     }
 
     TableModel tempTableModel = this.tempTable.getModel();
@@ -1240,14 +1240,14 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       elevationText.setText(roundForDisplay(properElevation) + " meters");
       elevation.setText(roundForDisplay(properElevation) + " meters");
       soilAirOffsetUnits.setText("C");
-      activeUnitSystemText.setText("metric");
+      activeUnitSystemText.setText("Metric");
     } else {
       tempTableModel.setValueAt("Air Temp (F)", 0, 0);
       rainfallTableModel.setValueAt("Rainfall (in)", 0, 0);
       elevationText.setText(roundForDisplay(properElevation) + " feet");
       elevation.setText(roundForDisplay(properElevation) + " feet");
       soilAirOffsetUnits.setText("F");
-      activeUnitSystemText.setText("english");
+      activeUnitSystemText.setText("English");
     }
 
     tempTable.getColumnModel().getColumn(0).setPreferredWidth(150);
@@ -1257,7 +1257,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       tempTableModel.setValueAt(roundForDisplay(properTemp.get(i)), 0, i + 1);
     }
 
-    if(nd.isMetric()) {
+    if (nd.isMetric()) {
       srcUnitSystem.setText("Metric");
     } else {
       srcUnitSystem.setText("English");
@@ -1293,9 +1293,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     country.setText(nd.getMetadata().getContribCountry());
     email.setText(nd.getMetadata().getContribEmail());
     phone.setText(nd.getMetadata().getContribPhone());
-    
+
     String totalNotes = "";
-    for(String note : nd.getMetadata().getNotes()) {
+    for (String note : nd.getMetadata().getNotes()) {
       totalNotes += note + "\n\n";
     }
     notes.setText(totalNotes);
@@ -1443,6 +1443,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JLabel activeUnitSystemLabel;
   private javax.swing.JLabel activeUnitSystemText;
   private javax.swing.JLabel address;
+  private javax.swing.JSpinner amplitudeSpinner;
   private javax.swing.JLabel annualRainfallText;
   private javax.swing.JPanel calendarPanel;
   private javax.swing.JLabel city;
@@ -1480,11 +1481,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel16;
   private javax.swing.JLabel jLabel17;
   private javax.swing.JLabel jLabel18;
-  private javax.swing.JLabel jLabel19;
   private javax.swing.JLabel jLabel2;
-  private javax.swing.JLabel jLabel20;
   private javax.swing.JLabel jLabel21;
-  private javax.swing.JLabel jLabel22;
   private javax.swing.JLabel jLabel23;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;

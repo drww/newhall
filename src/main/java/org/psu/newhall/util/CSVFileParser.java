@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.psu.newhall.sim.BASICSimulationModelConstants;
 import org.psu.newhall.sim.NewhallDataset;
 import org.psu.newhall.sim.NewhallDatasetMetadata;
 
@@ -79,7 +80,12 @@ public class CSVFileParser {
     ndm.setStationName(name);
     ndm.setStationCountry(country);
     ndm.setStationElevation(elevation);
-    ndm.setSoilAirOffset(1.2);
+    if(!isMetric) {
+      ndm.setSoilAirOffset(BASICSimulationModelConstants.fc * (9.0/5.0));
+    } else {
+      ndm.setSoilAirOffset(BASICSimulationModelConstants.fc);
+    }
+    ndm.setAmplitude(BASICSimulationModelConstants.fcd);
     ndm.setMlraId(-1);
     ndm.setNotes(new ArrayList<String>());
     ndm.getNotes().add("Results generated from legacy Newhall input format.");
