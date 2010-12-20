@@ -10,6 +10,11 @@ package org.psu.newhall.sim;
 public class BASICSimulationModel {
 
   public static NewhallResults runSimulation(NewhallDataset dataset, double waterHoldingCapacity) {
+    // Calls simulation model with the BASIC version's default constants for FC and FCD.
+    return runSimulation(dataset, waterHoldingCapacity, BASICSimulationModelConstants.fc, BASICSimulationModelConstants.fcd);
+  }
+
+  public static NewhallResults runSimulation(NewhallDataset dataset, double waterHoldingCapacity, double fc, double fcd) {
 
     // Convert elevation into meters.
     double elevation = dataset.getElevation();
@@ -180,11 +185,11 @@ public class BASICSimulationModel {
       sumt += temperature[i];
     }
 
-    double tma = sumt / 12 + BASICSimulationModelConstants.fc;
+    double tma = sumt / 12 + fc;
     double at1 = (temperature[6] + temperature[7]
-            + temperature[8]) / 3 + BASICSimulationModelConstants.fc;
+            + temperature[8]) / 3 + fc;
     double at2 = (temperature[1] + temperature[2]
-            + temperature[12]) / 3 + BASICSimulationModelConstants.fc;
+            + temperature[12]) / 3 + fc;
 
     double st = 0;
     double wt = 0;
@@ -197,7 +202,7 @@ public class BASICSimulationModel {
     }
 
     double dif = Math.abs(at1 - at2);
-    double cs = dif * (1 - BASICSimulationModelConstants.fcd) / 2;
+    double cs = dif * (1 - fcd) / 2;
 
     // 680
 
@@ -206,7 +211,7 @@ public class BASICSimulationModel {
     cr[1] = tma < 0;
     cr[2] = 0 <= tma && tma < 8;
     cr[3] = (st - cs) < 15;
-    cr[7] = (dif * BASICSimulationModelConstants.fcd) > 5;
+    cr[7] = (dif * fcd) > 5;
     cr[8] = (tma >= 8) && (tma < 15);
     cr[9] = (tma >= 15) && (tma < 22);
     cr[10] = tma >= 22;
@@ -332,8 +337,8 @@ public class BASICSimulationModel {
       iday[i] = 0;
     }
 
-    double fc = 2.5;
-    double fcd = 0.66;
+    //double fc = 2.5;
+    //double fcd = 0.66;
     int swp = -1;
     int gogr = 0;
 
@@ -3074,6 +3079,8 @@ public class BASICSimulationModel {
      *   public NewhallResults(double arf, double whc, double[] mpe, int nccd, int nccm, int[] ntd, int[] iday,
      *     int[] nd, int[] nsd, int[] ncpm, String trr, String ans) {
      */
+
+    /** Possible lag candidates: dif prmo tma st **/
 
     return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd, ncpm, trr, ans, flxFile);
 

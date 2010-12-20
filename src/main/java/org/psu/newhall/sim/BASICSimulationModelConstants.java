@@ -2,8 +2,8 @@ package org.psu.newhall.sim;
 
 public class BASICSimulationModelConstants {
 
-  public static final String[] tempRegimes = {"pregelic", "cryic", "frigid", "mesic",
-    "thermic", "hyperth.", "Isofrigid", "Isomesic", "Isothermic",
+  public static final String[] tempRegimes = {"Pregelic", "Cryic", "Frigid", "Mesic",
+    "Thermic", "Hyperthermic", "Isofrigid", "Isomesic", "Isothermic",
     "Isohyperthermic"};
 
   public static final double[] zpe = {135.0, 139.5, 143.7, 147.8, 151.7, 155.4, 158.9, 162.1,
@@ -47,8 +47,10 @@ public class BASICSimulationModelConstants {
 
   public static final double[] rs = {5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 42.0, 44.0, 46.0, 48.0, 50.0};
 
+  /** Degree offset between soil and air temperature in Celsius. **/
   public static final double fc = 2.5;
 
+  /** Soil-Air Relationship Amplitude **/
   public static final double fcd = 0.66;
 
   public static final double cv = 5/9;
