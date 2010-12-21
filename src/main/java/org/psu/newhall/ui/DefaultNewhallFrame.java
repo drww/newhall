@@ -1084,8 +1084,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_openDatasetMenuItemActionPerformed
 
     private void toggleUnitsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleUnitsMenuItemActionPerformed
-      this.inMetric = !this.inMetric;
-
+  
       double originalWhcValue = 0.0;
       double originalSoilAirValue = 0.0;
 
@@ -1101,11 +1100,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         originalSoilAirValue = (Integer) soilAirOffset.getValue();
       }
 
-      if(this.inMetric && !nd.isMetric()) {
-        // Offset is F, needs to be C.
-      } else if(!this.inMetric && nd.isMetric()) {
-        // Offset is C, needs to be F.
-      }
+      this.inMetric = !this.inMetric;
 
       if (this.inMetric) {
         double whcInMm = originalWhcValue * 25.4;
@@ -1188,7 +1183,16 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         newOffset = (Double) soilAirOffset.getValue();
       }
 
-      nd.getMetadata().setSoilAirOffset(newOffset);
+      if(this.inMetric && !nd.isMetric()) {
+        // Converft C to F.
+        nd.getMetadata().setSoilAirOffset(newOffset * (9.0/5.0));
+      } else if(!this.inMetric && nd.isMetric()) {
+        // Convert F to C.
+        nd.getMetadata().setSoilAirOffset(newOffset * (5.0/9.0));
+      } else {
+        nd.getMetadata().setSoilAirOffset(newOffset);
+      }
+      
     }//GEN-LAST:event_soilAirOffsetStateChanged
 
   public void loadDataset() {
