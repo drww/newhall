@@ -21,6 +21,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private NewhallDataset nd;
   private NewhallResults nr;
   private boolean inMetric = true;
+  private boolean loaded = false;
 
   public DefaultNewhallFrame() {
     initComponents();
@@ -231,8 +232,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datasetPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(datasetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(datasetScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
-          .addComponent(datasetScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE))
+          .addComponent(datasetScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
+          .addComponent(datasetScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE))
         .addContainerGap())
     );
     datasetPanelLayout.setVerticalGroup(
@@ -302,6 +303,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     jLabel23.setText("greater than air temperature");
 
+    amplitudeSpinner.setModel(new javax.swing.SpinnerNumberModel(0.66d, 0.0d, 1.0d, 0.01d));
+    amplitudeSpinner.setEnabled(false);
+
     javax.swing.GroupLayout inputPanelLayout = new javax.swing.GroupLayout(inputPanel);
     inputPanel.setLayout(inputPanelLayout);
     inputPanelLayout.setHorizontalGroup(
@@ -326,7 +330,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
               .addComponent(elevationText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(stationText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(countryText, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
-            .addGap(18, 148, Short.MAX_VALUE)
+            .addGap(18, 233, Short.MAX_VALUE)
             .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(srcUnitSystemLabel)
               .addComponent(endingYearLabel)
@@ -339,7 +343,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
               .addComponent(srcUnitSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(167, 167, 167))
           .addGroup(inputPanelLayout.createSequentialGroup()
-            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
             .addContainerGap())
           .addGroup(inputPanelLayout.createSequentialGroup()
             .addComponent(soilAirOffsetLabel)
@@ -349,13 +353,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addComponent(soilAirOffsetUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel23)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
             .addComponent(jLabel21)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(amplitudeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
           .addGroup(inputPanelLayout.createSequentialGroup()
-            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
+            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
             .addContainerGap())))
     );
     inputPanelLayout.setVerticalGroup(
@@ -548,7 +552,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calendarPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addComponent(tempCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
         .addComponent(moistCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap())
     );
@@ -562,7 +566,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
           .addGroup(javax.swing.GroupLayout.Alignment.LEADING, calendarPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(moistCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(140, Short.MAX_VALUE))
+        .addContainerGap(101, Short.MAX_VALUE))
     );
 
     tabPane.addTab("Calendars", calendarPanel);
@@ -617,13 +621,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
         .addContainerGap())
     );
     jPanel3Layout.setVerticalGroup(
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -635,7 +639,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addContainerGap()
         .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
           .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
+          .addComponent(datasetScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 856, Short.MAX_VALUE)
           .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelResultsPanelLayout.createSequentialGroup()
             .addComponent(jLabel3)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -647,7 +651,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel5)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
+            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)))
         .addContainerGap())
     );
     modelResultsPanelLayout.setVerticalGroup(
@@ -808,7 +812,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addGroup(contributorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(phoneLabel)
           .addComponent(phone))
-        .addContainerGap(159, Short.MAX_VALUE))
+        .addContainerGap(173, Short.MAX_VALUE))
     );
 
     notesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Notes"));
@@ -824,13 +828,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       notesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(notesPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
         .addContainerGap())
     );
     notesPanelLayout.setVerticalGroup(
       notesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(notesPanelLayout.createSequentialGroup()
-        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -1023,7 +1027,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addComponent(activeUnitSystemLabel)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(activeUnitSystemText)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
             .addComponent(exportXmlButton)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(exportCsvButton)))
@@ -1061,25 +1065,35 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         System.out.println("Attempting XML parsing.");
         File selectedFile = jfc.getSelectedFile();
         NewhallDataset newDataset = null;
+        boolean goodLoad = false;
         try {
           XMLFileParser xfp = new XMLFileParser(selectedFile);
           newDataset = xfp.getDataset();
+          goodLoad = true;
         } catch (Exception e) {
           System.out.println("Attempting CSV parsing.");
           try {
             CSVFileParser cfp = new CSVFileParser(selectedFile);
             newDataset = cfp.getDatset();
+            goodLoad = true;
           } catch (Exception ee) {
-            unloadDataset();
             System.out.println("Unacceptable file detected.");
             JOptionPane.showMessageDialog(this,
                     "Selected file is not formatted as a Newhall CSV or XML document.");
-            return;
           }
         }
 
-        nd = newDataset;
-        loadDataset();
+        if (goodLoad) {
+          System.out.println("File acceptable, loading.");
+          nd = newDataset;
+          loaded = false;
+          loadDataset();
+          loaded = true;
+        } else {
+          System.out.println("File unacceptable, unloading all active data.");
+          loaded = false;
+          unloadDataset();
+        }
       }
     }//GEN-LAST:event_openDatasetMenuItemActionPerformed
 
@@ -1126,7 +1140,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_toggleUnitsMenuItemActionPerformed
 
     private void whcSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_whcSpinnerStateChanged
-      if (nd != null) {
+      if (nd != null && loaded) {
         loadDataset();
       }
     }//GEN-LAST:event_whcSpinnerStateChanged
@@ -1193,7 +1207,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         nd.getMetadata().setSoilAirOffset(newOffset);
       }
 
-      if (nd != null) {
+      if (nd != null && loaded) {
         loadDataset();
       }
 
@@ -1271,6 +1285,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       srcUnitSystem.setText("English");
     }
 
+    amplitudeSpinner.setValue(nd.getMetadata().getAmplitude());
+
     stationText.setText(nd.getName());
     latitudeText.setText(roundDegreesForDisplay(nd.getLatitude()) + " degrees " + nd.getNsHemisphere());
     longitudeText.setText(roundDegreesForDisplay(nd.getLongitude()) + " degrees " + nd.getEwHemisphere());
@@ -1280,6 +1296,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     whcSpinner.setEnabled(true);
     soilAirOffset.setEnabled(true);
+    amplitudeSpinner.setEnabled(true);
     exportCsvButton.setEnabled(true);
     exportXmlButton.setEnabled(true);
 
@@ -1419,6 +1436,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     whcSpinner.setEnabled(false);
     soilAirOffset.setValue(1.2);
     soilAirOffset.setEnabled(false);
+    amplitudeSpinner.setValue(0.66);
+    amplitudeSpinner.setEnabled(false);
     exportCsvButton.setEnabled(false);
     exportXmlButton.setEnabled(false);
 
