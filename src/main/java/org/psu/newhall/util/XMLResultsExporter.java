@@ -190,10 +190,10 @@ public class XMLResultsExporter {
       Element precip = new Element("precip");
       precip.setAttribute("id", months[i]);
       Double precipVal = dataset.getPrecipitation().get(i);
-      if(toMetric && !dataset.isMetric()) {
+      if (toMetric && !dataset.isMetric()) {
         // Convert inches to mm.
         precipVal = precipVal * 25.4;
-      } else if(!toMetric && dataset.isMetric()) {
+      } else if (!toMetric && dataset.isMetric()) {
         // Convert mm to inches.
         precipVal = precipVal * 0.0393700787;
       }
@@ -226,10 +226,21 @@ public class XMLResultsExporter {
     Element soilairrel = new Element("soilairrel");
     Element lag = new Element("lag");
     lag.setText("18");
+
     Element ampltd = new Element("ampltd");
-    ampltd.setText("0.66");
+    ampltd.setText(Double.toString(dataset.getMetadata().getAmplitude()));
+
     Element maatmast = new Element("maatmast");
-    maatmast.setText(Double.toString(dataset.getMetadata().getSoilAirOffset()));
+    double maatmastVal = dataset.getMetadata().getSoilAirOffset();
+    if (toMetric && !dataset.isMetric()) {
+      // Convert F to C.
+      maatmastVal *= 5.0/9.0;
+    } else if (!toMetric && dataset.isMetric()) {
+      // Convert C to F.
+      maatmastVal *= 9.0/5.0;
+    }
+    maatmast.setText(Double.toString(round(maatmastVal, 2)));
+
     soilairrel.addContent(lag);
     soilairrel.addContent(ampltd);
     soilairrel.addContent(maatmast);
@@ -257,7 +268,6 @@ public class XMLResultsExporter {
     awb.setText("340");
     swb.setText("-74");
     /** </WAGS> **/
-
     Element cumdays = new Element("cumdays");
     Element yrdry = new Element("yrdry");
     Element yrmd = new Element("yrmd");
@@ -299,12 +309,12 @@ public class XMLResultsExporter {
 
     smcstates.addContent(cumdays);
     smcstates.addContent(consdays);
-    
+
     for (int i = 0; i < months.length; i++) {
       Element pet = new Element("pet");
       pet.setAttribute("id", months[i]);
       Double petVal = results.getMeanPotentialEvapotranspiration().get(i);
-      if(!toMetric) {
+      if (!toMetric) {
         // Convert mm to inches.  PETs in Results object are always in metric.
         petVal = petVal * 0.0393700787;
       }
@@ -331,18 +341,26 @@ public class XMLResultsExporter {
     List<Character> tempCal = results.getTemperatureCalendar();
     char lastChar = tempCal.get(0);
     int lastPos = 0;
-    for(int i = 1; i < tempCal.size(); i++) {
+    for (int i = 1; i < tempCal.size(); i++) {
       char thisChar = tempCal.get(i);
-      if(thisChar == lastChar && i != tempCal.size() - 1) {
+      if (thisChar == lastChar && i != tempCal.size() - 1) {
         continue;
       } else {
         Element blockToAdd = null;
 
-        switch(lastChar) {
-          case '-': blockToAdd = new Element("stlt5"); break;
-          case '5': blockToAdd = new Element("st5to8"); break;
-          case '8': blockToAdd = new Element("stgt8"); break;
-          default: blockToAdd = new Element("unknown"); break;
+        switch (lastChar) {
+          case '-':
+            blockToAdd = new Element("stlt5");
+            break;
+          case '5':
+            blockToAdd = new Element("st5to8");
+            break;
+          case '8':
+            blockToAdd = new Element("stgt8");
+            break;
+          default:
+            blockToAdd = new Element("unknown");
+            break;
         }
 
         Element beginday = new Element("beginday");
@@ -351,14 +369,14 @@ public class XMLResultsExporter {
         endday.setText(Integer.toString(i));
 
         // Edge case at the end of the calendar.
-        if(i == tempCal.size() - 1) {
+        if (i == tempCal.size() - 1) {
           endday.setText(Integer.toString(tempCal.size()));
         }
 
         blockToAdd.addContent(beginday);
         blockToAdd.addContent(endday);
         tempCalElement.addContent(blockToAdd);
-        
+
         lastChar = thisChar;
         lastPos = i;
       }
@@ -369,18 +387,26 @@ public class XMLResultsExporter {
     List<Integer> moistCal = results.getMoistureCalendar();
     int lastVal = moistCal.get(0);
     lastPos = 0;
-    for(int i = 1; i < moistCal.size(); i++) {
+    for (int i = 1; i < moistCal.size(); i++) {
       int thisVal = moistCal.get(i);
-      if(thisVal == lastVal && i != moistCal.size() - 1) {
+      if (thisVal == lastVal && i != moistCal.size() - 1) {
         continue;
       } else {
         Element blockToAdd = null;
 
-        switch(lastVal) {
-          case 1: blockToAdd = new Element("dry"); break;
-          case 2: blockToAdd = new Element("moistdry"); break;
-          case 3: blockToAdd = new Element("moist"); break;
-          default: blockToAdd = new Element("unknown"); break;
+        switch (lastVal) {
+          case 1:
+            blockToAdd = new Element("dry");
+            break;
+          case 2:
+            blockToAdd = new Element("moistdry");
+            break;
+          case 3:
+            blockToAdd = new Element("moist");
+            break;
+          default:
+            blockToAdd = new Element("unknown");
+            break;
         }
 
         Element beginday = new Element("beginday");
@@ -389,7 +415,7 @@ public class XMLResultsExporter {
         endday.setText(Integer.toString(i));
 
         // Edge case at the end of the calendar.
-        if(i == moistCal.size() - 1) {
+        if (i == moistCal.size() - 1) {
           endday.setText(Integer.toString(moistCal.size()));
         }
 
@@ -428,7 +454,7 @@ public class XMLResultsExporter {
 
   double round(double d, int decimalPlaces) {
     String format = "#.#";
-    for(int i = decimalPlaces - 1; i > 0; i--) {
+    for (int i = decimalPlaces - 1; i > 0; i--) {
       format += "#";
     }
     DecimalFormat df = new DecimalFormat(format);

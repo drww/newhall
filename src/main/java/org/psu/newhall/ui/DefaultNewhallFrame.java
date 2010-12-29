@@ -1084,7 +1084,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_openDatasetMenuItemActionPerformed
 
     private void toggleUnitsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleUnitsMenuItemActionPerformed
-  
+
       double originalWhcValue = 0.0;
       double originalSoilAirValue = 0.0;
 
@@ -1183,16 +1183,20 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         newOffset = (Double) soilAirOffset.getValue();
       }
 
-      if(this.inMetric && !nd.isMetric()) {
+      if (this.inMetric && !nd.isMetric()) {
         // Converft C to F.
-        nd.getMetadata().setSoilAirOffset(newOffset * (9.0/5.0));
-      } else if(!this.inMetric && nd.isMetric()) {
+        nd.getMetadata().setSoilAirOffset(newOffset * (9.0 / 5.0));
+      } else if (!this.inMetric && nd.isMetric()) {
         // Convert F to C.
-        nd.getMetadata().setSoilAirOffset(newOffset * (5.0/9.0));
+        nd.getMetadata().setSoilAirOffset(newOffset * (5.0 / 9.0));
       } else {
         nd.getMetadata().setSoilAirOffset(newOffset);
       }
-      
+
+      if (nd != null) {
+        loadDataset();
+      }
+
     }//GEN-LAST:event_soilAirOffsetStateChanged
 
   public void loadDataset() {
@@ -1313,6 +1317,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     // Deal with getting the WHC value from the spinner and converting it.
 
     double inputWhc = 0.0;
+    double inputOffset = nd.getMetadata().getSoilAirOffset();
+
     if (whcSpinner.getValue() instanceof Integer) {
       inputWhc = (Integer) whcSpinner.getValue();
     } else {
@@ -1323,11 +1329,18 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       inputWhc *= 25.4;
     }
 
+    if (!nd.isMetric()) {
+      // Soil-air offset is English, model needs metric.
+      inputOffset *= 5.0 / 9.0;
+    }
+
     // Run the simulation, get the results.
 
     try {
       nr = null;
-      nr = BASICSimulationModel.runSimulation(nd, inputWhc);
+      System.out.println("Calling model: " + nd.getName() + ", " + inputWhc + ", " + inputOffset
+              + ", " + nd.getMetadata().getAmplitude());
+      nr = BASICSimulationModel.runSimulation(nd, inputWhc, inputOffset, nd.getMetadata().getAmplitude());
     } catch (Exception e) {
       unloadDataset();
       return;
