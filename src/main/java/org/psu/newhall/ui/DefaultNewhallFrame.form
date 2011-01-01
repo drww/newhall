@@ -181,7 +181,7 @@
                       <Component id="activeUnitSystemLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="activeUnitSystemText" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="230" max="32767" attributes="0"/>
+                      <EmptySpace pref="234" max="32767" attributes="0"/>
                       <Component id="exportXmlButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="exportCsvButton" min="-2" max="-2" attributes="0"/>
@@ -623,7 +623,7 @@
             <Component class="javax.swing.JSpinner" name="soilAirOffset">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="1.2" numberType="java.lang.Double" stepSize="0.1" type="number"/>
+                  <SpinnerModel initial="1.2" maximum="20.0" minimum="0.0" numberType="java.lang.Double" stepSize="0.1" type="number"/>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
@@ -677,7 +677,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="tempCalPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="166" max="32767" attributes="0"/>
+                      <EmptySpace pref="174" max="32767" attributes="0"/>
                       <Component id="moistCalPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1146,7 +1146,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane7" pref="290" max="32767" attributes="0"/>
+                          <Component id="jScrollPane7" pref="285" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1414,7 +1414,7 @@
                               <Component id="phoneLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="phone" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="173" max="32767" attributes="0"/>
+                          <EmptySpace pref="169" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1554,7 +1554,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane8" pref="236" max="32767" attributes="0"/>
+                          <Component id="jScrollPane8" pref="232" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>

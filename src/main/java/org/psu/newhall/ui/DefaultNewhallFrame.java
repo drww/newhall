@@ -288,7 +288,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
     soilAirOffsetLabel.setText("Soil-Air Temp Offset:");
 
-    soilAirOffset.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.2d), null, null, Double.valueOf(0.1d)));
+    soilAirOffset.setModel(new javax.swing.SpinnerNumberModel(1.2d, 0.0d, 20.0d, 0.1d));
     soilAirOffset.setEnabled(false);
     soilAirOffset.setVerifyInputWhenFocusTarget(false);
     soilAirOffset.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -557,7 +557,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calendarPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addComponent(tempCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
         .addComponent(moistCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap())
     );
@@ -632,7 +632,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jPanel3Layout.setVerticalGroup(
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -817,7 +817,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addGroup(contributorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(phoneLabel)
           .addComponent(phone))
-        .addContainerGap(173, Short.MAX_VALUE))
+        .addContainerGap(169, Short.MAX_VALUE))
     );
 
     notesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Notes"));
@@ -839,7 +839,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     notesPanelLayout.setVerticalGroup(
       notesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(notesPanelLayout.createSequentialGroup()
-        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -1032,7 +1032,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addComponent(activeUnitSystemLabel)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(activeUnitSystemText)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
             .addComponent(exportXmlButton)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(exportCsvButton)))
