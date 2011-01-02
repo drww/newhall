@@ -53,7 +53,7 @@ public class BASICSimulationModelConstants {
   /** Soil-Air Relationship Amplitude **/
   public static final double fcd = 0.66;
 
-  public static final double cv = 5/9;
+  public static final double cv = 5.0/9.0;
 
   public static final int[] dp = {
     8, 7, 16, 6, 15, 24, 5, 14, 23, 32, 4, 13, 22, 31, 40, 3, 12, 21, 30,
@@ -66,6 +66,14 @@ public class BASICSimulationModelConstants {
     1.28, 1.31, 1.34, 1.37, 1.40, 1.43, 1.46, 1.49, 1.53, 1.57, 1.61, 1.65, 1.69, 1.74, 1.78,
     1.84, 1.89, 1.95, 2.01, 2.07, 2.14, 2.22, 2.30, 2.38, 2.47, 2.57, 2.68, 2.80, 2.93, 3.07,
     3.22, 3.39, 3.58, 3.80, 4.03, 4.31, 4.62, 4.98, 5., 5., 5., 5., 5., 5., 5., 5., 5.};
+
+
+  /**
+   * Lag phases.  21 days is used for when the soil is warming
+   * up, and 10 days for when the soil is cooling off.
+   */
+  public static final int lagPhaseSpring = 21;
+  public static final int lagPhaseFall = 10;
 
   private BASICSimulationModelConstants() {
     // Do not instantiate.

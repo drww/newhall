@@ -1,5 +1,7 @@
 package org.psu.newhall.sim;
 
+import java.util.List;
+
 /**
  * This is the 1:1 translation of the original Newhall BASIC source code.  Variable names have
  * been preserved (and unfortunately ambiguous as a result).  Array indexes do not start at zero,
@@ -3084,6 +3086,10 @@ public class BASICSimulationModel {
 
     return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd, ncpm, trr, ans, flxFile);
 
+  }
+
+  private List<Double> computeSoilTemps(List<Double> airTemps, int springLagPhase, int fallLagPhase) {
+    return null;
   }
 
   private BASICSimulationModel() {
