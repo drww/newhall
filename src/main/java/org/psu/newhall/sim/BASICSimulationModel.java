@@ -1,5 +1,6 @@
 package org.psu.newhall.sim;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -3088,8 +3089,66 @@ public class BASICSimulationModel {
 
   }
 
-  private List<Double> computeSoilTemps(List<Double> airTemps, int springLagPhase, int fallLagPhase) {
-    return null;
+  private static List<Double> computeSoilTemps(List<Double> airTemps, int summerLagPhase, int fallLagPhase, boolean northernHemisphere) {
+
+    /**
+     * Compute soil temperatures using BASIC version's lag phases with C++ version's
+     * method to compute soil temperatures by utilizing lag phases.  BASIC version assumes
+     * 21 days in the summer and 10 days in the winter for lag phases elsewhere, so to
+     * continue to use that assumption here seems reasonable.
+     * 
+     * Lag phases are dependant on the structure of the soil in the area, and these
+     * assumptions should be recognized for their limitations in any results.
+     */
+
+    double yearAverage = 0.0;
+    for(Double month : airTemps) {
+      yearAverage += month;
+    }
+    yearAverage /= 12.0;
+
+    double summerAverage = airTemps.get(5) + airTemps.get(6) + airTemps.get(7);
+    summerAverage /= 3.0;
+
+    double winterAverage = airTemps.get(11) + airTemps.get(0) + airTemps.get(1);
+    winterAverage /= 3.0;
+
+    double a = Math.abs(summerAverage - winterAverage)/2.0;
+    double w = 2.0 * Math.PI/360;
+
+    List<Double> soilTempCalendarUnshifted = new ArrayList<Double>(360);
+
+    for(int i = 0; i < 360; i++) {
+      if(northernHemisphere) {
+
+        if(i >= 90 && i < 270) {
+          soilTempCalendarUnshifted.add(i, yearAverage + a * Math.sin(w * (i + summerLagPhase)));
+        } else {
+          soilTempCalendarUnshifted.add(i, yearAverage + a * Math.sin(w * (i + winterAverage)));
+        }
+
+      } else {
+
+        if (i >= 90 && i < 270) {
+          soilTempCalendarUnshifted.add(i, yearAverage + a * Math.cos(w * (i + summerLagPhase)));
+        } else {
+          soilTempCalendarUnshifted.add(i, yearAverage + a * Math.cos(w * (i + winterAverage)));
+        }
+
+      }
+    }
+
+    List<Double> soilTempCalendar = new ArrayList<Double>(360);
+
+    for(int i = 0; i < 134; i++) {
+      soilTempCalendar.set(i, soilTempCalendarUnshifted.get(i + 226));
+    }
+
+    for (int i = 134; i < 360; i++) {
+      soilTempCalendar.set(i, soilTempCalendarUnshifted.get(i - 134));
+    }
+
+    return soilTempCalendar;
   }
 
   private BASICSimulationModel() {
