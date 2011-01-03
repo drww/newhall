@@ -72,8 +72,8 @@ public class BASICSimulationModelConstants {
    * Lag phases.  21 days is used for when the soil is warming
    * up, and 10 days for when the soil is cooling off.
    */
-  public static final int lagPhaseSpring = 21;
-  public static final int lagPhaseFall = 10;
+  public static final int lagPhaseSummer = 21;
+  public static final int lagPhaseWinter = 10;
 
   private BASICSimulationModelConstants() {
     // Do not instantiate.

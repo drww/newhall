@@ -3078,18 +3078,14 @@ public class BASICSimulationModel {
 
     // End of simulation model run.
 
-    /**
-     *   public NewhallResults(double arf, double whc, double[] mpe, int nccd, int nccm, int[] ntd, int[] iday,
-     *     int[] nd, int[] nsd, int[] ncpm, String trr, String ans) {
-     */
+    List<Double> soilTempCalendar = computeSoilCalendar(dataset.getTemperature(), BASICSimulationModelConstants.lagPhaseSummer,
+            BASICSimulationModelConstants.lagPhaseWinter, (dataset.getNsHemisphere() == 'N'));
 
-    /** Possible lag candidates: dif prmo tma st **/
-
-    return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd, ncpm, trr, ans, flxFile);
+    return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd, ncpm, trr, ans, soilTempCalendar, flxFile);
 
   }
 
-  private static List<Double> computeSoilTemps(List<Double> airTemps, int summerLagPhase, int fallLagPhase, boolean northernHemisphere) {
+  private static List<Double> computeSoilCalendar(List<Double> airTemps, int summerLagPhase, int fallLagPhase, boolean northernHemisphere) {
 
     /**
      * Compute soil temperatures using BASIC version's lag phases with C++ version's
