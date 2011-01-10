@@ -1380,6 +1380,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
               + ", " + nd.getMetadata().getAmplitude());
       nr = BASICSimulationModel.runSimulation(nd, inputWhc, inputOffset, nd.getMetadata().getAmplitude());
     } catch (Exception e) {
+      e.printStackTrace();
       unloadDataset();
       return;
     }

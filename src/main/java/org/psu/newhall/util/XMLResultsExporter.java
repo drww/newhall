@@ -322,15 +322,13 @@ public class XMLResultsExporter {
       pets.addContent(pet);
     }
 
+    List<Double> soilTempValues = results.getSoilTempAverages();
     for (int i = 0; i < months.length; i++) {
       Element soiltemp = new Element("soiltemp");
       soiltemp.setAttribute("id", months[i]);
-      Double soiltempVal = dataset.getTemperature().get(i);
-      if (toMetric && !dataset.isMetric()) {
-        // Convert F to C.
-        soiltempVal = (soiltempVal - 32) * 5.0 / 9.0;
-      } else if (!toMetric && dataset.isMetric()) {
-        // Convert C to F.
+      Double soiltempVal = soilTempValues.get(i);
+      if (!toMetric) {
+        // Results object always in metric.  Convert C to F.
         soiltempVal = (soiltempVal * 9.0 / 5.0) + 32;
       }
       soiltemp.setText(Double.toString(round(soiltempVal + dataset.getMetadata().getSoilAirOffset(), 2)));

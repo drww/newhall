@@ -1,6 +1,7 @@
 package org.psu.newhall.sim;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -3078,14 +3079,18 @@ public class BASICSimulationModel {
 
     // End of simulation model run.
 
-    List<Double> soilTempCalendar = computeSoilCalendar(dataset.getTemperature(), BASICSimulationModelConstants.lagPhaseSummer,
-            BASICSimulationModelConstants.lagPhaseWinter, (dataset.getNsHemisphere() == 'N'));
+    System.out.println("Computing soil temps.");
+
+    List<Double> soilTempCalendar = computeSoilCalendar(temperature, BASICSimulationModelConstants.lagPhaseSummer,
+            BASICSimulationModelConstants.lagPhaseWinter, (dataset.getNsHemisphere() == 'N'), fcd);
+
+    System.out.println("Model run complete.  Returning results.");
 
     return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd, ncpm, trr, ans, soilTempCalendar, flxFile);
 
   }
 
-  private static List<Double> computeSoilCalendar(List<Double> airTemps, int summerLagPhase, int fallLagPhase, boolean northernHemisphere) {
+  private static List<Double> computeSoilCalendar(double[] airTemps, int summerLagPhase, int fallLagPhase, boolean northernHemisphere, double amplitude) {
 
     /**
      * Compute soil temperatures using BASIC version's lag phases with C++ version's
@@ -3098,21 +3103,21 @@ public class BASICSimulationModel {
      */
 
     double yearAverage = 0.0;
-    for(Double month : airTemps) {
+    for(double month : airTemps) {
       yearAverage += month;
     }
     yearAverage /= 12.0;
 
-    double summerAverage = airTemps.get(5) + airTemps.get(6) + airTemps.get(7);
+    double summerAverage = airTemps[5] + airTemps[6] + airTemps[7];
     summerAverage /= 3.0;
 
-    double winterAverage = airTemps.get(11) + airTemps.get(0) + airTemps.get(1);
+    double winterAverage = airTemps[11] + airTemps[0] + airTemps[1];
     winterAverage /= 3.0;
 
-    double a = Math.abs(summerAverage - winterAverage)/2.0;
+    double a = Math.abs(summerAverage - winterAverage)/2.0 * amplitude;
     double w = 2.0 * Math.PI/360;
 
-    List<Double> soilTempCalendarUnshifted = new ArrayList<Double>(360);
+    ArrayList<Double> soilTempCalendarUnshifted = new ArrayList<Double>(360);
 
     for(int i = 0; i < 360; i++) {
       if(northernHemisphere) {
@@ -3134,14 +3139,14 @@ public class BASICSimulationModel {
       }
     }
 
-    List<Double> soilTempCalendar = new ArrayList<Double>(360);
+    ArrayList<Double> soilTempCalendar = new ArrayList<Double>(360);
 
     for(int i = 0; i < 134; i++) {
-      soilTempCalendar.set(i, soilTempCalendarUnshifted.get(i + 226));
+      soilTempCalendar.add(i, soilTempCalendarUnshifted.get(i + 226));
     }
 
     for (int i = 134; i < 360; i++) {
-      soilTempCalendar.set(i, soilTempCalendarUnshifted.get(i - 134));
+      soilTempCalendar.add(i, soilTempCalendarUnshifted.get(i - 134));
     }
 
     return soilTempCalendar;
