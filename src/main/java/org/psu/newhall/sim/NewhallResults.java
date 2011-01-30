@@ -25,10 +25,12 @@ public class NewhallResults {
   private ArrayList<Integer> ncpm;
   private String temperatureRegime;
   private String moistureRegime;
+  private String regimeSubdivision1;
+  private String regimeSubdivision2;
   private String flxFile;
 
   public NewhallResults(double arf, double whc, double[] mpe, int nccd, int nccm, int[] ntd, int[] iday,
-          double[] nd, double[] nsd, int[] ncpm, String trr, String ans, List<Double> soilTempCalendar, String flxFile) {
+          double[] nd, double[] nsd, int[] ncpm, String trr, String ans, String div, String q, List<Double> soilTempCalendar, String flxFile) {
 
     this.annualRainfall = arf;
     this.waterHoldingCapacity = whc;
@@ -36,6 +38,8 @@ public class NewhallResults {
     this.moistDaysAfterWinterSolstice = nccm;
     this.temperatureRegime = new String(trr);
     this.moistureRegime = new String(ans);
+    this.regimeSubdivision1 = new String(div);
+    this.regimeSubdivision2 = new String(q);
 
     this.meanPotentialEvapotranspiration = new ArrayList<Double>();
     for (int i = 1; i <= 12; i++) {
@@ -266,4 +270,11 @@ public class NewhallResults {
     return soilTempAverages;
   }
 
+  public String getRegimeSubdivision1() {
+    return regimeSubdivision1;
+  }
+
+  public String getRegimeSubdivision2() {
+    return regimeSubdivision2;
+  }
 }
