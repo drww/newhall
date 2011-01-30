@@ -102,6 +102,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jPanel3 = new javax.swing.JPanel();
     jScrollPane7 = new javax.swing.JScrollPane();
     statisticsText = new javax.swing.JTextArea();
+    subdivisionsLabel = new javax.swing.JLabel();
+    subdivisionsText = new javax.swing.JLabel();
     jPanel1 = new javax.swing.JPanel();
     stationNameLabel = new javax.swing.JLabel();
     jLabel1 = new javax.swing.JLabel();
@@ -636,6 +638,10 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addContainerGap())
     );
 
+    subdivisionsLabel.setText("Subdivisions:");
+
+    subdivisionsText.setText(" ");
+
     javax.swing.GroupLayout modelResultsPanelLayout = new javax.swing.GroupLayout(modelResultsPanel);
     modelResultsPanel.setLayout(modelResultsPanelLayout);
     modelResultsPanelLayout.setHorizontalGroup(
@@ -652,11 +658,15 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel4)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(temperatureRegimeText, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(temperatureRegimeText, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel5)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(moistureRegimeText, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)))
+            .addComponent(moistureRegimeText, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(subdivisionsLabel)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(subdivisionsText, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)))
         .addContainerGap())
     );
     modelResultsPanelLayout.setVerticalGroup(
@@ -665,10 +675,12 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addGroup(modelResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel3)
           .addComponent(jLabel4)
+          .addComponent(temperatureRegimeText)
+          .addComponent(annualRainfallText)
+          .addComponent(subdivisionsText)
           .addComponent(jLabel5)
           .addComponent(moistureRegimeText)
-          .addComponent(temperatureRegimeText)
-          .addComponent(annualRainfallText))
+          .addComponent(subdivisionsLabel))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(datasetScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1416,6 +1428,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       annualRainfallText.setText(properAnnualRainfall);
       temperatureRegimeText.setText(nr.getTemperatureRegime());
       moistureRegimeText.setText(nr.getMoistureRegime());
+      subdivisionsText.setText(nr.getRegimeSubdivision1() + " " + nr.getRegimeSubdivision2());
       moistureCalendarText.setText(nr.getFormattedMoistureCalendar());
       temperatureCalendarText.setText(nr.getFormattedTemperatureCalendar());
       statisticsText.setText(nr.getFormattedStatistics());
@@ -1449,6 +1462,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     annualRainfallText.setText("");
     temperatureRegimeText.setText("");
     moistureRegimeText.setText("");
+    subdivisionsText.setText("");
 
     temperatureCalendarText.setText("");
     moistureCalendarText.setText("");
@@ -1607,6 +1621,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
   private javax.swing.JLabel stationStateProv;
   private javax.swing.JLabel stationText;
   private javax.swing.JTextArea statisticsText;
+  private javax.swing.JLabel subdivisionsLabel;
+  private javax.swing.JLabel subdivisionsText;
   private javax.swing.JTabbedPane tabPane;
   private javax.swing.JPanel tempCalPanel;
   private javax.swing.JTable tempTable;
