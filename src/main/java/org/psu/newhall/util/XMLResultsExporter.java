@@ -224,8 +224,8 @@ public class XMLResultsExporter {
     input.addContent(smcsawc);
 
     Element soilairrel = new Element("soilairrel");
-    Element lag = new Element("lag");
-    lag.setText("18");
+    //Element lag = new Element("lag");
+    //lag.setText("18");
 
     Element ampltd = new Element("ampltd");
     ampltd.setText(Double.toString(dataset.getMetadata().getAmplitude()));
@@ -241,7 +241,7 @@ public class XMLResultsExporter {
     }
     maatmast.setText(Double.toString(round(maatmastVal, 2)));
 
-    soilairrel.addContent(lag);
+    //soilairrel.addContent(lag);
     soilairrel.addContent(ampltd);
     soilairrel.addContent(maatmast);
     input.addContent(soilairrel);
