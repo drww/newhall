@@ -7,6 +7,8 @@ public class NewhallResults {
 
   private double annualRainfall;
   private double waterHoldingCapacity;
+  private double annualWaterBalance;
+  private double summerWaterBalance;
   private List<Double> meanPotentialEvapotranspiration;
   private int dryDaysAfterSummerSolstice;
   private int moistDaysAfterWinterSolstice;
@@ -30,7 +32,8 @@ public class NewhallResults {
   private String flxFile;
 
   public NewhallResults(double arf, double whc, double[] mpe, int nccd, int nccm, int[] ntd, int[] iday,
-          double[] nd, double[] nsd, int[] ncpm, String trr, String ans, String div, String q, List<Double> soilTempCalendar, String flxFile) {
+          double[] nd, double[] nsd, int[] ncpm, String trr, String ans, String div, String q, double awb, double swb,
+          List<Double> soilTempCalendar, String flxFile) {
 
     this.annualRainfall = arf;
     this.waterHoldingCapacity = whc;
@@ -68,6 +71,9 @@ public class NewhallResults {
     this.numConsecutiveDaysMoistInSomePartsOver8C = ncpm[2];
 
     this.soilTempCalendar = new ArrayList<Double>(soilTempCalendar);
+
+    this.annualWaterBalance = awb;
+    this.summerWaterBalance = swb;
 
     this.flxFile = new String(flxFile);
   }
@@ -277,4 +283,13 @@ public class NewhallResults {
   public String getRegimeSubdivision2() {
     return regimeSubdivision2;
   }
+
+  public double getAnnualWaterBalance() {
+    return annualWaterBalance;
+  }
+
+  public double getSummerWaterBalance() {
+    return summerWaterBalance;
+  }
+  
 }

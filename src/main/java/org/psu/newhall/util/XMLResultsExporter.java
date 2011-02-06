@@ -266,10 +266,9 @@ public class XMLResultsExporter {
     strclass.setText(results.getTemperatureRegime());
     subdiv.setText(results.getRegimeSubdivision1() + " " + results.getRegimeSubdivision2());
 
-    /** <WAGS> **/
-    awb.setText("340");
-    swb.setText("-74");
-    /** </WAGS> **/
+    awb.setText(Double.toString(round(results.getAnnualWaterBalance(), 2)));
+    swb.setText(Double.toString(round(results.getSummerWaterBalance(), 2)));
+
     Element cumdays = new Element("cumdays");
     Element yrdry = new Element("yrdry");
     Element yrmd = new Element("yrmd");
