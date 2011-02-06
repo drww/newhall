@@ -254,7 +254,7 @@ public class XMLResultsExporter {
 
     Element smrclass = new Element("smrclass");
     Element strclass = new Element("strclass");
-    Element subdiv = new Element("subdiv");
+    Element subdiv = new Element("subgrpmod");
     Element awb = new Element("awb");
     Element swb = new Element("swb");
     Element smcstates = new Element("smcstates");
