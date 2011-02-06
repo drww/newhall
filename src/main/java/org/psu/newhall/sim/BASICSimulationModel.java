@@ -3085,7 +3085,7 @@ public class BASICSimulationModel {
 
     System.out.println("Model run complete.  Returning results.");
 
-    return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd, ncpm, trr, ans, div, q, soilTempCalendar, flxFile);
+    return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd, ncpm, trr, ans, q, div, soilTempCalendar, flxFile);
 
   }
 

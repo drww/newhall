@@ -254,8 +254,7 @@ public class XMLResultsExporter {
 
     Element smrclass = new Element("smrclass");
     Element strclass = new Element("strclass");
-    Element subdiv1 = new Element("subdiv");
-    Element subdiv2 = new Element("subdiv");
+    Element subdiv = new Element("subdiv");
     Element awb = new Element("awb");
     Element swb = new Element("swb");
     Element smcstates = new Element("smcstates");
@@ -265,8 +264,7 @@ public class XMLResultsExporter {
 
     smrclass.setText(results.getMoistureRegime());
     strclass.setText(results.getTemperatureRegime());
-    subdiv1.setText(results.getRegimeSubdivision1());
-    subdiv2.setText(results.getRegimeSubdivision2());
+    subdiv.setText(results.getRegimeSubdivision1() + " " + results.getRegimeSubdivision2());
 
     /** <WAGS> **/
     awb.setText("340");
@@ -433,8 +431,7 @@ public class XMLResultsExporter {
 
     output.addContent(smrclass);
     output.addContent(strclass);
-    output.addContent(subdiv1);
-    output.addContent(subdiv2);
+    output.addContent(subdiv);
     output.addContent(awb);
     output.addContent(swb);
     output.addContent(smcstates);
