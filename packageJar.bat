@@ -1,0 +1,2 @@
+mvn assembly:assembly
+pause
