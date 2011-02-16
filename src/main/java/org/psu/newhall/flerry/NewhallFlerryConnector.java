@@ -10,8 +10,8 @@ import org.psu.newhall.util.XMLStringResultsExporter;
 
 public class NewhallFlerryConnector {
 
-  public static String runModel(String inputXmlFile, boolean isMetric, Double whc, Double sar) {
-    return runModel(inputXmlFile, isMetric, whc.doubleValue(), sar.doubleValue());
+  public static String runModel(String inputXmlFile, Boolean isMetric, Double whc, Double sar) {
+    return runModel(inputXmlFile, isMetric.booleanValue(), whc.doubleValue(), sar.doubleValue());
   }
 
   public static String runModel(String inputXmlFile, boolean isMetric, double waterHoldingCapacity, double soilAirRel) {
