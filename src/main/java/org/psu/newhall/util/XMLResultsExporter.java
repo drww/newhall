@@ -170,10 +170,17 @@ public class XMLResultsExporter {
     lon.setText(Double.toString(round(dataset.getLongitude(), 4)));
     Element usercoordfmt = new Element("usercoordfmt");
     usercoordfmt.setText("DD");
+    Element srcunitsys = new Element("srcunitsys");
+    if(dataset.isMetric()) {
+      srcunitsys.setText("metric");
+    } else {
+      srcunitsys.setText("english");
+    }
     location.addContent(lat);
     location.addContent(lon);
     location.addContent(usercoordfmt);
     input.addContent(location);
+    input.addContent(srcunitsys);
 
     Element recordpd = new Element("recordpd");
     Element pdtype = new Element("pdtype");
