@@ -111,19 +111,19 @@ public class NewhallResults {
   public String getFormattedStatistics() {
     String result = "";
 
-    result += "Number of Cumulative Days that the Moisture Control Section is:" + "\n";
+    result += "Number of Cumulative Days that the Moisture Control Section (MCS) is:" + "\n";
     result += "  During one year is:" + "\n";
     result += "    Dry: " + numCumulativeDaysDry + "\n";
     result += "    MoistDry: " + numCumulativeDaysMoistDry + "\n";
     result += "    Moist: " + numCumulativeDaysMoist + "\n";
-    result += "  When soil temp is above 5 degrees C:" + "\n";
+    result += "  When soil temp is above 5°C:" + "\n";
     result += "    Dry: " + numCumulativeDaysDryOver5C + "\n";
     result += "    MoistDry: " + numCumulativeDaysMoistDryOver5C + "\n";
     result += "    Moist: " + numCumulativeDaysMoistOver5C + "\n";
     result += "Highest number of consecutive days that the MCS is:" + "\n";
     result += "  Moist in some parts:" + "\n";
     result += "    Year: " + numConsecutiveDaysMoistInSomeParts + "\n";
-    result += "    Temp over 8C: " + numConsecutiveDaysMoistInSomePartsOver8C + "\n";
+    result += "    Temp over 8°C: " + numConsecutiveDaysMoistInSomePartsOver8C + "\n";
     result += "  Dry after summer solstice: " + dryDaysAfterSummerSolstice + "\n";
     result += "  Moist after winter solstice: " + moistDaysAfterWinterSolstice;
 
@@ -140,19 +140,19 @@ public class NewhallResults {
 
     result += "Annual Rainfall: " + annualRainfall + "\n";
     result += "Waterholding Capacity: " + waterHoldingCapacity + "\n";
-    result += "Number of Cumulative Days that the Moisture Control Section is:" + "\n";
+    result += "Number of Cumulative Days that the Moisture Control Section (MCS) is:" + "\n";
     result += "  During one year is:" + "\n";
     result += "    Dry: " + numCumulativeDaysDry + "\n";
     result += "    MoistDry: " + numCumulativeDaysMoistDry + "\n";
     result += "    Moist: " + numCumulativeDaysMoist + "\n";
-    result += "  When soil temp is above 5 degrees C:" + "\n";
+    result += "  When soil temp is above 5°C:" + "\n";
     result += "    Dry: " + numCumulativeDaysDryOver5C + "\n";
     result += "    MoistDry: " + numCumulativeDaysMoistDryOver5C + "\n";
     result += "    Moist: " + numCumulativeDaysMoistOver5C + "\n";
     result += "Highest number of consecutive days that the MCS is:" + "\n";
     result += "  Moist in some parts: " + "\n";
     result += "    Year: " + numConsecutiveDaysMoistInSomeParts + "\n";
-    result += "    Temp over 8C: " + numConsecutiveDaysMoistInSomePartsOver8C + "\n";
+    result += "    Temp over 8°C: " + numConsecutiveDaysMoistInSomePartsOver8C + "\n";
     result += "  Dry after summer solstice: " + dryDaysAfterSummerSolstice + "\n";
     result += "  Moist after winter solstice: " + moistDaysAfterWinterSolstice + "\n";
     result += "Monthly Evapranspiration (mm): ";

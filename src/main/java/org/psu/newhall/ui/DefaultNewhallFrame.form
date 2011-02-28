@@ -281,8 +281,8 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="soilAirOffset" min="-2" pref="57" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="soilAirOffsetUnits" min="-2" pref="11" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="soilAirOffsetUnits" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                               <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="373" max="32767" attributes="0"/>
                               <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
@@ -637,7 +637,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="soilAirOffsetUnits">
               <Properties>
-                <Property name="text" type="java.lang.String" value="C"/>
+                <Property name="text" type="java.lang.String" value="&#xb0;C"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator3">
@@ -842,7 +842,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="SansSerif" size="11" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="- = Under 5C, 5 = 5C to 8C, 8 = Excess of 8C"/>
+                    <Property name="text" type="java.lang.String" value="- = Under 5&#xb0;C, 5 = 5&#xb0;C to 8&#xb0;C, 8 = Excess of 8&#xb0;C"/>
                   </Properties>
                 </Component>
               </SubComponents>

@@ -3077,8 +3077,6 @@ public class BASICSimulationModel {
 
     // End of simulation model run.
 
-    System.out.println("Computing soil temps.");
-
     List<Double> soilTempCalendar = computeSoilCalendar(temperature, BASICSimulationModelConstants.lagPhaseSummer,
             BASICSimulationModelConstants.lagPhaseWinter, (dataset.getNsHemisphere() == 'N'), fcd);
 
@@ -3086,11 +3084,6 @@ public class BASICSimulationModel {
 
     double awb = computeWaterBalance(precip, mpe, false, (dataset.getNsHemisphere() == 'N'));
     double swb = computeWaterBalance(precip, mpe, true, (dataset.getNsHemisphere() == 'N'));
-    System.out.println("AWB: " + awb);
-    System.out.println("SWB: " + swb);
-
-
-    System.out.println("Model run complete.  Returning results.");
 
     return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd,
             ncpm, trr, ans, q, div, awb, swb, soilTempCalendar, flxFile);
@@ -3105,7 +3098,6 @@ public class BASICSimulationModel {
         for (int i = 6; i <= 8; i++) {
           runningBalance += precip[i];
           runningBalance -= evap[i];
-          System.out.println("precip(" + precip[i] + ") - evap(" + evap[i] + ")");
         }
       } else {
         runningBalance += precip[12];
@@ -3119,7 +3111,6 @@ public class BASICSimulationModel {
       for (int i = 1; i <= 12; i++) {
         runningBalance += precip[i];
         runningBalance -= evap[i];
-        System.out.println("precip(" + precip[i] + ") - evap(" + evap[i] + ")");
       }
     }
 
