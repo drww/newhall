@@ -39,7 +39,9 @@ public class XMLResultsExporter {
     Element metadata = new Element("metadata");
 
     Element stninfo = new Element("stninfo");
+    Element nettype = new Element("nettype");
     Element stnid = new Element("stnid");
+    nettype.setText(dataset.getMetadata().getNetwork());
     Element stnname = new Element("stnname");
     stnname.setText(dataset.getName());
     Element stnelev = new Element("stnelev");
@@ -53,6 +55,7 @@ public class XMLResultsExporter {
       stateprov.setText(dataset.getMetadata().getStationStateProvidence());
     }
 
+    stninfo.addContent(nettype);
     stninfo.addContent(stnname);
     stninfo.addContent(stnid);
     stninfo.addContent(stnelev);

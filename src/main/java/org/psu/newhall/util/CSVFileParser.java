@@ -82,8 +82,10 @@ public class CSVFileParser {
     ndm.setStationElevation(elevation);
     if(!isMetric) {
       ndm.setSoilAirOffset(BASICSimulationModelConstants.fc * (9.0/5.0));
+      ndm.setUnitSystem("English");
     } else {
       ndm.setSoilAirOffset(BASICSimulationModelConstants.fc);
+      ndm.setUnitSystem("Metric");
     }
     ndm.setAmplitude(BASICSimulationModelConstants.fcd);
     ndm.setMlraId(-1);

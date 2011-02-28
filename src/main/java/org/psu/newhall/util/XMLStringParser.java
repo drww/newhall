@@ -33,6 +33,7 @@ public class XMLStringParser {
     double stationElevation = Double.parseDouble(stninfo.getChildText("stnelev"));
     String stateProvidence = stninfo.getChildText("stateprov");
     String country = stninfo.getChildText("country");
+    String nettype = stninfo.getChildText("nettype");
 
     Element mlra = metadata.getChild("mlra");
     String mlraName = mlra.getChildText("mlraname");
@@ -66,7 +67,6 @@ public class XMLStringParser {
 
     String rundate = metadata.getChildText("rundate");
     String nsmver = metadata.getChildText("nsmver");
-    String unitsys = metadata.getChildText("unitsys");
 
     /** Input **/
     Element input = root.getChild("input");
@@ -80,6 +80,8 @@ public class XMLStringParser {
     String pdtype = recordpd.getChildText("pdtype");
     int pdbegin = Integer.valueOf(recordpd.getChildText("pdbegin"));
     int pdend = Integer.valueOf(recordpd.getChildText("pdend"));
+
+    String srcunitsys = input.getChildText("srcunitsys");
 
     Element precips = input.getChild("precips");
     List<Element> allPrecips = precips.getChildren();
@@ -117,12 +119,12 @@ public class XMLStringParser {
 
     this.dataset = new NewhallDataset(stationName, country, lat, lon,
             'N', 'E', stationElevation, allPrecipsDbl, allAirTempsDbl,
-            pdbegin, pdend, unitsys.equals("metric"));
+            pdbegin, pdend, true);
 
     NewhallDatasetMetadata ndm = new NewhallDatasetMetadata(stationName, stationId, stationElevation,
             stateProvidence, country, mlraName, mlraId, firstName, lastName, title, cntorg,
             address, city, stateprov, postal, cntCountry, cntemail, cntphone, allNotesStr,
-            rundate, modelVers, unitsys, maatmast, ampltd);
+            rundate, modelVers, srcunitsys, maatmast, ampltd, nettype);
     
     this.dataset.setMetadata(ndm);
     

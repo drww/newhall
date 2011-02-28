@@ -1313,11 +1313,13 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       tempTableModel.setValueAt(roundForDisplay(properTemp.get(i)), 0, i + 1);
     }
 
-    if (nd.isMetric()) {
+    srcUnitSystem.setText(nd.getMetadata().getUnitSystem());
+
+    /**if (nd.isMetric()) {
       srcUnitSystem.setText("Metric");
     } else {
       srcUnitSystem.setText("English");
-    }
+    }**/
 
     amplitudeSpinner.setValue(nd.getMetadata().getAmplitude());
 

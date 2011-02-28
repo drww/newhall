@@ -30,6 +30,7 @@ public class XMLFileParser {
 
     Element stninfo = metadata.getChild("stninfo");
     String stationName = stninfo.getChildText("stnname");
+    String nettype = stninfo.getChildText("nettype");
     String stationId = stninfo.getChildText("stnid");
     double stationElevation = Double.parseDouble(stninfo.getChildText("stnelev"));
     String stateProvidence = stninfo.getChildText("stateprov");
@@ -130,7 +131,7 @@ public class XMLFileParser {
             stateProvidence, country, mlraName, mlraId, firstName, lastName, title, cntorg,
             address, city, stateprov, postal, cntCountry, cntemail, cntphone, allNotesStr,
             //rundate, modelVers, unitsys, maatmast, ampltd);
-            rundate, modelVers, "metric", maatmast, ampltd);
+            rundate, modelVers, "metric", maatmast, ampltd, nettype);
     
     this.dataset.setMetadata(ndm);
 
