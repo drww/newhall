@@ -559,7 +559,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calendarPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addComponent(tempCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
         .addComponent(moistCalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap())
     );
@@ -634,7 +634,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jPanel3Layout.setVerticalGroup(
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -829,7 +829,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         .addGroup(contributorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(phoneLabel)
           .addComponent(phone))
-        .addContainerGap(173, Short.MAX_VALUE))
+        .addContainerGap(169, Short.MAX_VALUE))
     );
 
     notesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Notes"));
@@ -851,7 +851,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     notesPanelLayout.setVerticalGroup(
       notesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(notesPanelLayout.createSequentialGroup()
-        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -967,7 +967,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       }
     });
 
-    activeUnitSystemLabel.setText("Active/Export Unit System:");
+    activeUnitSystemLabel.setText("Display Unit System:");
 
     activeUnitSystemText.setText(" ");
 
@@ -1045,7 +1045,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
             .addComponent(activeUnitSystemLabel)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(activeUnitSystemText)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
             .addComponent(exportXmlButton)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(exportCsvButton)))
@@ -1198,7 +1198,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
         try {
           XMLResultsExporter xre = new XMLResultsExporter(jfc.getSelectedFile());
-          xre.export(nr, nd, inMetric);
+          xre.export(nr, nd);
         } catch (IOException e) {
           System.out.println("XML Export failed: " + e.getMessage());
         }

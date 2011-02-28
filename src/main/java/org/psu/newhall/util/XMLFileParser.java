@@ -24,6 +24,7 @@ public class XMLFileParser {
     Element root = doc.getRootElement();
     String modelVers = root.getAttributeValue("version");
 
+    System.out.println("Parsing metadata.");
     /** Metadata **/
     Element metadata = root.getChild("metadata");
 
@@ -66,8 +67,9 @@ public class XMLFileParser {
 
     String rundate = metadata.getChildText("rundate");
     String nsmver = metadata.getChildText("nsmver");
-    String unitsys = metadata.getChildText("unitsys");
+    //String unitsys = metadata.getChildText("unitsys");
 
+    System.out.println("Parsing input.");
     /** Input **/
     Element input = root.getChild("input");
 
@@ -91,6 +93,8 @@ public class XMLFileParser {
     String[] monthStr = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
+    System.out.println("Parsing precipitation and air temps.");
+
     for (String month : monthStr) {
       for (Element precip : allPrecips) {
         String id = precip.getAttributeValue("id");
@@ -108,24 +112,30 @@ public class XMLFileParser {
       }
     }
 
+    System.out.println("Parsing soil-air relationship variables.");
+
     Double smcsawc = Double.parseDouble(input.getChildText("smcsawc"));
 
     Element soilairrel = input.getChild("soilairrel");
-    Double lag = Double.parseDouble(soilairrel.getChildText("lag"));
+    //Double lag = Double.parseDouble(soilairrel.getChildText("lag"));
     Double ampltd = Double.parseDouble(soilairrel.getChildText("ampltd"));
     Double maatmast = Double.parseDouble(soilairrel.getChildText("maatmast"));
 
     this.dataset = new NewhallDataset(stationName, country, lat, lon,
             'N', 'E', stationElevation, allPrecipsDbl, allAirTempsDbl,
-            pdbegin, pdend, unitsys.equals("metric"));
+            //pdbegin, pdend, unitsys.equals("metric"));
+            pdbegin, pdend, true);
 
     NewhallDatasetMetadata ndm = new NewhallDatasetMetadata(stationName, stationId, stationElevation,
             stateProvidence, country, mlraName, mlraId, firstName, lastName, title, cntorg,
             address, city, stateprov, postal, cntCountry, cntemail, cntphone, allNotesStr,
-            rundate, modelVers, unitsys, maatmast, ampltd);
+            //rundate, modelVers, unitsys, maatmast, ampltd);
+            rundate, modelVers, "metric", maatmast, ampltd);
     
     this.dataset.setMetadata(ndm);
-    
+
+    System.out.println("XML dataset built.");
+
   }
 
   public NewhallDataset getDataset() {

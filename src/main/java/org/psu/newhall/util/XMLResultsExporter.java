@@ -22,6 +22,10 @@ public class XMLResultsExporter {
     this.outputFile = outputFile;
   }
 
+  public void export(NewhallResults results, NewhallDataset dataset) throws IOException {
+    export(results, dataset, true);
+  }
+
   public void export(NewhallResults results, NewhallDataset dataset, boolean toMetric) throws IOException {
 
     Document doc = new Document();
@@ -143,15 +147,15 @@ public class XMLResultsExporter {
     metadata.addContent(rundate);
 
     Element nsmversion = new Element("nsmver");
-    Element unitsys = new Element("unitsys");
+    //Element unitsys = new Element("unitsys");
     nsmversion.setText(org.psu.newhall.Newhall.NSM_VERSION);
-    if (toMetric) {
+    /**if (toMetric) {
       unitsys.setText("metric");
     } else {
       unitsys.setText("english");
-    }
+    }**/
     metadata.addContent(nsmversion);
-    metadata.addContent(unitsys);
+    //metadata.addContent(unitsys);
 
     /**
      * Recite dataset input data.
