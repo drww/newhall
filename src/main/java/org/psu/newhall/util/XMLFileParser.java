@@ -68,7 +68,7 @@ public class XMLFileParser {
 
     String rundate = metadata.getChildText("rundate");
     String nsmver = metadata.getChildText("nsmver");
-    //String unitsys = metadata.getChildText("unitsys");
+    String srcunitsys = metadata.getChildText("srcunitsys");
 
     System.out.println("Parsing input.");
     /** Input **/
@@ -131,7 +131,7 @@ public class XMLFileParser {
             stateProvidence, country, mlraName, mlraId, firstName, lastName, title, cntorg,
             address, city, stateprov, postal, cntCountry, cntemail, cntphone, allNotesStr,
             //rundate, modelVers, unitsys, maatmast, ampltd);
-            rundate, modelVers, "metric", maatmast, ampltd, nettype);
+            rundate, modelVers, srcunitsys, maatmast, ampltd, nettype);
     
     this.dataset.setMetadata(ndm);
 
