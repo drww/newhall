@@ -23,11 +23,9 @@ public class XMLResultsExporter {
   }
 
   public void export(NewhallResults results, NewhallDataset dataset) throws IOException {
-    export(results, dataset, true);
-  }
 
-  public void export(NewhallResults results, NewhallDataset dataset, boolean toMetric) throws IOException {
-
+    boolean toMetric = true;
+      
     Document doc = new Document();
     Element model = new Element("model");
     doc.setRootElement(model);

@@ -6,8 +6,6 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
@@ -17,7 +15,9 @@ import org.psu.newhall.sim.NewhallResults;
 
 public class XMLStringResultsExporter {
 
-  public static String export(NewhallResults results, NewhallDataset dataset, boolean toMetric) {
+  public static String export(NewhallResults results, NewhallDataset dataset) {
+
+    boolean toMetric = true;
 
     Document doc = new Document();
     Element model = new Element("model");
@@ -30,7 +30,9 @@ public class XMLStringResultsExporter {
     Element metadata = new Element("metadata");
 
     Element stninfo = new Element("stninfo");
+    Element nettype = new Element("nettype");
     Element stnid = new Element("stnid");
+    nettype.setText(dataset.getMetadata().getNetwork());
     Element stnname = new Element("stnname");
     stnname.setText(dataset.getName());
     Element stnelev = new Element("stnelev");
@@ -44,6 +46,7 @@ public class XMLStringResultsExporter {
       stateprov.setText(dataset.getMetadata().getStationStateProvidence());
     }
 
+    stninfo.addContent(nettype);
     stninfo.addContent(stnname);
     stninfo.addContent(stnid);
     stninfo.addContent(stnelev);
@@ -138,15 +141,15 @@ public class XMLStringResultsExporter {
     metadata.addContent(rundate);
 
     Element nsmversion = new Element("nsmver");
-    Element unitsys = new Element("unitsys");
+    //Element unitsys = new Element("unitsys");
     nsmversion.setText(org.psu.newhall.Newhall.NSM_VERSION);
-    if (toMetric) {
-      unitsys.setText("metric");
+    /**if (toMetric) {
+    unitsys.setText("metric");
     } else {
-      unitsys.setText("english");
-    }
+    unitsys.setText("english");
+    }**/
     metadata.addContent(nsmversion);
-    metadata.addContent(unitsys);
+    //metadata.addContent(unitsys);
 
     /**
      * Recite dataset input data.
@@ -161,10 +164,17 @@ public class XMLStringResultsExporter {
     lon.setText(Double.toString(round(dataset.getLongitude(), 4)));
     Element usercoordfmt = new Element("usercoordfmt");
     usercoordfmt.setText("DD");
+    Element srcunitsys = new Element("srcunitsys");
+    if (dataset.isMetric()) {
+      srcunitsys.setText("metric");
+    } else {
+      srcunitsys.setText("english");
+    }
     location.addContent(lat);
     location.addContent(lon);
     location.addContent(usercoordfmt);
     input.addContent(location);
+    input.addContent(srcunitsys);
 
     Element recordpd = new Element("recordpd");
     Element pdtype = new Element("pdtype");
@@ -185,10 +195,10 @@ public class XMLStringResultsExporter {
       Element precip = new Element("precip");
       precip.setAttribute("id", months[i]);
       Double precipVal = dataset.getPrecipitation().get(i);
-      if(toMetric && !dataset.isMetric()) {
+      if (toMetric && !dataset.isMetric()) {
         // Convert inches to mm.
         precipVal = precipVal * 25.4;
-      } else if(!toMetric && dataset.isMetric()) {
+      } else if (!toMetric && dataset.isMetric()) {
         // Convert mm to inches.
         precipVal = precipVal * 0.0393700787;
       }
@@ -219,13 +229,24 @@ public class XMLStringResultsExporter {
     input.addContent(smcsawc);
 
     Element soilairrel = new Element("soilairrel");
-    Element lag = new Element("lag");
-    lag.setText("18");
+    //Element lag = new Element("lag");
+    //lag.setText("18");
+
     Element ampltd = new Element("ampltd");
-    ampltd.setText("0.66");
+    ampltd.setText(Double.toString(dataset.getMetadata().getAmplitude()));
+
     Element maatmast = new Element("maatmast");
-    maatmast.setText(Double.toString(dataset.getMetadata().getSoilAirOffset()));
-    soilairrel.addContent(lag);
+    double maatmastVal = dataset.getMetadata().getSoilAirOffset();
+    if (toMetric && !dataset.isMetric()) {
+      // Convert F to C.
+      maatmastVal *= 5.0 / 9.0;
+    } else if (!toMetric && dataset.isMetric()) {
+      // Convert C to F.
+      maatmastVal *= 9.0 / 5.0;
+    }
+    maatmast.setText(Double.toString(round(maatmastVal, 2)));
+
+    //soilairrel.addContent(lag);
     soilairrel.addContent(ampltd);
     soilairrel.addContent(maatmast);
     input.addContent(soilairrel);
@@ -238,6 +259,7 @@ public class XMLStringResultsExporter {
 
     Element smrclass = new Element("smrclass");
     Element strclass = new Element("strclass");
+    Element subdiv = new Element("subgrpmod");
     Element awb = new Element("awb");
     Element swb = new Element("swb");
     Element smcstates = new Element("smcstates");
@@ -247,11 +269,10 @@ public class XMLStringResultsExporter {
 
     smrclass.setText(results.getMoistureRegime());
     strclass.setText(results.getTemperatureRegime());
+    subdiv.setText(results.getRegimeSubdivision1() + " " + results.getRegimeSubdivision2());
 
-    /** <WAGS> **/
-    awb.setText("340");
-    swb.setText("-74");
-    /** </WAGS> **/
+    awb.setText(Double.toString(round(results.getAnnualWaterBalance(), 2)));
+    swb.setText(Double.toString(round(results.getSummerWaterBalance(), 2)));
 
     Element cumdays = new Element("cumdays");
     Element yrdry = new Element("yrdry");
@@ -294,12 +315,12 @@ public class XMLStringResultsExporter {
 
     smcstates.addContent(cumdays);
     smcstates.addContent(consdays);
-    
+
     for (int i = 0; i < months.length; i++) {
       Element pet = new Element("pet");
       pet.setAttribute("id", months[i]);
       Double petVal = results.getMeanPotentialEvapotranspiration().get(i);
-      if(!toMetric) {
+      if (!toMetric) {
         // Convert mm to inches.  PETs in Results object are always in metric.
         petVal = petVal * 0.0393700787;
       }
@@ -307,15 +328,13 @@ public class XMLStringResultsExporter {
       pets.addContent(pet);
     }
 
+    List<Double> soilTempValues = results.getSoilTempAverages();
     for (int i = 0; i < months.length; i++) {
       Element soiltemp = new Element("soiltemp");
       soiltemp.setAttribute("id", months[i]);
-      Double soiltempVal = dataset.getTemperature().get(i);
-      if (toMetric && !dataset.isMetric()) {
-        // Convert F to C.
-        soiltempVal = (soiltempVal - 32) * 5.0 / 9.0;
-      } else if (!toMetric && dataset.isMetric()) {
-        // Convert C to F.
+      Double soiltempVal = soilTempValues.get(i);
+      if (!toMetric) {
+        // Results object always in metric.  Convert C to F.
         soiltempVal = (soiltempVal * 9.0 / 5.0) + 32;
       }
       soiltemp.setText(Double.toString(round(soiltempVal + dataset.getMetadata().getSoilAirOffset(), 2)));
@@ -326,18 +345,26 @@ public class XMLStringResultsExporter {
     List<Character> tempCal = results.getTemperatureCalendar();
     char lastChar = tempCal.get(0);
     int lastPos = 0;
-    for(int i = 1; i < tempCal.size(); i++) {
+    for (int i = 1; i < tempCal.size(); i++) {
       char thisChar = tempCal.get(i);
-      if(thisChar == lastChar && i != tempCal.size() - 1) {
+      if (thisChar == lastChar && i != tempCal.size() - 1) {
         continue;
       } else {
         Element blockToAdd = null;
 
-        switch(lastChar) {
-          case '-': blockToAdd = new Element("stlt5"); break;
-          case '5': blockToAdd = new Element("st5to8"); break;
-          case '8': blockToAdd = new Element("stgt8"); break;
-          default: blockToAdd = new Element("unknown"); break;
+        switch (lastChar) {
+          case '-':
+            blockToAdd = new Element("stlt5");
+            break;
+          case '5':
+            blockToAdd = new Element("st5to8");
+            break;
+          case '8':
+            blockToAdd = new Element("stgt8");
+            break;
+          default:
+            blockToAdd = new Element("unknown");
+            break;
         }
 
         Element beginday = new Element("beginday");
@@ -346,14 +373,14 @@ public class XMLStringResultsExporter {
         endday.setText(Integer.toString(i));
 
         // Edge case at the end of the calendar.
-        if(i == tempCal.size() - 1) {
+        if (i == tempCal.size() - 1) {
           endday.setText(Integer.toString(tempCal.size()));
         }
 
         blockToAdd.addContent(beginday);
         blockToAdd.addContent(endday);
         tempCalElement.addContent(blockToAdd);
-        
+
         lastChar = thisChar;
         lastPos = i;
       }
@@ -364,18 +391,26 @@ public class XMLStringResultsExporter {
     List<Integer> moistCal = results.getMoistureCalendar();
     int lastVal = moistCal.get(0);
     lastPos = 0;
-    for(int i = 1; i < moistCal.size(); i++) {
+    for (int i = 1; i < moistCal.size(); i++) {
       int thisVal = moistCal.get(i);
-      if(thisVal == lastVal && i != moistCal.size() - 1) {
+      if (thisVal == lastVal && i != moistCal.size() - 1) {
         continue;
       } else {
         Element blockToAdd = null;
 
-        switch(lastVal) {
-          case 1: blockToAdd = new Element("dry"); break;
-          case 2: blockToAdd = new Element("moistdry"); break;
-          case 3: blockToAdd = new Element("moist"); break;
-          default: blockToAdd = new Element("unknown"); break;
+        switch (lastVal) {
+          case 1:
+            blockToAdd = new Element("dry");
+            break;
+          case 2:
+            blockToAdd = new Element("moistdry");
+            break;
+          case 3:
+            blockToAdd = new Element("moist");
+            break;
+          default:
+            blockToAdd = new Element("unknown");
+            break;
         }
 
         Element beginday = new Element("beginday");
@@ -384,7 +419,7 @@ public class XMLStringResultsExporter {
         endday.setText(Integer.toString(i));
 
         // Edge case at the end of the calendar.
-        if(i == moistCal.size() - 1) {
+        if (i == moistCal.size() - 1) {
           endday.setText(Integer.toString(moistCal.size()));
         }
 
@@ -400,6 +435,7 @@ public class XMLStringResultsExporter {
 
     output.addContent(smrclass);
     output.addContent(strclass);
+    output.addContent(subdiv);
     output.addContent(awb);
     output.addContent(swb);
     output.addContent(smcstates);
@@ -427,7 +463,7 @@ public class XMLStringResultsExporter {
 
   private static double round(double d, int decimalPlaces) {
     String format = "#.#";
-    for(int i = decimalPlaces - 1; i > 0; i--) {
+    for (int i = decimalPlaces - 1; i > 0; i--) {
       format += "#";
     }
     DecimalFormat df = new DecimalFormat(format);

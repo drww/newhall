@@ -15,6 +15,7 @@ import org.psu.newhall.util.CSVFileParser;
 import org.psu.newhall.util.CSVResultsExporter;
 import org.psu.newhall.util.XMLFileParser;
 import org.psu.newhall.util.XMLResultsExporter;
+import org.psu.newhall.util.XMLStringResultsExporter;
 
 public class DefaultNewhallFrame extends javax.swing.JFrame {
 
@@ -299,7 +300,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       }
     });
 
-    soilAirOffsetUnits.setText("°C");
+    soilAirOffsetUnits.setText("ï¿½C");
 
     jLabel21.setText("Amplitude:");
 
@@ -456,7 +457,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     jScrollPane6.setViewportView(temperatureCalendarText);
 
     jLabel8.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
-    jLabel8.setText("- = Under 5°C, 5 = 5°C to 8°C, 8 = Excess of 8°C");
+    jLabel8.setText("- = Under 5ï¿½C, 5 = 5ï¿½C to 8ï¿½C, 8 = Excess of 8ï¿½C");
 
     javax.swing.GroupLayout tempCalPanelLayout = new javax.swing.GroupLayout(tempCalPanel);
     tempCalPanel.setLayout(tempCalPanelLayout);
@@ -1140,7 +1141,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         whcSpinner.setValue(whcInMm);
         soilAirOffset.setValue(savInC);
         whcUnitsText.setText("mm");
-        soilAirOffsetUnits.setText("°C");
+        soilAirOffsetUnits.setText("ï¿½C");
         activeUnitSystemText.setText("Metric");
       } else {
         double whcInInches = originalWhcValue * 0.0393700787;
@@ -1148,7 +1149,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         whcSpinner.setValue(whcInInches);
         soilAirOffset.setValue(savInF);
         whcUnitsText.setText("in");
-        soilAirOffsetUnits.setText("°F");
+        soilAirOffsetUnits.setText("ï¿½F");
         activeUnitSystemText.setText("English");
       }
 
@@ -1199,6 +1200,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         try {
           XMLResultsExporter xre = new XMLResultsExporter(jfc.getSelectedFile());
           xre.export(nr, nd);
+          System.out.println("Exported XML:\n------------------------");
+          System.out.print(XMLStringResultsExporter.export(nr, nd));
+          System.out.println("------------------------");
         } catch (IOException e) {
           System.out.println("XML Export failed: " + e.getMessage());
         }
@@ -1291,18 +1295,18 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     TableModel tempTableModel = this.tempTable.getModel();
     TableModel rainfallTableModel = this.rainfallTable.getModel();
     if (this.inMetric) {
-      tempTableModel.setValueAt("Air Temp (°C)", 0, 0);
+      tempTableModel.setValueAt("Air Temp (ï¿½C)", 0, 0);
       rainfallTableModel.setValueAt("Rainfall (mm)", 0, 0);
       elevationText.setText(roundForDisplay(properElevation) + " meters");
       elevation.setText(roundForDisplay(properElevation) + " meters");
-      soilAirOffsetUnits.setText("°C");
+      soilAirOffsetUnits.setText("ï¿½C");
       activeUnitSystemText.setText("Metric");
     } else {
-      tempTableModel.setValueAt("Air Temp (°F)", 0, 0);
+      tempTableModel.setValueAt("Air Temp (ï¿½F)", 0, 0);
       rainfallTableModel.setValueAt("Rainfall (in)", 0, 0);
       elevationText.setText(roundForDisplay(properElevation) + " feet");
       elevation.setText(roundForDisplay(properElevation) + " feet");
-      soilAirOffsetUnits.setText("°F");
+      soilAirOffsetUnits.setText("ï¿½F");
       activeUnitSystemText.setText("English");
     }
 
