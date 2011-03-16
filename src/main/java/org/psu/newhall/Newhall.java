@@ -18,6 +18,8 @@ public class Newhall {
     DefaultNewhallFrame dnf = new DefaultNewhallFrame();
     dnf.setVisible(true);
 
+    //ConnectorInvocationExample.example();
+
   }
 
 }
