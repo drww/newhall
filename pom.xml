@@ -5,7 +5,7 @@
   <groupId>org.psu</groupId>
   <artifactId>Newhall</artifactId>
   <packaging>jar</packaging>
-  <version>1.4.1</version>
+  <version>1.4.2</version>
   <name>Newhall</name>
   <url>http://maven.apache.org</url>
   <dependencies>
@@ -21,7 +21,9 @@
       <version>1.1</version>
     </dependency>
   </dependencies>
-  <description>The Newhall Simulation Model for the computation of soil evapotranspiration and temperature/moisture regime determination.</description>
+  <description>The Newhall Simulation Model for the computation
+of soil evapotranspiration and temperature/moisture
+regime determination.</description>
   <build>
     <plugins>
       <plugin>

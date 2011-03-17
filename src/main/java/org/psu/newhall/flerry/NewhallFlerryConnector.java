@@ -10,6 +10,22 @@ import org.psu.newhall.util.XMLStringResultsExporter;
 
 public class NewhallFlerryConnector {
 
+  public static String runModel(String inputXmlFile, Boolean isMetric, Double waterHoldingCapacity, Double soilAirRel) {
+    return runModel(inputXmlFile, isMetric, waterHoldingCapacity, soilAirRel);
+  }
+
+  public static String runModel(String inputXmlFile, Boolean isMetric, Integer waterHoldingCapacity, Integer soilAirRel) {
+    return runModel(inputXmlFile, isMetric, waterHoldingCapacity, soilAirRel);
+  }
+
+  public static String runModel(String inputXmlFile, Boolean isMetric, Double waterHoldingCapacity, Integer soilAirRel) {
+    return runModel(inputXmlFile, isMetric, waterHoldingCapacity, soilAirRel);
+  }
+
+  public static String runModel(String inputXmlFile, Boolean isMetric, Integer waterHoldingCapacity, Double soilAirRel) {
+    return runModel(inputXmlFile, isMetric, waterHoldingCapacity, soilAirRel);
+  }
+
   public static String runModel(String inputXmlFile, Boolean isMetric, Number waterHoldingCapacity, Number soilAirRel) {
 
     XMLStringParser xsp = null;
@@ -27,7 +43,6 @@ public class NewhallFlerryConnector {
     NewhallResults results = BASICSimulationModel.runSimulation(dataset, waterHoldingCapacity.doubleValue());
 
     return XMLStringResultsExporter.export(results, dataset);
-    
-  }
 
+  }
 }
