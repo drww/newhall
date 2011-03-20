@@ -24,16 +24,17 @@ public class XMLStringParser {
     Element root = doc.getRootElement();
     String modelVers = root.getAttributeValue("version");
 
+    System.out.println("Parsing metadata.");
     /** Metadata **/
     Element metadata = root.getChild("metadata");
 
     Element stninfo = metadata.getChild("stninfo");
     String stationName = stninfo.getChildText("stnname");
+    String nettype = stninfo.getChildText("nettype");
     String stationId = stninfo.getChildText("stnid");
     double stationElevation = Double.parseDouble(stninfo.getChildText("stnelev"));
     String stateProvidence = stninfo.getChildText("stateprov");
     String country = stninfo.getChildText("country");
-    String nettype = stninfo.getChildText("nettype");
 
     Element mlra = metadata.getChild("mlra");
     String mlraName = mlra.getChildText("mlraname");
@@ -67,7 +68,9 @@ public class XMLStringParser {
 
     String rundate = metadata.getChildText("rundate");
     String nsmver = metadata.getChildText("nsmver");
+    String srcunitsys = metadata.getChildText("srcunitsys");
 
+    System.out.println("Parsing input.");
     /** Input **/
     Element input = root.getChild("input");
 
@@ -81,8 +84,6 @@ public class XMLStringParser {
     int pdbegin = Integer.valueOf(recordpd.getChildText("pdbegin"));
     int pdend = Integer.valueOf(recordpd.getChildText("pdend"));
 
-    String srcunitsys = input.getChildText("srcunitsys");
-
     Element precips = input.getChild("precips");
     List<Element> allPrecips = precips.getChildren();
     List<Double> allPrecipsDbl = new ArrayList<Double>(12);
@@ -92,6 +93,8 @@ public class XMLStringParser {
 
     String[] monthStr = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
+    System.out.println("Parsing precipitation and air temps.");
 
     for (String month : monthStr) {
       for (Element precip : allPrecips) {
@@ -110,28 +113,33 @@ public class XMLStringParser {
       }
     }
 
+    System.out.println("Parsing soil-air relationship variables.");
+
     Double smcsawc = Double.parseDouble(input.getChildText("smcsawc"));
 
     Element soilairrel = input.getChild("soilairrel");
-    Double lag = Double.parseDouble(soilairrel.getChildText("lag"));
+    //Double lag = Double.parseDouble(soilairrel.getChildText("lag"));
     Double ampltd = Double.parseDouble(soilairrel.getChildText("ampltd"));
     Double maatmast = Double.parseDouble(soilairrel.getChildText("maatmast"));
 
     this.dataset = new NewhallDataset(stationName, country, lat, lon,
             'N', 'E', stationElevation, allPrecipsDbl, allAirTempsDbl,
+            //pdbegin, pdend, unitsys.equals("metric"));
             pdbegin, pdend, true);
 
     NewhallDatasetMetadata ndm = new NewhallDatasetMetadata(stationName, stationId, stationElevation,
             stateProvidence, country, mlraName, mlraId, firstName, lastName, title, cntorg,
             address, city, stateprov, postal, cntCountry, cntemail, cntphone, allNotesStr,
+            //rundate, modelVers, unitsys, maatmast, ampltd);
             rundate, modelVers, srcunitsys, maatmast, ampltd, nettype);
-    
+
     this.dataset.setMetadata(ndm);
-    
+
+    System.out.println("XML dataset built.");
+
   }
 
   public NewhallDataset getDataset() {
     return dataset;
   }
-  
 }
