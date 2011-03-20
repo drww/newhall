@@ -173,7 +173,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="tabPane" alignment="0" pref="975" max="32767" attributes="0"/>
+                  <Component id="tabPane" alignment="0" pref="834" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -184,7 +184,7 @@
                       <Component id="activeUnitSystemLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="activeUnitSystemText" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="399" max="32767" attributes="0"/>
+                      <EmptySpace pref="258" max="32767" attributes="0"/>
                       <Component id="exportXmlButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="exportCsvButton" min="-2" max="-2" attributes="0"/>
@@ -256,7 +256,7 @@
                                   <Component id="stationText" alignment="0" max="32767" attributes="1"/>
                                   <Component id="countryText" alignment="0" pref="191" max="32767" attributes="1"/>
                               </Group>
-                              <EmptySpace type="separate" pref="315" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" pref="174" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="srcUnitSystemLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="endingYearLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -273,7 +273,7 @@
                               <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSeparator2" pref="950" max="32767" attributes="0"/>
+                              <Component id="jSeparator2" pref="809" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -284,14 +284,14 @@
                               <Component id="soilAirOffsetUnits" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                               <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="448" max="32767" attributes="0"/>
+                              <EmptySpace pref="307" max="32767" attributes="0"/>
                               <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="amplitudeSpinner" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSeparator3" pref="950" max="32767" attributes="0"/>
+                              <Component id="jSeparator3" pref="809" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -391,8 +391,8 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="datasetScrollPane3" alignment="0" pref="918" max="32767" attributes="0"/>
-                              <Component id="datasetScrollPane" alignment="0" pref="918" max="32767" attributes="0"/>
+                              <Component id="datasetScrollPane3" alignment="0" pref="777" max="32767" attributes="0"/>
+                              <Component id="datasetScrollPane" alignment="0" pref="777" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -682,7 +682,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="tempCalPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="307" max="32767" attributes="0"/>
+                      <EmptySpace pref="166" max="32767" attributes="0"/>
                       <Component id="moistCalPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1021,7 +1021,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
-                          <Component id="datasetScrollPane1" alignment="0" pref="938" max="32767" attributes="0"/>
+                          <Component id="datasetScrollPane1" alignment="0" pref="797" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1037,7 +1037,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="subdivisionsLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="subdivisionsText" pref="277" max="32767" attributes="0"/>
+                              <Component id="subdivisionsText" pref="136" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1151,7 +1151,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane7" pref="906" max="32767" attributes="0"/>
+                          <Component id="jScrollPane7" pref="765" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1569,7 +1569,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane8" pref="654" max="32767" attributes="0"/>
+                          <Component id="jScrollPane8" pref="513" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
