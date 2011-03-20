@@ -1330,8 +1330,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     amplitudeSpinner.setValue(nd.getMetadata().getAmplitude());
 
     stationText.setText(nd.getName());
-    latitudeText.setText(roundDegreesForDisplay(nd.getLatitude()) + " degrees " + nd.getNsHemisphere());
-    longitudeText.setText(roundDegreesForDisplay(nd.getLongitude()) + " degrees " + nd.getEwHemisphere());
+    latitudeText.setText(roundDegreesForDisplay(nd.getLatitude()) + " " + (char)176 + nd.getNsHemisphere());
+    longitudeText.setText(roundDegreesForDisplay(nd.getLongitude()) + " " + (char)176 + nd.getEwHemisphere());
     countryText.setText(nd.getCountry());
     startingYearText.setText(nd.getStartYear() + "");
     endingYearText.setText(nd.getEndYear() + "");
