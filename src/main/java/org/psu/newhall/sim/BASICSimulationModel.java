@@ -2973,9 +2973,27 @@ public class BASICSimulationModel {
       ntsu[3] = 180;
       ntwi[3] = 180;
       // Return from GOSUB 3390.
-    } else if (nd[1] + nd[2] < 90) {
+    } else if ((nd[1] + nd[2]) < 90) {
       ans = "Udic";
-      // 3480 -> Return from GOSUB 3390.
+      // 3480
+      if((nd[1] + nd[2]) < 30) {
+        q = "Typic";
+        // 3560
+        div = new String(ans);
+        // 3580 - Return from GOSUB 3390.
+      } else {
+        // 3490
+        if(dif < 5) {
+          q = "Dry";
+          div = "Tropudic";
+          // 3580 - Return from GOSUB 3390.
+        } else {
+          // 3500
+          div = "Tempudic";
+          q = "Dry";
+          // 3680 - Return from GOSUB 3390.
+        }
+      }
     } else if (!trr.equalsIgnoreCase("pergelic") && !trr.equalsIgnoreCase("cryic")) {
       ans = "Ustic";
       // 3510
