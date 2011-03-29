@@ -1,4 +1,4 @@
-Newhall 1.4.3, Copyright (C) 2010-2011 
+Newhall 1.4.4, Copyright (C) 2010-2011 
 United States Department of Agriculture - Natural Resources Conservation Service, 
 Penn State University Center for Environmental Informatics
 All rights reserved.

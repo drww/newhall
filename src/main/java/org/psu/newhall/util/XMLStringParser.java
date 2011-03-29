@@ -76,7 +76,23 @@ public class XMLStringParser {
 
     Element location = input.getChild("location");
     double lat = Double.parseDouble(location.getChildText("lat"));
+    char nsHemisphere;
+    if(lat >= 0) {
+      nsHemisphere = 'N';
+    } else {
+      // Put in terms of positive degrees South.
+      lat *= -1;
+      nsHemisphere = 'S';
+    }
     double lon = Double.parseDouble(location.getChildText("lon"));
+    char ewHemisphere;
+    if(lon >= 0) {
+      ewHemisphere = 'E';
+    } else {
+      // Put in terms of positive degrees West.
+      lon *= -1;
+      ewHemisphere = 'W';
+    }
     String usercoordfmt = location.getChildText("usercoordfmt");
 
     Element recordpd = input.getChild("recordpd");
@@ -123,7 +139,7 @@ public class XMLStringParser {
     Double maatmast = Double.parseDouble(soilairrel.getChildText("maatmast"));
 
     this.dataset = new NewhallDataset(stationName, country, lat, lon,
-            'N', 'E', stationElevation, allPrecipsDbl, allAirTempsDbl,
+            nsHemisphere, ewHemisphere, stationElevation, allPrecipsDbl, allAirTempsDbl,
             //pdbegin, pdend, unitsys.equals("metric"));
             pdbegin, pdend, true);
 

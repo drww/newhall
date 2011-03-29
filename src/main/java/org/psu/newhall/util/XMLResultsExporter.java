@@ -167,9 +167,18 @@ public class XMLResultsExporter {
 
     Element location = new Element("location");
     Element lat = new Element("lat");
-    lat.setText(Double.toString(round(dataset.getLatitude(), 4)));
+    if(dataset.getNsHemisphere() == 'N') {
+      lat.setText(Double.toString(round(dataset.getLatitude(), 4)));
+    } else {
+      lat.setText(Double.toString(round(dataset.getLatitude() * -1, 4)));
+    }
+    
     Element lon = new Element("lon");
-    lon.setText(Double.toString(round(dataset.getLongitude(), 4)));
+    if(dataset.getEwHemisphere() == 'E') {
+      lon.setText(Double.toString(round(dataset.getLongitude(), 4)));
+    } else {
+      lon.setText(Double.toString(round(dataset.getLongitude() * -1, 4)));
+    }
     Element usercoordfmt = new Element("usercoordfmt");
     usercoordfmt.setText("DD");
     location.addContent(lat);

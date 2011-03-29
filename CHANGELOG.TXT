@@ -1,3 +1,10 @@
+Newhall 1.4.4
+------------------------------------------------------
+* Fixed a problem with negative decimal degrees for latitude being reported
+  to the model, which is accustomed to positive degrees only.  All DD figures
+  in the XML file formats are now converted into positive degrees and will
+  toggle between N/S and E/W hemispheres.
+
 Newhall 1.4.3
 ------------------------------------------------------
 * Fixed a problem in the simulation model for the determination of the subgroup
