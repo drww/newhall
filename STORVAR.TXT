@@ -1,0 +1,42 @@
+1 ON ERROR GOTO 700
+100 CLS:KEY OFF:WIDTH 80
+101 PRINT:PRINT"NEWHALL SIMULATION MODEL (FLEXIBLE STORAGE)"
+105 PRINT
+110 PRINT"Developed by A.Van Wambeke
+120 PRINT"Department of Soil, Crop and Atmospheric Sciences
+130 PRINT"Cornell University
+140 PRINT"Ithaca, NY  14853
+145 PRINT"copyright 1991
+150 PRINT:PRINT:PRINT"Type the NUMBER of the desired action
+160 PRINT:PRINT"1 Create a new data file or edit an existing file
+170 PRINT"2 Start processing data (compute PET and check data)
+180 PRINT"3 Run Newhall Variable Storage Simulation
+190 PRINT"4 Print results of Newhall Simulation on screen or printer
+192 PRINT"5 See a directory of a disk
+195 PRINT"6 Quit
+200 PRINT
+210 INPUT"Enter the NUMBER of your choice =>",A$
+220 IF A$<>"1" AND A$<>"2" AND A$<>"3" AND A$<>"4" AND A$<>"5" AND A$<>"6"          THEN CLS:GOTO 150
+230 A=VAL (A$)
+240 ON A GOTO 250,300,350,400,410,450
+250 RUN "dwriter.txt"
+300 RUN "STORVAR4.TXT"
+350 RUN "STORVAR5.TXT"
+400 RUN "STORVAR6.TXT"
+409 '       directory of a disk
+410 CLS:INPUT"Which disk do you want to see a directory of? (Hit ENTER for default)",DISK$
+415 IF DISK$="" THEN FILES:GOTO 430
+417 IF LEFT$(DISK$,1)="c" OR LEFT$(DISK$,1)="C" THEN DISK$=DISK$+"*.*":             CHDIR"c:\":GOTO 425
+420 DISK$=LEFT$(DISK$,1)+":*.*"
+425 FILES DISK$
+430 PRINT"Hit any key to continue
+432 F$=INKEY$:IF F$="" THEN GOTO 432
+435 CLS
+440 GOTO 150
+450 SYSTEM
+700 CLS
+710 PRINT"Make sure that the Newhall program disk is in the default drive
+720 PRINT:PRINT"Press a key to continue"
+730 F$=INKEY$:IF F$="" THEN 730
+740 RESUME 150
+
