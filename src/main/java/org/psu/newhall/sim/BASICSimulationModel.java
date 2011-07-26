@@ -1842,7 +1842,8 @@ public class BASICSimulationModel {
     } else {
       // 920 -> GOTO 1170
       msw = 0;
-      tc = 0;
+      //tc = 0;
+      tc = -1;
       lt8c = 360;
       id8c = 0;
       // 1180
@@ -2754,6 +2755,13 @@ public class BASICSimulationModel {
 
     // 1420
     int ntd[] = new int[365];
+
+    if(!tempUnder8C) {
+      // Fill with 8's.  Previous detection nullified
+      // the following if() block, so we need to populate
+      // for this edge case here.
+      for(int i = 1; i <= 360; i++) ntd[i] = '8';
+    }
 
     if (tc != 0 || tu != 0) {
       // GOSUB 2990 - Calculate calendar.
