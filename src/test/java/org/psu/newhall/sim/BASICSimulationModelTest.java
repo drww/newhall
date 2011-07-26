@@ -95,6 +95,35 @@ public class BASICSimulationModelTest {
     }
   }
 
+  @Test
+  public void testSimulationAjo20080() {
+    NewhallResults nr = BASICSimulationModel.runSimulation(makeAjo20080(), 200.0);
+
+    assertEquals(nr.getMoistureRegime().toLowerCase(), "aridic");
+    assertEquals(nr.getTemperatureRegime().toLowerCase(), "hyperthermic");
+    assertEquals(nr.getAnnualRainfall(), 197, 1);
+
+    assertEquals(nr.getNumCumulativeDaysDry(), 360);
+    assertEquals(nr.getNumCumulativeDaysMoistDry(), 0);
+    assertEquals(nr.getNumCumulativeDaysMoist(), 0);
+    assertEquals(nr.getNumCumulativeDaysDryOver5C(), 360);
+    assertEquals(nr.getNumCumulativeDaysMoistDryOver5C(), 0);
+
+    // Tolerance for deviation: 1 day
+    assertEquals(nr.getNumCumulativeDaysMoistOver5C(), 0, 1);
+
+    assertEquals(nr.getNumConsecutiveDaysMoistInSomeParts(), 0);
+    assertEquals(nr.getNumConsecutiveDaysMoistInSomePartsOver8C(), 0);
+    assertEquals(nr.getDryDaysAfterSummerSolstice(), 120);
+    assertEquals(nr.getMoistDaysAfterWinterSolstice(), 0);
+
+    Double[] expectdEvapoTranspiration = {16.3, 23.8, 41.3, 74.4, 135.0, 192.9, 209.5, 193.2, 160.1, 100.9, 37.8, 16.3};
+    for (int i = 0; i < 12; i++) {
+      // Tolerance for deviation: 0.4 mm
+      assertEquals(nr.getMeanPotentialEvapotranspiration().get(i), expectdEvapoTranspiration[i], 0.4);
+    }
+  }
+
   private NewhallDataset makeColum97() {
 
     ArrayList<Double> temps = new ArrayList<Double>(12);
@@ -191,5 +220,37 @@ public class BASICSimulationModelTest {
     precip.add(16.8);
 
     return new NewhallDataset("Mead Agronomy Lab", "USA", 41.4666, 97.3333, 'N', 'W', 359.66, precip, temps, 1989, 1989, true);
+  }
+
+  private NewhallDataset makeAjo20080() {
+    ArrayList<Double> temps = new ArrayList<Double>(12);
+    temps.add(12.5);
+    temps.add(14.61);
+    temps.add(16.78);
+    temps.add(20.56);
+    temps.add(24.78);
+    temps.add(30.06);
+    temps.add(32.17);
+    temps.add(31.44);
+    temps.add(29.33);
+    temps.add(23.89);
+    temps.add(17.22);
+    temps.add(12.61);
+
+    ArrayList<Double> precip = new ArrayList<Double>(12);
+    precip.add(17.02);
+    precip.add(17.02);
+    precip.add(19.3);
+    precip.add(5.84);
+    precip.add(3.81);
+    precip.add(1.27);
+    precip.add(19.3);
+    precip.add(41.15);
+    precip.add(20.83);
+    precip.add(16.0);
+    precip.add(12.7);
+    precip.add(22.35);
+
+    return new NewhallDataset("Ajo, AZ", "USA", 32.37, -112.87, 'N', 'E', 549.0, precip, temps, 1971, 2000, true);
   }
 }
