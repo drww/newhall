@@ -224,16 +224,16 @@ public class BASICSimulationModel {
     cr[9] = (tma >= 15) && (tma < 22);    // 15C <= MAAT < 22C.
     cr[10] = tma >= 22;                   // 22C <= MAAT.
     cr[11] = tma < 8;                     // MAAT < 8C.
-    reg[1] = cr[1];
-    reg[2] = cr[2] && cr[3];
-    reg[3] = cr[11] && !cr[3] && cr[7];
-    reg[4] = cr[8] && cr[7];
-    reg[5] = cr[9] && cr[7];
-    reg[6] = cr[10] && cr[7];
-    reg[7] = cr[11] && !cr[7] && !cr[3];  // Iso-*'s this point and after.
-    reg[8] = cr[8] && !cr[7];
-    reg[9] = cr[9] && !cr[7];
-    reg[10] = cr[10] && !cr[7];
+    reg[1] = cr[1];                       // PERGELIC
+    reg[2] = cr[2] && cr[3];              // CRYIC
+    reg[3] = cr[11] && !cr[3] && cr[7];   // FRIGID
+    reg[4] = cr[8] && cr[7];              // MESIC
+    reg[5] = cr[9] && cr[7];              // THERMIC
+    reg[6] = cr[10] && cr[7];             // HYPERTHERMIC
+    reg[7] = cr[11] && !cr[7] && !cr[3];  // ISOFRIGID
+    reg[8] = cr[8] && !cr[7];             // ISOMESIC
+    reg[9] = cr[9] && !cr[7];             // ISOTHERMIC
+    reg[10] = cr[10] && !cr[7];           // ISOHYPERTHERMIC
 
     st -= cs;
     wt += cs;
