@@ -219,7 +219,7 @@ public class BASICSimulationModel {
     cr[1] = tma < 0;                      // Mean annual air temp (MAAT) < 0C.
     cr[2] = 0 <= tma && tma < 8;          // 0C <= MAAT <= 8C.
     cr[3] = (st - cs) < 15;               // Summer temp ave minus (summer/winter difference * (1 - SOIL_AIR_REL) * 0.5) < 15C.
-    cr[7] = (dif * fcd) > 5;              // Summer/winter difference * SOIL_AIR_REL > 5.
+    cr[7] = (dif * fcd) > 5;              // Summer/winter difference * SOIL_AIR_REL > 5.  Change to 6?
     cr[8] = (tma >= 8) && (tma < 15);     // 8C <= MAAT < 15C.
     cr[9] = (tma >= 15) && (tma < 22);    // 15C <= MAAT < 22C.
     cr[10] = tma >= 22;                   // 22C <= MAAT.
