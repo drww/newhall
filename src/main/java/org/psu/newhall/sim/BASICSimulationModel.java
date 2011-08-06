@@ -208,6 +208,12 @@ public class BASICSimulationModel {
 
     // 680
 
+    /**
+     * The cr[] arrays hold critera to determine temperature regime.  Then
+     * the reg[] array holds the flags for each regime.  The last-most flag
+     * that is true indicates the temp regime.
+     */
+
     boolean[] cr = new boolean[13];
     boolean[] reg = new boolean[13];
     cr[1] = tma < 0;
@@ -224,7 +230,7 @@ public class BASICSimulationModel {
     reg[4] = cr[8] && cr[7];
     reg[5] = cr[9] && cr[7];
     reg[6] = cr[10] && cr[7];
-    reg[7] = cr[11] && !cr[7] && !cr[3];
+    reg[7] = cr[11] && !cr[7] && !cr[3];  // Iso-*'s this point and after.
     reg[8] = cr[8] && !cr[7];
     reg[9] = cr[9] && !cr[7];
     reg[10] = cr[10] && !cr[7];

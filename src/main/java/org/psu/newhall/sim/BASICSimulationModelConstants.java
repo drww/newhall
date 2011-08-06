@@ -2,7 +2,7 @@ package org.psu.newhall.sim;
 
 public class BASICSimulationModelConstants {
 
-  public static final String[] tempRegimes = {"Pregelic", "Cryic", "Frigid", "Mesic",
+  public static final String[] tempRegimes = {"Pergelic", "Cryic", "Frigid", "Mesic",
     "Thermic", "Hyperthermic", "Isofrigid", "Isomesic", "Isothermic",
     "Isohyperthermic"};
 
