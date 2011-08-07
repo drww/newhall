@@ -2980,12 +2980,25 @@ public class BASICSimulationModel {
     } else if (tma < 22 && dif >= 5 && nccd >= 45 && nccm >= 45) {
       ans = "Xeric";
       // 3470
-      ncsm = 180;
-      ncwm = 180;
-      ncsp = 180;
-      ncwp = 180;
-      ntsu[3] = 180;
-      ntwi[3] = 180;
+      if(nccd > 90) {
+        q = "Dry";
+      } else {
+        q = "Typic";
+      }
+      // 3560
+      div = new String(ans);
+      // 3580 - RETURN
+
+      // TODO: Add PENDLETON unit test.
+
+      // I think the entire following was incorrectly transcribed.
+      //ncsm = 180;
+      //ncwm = 180;
+      //ncsp = 180;
+      //ncwp = 180;
+      //ntsu[3] = 180;
+      //ntwi[3] = 180;
+      
       // Return from GOSUB 3390.
     } else if ((nd[1] + nd[2]) < 90) {
       ans = "Udic";
