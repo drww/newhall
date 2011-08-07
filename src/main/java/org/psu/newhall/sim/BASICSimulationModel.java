@@ -2973,6 +2973,12 @@ public class BASICSimulationModel {
       // 3450
       if (nd[1] == 360) {
         q = "Extreme";
+      } else if(ncpm[2] <= 45) {
+        // TODO: Typic Aridic unit test.
+        q = "Typic";
+      } else {
+        // TODO: Weak Aridic unit test.
+        q = "Weak";
       }
       // 3560
       div = new String(ans);  // Deep copy.
