@@ -2987,19 +2987,8 @@ public class BASICSimulationModel {
       }
       // 3560
       div = new String(ans);
-      // 3580 - RETURN
-
+      // 3580 - RETURN FROM GOSUB 3390.
       // TODO: Add PENDLETON unit test.
-
-      // I think the entire following was incorrectly transcribed.
-      //ncsm = 180;
-      //ncwm = 180;
-      //ncsp = 180;
-      //ncwp = 180;
-      //ntsu[3] = 180;
-      //ntwi[3] = 180;
-      
-      // Return from GOSUB 3390.
     } else if ((nd[1] + nd[2]) < 90) {
       ans = "Udic";
       // 3480
