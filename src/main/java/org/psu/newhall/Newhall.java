@@ -5,7 +5,7 @@ import org.psu.newhall.ui.DefaultNewhallFrame;
 
 public class Newhall {
 
-  public static String NSM_VERSION = "1.4.5";
+  public static String NSM_VERSION = "1.4.6";
 
   public static void main(String[] args) {
 
@@ -16,6 +16,7 @@ public class Newhall {
     }
 
     DefaultNewhallFrame dnf = new DefaultNewhallFrame();
+    dnf.setLocation(100, 100);
     dnf.setVisible(true);
 
     //ConnectorInvocationExample.example();

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+import org.psu.newhall.Newhall;
 import org.psu.newhall.sim.BASICSimulationModel;
 import org.psu.newhall.sim.NewhallDataset;
 import org.psu.newhall.sim.NewhallResults;
@@ -26,7 +27,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
 
   public DefaultNewhallFrame() {
     initComponents();
-    this.setTitle("Newhall");
+    this.setTitle("Newhall " + Newhall.NSM_VERSION);
     this.whcSpinner.setValue(200.0);
     this.whcSpinner.setEnabled(false);
   }
@@ -1167,7 +1168,9 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_whcSpinnerStateChanged
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-      new AboutFrame().setVisible(true);
+      AboutFrame af = new AboutFrame();
+      af.setLocation(150, 150);
+      af.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void exportCsvButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportCsvButtonActionPerformed
