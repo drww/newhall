@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 public class BASICSimulationModelTest {
 
   /** Model accuracy: 99.96% **/
-
   @Test
   public void testSimulationColum97() {
     NewhallResults nr = BASICSimulationModel.runSimulation(makeColum97(), 200.0);
@@ -118,6 +117,68 @@ public class BASICSimulationModelTest {
     assertEquals(nr.getMoistDaysAfterWinterSolstice(), 0);
 
     Double[] expectdEvapoTranspiration = {16.3, 23.8, 41.3, 74.4, 135.0, 192.9, 209.5, 193.2, 160.1, 100.9, 37.8, 16.3};
+    for (int i = 0; i < 12; i++) {
+      // Tolerance for deviation: 0.4 mm
+      assertEquals(nr.getMeanPotentialEvapotranspiration().get(i), expectdEvapoTranspiration[i], 0.4);
+    }
+  }
+
+  @Test
+  public void testSimulationPendleton() {
+    NewhallResults nr = BASICSimulationModel.runSimulation(makePendleton(), 200.0);
+
+    assertEquals(nr.getMoistureRegime().toLowerCase(), "xeric");
+    assertEquals(nr.getTemperatureRegime().toLowerCase(), "thermic");
+    assertEquals(nr.getRegimeSubdivision1().toLowerCase(), "dry");
+    assertEquals(nr.getRegimeSubdivision2().toLowerCase(), "xeric");
+    assertEquals(nr.getAnnualRainfall(), 336, 1);
+
+    assertEquals(nr.getNumCumulativeDaysDry(), 199);
+    assertEquals(nr.getNumCumulativeDaysMoistDry(), 51);
+    assertEquals(nr.getNumCumulativeDaysMoist(), 110);
+    assertEquals(nr.getNumCumulativeDaysDryOver5C(), 199);
+    assertEquals(nr.getNumCumulativeDaysMoistDryOver5C(), 51);
+
+    // Tolerance for deviation: 1 day
+    assertEquals(nr.getNumCumulativeDaysMoistOver5C(), 110, 1);
+
+    assertEquals(nr.getNumConsecutiveDaysMoistInSomeParts(), 161);
+    assertEquals(nr.getNumConsecutiveDaysMoistInSomePartsOver8C(), 161);
+    assertEquals(nr.getDryDaysAfterSummerSolstice(), 120);
+    assertEquals(nr.getMoistDaysAfterWinterSolstice(), 75);
+
+    Double[] expectdEvapoTranspiration = {33.8, 35.3, 44.7, 56.9, 77.2, 93.1, 113.3, 113.6, 96.1, 70.8, 44.5, 33.2};
+    for (int i = 0; i < 12; i++) {
+      // Tolerance for deviation: 0.4 mm
+      assertEquals(nr.getMeanPotentialEvapotranspiration().get(i), expectdEvapoTranspiration[i], 0.4);
+    }
+  }
+
+  @Test
+  public void testSimulationChadron() {
+    NewhallResults nr = BASICSimulationModel.runSimulation(makeChadron(), 200.0);
+
+    assertEquals(nr.getMoistureRegime().toLowerCase(), "aridic");
+    assertEquals(nr.getTemperatureRegime().toLowerCase(), "mesic");
+    assertEquals(nr.getRegimeSubdivision1().toLowerCase(), "weak");
+    assertEquals(nr.getRegimeSubdivision2().toLowerCase(), "aridic");
+    assertEquals(nr.getAnnualRainfall(), 422, 1);
+
+    assertEquals(nr.getNumCumulativeDaysDry(), 153);
+    assertEquals(nr.getNumCumulativeDaysMoistDry(), 124);
+    assertEquals(nr.getNumCumulativeDaysMoist(), 83);
+    assertEquals(nr.getNumCumulativeDaysDryOver5C(), 103);
+    assertEquals(nr.getNumCumulativeDaysMoistDryOver5C(), 19);
+
+    // Tolerance for deviation: 1 day
+    assertEquals(nr.getNumCumulativeDaysMoistOver5C(), 79, 1);
+
+    assertEquals(nr.getNumConsecutiveDaysMoistInSomeParts(), 207);
+    assertEquals(nr.getNumConsecutiveDaysMoistInSomePartsOver8C(), 87);
+    assertEquals(nr.getDryDaysAfterSummerSolstice(), 93);
+    assertEquals(nr.getMoistDaysAfterWinterSolstice(), 15);
+
+    Double[] expectdEvapoTranspiration = {0.0, 0.0, 7.8, 35.1, 78.5, 119.8, 149.4, 134.6, 80.2, 37.5, 2.1, 0.0};
     for (int i = 0; i < 12; i++) {
       // Tolerance for deviation: 0.4 mm
       assertEquals(nr.getMeanPotentialEvapotranspiration().get(i), expectdEvapoTranspiration[i], 0.4);
@@ -252,5 +313,37 @@ public class BASICSimulationModelTest {
     precip.add(22.35);
 
     return new NewhallDataset("Ajo, AZ", "USA", 32.37, -112.87, 'N', 'E', 549.0, precip, temps, 1971, 2000, true);
+  }
+
+  private NewhallDataset makePendleton() {
+    ArrayList<Double> temps = new ArrayList<Double>();
+    double[] tempArray = {55.1, 56, 56.8, 59.6, 63.3, 66.7, 70.5, 71.9, 70.6, 65.5, 59.1, 55.2};
+    for (double temp : tempArray) {
+      temps.add(temp);
+    }
+
+    ArrayList<Double> precips = new ArrayList<Double>(12);
+    double[] precipArray = {3, 2.91, 2.67, 0.81, 0.32, 0.14, 0.08, 0.02, 0.14, 0.46, 0.93, 1.73};
+    for (double precip : precipArray) {
+      precips.add(precip);
+    }
+
+    return new NewhallDataset("Pendleton, OR", "USA", 33.3, -117.35, 'N', 'E', 75.0, precips, temps, 1971, 2000, false);
+  }
+
+  private NewhallDataset makeChadron() {
+    ArrayList<Double> temps = new ArrayList<Double>();
+    double[] tempArray = {22.8, 28.1, 36.2, 45.9, 56.8, 67.2, 74.1, 73, 61.7, 48.9, 33.7, 25.1};
+    for (double temp : tempArray) {
+      temps.add(temp);
+    }
+
+    ArrayList<Double> precips = new ArrayList<Double>(12);
+    double[] precipArray = {0.46, 0.47, 0.91, 1.89, 3.02, 2.62, 2.11, 1.67, 1.44, 1.05, 0.57, 0.42};
+    for (double precip : precipArray) {
+      precips.add(precip);
+    }
+
+    return new NewhallDataset("Chadron, NE", "USA", 42.82, -103.0, 'N', 'E', 3510, precips, temps, 1971, 2000, false);
   }
 }

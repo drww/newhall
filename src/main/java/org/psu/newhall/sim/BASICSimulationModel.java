@@ -2974,10 +2974,8 @@ public class BASICSimulationModel {
       if (nd[1] == 360) {
         q = "Extreme";
       } else if(ncpm[2] <= 45) {
-        // TODO: Typic Aridic unit test.
         q = "Typic";
       } else {
-        // TODO: Weak Aridic unit test.
         q = "Weak";
       }
       // 3560
@@ -2994,7 +2992,6 @@ public class BASICSimulationModel {
       // 3560
       div = new String(ans);
       // 3580 - RETURN FROM GOSUB 3390.
-      // TODO: Add PENDLETON unit test.
     } else if ((nd[1] + nd[2]) < 90) {
       ans = "Udic";
       // 3480
