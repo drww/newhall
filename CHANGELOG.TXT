@@ -1,3 +1,15 @@
+Newhall 1.4.6
+------------------------------------------------------
+* Fixed an error in the Aridic and Xeric subgroup modifier determiniation
+  logic that deviated from the BASIC model's code.  Unit tests for Pendleton
+  and Chadron have been added to test that these changes are correct.
+
+Newhall 1.4.5
+------------------------------------------------------
+* Fixed a problem with the temperature calendar not being generated when
+  a dataset has no months where air temperature is at or below 8 degrees
+  Celsius.
+
 Newhall 1.4.4
 ------------------------------------------------------
 * Fixed a problem with negative decimal degrees for latitude being reported
