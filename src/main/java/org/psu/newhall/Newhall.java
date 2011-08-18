@@ -9,6 +9,9 @@ public class Newhall {
 
   public static void main(String[] args) {
 
+    // Set the 
+    System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Newhall");
+
     try {
       UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
     } catch (Exception e) {
