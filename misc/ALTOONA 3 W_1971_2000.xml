@@ -1,0 +1,165 @@
+<model>
+  <metadata>
+    <stninfo>
+      <nettype>HCN</nettype>
+      <stnname>ALTOONA 3 W</stnname>
+      <stnid>0</stnid>
+      <stnelev>402.0</stnelev>
+      <stateprov>PA</stateprov>
+      <country>US</country>
+    </stninfo>
+    <mlra>
+      <mlraname/>
+      <mlraid>0</mlraid>
+    </mlra>
+    <cntinfo>
+      <cntper>
+        <firstname>Brian</firstname>
+        <lastname>Bills</lastname>
+        <title/>
+      </cntper>
+      <cntorg>PSU</cntorg>
+      <cntaddr>
+        <address>2217 EES Bldg</address>
+        <city>University Park</city>
+        <stateprov>PA</stateprov>
+        <postal/>
+        <country/>
+      </cntaddr>
+      <cntemail/>
+      <cntphone/>
+    </cntinfo>
+    <notes>
+      <note>station ID 360140</note>
+    </notes>
+    <rundate>20110505</rundate>
+    <nsmver>1.4.4</nsmver>
+    <srcunitsys>metric</srcunitsys>
+  </metadata>
+  <input>
+    <location>
+      <lat>40.5</lat>
+      <lon>-78.47</lon>
+      <usercoordfmt>DD</usercoordfmt>
+    </location>
+    <recordpd>
+      <pdtype>normal</pdtype>
+      <pdbegin>1971</pdbegin>
+      <pdend>2000</pdend>
+    </recordpd>
+    <precips>
+      <precip id="Jan">70.87</precip>
+      <precip id="Feb">66.29</precip>
+      <precip id="Mar">92.46</precip>
+      <precip id="Apr">93.22</precip>
+      <precip id="May">112.01</precip>
+      <precip id="Jun">108.71</precip>
+      <precip id="Jul">102.36</precip>
+      <precip id="Aug">82.55</precip>
+      <precip id="Sep">102.62</precip>
+      <precip id="Oct">85.85</precip>
+      <precip id="Nov">92.96</precip>
+      <precip id="Dec">74.42</precip>
+    </precips>
+    <airtemps>
+      <airtemp id="Jan">-3.06</airtemp>
+      <airtemp id="Feb">-1.61</airtemp>
+      <airtemp id="Mar">3.06</airtemp>
+      <airtemp id="Apr">9.39</airtemp>
+      <airtemp id="May">15.0</airtemp>
+      <airtemp id="Jun">19.56</airtemp>
+      <airtemp id="Jul">21.72</airtemp>
+      <airtemp id="Aug">21.0</airtemp>
+      <airtemp id="Sep">17.39</airtemp>
+      <airtemp id="Oct">11.06</airtemp>
+      <airtemp id="Nov">5.61</airtemp>
+      <airtemp id="Dec">-0.28</airtemp>
+    </airtemps>
+    <smcsawc>200.0</smcsawc>
+    <soilairrel>
+      <ampltd>0.66</ampltd>
+      <maatmast>1.2</maatmast>
+    </soilairrel>
+  </input>
+  <output>
+    <smrclass>Udic</smrclass>
+    <strclass>Mesic</strclass>
+    <subgrpmod>Typic Udic</subgrpmod>
+    <awb>427.39</awb>
+    <swb>-79.14</swb>
+    <smcstates>
+      <cumdays>
+        <yrdry>0</yrdry>
+        <yrmd>0</yrmd>
+        <yrmst>360</yrmst>
+        <bio5dry>0</bio5dry>
+        <bio5md>0</bio5md>
+        <bio5mst>224</bio5mst>
+      </cumdays>
+      <consdays>
+        <yrmst>360</yrmst>
+        <bio8mst>204</bio8mst>
+        <smrdry>0</smrdry>
+        <wtrmst>120</wtrmst>
+      </consdays>
+    </smcstates>
+    <pets>
+      <pet id="Jan">0.0</pet>
+      <pet id="Feb">0.0</pet>
+      <pet id="Mar">10.23</pet>
+      <pet id="Apr">42.81</pet>
+      <pet id="May">84.29</pet>
+      <pet id="Jun">117.15</pet>
+      <pet id="Jul">135.1</pet>
+      <pet id="Aug">120.51</pet>
+      <pet id="Sep">84.54</pet>
+      <pet id="Oct">45.13</pet>
+      <pet id="Nov">17.17</pet>
+      <pet id="Dec">0.0</pet>
+    </pets>
+    <soiltemps>
+      <soiltemp id="Jan">5.32</soiltemp>
+      <soiltemp id="Feb">5.32</soiltemp>
+      <soiltemp id="Mar">6.11</soiltemp>
+      <soiltemp id="Apr">8.3</soiltemp>
+      <soiltemp id="May">11.24</soiltemp>
+      <soiltemp id="Jun">14.14</soiltemp>
+      <soiltemp id="Jul">16.23</soiltemp>
+      <soiltemp id="Aug">16.6</soiltemp>
+      <soiltemp id="Sep">14.74</soiltemp>
+      <soiltemp id="Oct">11.97</soiltemp>
+      <soiltemp id="Nov">8.96</soiltemp>
+      <soiltemp id="Dec">6.53</soiltemp>
+    </soiltemps>
+    <calendars>
+      <tempcal>
+        <stlt5>
+          <beginday>1</beginday>
+          <endday>104</endday>
+        </stlt5>
+        <st5to8>
+          <beginday>105</beginday>
+          <endday>112</endday>
+        </st5to8>
+        <stgt8>
+          <beginday>113</beginday>
+          <endday>316</endday>
+        </stgt8>
+        <st5to8>
+          <beginday>317</beginday>
+          <endday>328</endday>
+        </st5to8>
+        <stlt5>
+          <beginday>329</beginday>
+          <endday>360</endday>
+        </stlt5>
+      </tempcal>
+      <moistcal>
+        <moist>
+          <beginday>1</beginday>
+          <endday>360</endday>
+        </moist>
+      </moistcal>
+    </calendars>
+  </output>
+</model>

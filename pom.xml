@@ -3,17 +3,20 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.psu</groupId>
-  <artifactId>Newhall</artifactId>
   <packaging>jar</packaging>
-  <version>1.4.7</version>
-  <name>Newhall</name>
+  <version>1.1.1</version>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.8.2</version>
+      <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>2.0</version>
     </dependency>
     <dependency>
       <groupId>org.jdom</groupId>
@@ -21,9 +24,6 @@
       <version>1.1</version>
     </dependency>
   </dependencies>
-  <description>The Newhall Simulation Model for the computation
-of soil evapotranspiration and temperature/moisture
-regime determination.</description>
   <build>
     <plugins>
       <plugin>
@@ -40,7 +40,7 @@ regime determination.</description>
         <configuration>
           <archive>
             <manifest>
-              <mainClass>org.psu.newhall.Newhall</mainClass>
+              <mainClass>org.psu.bulksummarizer.BulkSummarizer</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
@@ -50,6 +50,6 @@ regime determination.</description>
       </plugin>
     </plugins>
   </build>
+    <artifactId>newhall.xml2csv</artifactId>
+    <name>Newhall XML2CSV Tool</name>
 </project>
-
-
