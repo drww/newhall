@@ -1,3 +1,14 @@
+Newhall 1.4.7
+------------------------------------------------------
+* Fixed behavior when dealing with waterholding capacity and also the soil-
+  air offsets.  The fields can now be nullable.  
+* The Flerry connector now only uses the parameter whc and offset if the XML 
+  file has null values for either of these fields.  
+* 200.0mm is assumed now for CSV inputs.  This is being set when the dataset
+  is being assembled instead of the assumed default by the GUI.
+* The GUI now reads the whc from the file, and initializes the model using it
+  instead of the default of 200.0mm. 
+
 Newhall 1.4.6
 ------------------------------------------------------
 * Fixed an error in the Aridic and Xeric subgroup modifier determiniation
