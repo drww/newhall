@@ -15,7 +15,7 @@ public class XMLStringParser {
 
   NewhallDataset dataset;
 
-  public XMLStringParser(String file) throws JDOMException, IOException {
+  public XMLStringParser(String file, double whcOverride, double soilAirRelOverride) throws JDOMException, IOException {
 
     SAXBuilder builder = new SAXBuilder();
     Document doc = null;
@@ -77,7 +77,7 @@ public class XMLStringParser {
     Element location = input.getChild("location");
     double lat = Double.parseDouble(location.getChildText("lat"));
     char nsHemisphere;
-    if(lat >= 0) {
+    if (lat >= 0) {
       nsHemisphere = 'N';
     } else {
       // Put in terms of positive degrees South.
@@ -86,7 +86,7 @@ public class XMLStringParser {
     }
     double lon = Double.parseDouble(location.getChildText("lon"));
     char ewHemisphere;
-    if(lon >= 0) {
+    if (lon >= 0) {
       ewHemisphere = 'E';
     } else {
       // Put in terms of positive degrees West.
@@ -131,17 +131,30 @@ public class XMLStringParser {
 
     System.out.println("Parsing soil-air relationship variables.");
 
-    Double smcsawc = Double.parseDouble(input.getChildText("smcsawc"));
+    // Field is nullable.
+    Double smcsawc;
+    try {
+      smcsawc = Double.parseDouble(input.getChildText("smcsawc"));
+    } catch (NumberFormatException e) {
+      smcsawc = whcOverride;
+    }
 
     Element soilairrel = input.getChild("soilairrel");
     //Double lag = Double.parseDouble(soilairrel.getChildText("lag"));
     Double ampltd = Double.parseDouble(soilairrel.getChildText("ampltd"));
-    Double maatmast = Double.parseDouble(soilairrel.getChildText("maatmast"));
+
+    // Field is nullable.
+    Double maatmast;
+    try {
+      maatmast = Double.parseDouble(soilairrel.getChildText("maatmast"));
+    } catch (NumberFormatException e) {
+      maatmast = soilAirRelOverride;
+    }
 
     this.dataset = new NewhallDataset(stationName, country, lat, lon,
             nsHemisphere, ewHemisphere, stationElevation, allPrecipsDbl, allAirTempsDbl,
             //pdbegin, pdend, unitsys.equals("metric"));
-            pdbegin, pdend, true);
+            pdbegin, pdend, true, smcsawc);
 
     NewhallDatasetMetadata ndm = new NewhallDatasetMetadata(stationName, stationId, stationElevation,
             stateProvidence, country, mlraName, mlraId, firstName, lastName, title, cntorg,

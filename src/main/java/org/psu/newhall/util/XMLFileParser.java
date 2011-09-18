@@ -77,7 +77,7 @@ public class XMLFileParser {
     Element location = input.getChild("location");
     double lat = Double.parseDouble(location.getChildText("lat"));
     char nsHemisphere;
-    if(lat >= 0) {
+    if (lat >= 0) {
       nsHemisphere = 'N';
     } else {
       // Put in terms of positive degrees South.
@@ -86,7 +86,7 @@ public class XMLFileParser {
     }
     double lon = Double.parseDouble(location.getChildText("lon"));
     char ewHemisphere;
-    if(lon >= 0) {
+    if (lon >= 0) {
       ewHemisphere = 'E';
     } else {
       // Put in terms of positive degrees West.
@@ -131,24 +131,38 @@ public class XMLFileParser {
 
     System.out.println("Parsing soil-air relationship variables.");
 
-    Double smcsawc = Double.parseDouble(input.getChildText("smcsawc"));
+    // Field is nullable.
+    Double smcsawc;
+    try {
+      smcsawc = Double.parseDouble(input.getChildText("smcsawc"));
+    } catch (NumberFormatException e) {
+      smcsawc = 200.0;
+    }
 
     Element soilairrel = input.getChild("soilairrel");
     //Double lag = Double.parseDouble(soilairrel.getChildText("lag"));
     Double ampltd = Double.parseDouble(soilairrel.getChildText("ampltd"));
-    Double maatmast = Double.parseDouble(soilairrel.getChildText("maatmast"));
+
+    // Field is nullable.
+    Double maatmast;
+    try {
+      maatmast = Double.parseDouble(soilairrel.getChildText("maatmast"));
+    } catch (NumberFormatException e) {
+      // Default: 2.5C
+      maatmast = 2.5;
+    }
 
     this.dataset = new NewhallDataset(stationName, country, lat, lon,
             nsHemisphere, ewHemisphere, stationElevation, allPrecipsDbl, allAirTempsDbl,
             //pdbegin, pdend, unitsys.equals("metric"));
-            pdbegin, pdend, true);
+            pdbegin, pdend, true, smcsawc);
 
     NewhallDatasetMetadata ndm = new NewhallDatasetMetadata(stationName, stationId, stationElevation,
             stateProvidence, country, mlraName, mlraId, firstName, lastName, title, cntorg,
             address, city, stateprov, postal, cntCountry, cntemail, cntphone, allNotesStr,
             //rundate, modelVers, unitsys, maatmast, ampltd);
             rundate, modelVers, srcunitsys, maatmast, ampltd, nettype);
-    
+
     this.dataset.setMetadata(ndm);
 
     System.out.println("XML dataset built.");
@@ -158,5 +172,4 @@ public class XMLFileParser {
   public NewhallDataset getDataset() {
     return dataset;
   }
-  
 }

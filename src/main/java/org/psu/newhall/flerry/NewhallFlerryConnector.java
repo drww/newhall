@@ -29,18 +29,18 @@ public class NewhallFlerryConnector {
   private static String runModelProper(String inputXmlFile, boolean isMetric, double waterHoldingCapacity, double soilAirRel) {
 
     XMLStringParser xsp = null;
+    NewhallDataset dataset = null;
 
     try {
-      xsp = new XMLStringParser(inputXmlFile);
+      xsp = new XMLStringParser(inputXmlFile, waterHoldingCapacity, soilAirRel);
+      dataset = xsp.getDataset();
     } catch (JDOMException ex) {
       return "JDOMException encountered: " + ex.getMessage();
     } catch (IOException ex) {
       return "IOException encountered: " + ex.getMessage();
     }
 
-    NewhallDataset dataset = xsp.getDataset();
-    dataset.getMetadata().setSoilAirOffset(soilAirRel);
-    NewhallResults results = BASICSimulationModel.runSimulation(dataset, waterHoldingCapacity);
+    NewhallResults results = BASICSimulationModel.runSimulation(dataset, dataset.getWaterholdingCapacity());
 
     return XMLStringResultsExporter.export(results, dataset);
 

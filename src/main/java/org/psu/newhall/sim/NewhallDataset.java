@@ -16,9 +16,12 @@ public class NewhallDataset {
   private int startYear;
   private int endYear;
   private boolean isMetric;
+  private double waterholdingCapacity;
   private NewhallDatasetMetadata metadata;
 
-  public NewhallDataset(String name, String country, double latitude, double longitude, char nsHemisphere, char ewHemisphere, double elevation, List<Double> precipitation, List<Double> temperature, int startYear, int endYear, boolean isMetric) {
+  public NewhallDataset(String name, String country, double latitude, double longitude, char nsHemisphere,
+          char ewHemisphere, double elevation, List<Double> precipitation, List<Double> temperature, int startYear,
+          int endYear, boolean isMetric, double waterholdingCapacity) {
     this.name = name;
     this.country = country;
     this.latitude = latitude;
@@ -31,6 +34,7 @@ public class NewhallDataset {
     this.startYear = startYear;
     this.endYear = endYear;
     this.isMetric = isMetric;
+    this.waterholdingCapacity = waterholdingCapacity;
   }
 
   public String getCountry() {
@@ -58,11 +62,11 @@ public class NewhallDataset {
   }
 
   public int getLatitudeDegrees() {
-    return (int)latitude;
+    return (int) latitude;
   }
 
   public double getLatitudeMinutes() {
-    double remainder = latitude - (int)latitude;
+    double remainder = latitude - (int) latitude;
     return remainder * 60;
   }
 
@@ -71,11 +75,11 @@ public class NewhallDataset {
   }
 
   public int getLongitudeDegrees() {
-    return (int)longitude;
+    return (int) longitude;
   }
 
   public double getLongitudeMinutes() {
-    double remainder = longitude - (int)longitude;
+    double remainder = longitude - (int) longitude;
     return remainder * 60;
   }
 
@@ -105,6 +109,10 @@ public class NewhallDataset {
 
   public NewhallDatasetMetadata getMetadata() {
     return metadata;
+  }
+
+  public double getWaterholdingCapacity() {
+    return waterholdingCapacity;
   }
 
   @Override

@@ -215,7 +215,7 @@ public class BASICSimulationModelTest {
     precip.add(3.9);
     precip.add(9.9);
 
-    return new NewhallDataset("Columbus 3 NE", "USA", 41.4666, 97.3333, 'N', 'W', 441.96, precip, temps, 1997, 1997, true);
+    return new NewhallDataset("Columbus 3 NE", "USA", 41.4666, 97.3333, 'N', 'W', 441.96, precip, temps, 1997, 1997, true, 200.0);
 
   }
 
@@ -248,7 +248,7 @@ public class BASICSimulationModelTest {
     precip.add(28.4);
     precip.add(6.4);
 
-    return new NewhallDataset("Columbus 3 NE", "USA", 41.4666, 97.3333, 'N', 'W', 441.96, precip, temps, 1998, 1998, true);
+    return new NewhallDataset("Columbus 3 NE", "USA", 41.4666, 97.3333, 'N', 'W', 441.96, precip, temps, 1998, 1998, true, 200.0);
   }
 
   private NewhallDataset makeMead89() {
@@ -280,7 +280,7 @@ public class BASICSimulationModelTest {
     precip.add(1.3);
     precip.add(16.8);
 
-    return new NewhallDataset("Mead Agronomy Lab", "USA", 41.4666, 97.3333, 'N', 'W', 359.66, precip, temps, 1989, 1989, true);
+    return new NewhallDataset("Mead Agronomy Lab", "USA", 41.4666, 97.3333, 'N', 'W', 359.66, precip, temps, 1989, 1989, true, 200.0);
   }
 
   private NewhallDataset makeAjo20080() {
@@ -312,7 +312,7 @@ public class BASICSimulationModelTest {
     precip.add(12.7);
     precip.add(22.35);
 
-    return new NewhallDataset("Ajo, AZ", "USA", 32.37, -112.87, 'N', 'E', 549.0, precip, temps, 1971, 2000, true);
+    return new NewhallDataset("Ajo, AZ", "USA", 32.37, -112.87, 'N', 'E', 549.0, precip, temps, 1971, 2000, true, 200.0);
   }
 
   private NewhallDataset makePendleton() {
@@ -328,7 +328,7 @@ public class BASICSimulationModelTest {
       precips.add(precip);
     }
 
-    return new NewhallDataset("Pendleton, OR", "USA", 33.3, -117.35, 'N', 'E', 75.0, precips, temps, 1971, 2000, false);
+    return new NewhallDataset("Pendleton, OR", "USA", 33.3, -117.35, 'N', 'E', 75.0, precips, temps, 1971, 2000, false, 200.0);
   }
 
   private NewhallDataset makeChadron() {
@@ -344,6 +344,6 @@ public class BASICSimulationModelTest {
       precips.add(precip);
     }
 
-    return new NewhallDataset("Chadron, NE", "USA", 42.82, -103.0, 'N', 'E', 3510, precips, temps, 1971, 2000, false);
+    return new NewhallDataset("Chadron, NE", "USA", 42.82, -103.0, 'N', 'E', 3510, precips, temps, 1971, 2000, false, 200.0);
   }
 }

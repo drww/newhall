@@ -1286,6 +1286,8 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
         properPrecip.add(precipInInches);
       }
 
+      double whcInInches = nd.getWaterholdingCapacity() * 0.0393700787;
+      whcSpinner.setValue(whcInInches);
       double offsetInF = nd.getMetadata().getSoilAirOffset() * (9.0 / 5.0);
       soilAirOffset.setValue(offsetInF);
       properElevation = nd.getElevation() * 3.2808399;
@@ -1294,6 +1296,7 @@ public class DefaultNewhallFrame extends javax.swing.JFrame {
       properTemp = nd.getTemperature();
       properPrecip = nd.getPrecipitation();
       properElevation = nd.getElevation();
+      whcSpinner.setValue(nd.getWaterholdingCapacity());
       soilAirOffset.setValue(nd.getMetadata().getSoilAirOffset());
     }
 

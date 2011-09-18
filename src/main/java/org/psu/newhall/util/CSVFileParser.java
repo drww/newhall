@@ -73,7 +73,7 @@ public class CSVFileParser {
 
     this.dataset = new NewhallDataset(name, country, latitude,
             longitude, nsHemisphere, ewHemisphere, elevation,
-            precipitation, temperature, startYear, endYear, isMetric);
+            precipitation, temperature, startYear, endYear, isMetric, 200.0);
 
     // Add mostly empty metadata object.
     NewhallDatasetMetadata ndm = new NewhallDatasetMetadata();

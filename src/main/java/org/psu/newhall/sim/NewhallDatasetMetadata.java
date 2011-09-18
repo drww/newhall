@@ -287,5 +287,4 @@ public class NewhallDatasetMetadata {
   public String getNetwork() {
     return network;
   }
-
 }
