@@ -3188,7 +3188,7 @@ public class BASICSimulationModel {
         if (i >= 90 && i < 270) {
           soilTempCalendarUnshifted.add(i, yearAverage + a * Math.sin(w * (i + summerLagPhase)));
         } else {
-          soilTempCalendarUnshifted.add(i, yearAverage + a * Math.sin(w * (i + winterAverage)));
+          soilTempCalendarUnshifted.add(i, yearAverage + a * Math.sin(w * (i + fallLagPhase)));
         }
 
       } else {
@@ -3196,7 +3196,7 @@ public class BASICSimulationModel {
         if (i >= 90 && i < 270) {
           soilTempCalendarUnshifted.add(i, yearAverage + a * Math.cos(w * (i + summerLagPhase)));
         } else {
-          soilTempCalendarUnshifted.add(i, yearAverage + a * Math.cos(w * (i + winterAverage)));
+          soilTempCalendarUnshifted.add(i, yearAverage + a * Math.cos(w * (i + fallLagPhase)));
         }
 
       }
