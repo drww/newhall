@@ -340,7 +340,7 @@ public class XMLStringResultsExporter {
         // Results object always in metric.  Convert C to F.
         soiltempVal = (soiltempVal * 9.0 / 5.0) + 32;
       }
-      soiltemp.setText(Double.toString(round(soiltempVal + dataset.getMetadata().getSoilAirOffset(), 2)));
+      soiltemp.setText(Double.toString(round(soiltempVal, 2)));
       soiltemps.addContent(soiltemp);
     }
 
