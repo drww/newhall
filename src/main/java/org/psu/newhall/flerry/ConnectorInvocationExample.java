@@ -2,9 +2,9 @@ package org.psu.newhall.flerry;
 
 public class ConnectorInvocationExample {
 
-  public static void main(String[] args) {
+  /**public static void main(String[] args) {
     example();
-  }
+  }**/
   
   public static void example() {
 
