@@ -3174,9 +3174,11 @@ public class BASICSimulationModel {
 
     double summerAverage = airTemps[5] + airTemps[6] + airTemps[7];
     summerAverage /= 3.0;
+    summerAverage += averageOffset;
 
     double winterAverage = airTemps[11] + airTemps[0] + airTemps[1];
     winterAverage /= 3.0;
+    summerAverage += averageOffset;
 
     double a = Math.abs(summerAverage - winterAverage) / 2.0 * amplitude;
     double w = 2.0 * Math.PI / 360;
