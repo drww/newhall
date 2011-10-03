@@ -3115,7 +3115,7 @@ public class BASICSimulationModel {
     // End of simulation model run.
 
     List<Double> soilTempCalendar = computeSoilCalendar(temperature, BASICSimulationModelConstants.lagPhaseSummer,
-            BASICSimulationModelConstants.lagPhaseWinter, (dataset.getNsHemisphere() == 'N'), fcd);
+            BASICSimulationModelConstants.lagPhaseWinter, (dataset.getNsHemisphere() == 'N'), fcd, fc);
 
     // Water balance calculations.
 
@@ -3154,7 +3154,7 @@ public class BASICSimulationModel {
     return runningBalance;
   }
 
-  private static List<Double> computeSoilCalendar(double[] airTemps, int summerLagPhase, int fallLagPhase, boolean northernHemisphere, double amplitude) {
+  private static List<Double> computeSoilCalendar(double[] airTemps, int summerLagPhase, int fallLagPhase, boolean northernHemisphere, double amplitude, double averageOffset) {
 
     /**
      * Compute soil temperatures using BASIC version's lag phases with C++ version's
@@ -3170,6 +3170,7 @@ public class BASICSimulationModel {
       yearAverage += month;
     }
     yearAverage /= 12.0;
+    yearAverage += averageOffset;
 
     double summerAverage = airTemps[5] + airTemps[6] + airTemps[7];
     summerAverage /= 3.0;

@@ -5,7 +5,7 @@ import org.psu.newhall.ui.DefaultNewhallFrame;
 
 public class Newhall {
 
-  public static String NSM_VERSION = "1.4.7";
+  public static String NSM_VERSION = "1.4.8";
 
   public static void main(String[] args) {
 
