@@ -46,7 +46,7 @@ public class Dataset {
   private String wbOct;
   private String wbNov;
   private String wbDec;
-  private String stJan;
+  /**private String stJan;
   private String stFeb;
   private String stMar;
   private String stApr;
@@ -57,7 +57,7 @@ public class Dataset {
   private String stSep;
   private String stOct;
   private String stNov;
-  private String stDec;
+  private String stDec;**/
   private String pdType;
   private String runDate;
   private String fileName;
@@ -70,8 +70,8 @@ public class Dataset {
             + "," + petJan + "," + petFeb + "," + petMar + "," + petApr + "," + petMay + "," + petJun + "," + petJul
             + "," + petAug + "," + petSep + "," + petOct + "," + petNov + "," + petDec + "," + wbJan + "," + wbFeb + ","
             + wbMar + "," + wbApr + "," + wbMay + "," + wbJun + "," + wbJul + "," + wbAug + "," + wbSep + "," + wbOct
-            + "," + wbNov + "," + wbDec + "," + stJan + "," + stFeb + "," + stMar + "," + stApr + "," + stMay + ","
-            + stJun + "," + stJul + "," + stAug + "," + stSep + "," + stOct + "," + stNov + "," + stDec + "," + pdType
+            + "," + wbNov + "," + wbDec + "," + /**stJan + "," + stFeb + "," + stMar + "," + stApr + "," + stMay + ","
+            + stJun + "," + stJul + "," + stAug + "," + stSep + "," + stOct + "," + stNov + "," + stDec + "," + **/ pdType
             + "," + runDate + "," + fileName;
   }
 
@@ -279,6 +279,7 @@ public class Dataset {
     this.smrdryCons = smrdryCons;
   }
 
+  /**
   public String getStApr() {
     return stApr;
   }
@@ -374,6 +375,7 @@ public class Dataset {
   public void setStSep(String stSep) {
     this.stSep = stSep;
   }
+  **/
 
   public String getStnID() {
     return stnID;

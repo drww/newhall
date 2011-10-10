@@ -109,7 +109,7 @@ public class XmlFileParser {
     Double wbDec = Double.valueOf(precips.get(11).getText()) - Double.valueOf(dataset.getPetDec());
     dataset.setWbDec(round(wbDec, 2).toString());
 
-    List<Element> soiltemps = output.getChild("soiltemps").getChildren();
+    /**List<Element> soiltemps = output.getChild("soiltemps").getChildren();
     dataset.setStJan(soiltemps.get(0).getText());
     dataset.setStFeb(soiltemps.get(1).getText());
     dataset.setStMar(soiltemps.get(2).getText());
@@ -121,7 +121,7 @@ public class XmlFileParser {
     dataset.setStSep(soiltemps.get(8).getText());
     dataset.setStOct(soiltemps.get(9).getText());
     dataset.setStNov(soiltemps.get(10).getText());
-    dataset.setStDec(soiltemps.get(11).getText());
+    dataset.setStDec(soiltemps.get(11).getText());**/
 
     dataset.setPdType(input.getChild("recordpd").getChildText("pdtype"));
     dataset.setRunDate(metadata.getChildText("rundate"));
