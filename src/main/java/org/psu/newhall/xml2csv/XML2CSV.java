@@ -2,7 +2,7 @@ package org.psu.newhall.xml2csv;
 
 public class XML2CSV {
 
-  static public final String BULK_SUMMARIZER_VERSION = "1.1.1";
+  static public final String BULK_SUMMARIZER_VERSION = "1.2.0";
 
   public static void main(String[] args) {
 
