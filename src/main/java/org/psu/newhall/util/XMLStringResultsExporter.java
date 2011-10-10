@@ -267,7 +267,7 @@ public class XMLStringResultsExporter {
     Element swb = new Element("swb");
     Element smcstates = new Element("smcstates");
     Element pets = new Element("pets");
-    Element soiltemps = new Element("soiltemps");
+    //Element soiltemps = new Element("soiltemps");
     Element calendars = new Element("calendars");
 
     smrclass.setText(results.getMoistureRegime());
@@ -331,6 +331,7 @@ public class XMLStringResultsExporter {
       pets.addContent(pet);
     }
 
+    /**
     List<Double> soilTempValues = results.getSoilTempAverages();
     for (int i = 0; i < months.length; i++) {
       Element soiltemp = new Element("soiltemp");
@@ -342,7 +343,7 @@ public class XMLStringResultsExporter {
       }
       soiltemp.setText(Double.toString(round(soiltempVal, 2)));
       soiltemps.addContent(soiltemp);
-    }
+    }**/
 
     Element tempCalElement = new Element("tempcal");
     List<Character> tempCal = results.getTemperatureCalendar();
@@ -443,7 +444,7 @@ public class XMLStringResultsExporter {
     output.addContent(swb);
     output.addContent(smcstates);
     output.addContent(pets);
-    output.addContent(soiltemps);
+    //output.addContent(soiltemps);
     output.addContent(calendars);
 
     /** Combine tags into root tag. **/

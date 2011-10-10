@@ -3114,8 +3114,8 @@ public class BASICSimulationModel {
 
     // End of simulation model run.
 
-    List<Double> soilTempCalendar = computeSoilCalendar(temperature, BASICSimulationModelConstants.lagPhaseSummer,
-            BASICSimulationModelConstants.lagPhaseWinter, (dataset.getNsHemisphere() == 'N'), fcd, fc);
+    /**List<Double> soilTempCalendar = computeSoilCalendar(temperature, BASICSimulationModelConstants.lagPhaseSummer,
+            BASICSimulationModelConstants.lagPhaseWinter, (dataset.getNsHemisphere() == 'N'), fcd, fc);**/
 
     // Water balance calculations.
 
@@ -3123,7 +3123,7 @@ public class BASICSimulationModel {
     double swb = computeWaterBalance(precip, mpe, true, (dataset.getNsHemisphere() == 'N'));
 
     return new NewhallResults(arf, whc, mpe, nccd, nccm, ntd, iday, nd, nsd,
-            ncpm, trr, ans, q, div, awb, swb, soilTempCalendar, flxFile);
+            ncpm, trr, ans, q, div, awb, swb, /**soilTempCalendar,**/ flxFile);
 
   }
 
@@ -3154,6 +3154,7 @@ public class BASICSimulationModel {
     return runningBalance;
   }
 
+  @Deprecated  // Not verified as correct behavior.  Do not use until fixed.
   private static List<Double> computeSoilCalendar(double[] airTemps, int summerLagPhase, int fallLagPhase, boolean northernHemisphere, double amplitude, double averageOffset) {
 
     /**
