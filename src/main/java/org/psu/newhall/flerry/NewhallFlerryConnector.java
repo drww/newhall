@@ -32,6 +32,7 @@ public class NewhallFlerryConnector {
     NewhallDataset dataset = null;
 
     try {
+      // Resulting dataset will only have parameter WHC and soil-air if the values are null in the XML string.
       xsp = new XMLStringParser(inputXmlFile, waterHoldingCapacity, soilAirRel);
       dataset = xsp.getDataset();
     } catch (JDOMException ex) {
@@ -40,7 +41,8 @@ public class NewhallFlerryConnector {
       return "IOException encountered: " + ex.getMessage();
     }
 
-    NewhallResults results = BASICSimulationModel.runSimulation(dataset, dataset.getWaterholdingCapacity());
+    NewhallResults results = BASICSimulationModel.runSimulation(dataset, dataset.getWaterholdingCapacity(),
+            dataset.getMetadata().getSoilAirOffset(), dataset.getMetadata().getAmplitude());
 
     return XMLStringResultsExporter.export(results, dataset);
 
