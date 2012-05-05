@@ -18,6 +18,8 @@ public class BASICSimulationModel {
 
   public static NewhallResults runSimulation(NewhallDataset dataset, double waterHoldingCapacity, double fc, double fcd) {
 
+    boolean hasRunAlready = false;
+    
     // Convert elevation into meters.
     double elevation = dataset.getElevation();
     if (!dataset.isMetric()) {
@@ -1477,7 +1479,7 @@ public class BASICSimulationModel {
           id5c = 0;
           for (int ik = 1; ik <= 3; ik++) {
             nsd[ik] = 0;
-          }
+            }
           tc = 0;
           skipTo890 = true;
           // 890 - Jump over block after IF block.
@@ -1518,8 +1520,16 @@ public class BASICSimulationModel {
 
           // 810 - Return from GOSUB 2380.
 
-          for (int ic = 1; ic <= 3; ic++) {
-            nsd[ic] = nsd[ic] + nzd[ic];
+          // TODO: Investigate this section.  Pittsburgh 1950 causes 
+          //   this region of code to be called twice instead of once.
+          //   In normal datasets this region is only called once.
+          //   Problem dataset looked correct on the first pass, but
+          //   the second pass had a days per year greater than 360.
+          if (!hasRunAlready) {
+            for (int ic = 1; ic <= 3; ic++) {
+              nsd[ic] = nsd[ic] + nzd[ic];
+              hasRunAlready = true;
+            }
           }
 
           lt5c = lt5c + ir;
@@ -1545,7 +1555,7 @@ public class BASICSimulationModel {
       tc = 0;
       for (int ic = 1; ic <= 3; ic++) {
         nsd[ic] = nd[ic];
-      }
+        }
       lt5c = 360;
       id5c = 0;
     }
@@ -2767,7 +2777,7 @@ public class BASICSimulationModel {
       // the following if() block, so we need to populate
       // for this edge case here.
       for(int i = 1; i <= 360; i++) ntd[i] = '8';
-    }
+      }
 
     if (tc != 0 || tu != 0) {
       // GOSUB 2990 - Calculate calendar.
@@ -3162,7 +3172,7 @@ public class BASICSimulationModel {
      * method to compute soil temperatures by utilizing lag phases.  BASIC version assumes
      * 21 days in the summer and 10 days in the winter for lag phases elsewhere, so to
      * continue to use that assumption here seems reasonable.
-     * 
+     *
      * Lag phases are dependant on the structure of the soil in the area, and these
      * assumptions should be recognized for their limitations in any results.
      */
