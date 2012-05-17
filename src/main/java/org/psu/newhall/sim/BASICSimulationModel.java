@@ -18,6 +18,9 @@ public class BASICSimulationModel {
 
   public static NewhallResults runSimulation(NewhallDataset dataset, double waterHoldingCapacity, double fc, double fcd) {
 
+    // This is a hack to prevent a problematic region of code from running
+    // multiple times.  Problem datasets that test that this hack works
+    // are present in the unit tests.
     boolean hasRunAlready = false;
     
     // Convert elevation into meters.
