@@ -217,6 +217,37 @@ public class BASICSimulationModelTest {
       assertEquals(nr.getMeanPotentialEvapotranspiration().get(i), expectdEvapoTranspiration[i], 0.4);
     }
   }
+  
+  @Test
+  public void testSimulationPiedmont1937() {
+    NewhallResults nr = BASICSimulationModel.runSimulation(makePiedmont1937(), 154.9);
+
+    assertEquals(nr.getMoistureRegime().toLowerCase(), "udic");
+    assertEquals(nr.getTemperatureRegime().toLowerCase(), "thermic");
+    assertEquals(nr.getRegimeSubdivision1().toLowerCase(), "typic");
+    assertEquals(nr.getRegimeSubdivision2().toLowerCase(), "udic");
+    assertEquals(nr.getAnnualRainfall(), 1332, 1);
+
+    assertEquals(nr.getNumCumulativeDaysDry(), 0);
+    assertEquals(nr.getNumCumulativeDaysMoistDry(), 0);
+    assertEquals(nr.getNumCumulativeDaysMoist(), 360);
+    assertEquals(nr.getNumCumulativeDaysDryOver5C(), 0);
+    assertEquals(nr.getNumCumulativeDaysMoistDryOver5C(), 0);
+
+    // Tolerance for deviation: 1 day
+    assertEquals(nr.getNumCumulativeDaysMoistOver5C(), 246, 1);
+
+    assertEquals(nr.getNumConsecutiveDaysMoistInSomeParts(), 360);
+    assertEquals(nr.getNumConsecutiveDaysMoistInSomePartsOver8C(), 222);
+    assertEquals(nr.getDryDaysAfterSummerSolstice(), 0);
+    assertEquals(nr.getMoistDaysAfterWinterSolstice(), 120);
+
+    Double[] expectdEvapoTranspiration = {11.71, 2.22, 16.13, 45.28, 98.76, 142.58, 153.86, 144.51, 83.11, 42.53, 15.72, 2.71};
+    for (int i = 0; i < 12; i++) {
+      // Tolerance for deviation: 0.4 mm
+      assertEquals(nr.getMeanPotentialEvapotranspiration().get(i), expectdEvapoTranspiration[i], 0.4);
+    }
+  }
 
   /**
    * Dataset Builder Functions *
@@ -397,5 +428,21 @@ public class BASICSimulationModelTest {
     }
 
     return new NewhallDataset("Pittsburgh, PA", "USA", 40.45, 80.0, 'N', 'W', 310.0, precips, temps, 1950, 1950, true, 76.2);
+  }
+
+  private NewhallDataset makePiedmont1937() {
+    ArrayList<Double> temps = new ArrayList<Double>();
+    double[] tempArray = {5.33, 1.67, 5.83, 11.5, 18.39, 23.67, 24.83, 24.89, 18.33, 12.11, 6.61, 1.94};
+    for (double temp : tempArray) {
+      temps.add(temp);
+    }
+
+    ArrayList<Double> precips = new ArrayList<Double>(12);
+    double[] precipArray = {181.1, 65.79, 34.29, 205.49, 84.07, 144.02, 123.19, 156.21, 61.21, 200.91, 62.23, 14.48};
+    for (double precip : precipArray) {
+      precips.add(precip);
+    }
+
+    return new NewhallDataset("Piedmont Research Station, NC", "USA", 38.23, 78.12, 'N', 'E', 158.0, precips, temps, 1937, 1937, true, 154.9);
   }
 }
