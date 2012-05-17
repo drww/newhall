@@ -1,1 +1,1 @@
-mvn assembly:single & pause
+mvn assembly:assembly & pause
