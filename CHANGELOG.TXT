@@ -1,3 +1,47 @@
+Newhall 1.6.0
+------------------------------------------------------
+
+* Fixed a bug with some models reporting stats that are not valid for a
+  360-day model year.  A region of code was running once in datasets that
+  ran properly, and twice in the problem datasets.  A hack has been put
+  in place over the old BASIC logic, making the datasets produce better
+  results.  Two unit tests were introduced to check this change.
+
+Newhall 1.5.1
+------------------------------------------------------
+
+* Fixed a bug with the Flerry connector reverting to default BASIC model
+  values for soil-air relationship and amplitude.
+
+Newhall 1.5.0
+
+------------------------------------------------------
+
+* Soil temperature calculations have been removed from both the Newhall
+
+  application and XML2CSV tool.
+
+
+
+Newhall 1.4.8
+
+------------------------------------------------------
+* Changed behavior of applying soil-air offsets to the soil temperature
+
+  calculations.  Where the offset was added to each individual month, it
+
+  is instead added to the yearly and seasonal averages, which is consistent
+
+  with the BASIC model behavior.
+* Fixed a typo bug in the soil temperature 
+  calculations.  Winter lag phase
+  values were not being respected properly, 
+  having a variable secondary
+  lag phase depending on the location.  
+  Negative phase lags were possible.
+
+
+
 Newhall 1.4.7
 ------------------------------------------------------
 * Fixed behavior when dealing with waterholding capacity and also the soil-
