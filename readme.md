@@ -7,7 +7,7 @@ Latest Version: 1.6.1 (September 21st, 2015)
 
 Fixed an error with interpolation based on latitude.  This had the side-effect of lower model resolution in the southern hemisphere.
 
-JAR: https://github.com/drww/newhall/blob/master/download/newhall-1.6.1.jar
+JAR: https://github.com/drww/newhall/blob/master/download/newhall-1.6.1.jar?raw=true
 
 ## Overview
 
