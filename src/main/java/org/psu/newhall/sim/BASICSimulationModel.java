@@ -148,9 +148,12 @@ public class BASICSimulationModel {
             mpe[i] = upe[i] * cf;
           } else {
             // 625
-            double cf = (BASICSimulationModelConstants.fs[i - 1][nrow] - BASICSimulationModelConstants.fs[i - 1][nrow - 1])
-                    * ((dataset.getLatitudeMinutes() - BASICSimulationModelConstants.rs[nrow - 1]) * 60)
-                    / ((BASICSimulationModelConstants.rs[nrow] - BASICSimulationModelConstants.rs[nrow - 1]) * 60);
+            //double cf = (BASICSimulationModelConstants.fs[i - 1][nrow] - BASICSimulationModelConstants.fs[i - 1][nrow - 1])
+            //        * ((dataset.getLatitudeMinutes() - BASICSimulationModelConstants.rs[nrow - 1]) * 60)
+            //        / ((BASICSimulationModelConstants.rs[nrow] - BASICSimulationModelConstants.rs[nrow - 1]) * 60);
+            double cf = ((BASICSimulationModelConstants.fs[i - 1][nrow] - BASICSimulationModelConstants.fs[i - 1][nrow - 1]) * 
+              (((dataset.getLatitudeDegrees() - BASICSimulationModelConstants.rs[nrow - 1]) * 60) + dataset.getLatitudeMinutes())) / 
+              ((BASICSimulationModelConstants.rs[nrow] - BASICSimulationModelConstants.rs[nrow - 1]) * 60);
             cf += BASICSimulationModelConstants.fs[i - 1][nrow - 1];
             // 645
             mpe[i] = upe[i] * cf;
