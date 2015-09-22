@@ -58,7 +58,7 @@ public class AboutFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(aboutText);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("<html>A Java implementation of the Newhall model for soil regime simulation.<br>\nBased on Armand Wambeke's BASIC version of Franklin Newhall's model.<br>\nhttp://code.google.com/p/newhall</html>");
+        jLabel3.setText("<html>A Java implementation of the Newhall model for soil regime simulation.<br>\nBased on Armand Wambeke's BASIC version of Franklin Newhall's model.<br>\nhttps://github.com/drww/newhall</html>");
 
         versionText.setText(org.psu.newhall.Newhall.NSM_VERSION);
 

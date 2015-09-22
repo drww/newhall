@@ -100,7 +100,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;A Java implementation of the Newhall model for soil regime simulation.&lt;br&gt;&#xa;Based on Armand Wambeke&apos;s BASIC version of Franklin Newhall&apos;s model.&lt;br&gt;&#xa;http://code.google.com/p/newhall&lt;/html&gt;"/>
+	<Property name="text" type="java.lang.String" value="&lt;html&gt;A Java implementation of the Newhall model for soil regime simulation.&lt;br&gt;&#xa;Based on Armand Wambeke&apos;s BASIC version of Franklin Newhall&apos;s model.&lt;br&gt;&#xa;https://github.com/drww/newhall&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="versionText">
