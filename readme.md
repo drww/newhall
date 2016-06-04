@@ -9,6 +9,8 @@ Fixed an error with interpolation based on latitude.  This had the side-effect o
 
 JAR: https://github.com/drww/newhall/blob/master/download/newhall-1.6.1.jar?raw=true
 
+For the Adobe Flex version of Newhall, which integrates this project (as "jNSM") into it, along with datasets and examples, please see this site: http://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/class/?cid=nrcs142p2_053559
+
 ## Overview
 
 Newhall is a Java implementation of Franklin Newhall's model for soil moisture regime determination. This implementation stems directly from the Wambeke BASIC version of the Newhall simulation model, which was a BASIC reimplementation of the original COBOL version. The model functions by taking temperature and precipitation data from a point location, interpreted as monthly averages, and simulates the behavior of the moisture within a column of soil. It functions off the concept of horizontal moisture recharge (through precipitation) and vertical discharge within the moisture profile (through evaporation).
